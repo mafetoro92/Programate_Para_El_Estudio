@@ -1,0 +1,9 @@
+$primary: #324232;
+.container{
+    width: 50%;
+    height: 50%;
+    border: 2px solid $primary;
+    .section{
+        color: red;
+    }
+}

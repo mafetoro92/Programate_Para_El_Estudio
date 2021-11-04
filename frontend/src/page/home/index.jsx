@@ -1,9 +1,16 @@
 import React from 'react';
-import HelloWorld from '../../components/helloWorld';
+import Nav from '../../container/Nav/Nav';
 
 const Home = () => {
+
+  const saludar = () => {
+    console.log('Hello World');
+  };
+
   return (
-    <HelloWorld />
+    <>
+      <Nav text='Hello' saludar={saludar} />
+    </>
   );
 };
 

@@ -60,5 +60,4 @@ module.exports = {
       filename: nodeEnv ? 'assets/[name].css' : 'assets/[name].css',
     }),
   ],
-
 };
