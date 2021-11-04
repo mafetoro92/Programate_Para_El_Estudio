@@ -1,9 +1,16 @@
-$primary: #324232;
-.container{
-    width: 50%;
-    height: 50%;
-    border: 2px solid $primary;
-    .section{
-        color: red;
+$primary: #E0B60D;
+
+.nav{
+    position: fixed;
+    background-color: $primary;
+    height: 100vh;
+    width: 30%;
+    padding: 20px;
+    .nav__img{
+        position: relative;
     }
+        img{
+            width: 100%;
+            object-fit: cover;
+        }
 }
