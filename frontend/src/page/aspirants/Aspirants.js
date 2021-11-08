@@ -1,19 +1,19 @@
 import React from "react";
-import "./Convocatory.scss";
+import "./Aspirants.scss";
 
-const Convocatory = () => {
+const Aspirants = () => {
   return (
-    <div className="section__convocatory">
+    <div className="section__aspirants">
       <div className="section__content d-flex justify-content-between">
-        <span className='upperCase bold'>Convocatoria</span>
+        <span className="upperCase bold">Aspirantes</span>
         <div className="box__content">
           <span>Programate</span>
           <i class="fas fa-chevron-right subtitle" />
-          <span>Convocatoria</span>
+          <span>Aspirantes</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Convocatory;
+export default Aspirants;

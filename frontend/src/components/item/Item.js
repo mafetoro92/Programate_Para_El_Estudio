@@ -23,7 +23,7 @@ const Item = ({ item, toggleItem, activeItems }) => {
           )}
         </div>
         {items.length > 0 && isActive && (
-          <div className="nav__subitem px-5 d-flex flex-column">
+          <div className="nav__subitem d-flex flex-column">
             {items?.map((item, index) => (
               <Link className='nav__subitem-label' key={index} to={item.path}>{item.name}</Link>
             ))}

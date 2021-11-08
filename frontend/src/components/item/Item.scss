@@ -20,6 +20,9 @@ $secondary: #000000;
   &:hover, &:hover &-icon, &:hover &-label {
       color: white !important ;
   }
+  .nav__subitem{
+    padding: 0 0 0 50px;
+  }
   .nav__subitem-label{
       color: black;
       margin: 8px 0;

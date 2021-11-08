@@ -27,15 +27,15 @@ export const ITEMS = [
     items: [
       {
         name: "Resultados",
-        path: "/resultados",
+        path: "/",
       },
       {
         name: "Calificación",
-        path: "/calificación",
+        path: "/",
       },
       {
         name: "Parametrización",
-        path: "/parametrización",
+        path: "/",
       },
     ],
   },
@@ -46,11 +46,11 @@ export const ITEMS = [
     items: [
       {
         name: "Consolidado Postulantes",
-        path: "/consolidado",
+        path: "/",
       },
       {
         name: "Dias de Entrevista",
-        path: "/dias",
+        path: "/",
       },
     ],
   },
@@ -61,11 +61,11 @@ export const ITEMS = [
     items: [
       {
         name: "Administrar Pruebas Técnicas",
-        path: "/administrar",
+        path: "/",
       },
       {
         name: "Calificar Pruebas Tecnicas",
-        path: "/calificar",
+        path: "/",
       },
     ],
   },
@@ -76,7 +76,7 @@ export const ITEMS = [
     items: [
       {
         name: "Resultados",
-        path: "/resultados",
+        path: "/",
       },
     ],
   },

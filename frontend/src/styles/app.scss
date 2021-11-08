@@ -30,7 +30,7 @@ a {
 }
 // -color e0b60d
 .ripple:hover {
-//   background-color: #e0b60d;
+  //   background-color: #e0b60d;
   background-image: radial-gradient(circle, transparent 1%, #e0b60d 1%);
   background-position: center;
   background-size: 15000%;
@@ -40,4 +40,20 @@ a {
   transition: background 0s;
   background-color: #bba34c;
   background-size: 100%;
+}
+
+.fixed {
+  position: fixed;
+}
+.upperCase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 12px;
+  margin: 0 5px;
 }

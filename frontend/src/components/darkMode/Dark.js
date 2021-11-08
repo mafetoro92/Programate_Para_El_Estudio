@@ -4,7 +4,7 @@ import './Dark.scss';
 const Dark = () => {
     return (
         <div>
-            <i class="fas fa-cogs icon-dark pointer"/>
+            <i className="fas fa-cogs icon-dark pointer"/>
         </div>
     )
 }
