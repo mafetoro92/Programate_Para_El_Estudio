@@ -1,5 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Gilroy";
+  box-sizing: border-box;
+}
+body {
+  background-color: #f1f5f7;
+}
 
-*{
-    margin: 0;
-    font-family: 'Gilroy';
+.hhh {
+  padding-top: 70px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.transition {
+  transition: 0.4s all;
+}
+
+a {
+  text-decoration: none;
+}
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+// -color e0b60d
+.ripple:hover {
+  //   background-color: #e0b60d;
+  background-image: radial-gradient(circle, transparent 1%, #e0b60d 1%);
+  background-position: center;
+  background-size: 15000%;
+}
+
+.ripple:active {
+  transition: background 0s;
+  background-color: #bba34c;
+  background-size: 100%;
+}
+
+.fixed {
+  position: fixed;
+}
+.upperCase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 12px;
+  margin: 0 5px;
 }
