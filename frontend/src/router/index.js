@@ -2,10 +2,12 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
+import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
 import Dashboard from "../page/dashboard/Dashboard";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
+import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 
 const App = () => {
     return (
@@ -16,13 +18,18 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <Route path="/convocatoria" component={Convocatory} />
+                    <Route path="/aspirantes" component={Aspirants} />
                     <Route
-                        path="/technicaltest/administertechnicaltest"
+                        path="/prueba-tecnica/administrar-prueba-tecnica"
                         component={AdministerTechnicalTest}
                     />
                     <Route
-                        path="/technicaltest/qualifytechnicaltest"
+                        path="/prueba-tecnica/calificar-prueba-tecnica"
                         component={QualifyTechnicalTest}
+                    />
+                    <Route
+                        path="/administrar-prueba-tecnica/agregar"
+                        component={AdministerTechnicalTestAdd}
                     />
                 </Switch>
             </div>

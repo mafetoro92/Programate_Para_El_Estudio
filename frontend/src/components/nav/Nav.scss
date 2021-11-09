@@ -5,15 +5,15 @@ $secondary: #000000;
   padding: 20px 0;
   background-color: $primary;
   // height: calc(100vh - 70px);
-  width: 70px;
+  width: 74px;
   display: block;
-  transition: 0.4s all ease;
+  transition: 0.4s all;
 
   &:hover {
-    width: 240px;
+    width: 294px;
   }
 
-  &:hover &__items {
+  &:hover &__fixed {
     width: 240px;
     overflow-y: scroll !important;
   }
@@ -35,7 +35,6 @@ $secondary: #000000;
   }
   &__item {
     &-label {
-
       color: black;
       font-weight: bold;
       display: none !important;
@@ -55,7 +54,7 @@ $secondary: #000000;
     text-transform: uppercase;
     color: $secondary;
   }
-  &__items {
+  &__fixed {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -63,10 +62,10 @@ $secondary: #000000;
     height: 450px;
     transition: 0.4s all;
   }
-  .nav__items::-webkit-scrollbar {
+  &__fixed::-webkit-scrollbar {
     width: 7px;
   }
-  .nav__items::-webkit-scrollbar-thumb {
+  &__fixed::-webkit-scrollbar-thumb {
     background: #9f851c;
     border-radius: 5px;
   }
