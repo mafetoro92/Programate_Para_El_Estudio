@@ -4,6 +4,12 @@ const candidateRouter = require('../controllers/candidate')
 
 const router = Router()
 
-router.use('/api/candidate', candidateRouter)
+router.use('/api/candidate', candidateRouter);
 
 module.exports = router
+
+
+///administrado
+//candidato
+//mentor
+//vusualizador
