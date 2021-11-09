@@ -610,7 +610,7 @@ const FormAspirant = () => {
               className="form-control"
               name="motivation"
               onChange={handeleChange}
-              value={addres}
+              value={motivation}
             ></textarea>
           </div>
         </div>
