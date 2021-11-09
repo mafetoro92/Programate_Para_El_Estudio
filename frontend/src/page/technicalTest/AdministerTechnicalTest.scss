@@ -4,3 +4,27 @@
     height: 800px;
     padding: 20px;
 }
+
+.form {
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 2px 4px #0000004f;
+    border-radius: 5px;
+}
+.form .form-add {
+    width: 50%;
+}
+
+.form-select:focus {
+    border-color: #fdc300 !important;
+    outline: 0 !important;
+    box-shadow: 3px 2px 0 0rem #fdc300a3 !important;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #fdc300 !important;
+    outline: 0 !important;
+    box-shadow: 3px 2px 0 0rem #fdc300a3 !important;
+}

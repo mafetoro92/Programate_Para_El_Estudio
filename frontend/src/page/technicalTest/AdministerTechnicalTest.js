@@ -38,41 +38,43 @@ const AdministerTechnicalTest = () => {
                         <span>Administrar prueba técnica</span>
                     </div>
                 </div>
-                <Link to="/administrar-prueba-tecnica/agregar">
-                    <div>
-                        <button className="btn btn-primary">Agregar</button>
-                    </div>
-                </Link>
-                <div className="section__table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Prueba técnica</th>
-                                <th scope="col">Link</th>
-                                <th scope="col">Convocatoria</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {pruebas1.map((prueba) => (
+                <div className="form">
+                    <Link to="/administrar-prueba-tecnica/agregar">
+                        <div>
+                            <button className="btn btn-primary">Agregar</button>
+                        </div>
+                    </Link>
+                    <div className="section__table">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{prueba.id}</th>
-                                    <td>{prueba.pruebaTecnica}</td>
-                                    <td>{prueba.link}</td>
-                                    <td>{prueba.convocatoria}</td>
-                                    <td>
-                                        <button className="btn btn-success">
-                                            <i className="fas fa-edit"></i>
-                                        </button>
-                                        <button className="btn btn-danger">
-                                            <i className="fas fa-trash"></i>
-                                        </button>
-                                    </td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Prueba técnica</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Convocatoria</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {pruebas1.map((prueba) => (
+                                    <tr>
+                                        <th scope="row">{prueba.id}</th>
+                                        <td>{prueba.pruebaTecnica}</td>
+                                        <td>{prueba.link}</td>
+                                        <td>{prueba.convocatoria}</td>
+                                        <td>
+                                            <button className="btn btn-success">
+                                                <i className="fas fa-edit"></i>
+                                            </button>
+                                            <button className="btn btn-danger">
+                                                <i className="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>

@@ -14,7 +14,7 @@ const AdministerTechnicalTestAdd = () => {
                     <span>Administrar prueba técnica</span>
                 </div>
             </div>
-            <div className="section__form">
+            <div className="form form-add md-12">
                 <form action="">
                     <label htmlFor="">Prueba técnica</label>
                     <input
@@ -31,7 +31,7 @@ const AdministerTechnicalTestAdd = () => {
                         value=""
                     ></input>
                     <select
-                        class="form-select"
+                        class="form-select mb-3"
                         aria-label="Default select example"
                     >
                         <option selected>Seleccione</option>
