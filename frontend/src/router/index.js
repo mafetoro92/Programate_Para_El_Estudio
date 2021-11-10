@@ -8,7 +8,7 @@ import Dashboard from "../page/dashboard/Dashboard";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
-
+import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
 const App = () => {
     return (
         <BrowserRouter>
@@ -30,6 +30,10 @@ const App = () => {
                     <Route
                         path="/administrar-prueba-tecnica/agregar"
                         component={AdministerTechnicalTestAdd}
+                    />
+                    <Route
+                        path="/administrar-prueba-tecnica/editar"
+                        component={AdministerTechnicalTestEdit}
                     />
                 </Switch>
             </div>

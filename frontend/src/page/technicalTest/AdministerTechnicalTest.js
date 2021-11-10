@@ -44,7 +44,7 @@ const AdministerTechnicalTest = () => {
                             <button className="btn btn-primary">Agregar</button>
                         </div>
                     </Link>
-                    <div className="section__table">
+                    <div className="section__table table">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -63,9 +63,11 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            <button className="btn btn-success">
-                                                <i className="fas fa-edit"></i>
-                                            </button>
+                                            <Link to="/administrar-prueba-tecnica/editar">
+                                                <button className="btn btn-success">
+                                                    <i className="fas fa-edit"></i>
+                                                </button>
+                                            </Link>
                                             <button className="btn btn-danger">
                                                 <i className="fas fa-trash"></i>
                                             </button>

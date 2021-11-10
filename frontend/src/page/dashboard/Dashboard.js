@@ -1,4 +1,5 @@
 import React from "react";
+import FormAspirant from "../../components/formAspirant/FormAspirant";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
@@ -8,11 +9,12 @@ const Dashboard = () => {
         <div className="section__content d-flex justify-content-between">
           <span className='upperCase bold'>Dashboard</span>
           <div className="box__content">
-            <span>Programate</span>
+            <span className='text-crumbs bold-500'>Programate</span>
             <i className="fas fa-chevron-right subtitle"/>
-            <span>Dashboard</span>
+            <span className='text-crumbs'>Dashboard</span>
           </div>
         </div>
+        <FormAspirant/>
       </div>
     </>
   );

@@ -28,3 +28,40 @@
     outline: 0 !important;
     box-shadow: 3px 2px 0 0rem #fdc300a3 !important;
 }
+
+.btn-primary {
+    color: #ffcc02 !important;
+    background-color: #010101 !important;
+}
+/*responsive*/
+
+@media (max-width: 500px) {
+    .table thead {
+        display: none;
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 30%;
+        text-align: right;
+        position: relative;
+        font-size: 60%;
+    }
+    .btn {
+        font-size: 90%;
+    }
+    .btn .btn-success .btn-danger {
+        width: 10%;
+        height: 10%;
+    }
+}

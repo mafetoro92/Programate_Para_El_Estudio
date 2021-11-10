@@ -1,4 +1,4 @@
-$primary: #e0b60d;
+$primary: #FDC300;
 $secondary: #000000;
 
 .nav {
@@ -16,6 +16,7 @@ $secondary: #000000;
   &:hover &__fixed {
     width: 240px;
     overflow-y: scroll !important;
+    overflow-x: hidden !important;
   }
 
   &:hover &__title,
@@ -29,6 +30,7 @@ $secondary: #000000;
   &:hover &__item-icon {
     font-size: 17px;
   }
+
   &__title,
   &__subitem {
     display: none !important;
@@ -66,14 +68,13 @@ $secondary: #000000;
     width: 7px;
   }
   &__fixed::-webkit-scrollbar-thumb {
-    background: #9f851c;
+    background: #d8a602;
     border-radius: 5px;
   }
   .nav__icon {
     color: $secondary;
     font-size: 14.8px;
     cursor: pointer;
-    -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
   .nav__icon:hover {
@@ -88,7 +89,6 @@ $secondary: #000000;
     font-size: 14.8px;
     color: $secondary;
     font-weight: 600;
-    -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
   .nav__items--inscription {

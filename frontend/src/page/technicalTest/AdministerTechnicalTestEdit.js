@@ -1,11 +1,11 @@
 import React from "react";
 import "./AdministerTechnicalTest";
 
-const AdministerTechnicalTestAdd = () => {
+const AdministerTechnicalTestEdit = () => {
     return (
         <div className="section__administer">
             <div className="section__content d-flex justify-content-between">
-                <span className="upperCase bold">Agregar prueba técnica</span>
+                <span className="upperCase bold">Editar prueba técnica</span>
                 <div className="box__content">
                     <span>Programate</span>
                     <i class="fas fa-chevron-right subtitle" />
@@ -39,13 +39,10 @@ const AdministerTechnicalTestAdd = () => {
                         <option value="2">dos</option>
                         <option value="3">tres</option>
                     </select>
-                    <input type="submit" className="btn btn-primary">
-                        Agregar
-                    </input>
                 </form>
             </div>
         </div>
     );
 };
 
-export default AdministerTechnicalTestAdd;
+export default AdministerTechnicalTestEdit;

@@ -7,9 +7,9 @@ const Aspirants = () => {
       <div className="section__content d-flex justify-content-between">
         <span className="upperCase bold">Aspirantes</span>
         <div className="box__content">
-          <span>Programate</span>
+          <span className='text-crumbs bold-500'>Programate</span>
           <i class="fas fa-chevron-right subtitle" />
-          <span>Aspirantes</span>
+          <span className='text-crumbs'>Aspirantes</span>
         </div>
       </div>
     </div>
