@@ -5,7 +5,10 @@ import Search from "../search/Search";
 import User from "../user/User";
 
 import "./Header.scss";
-const Header = () => {
+const Header = ({user, adminstate}) => {
+
+
+
   return (
     <>
       <header className="header d-flex justify-content-between">
@@ -21,7 +24,7 @@ const Header = () => {
           <Search />
         </div>
         <div className="header__user">
-          <User />
+          <User user={user} adminstate={adminstate}/>
         </div>
         <div className="header__dark">
           <Dark/>

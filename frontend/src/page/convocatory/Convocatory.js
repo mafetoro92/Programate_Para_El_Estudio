@@ -1,8 +1,10 @@
 import React from "react";
+// import Button from '@mui/material/Button';
 import "./Convocatory.scss";
 
 const Convocatory = () => {
   return (
+    <>
     <div className="section__convocatory">
       <div className="section__content d-flex justify-content-between">
         <span className='upperCase bold'>Convocatoria</span>
@@ -12,7 +14,9 @@ const Convocatory = () => {
           <span className='text-crumbs'>Convocatoria</span>
         </div>
       </div>
+  
     </div>
+    </>
   );
 };
 

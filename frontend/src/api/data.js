@@ -81,3 +81,34 @@ export const ITEMS = [
     ],
   },
 ];
+
+export const ITEMS_ASPIRANTS = [
+  {
+    name: "Dashboard de progreso",
+    icon: "fas fa-border-all",
+    items: [],
+    path: "/",
+    id: 8,
+  },
+  {
+    name: "Formulario de inscripción",
+    icon: "fas fa-bullhorn",
+    items: [],
+    path: "/formulario/inscripción",
+    id: 9,
+  },
+  {
+    name: "Agenda de Entrevista y assessment",
+    icon: "fas fa-search-location",
+    items: [],
+    path: "/agenda/entrevista",
+    id: 10,
+  },
+  {
+    name: "Prueba Técnica",
+    icon: "fas fa-laptop-code",
+    items: [],
+    path: "/prueba/aspirante",
+    id: 11,
+  },
+];

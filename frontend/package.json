@@ -8,6 +8,7 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development"
   },
+  
   "repository": {
     "type": "git",
     "url": ""
@@ -24,6 +25,9 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.1.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
