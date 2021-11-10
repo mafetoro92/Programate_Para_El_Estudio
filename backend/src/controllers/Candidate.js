@@ -1,7 +1,21 @@
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
-
+const multer = require('multer');
+const mimeTypes = require('mime-types')
 const candidateRouter = require('express').Router()
+
+// Upload file PDF
+const storage = multer.diskStorage({
+        destination: 'uploads/',
+        filename: function (req, file,cb) {
+                cb("",Date.now() + file.originalname +"." + mimeTypes.extension(file.mimetype));
+        }
+})
+
+const upload = multer({
+        storage: storage
+})
+
 
 candidateRouter.get('/', async (req, res, next) => {
         res.send("the router is fine")
@@ -16,7 +30,7 @@ candidateRouter.post('/new', async (req, res, next) => {
 })
 
 // CREATE THE PROFILE OF A USER
-candidateRouter.post('/profile', async (req, res, next) => {
+candidateRouter.post('/profile',upload.single('pdf'), async (req, res, next) => {
         const { user_id,
                 documentType,
                 documentNumber,
