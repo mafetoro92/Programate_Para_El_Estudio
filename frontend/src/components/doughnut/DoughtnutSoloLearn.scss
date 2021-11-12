@@ -7,10 +7,17 @@
 
 .content {
     position: relative;
-    left: 70%;
+    //left: 70%;
     padding: 20px;
     background: white;
     box-shadow: 0px 2px 4px #0000004f;
     border-radius: 5px;
     width: 30%;
+
+    .legend {
+        text-align: center;
+        .html {
+            color: #ff6384;
+        }
+    }
 }
