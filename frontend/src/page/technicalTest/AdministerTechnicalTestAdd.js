@@ -39,9 +39,11 @@ const AdministerTechnicalTestAdd = () => {
                         <option value="2">dos</option>
                         <option value="3">tres</option>
                     </select>
-                    <input type="submit" className="btn btn-primary">
-                        Agregar
-                    </input>
+                    <input
+                        type="submit"
+                        className="btn btn-primary add"
+                        value="Agregar"
+                    ></input>
                 </form>
             </div>
         </div>

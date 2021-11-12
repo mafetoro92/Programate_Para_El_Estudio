@@ -24,7 +24,7 @@ const QualifyTechnicalTest = () => {
             pruebaTecnica: "prueba tecnica3",
             link: "https://drive.google.com",
             convocatoria: "convocatoria1",
-            calificacion: "",
+            calificacion: 2.5,
         },
     ];
     return (
@@ -61,7 +61,15 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.nombre}</td>
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
-                                        <td>{prueba.calificacion}</td>
+                                        <td>
+                                            {prueba.calificacion == "" ? (
+                                                <button className="btn btn-primary">
+                                                    calificacion
+                                                </button>
+                                            ) : (
+                                                prueba.calificacion
+                                            )}
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

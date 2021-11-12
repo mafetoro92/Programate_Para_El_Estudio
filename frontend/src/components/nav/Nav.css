@@ -1,0 +1,136 @@
+.nav {
+  position: relative;
+  padding: 20px 0;
+  background-color: #FDC300;
+  width: 74px;
+  display: block;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+}
+
+.nav:hover {
+  width: 294px;
+}
+
+.nav:hover .nav__fixed {
+  width: 240px;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+}
+
+.nav:hover .nav__title,
+.nav:hover .nav__item-label,
+.nav:hover .nav__item-iconArrow {
+  display: block !important;
+}
+
+.nav:hover .nav__subitem {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.nav:hover .nav__item-icon {
+  font-size: 17px;
+}
+
+.nav__title, .nav__subitem {
+  display: none !important;
+}
+
+.nav__item-label {
+  color: black;
+  font-weight: bold;
+  display: none !important;
+}
+
+.nav__title {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding-left: 18px;
+  font-weight: 800;
+}
+
+.nav__main {
+  font-size: 13px;
+  padding: 20px 0 0 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.nav__fixed {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 70px;
+  height: 450px;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+  background: #FDC300;
+  border-radius: 5px;
+}
+
+.nav__fixed::-webkit-scrollbar {
+  width: 7px;
+}
+
+.nav__fixed::-webkit-scrollbar-thumb {
+  background: #d8a602;
+  border-radius: 5px;
+}
+
+.nav .nav__icon {
+  color: #000000;
+  font-size: 14.8px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.nav .nav__icon:hover {
+  color: white;
+}
+
+.nav .nav__icon:hover > .nav__link {
+  color: white;
+}
+
+.nav .nav__link {
+  text-decoration: none;
+  margin: 0 0 0px 10px;
+  font-size: 14.8px;
+  color: #000000;
+  font-weight: 600;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.nav .nav__items--inscription {
+  position: relative;
+  top: 18px;
+  padding: 0 0 0 15px;
+  margin: 0 0 0 10px;
+  display: none;
+  -webkit-transition: 0.4s all;
+  transition: 0.4s all;
+}
+
+.nav .nav__list a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.nav a:hover {
+  color: white;
+}
+/*# sourceMappingURL=Nav.css.map */

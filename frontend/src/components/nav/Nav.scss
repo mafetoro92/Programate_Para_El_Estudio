@@ -2,6 +2,7 @@ $primary: #FDC300;
 $secondary: #000000;
 
 .nav {
+  position: relative;
   padding: 20px 0;
   background-color: $primary;
   // height: calc(100vh - 70px);
@@ -63,6 +64,9 @@ $secondary: #000000;
     width: 70px;
     height: 450px;
     transition: 0.4s all;
+    // border: 2px solid red;
+    background: #FDC300;
+    border-radius: 5px;
   }
   &__fixed::-webkit-scrollbar {
     width: 7px;

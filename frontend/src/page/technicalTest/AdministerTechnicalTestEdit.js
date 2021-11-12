@@ -39,6 +39,11 @@ const AdministerTechnicalTestEdit = () => {
                         <option value="2">dos</option>
                         <option value="3">tres</option>
                     </select>
+                    <input
+                        type="submit"
+                        className="btn btn-primary edit"
+                        value="Editar"
+                    ></input>
                 </form>
             </div>
         </div>

@@ -44,6 +44,7 @@ const FormAspirant = () => {
          sex, status,academicLevel,title,occupation, unemployed, employment, armedConflict, computer, logProgramate, 
          accesComputer, profileSololearn, dreams, motivation} = data
 
+  const [countries, setCountries] = useState([])
 
   const handeleChange = (e) => {
     const { name, value } = e.target;
@@ -95,10 +96,23 @@ const FormAspirant = () => {
     })
 
   }
+  const  getCountrie = async () => {
+    const url = 'https://restcountries.com/v3.1/all';
+    const request = await fetch(url);
+    const countrie = await request.json();
+    const countries = countrie.map(item => item.name.common).sort()
+    setCountries(countries)
+  }
+  
+  getCountrie()
+
+
 
   return (
+
     <div className="form mt-4">
       <h3 className="mb-4">Formulario De Inscripción</h3>
+
       <form onSubmit={sendData}>
         <div className="row">
           <div className="col-12 col-md-6">
@@ -234,10 +248,16 @@ const FormAspirant = () => {
               value={nationality}
               className="form-select"
             >
-              <option value="cc">Selecciona un pais</option>
-              <option value="Colombiac">Colombia</option>
-              <option value="Venezuela">Venezuela</option>
-              <option value="españa">españa</option>
+              <option value="select">Selecciona un pais</option>
+              {
+                  countries.map(countrie => (
+                    <option 
+                    key={countrie} 
+                    value={countrie}>
+                    {countrie}
+                    </option>
+                 ))
+              }
             </select>
           </div>
         </div>
@@ -628,6 +648,7 @@ const FormAspirant = () => {
         </button>
       </form>
     </div>
+
   );
 };
 

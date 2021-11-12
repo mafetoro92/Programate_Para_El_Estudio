@@ -33,6 +33,11 @@
     color: #ffcc02 !important;
     background-color: #010101 !important;
 }
+
+.btn-primary .edit {
+    text-align: right;
+    text-align: right;
+}
 /*responsive*/
 
 @media (max-width: 500px) {
@@ -63,5 +68,9 @@
     .btn .btn-success .btn-danger {
         width: 10%;
         height: 10%;
+    }
+
+    .btn-primary .add {
+        width: 100%;
     }
 }
