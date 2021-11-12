@@ -10,6 +10,9 @@ import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 
+
+
+
 const App = () => {
   const initialState = {
     nameAdmin: "Diego Admin",
@@ -29,6 +32,7 @@ const App = () => {
   const { admin, loged } = adminstate;
   const { admin2, loged2 } = user;
 
+
   return (
     <BrowserRouter>
       <Header user={user} adminstate={adminstate} />
@@ -45,9 +49,9 @@ const App = () => {
           {!admin2 && loged2 && (
             <>
               <Route exact path="/" component={DashboardAspirant} />
-              <Route exact path="/formulario/inscripción" component={FormInscription} />
-              <Route exact path="/agenda/entrevista" component={InterviewAspirant} />
-              <Route exact path="/prueba/aspirante" component={ProofAspirant} />
+              <Route exact path="/inscripción" component={FormInscription} />
+              <Route exact path="/entrevista" component={InterviewAspirant} />
+              <Route exact path="/aspirante" component={ProofAspirant} />
             </>
           )}
         </Switch>

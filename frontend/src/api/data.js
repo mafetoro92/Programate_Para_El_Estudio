@@ -41,7 +41,7 @@ export const ITEMS = [
   },
   {
     name: "Citación",
-    icon: "fas fa-search-location",
+    icon: "fas fa-map-marker-alt",
     id: 5,
     items: [
       {
@@ -94,21 +94,21 @@ export const ITEMS_ASPIRANTS = [
     name: "Formulario de inscripción",
     icon: "fas fa-bullhorn",
     items: [],
-    path: "/formulario/inscripción",
+    path: "/inscripción",
     id: 9,
   },
   {
     name: "Agenda de Entrevista y assessment",
-    icon: "fas fa-search-location",
+    icon: "fas fa-map-marker-alt",
     items: [],
-    path: "/agenda/entrevista",
+    path: "/entrevista",
     id: 10,
   },
   {
     name: "Prueba Técnica",
     icon: "fas fa-laptop-code",
     items: [],
-    path: "/prueba/aspirante",
+    path: "/aspirante",
     id: 11,
   },
 ];
