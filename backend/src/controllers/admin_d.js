@@ -1,33 +1,49 @@
 const Convocatory = require('../db/models/Convocatory');
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
-const fetchData = require('../utils/fetchData')
+const Rooms = require('../db/models/Rooms')
 const adminRouter = require('express').Router()
 const request = require('request');
 const InterviewDay = require('../db/models/InterviewDay');
+const Administrator = require('../db/models/Administrators');
+const Citation = require('../db/models/Citation');
 
 // GET STATISTICS
 adminRouter.get('/statistics', async (req, res) => {
+        // Busca la convocatoria que se encuentra activa
         const convocatoryData = await Convocatory.find({ status: true })
+        // Objeto para guardar los campos
         const totalUsers = {
                 total: convocatoryData[0].usersRegisted.length,
                 residencyDepartment: {},
+                women: 0,
+                man: 0,
+                other: 0,
+                totalregistered: 0,
+                totalwithCitation: 0,
+                totalmigrants: 0,
+                interviewed: 0,
+                totalPass: 0,
                 migrants: 0
         }
+        // Ciclo para extraer la info de cada usuario registrado en la convocatoria
         for (let candidateId of convocatoryData[0].usersRegisted) {
+                // Perfil del candidato
                 const candidate = await Profile.find({ user_id: candidateId })
+                // Total genero: 0-Mujer, 1-Hombre, 2-Otro
+                // Busca si la propiedad existe y aumenta 1, sino lo agrega con el valor 1
                 if (candidate[0].gender === 0) {
-                        if (totalUsers.man) {
-                                totalUsers.man += 1
-                        } else {
-                                totalUsers.man = 1
-                        }
-                }
-                if (candidate[0].gender === 1) {
                         if (totalUsers.woman) {
                                 totalUsers.woman += 1
                         } else {
                                 totalUsers.woman = 1
+                        }
+                }
+                if (candidate[0].gender === 1) {
+                        if (totalUsers.man) {
+                                totalUsers.man += 1
+                        } else {
+                                totalUsers.man = 1
                         }
                 }
                 if (candidate[0].gender === 2) {
@@ -37,6 +53,7 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.other = 1
                         }
                 }
+                // Total registrados en la convocatoria
                 if (candidate[0].status.registered === true) {
                         if (totalUsers.totalregistered) {
                                 totalUsers.totalregistered += 1
@@ -44,6 +61,7 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.totalregistered = 1
                         }
                 }
+                // Total citados
                 if (candidate[0].status.withCitation === true) {
                         if (totalUsers.totalwithCitation) {
                                 totalUsers.totalwithCitation += 1
@@ -51,6 +69,7 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.totalwithCitation = 1
                         }
                 }
+                // Total entrevistados
                 if (candidate[0].status.interviewed === true) {
                         if (totalUsers.interviewed) {
                                 totalUsers.interviewed += 1
@@ -58,6 +77,7 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.interviewed = 1
                         }
                 }
+                // Total que pasaron el proceso
                 if (candidate[0].status.pass === true) {
                         if (totalUsers.totalPass) {
                                 totalUsers.totalPass += 1
@@ -65,6 +85,9 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.totalPass = 1
                         }
                 }
+                // Total de departamentos de residencia
+                // Si el departamento no existe lo agrega, si existe le suma 1
+                // En el objeto residencyDepartment en totalUsers
                 const deparment = candidate[0].residencyDepartment
                 if (deparment) {
                         if (totalUsers.residencyDepartment[deparment]) {
@@ -107,7 +130,6 @@ adminRouter.put('/update-conv/:id', async (req, res, next) => {
 
 // GET PROFILE OF CANDIDATES
 adminRouter.get('/candidate-profile/:id', async (req, res, next) => {
-        const { user_id } = req.params.id
         const candidate = await User.find({ user_id: req.params.id })
         const candidateProfile = await Profile.find({ user_id: req.params.id })
         const candidateProfileData = {
@@ -308,5 +330,35 @@ adminRouter.put('/update-interview', async (req, res) => {
 
 })
 
+adminRouter.post('/create-room', async (req, res) => {
+        const { citation_id } = req.body
+        const citationData = await Citation.find({ _id: citation_id })
+        const staff = await Administrator.find({ available: true })
+        const interviewersList = staff.filter(person => person.rol.interviewer === true)
+        const observersList = staff.filter(person => person.rol.observer === true)
+        let room = []
+        console.log(citationData[0].users)
+        for (let candidate of citationData[0].users) {
+                const nStaff = 2
+                console.log('hola')
+                for (let i = 0; i < nStaff; i++) {
+                        console.log(i)
+                }
+                room = [[candidate,], ...room]
+
+        }
+
+        const rooms = new Rooms({
+                citationData,
+                interviewers: interviewersList,
+                observers: observersList,
+                room: room
+        })
+        res.json({
+                data: {
+                        rooms
+                }
+        })
+})
 
 module.exports = adminRouter
