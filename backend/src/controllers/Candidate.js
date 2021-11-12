@@ -21,7 +21,6 @@ const upload = multer({
 
 // SAVE AND UPDATE SOLOLEARN DATA
 candidateRouter.get('/sololearm/:id', async (req, res) => {
-
         var id = req.params.id
         const perfiles = await Profile.find({"user_id":id})
         const params = JSON.stringify(perfiles)
@@ -30,7 +29,7 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                var usersololearm = (x.soloLearnProfile);
         }
         if(usersololearm === undefined){
-                console.log("este usuario no tiene perfil de sololearm")
+                console.log("This user does not have a sololearn profile")
         }else{
                 const calificationUpdate = await Result.find({"user_id":id})
                 const params2 = JSON.stringify(calificationUpdate)
@@ -58,7 +57,6 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                                         }                           
                                 }
                                 var p = (html+css+javascript+python)/4;
-
                                 const{  user_id = id,  
                                         userFullName = name, 
                                         htmlScore = html,
@@ -66,8 +64,7 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                                         javascriptScore  = javascript,
                                         pythonScore = python,
                                         soloLearnScore = p.toFixed(2)
-                                }= req.body
-                                           
+                                }= req.body     
                                 const usersolo = new Result({
                                         user_id,  
                                         userFullName, 
@@ -81,7 +78,7 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                                         await usersolo.save();
                                 }else{
                                         await Result.updateOne({"user_id":id}, {
-                                                $set: {
+                                                $set:{
                                                     htmlScore: html,
                                                     cssScore: css,
                                                     javascriptScore: javascript,
@@ -89,25 +86,21 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                                                     soloLearnScore: p.toFixed(2)
                                                 }
                                         })
-
                                         console.log("Updated successfully")
                                 }       
-                          
+
                         }else{
                                 console.log("Error" + err.message);
                         }
-                })
-                
+                }) 
         }
-            res.send("seving datas")
+        res.send("seving datas")
 })
 
 // GET CALIFACATION
 candidateRouter.get('/calification', async (req, res) => {
-
        const calification = await Result.find()
        res.send(calification)
-         
 })
 
 // CREATES A NEW USER
