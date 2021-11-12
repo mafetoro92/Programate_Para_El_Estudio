@@ -10,8 +10,17 @@ const ConvocatorySchema = new Schema(
     maxQuotas: {type:Number, required:true},
     initialBootcampDate: {type:Date, required: true},
     finalBootcampDate: {type:Date, required: true},
+    parameterization:{
+      personalProfile: { type: Number, default:50 },
+      sololearn: { type: Number, default:25},
+      motivationLetter: { type: Number, default:25 },
+    },
+    residenceCountry: {type: String, default: "Colombia"},
+    residencyDepartment: String,
+    maxAge: Number,
+    maxSocioeconomicStratus:{type:Number, default:3},
+    test: Object,
     usersRegisted: Array,
-    test: Object
   }
 );
 

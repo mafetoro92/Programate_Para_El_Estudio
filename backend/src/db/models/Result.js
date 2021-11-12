@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const ResultSchema = new Schema(
   {
+    user_id: {type: String},
     userFullName: {type: String, required: true, maxlength: 45},
     htmlScore: {type: Number, required: true},
     cssScore: {type: Number, required: true},
