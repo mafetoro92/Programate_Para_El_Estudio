@@ -15,9 +15,9 @@ const TechnicalTestAspirant = () => {
             </p>
             <div>
               <a href={Prueba} download="Prueba tecnica">
-                <button type="button" class="btn btn-primary">
-                  Descargar
-                </button>
+                <a href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing" target="_blank"><button type="button" class="btn btn-primary">
+                  Link prueba tecnica
+                </button></a> 
               </a>
             </div>
           </div>

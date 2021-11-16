@@ -7,15 +7,16 @@ $colorsecundary: #fff;
 
 .technical__test {
   display: flex;
+  flex-direction: column;
   width: 95%;
-  background-color: red;
+  background-color: $colorprimary;
   justify-content: space-evenly;
   padding-bottom: 40px;
-  flex-wrap: wrap;
+  
 
   .test {
     background-color: $colorsecundary;
-    width: 35%;
+    width: 100%;
     margin: 20px 0;
     border-radius: 5px;
     text-align: center;
@@ -58,8 +59,38 @@ $colorsecundary: #fff;
 
 /* Media queries*/ 
 
-@media (max-width: 420px) {
-    .technical__test {
-        display: block;
+@media only screen and (min-width: 481px) {
+  .technical__test {
+    .test {
+      width: 80%;
+      margin-right: auto;
+      margin-left: auto;
     }
+  }
+  
+ 
+}
+
+@media only screen and (min-width: 769px) {
+  .technical__test {
+    flex-direction: row;
+
+    .test {
+      width: 35%;
+    }
+  }
+}
+
+@media only screen and (min-width: 900px) {
+
+}
+ 
+
+@media only screen and (min-width: 1280px) {
+ 
+
+}
+
+@media only screen and (min-width: 1620px) {
+ 
 }
