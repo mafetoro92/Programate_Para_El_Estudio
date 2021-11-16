@@ -25,8 +25,8 @@ admin_y.put('/rating-motivation', async (req, res)=>{
     }
 });
 
-admin_y.get('/rating-motivation', async (req, res)=>{
-    const results = await Result.find();
+admin_y.get('/rating-motivation/:id', async (req, res)=>{
+    const results = await Result.find({id:req.params.id});
     res.json({
         results
     })
@@ -143,7 +143,7 @@ admin_y.post('/citation', async (req, res)=>{
 admin_y.put('/testconvocatory', async (req, res)=>{
     try{
         const _id = req.body;
-        const result = await Convocatory.update(
+        const result = await Convocatory.updateMany(
             {_id},
             {$set:{
                 test:{

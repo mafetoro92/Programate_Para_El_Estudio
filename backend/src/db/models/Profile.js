@@ -5,7 +5,6 @@ const profileSchema = new Schema({
     user_id: {
         type: String
     },
-    /* candidate: { type: Schema.Types.ObjectId, ref: 'User' }, */
     /* Agora */
 
     outcome: {
@@ -123,13 +122,11 @@ const profileSchema = new Schema({
             }
         },
         badges5: {
-
             aprove: {
                 type: Boolean,
                 default: true,
             }
         },
-
     },
 
     /* fin Agora */
@@ -247,7 +244,7 @@ const profileSchema = new Schema({
         type: Number,
     },
     unemployedTime: String,
-    formaltOccupation: {
+    formalOccupation: {
         type: Boolean,
 
         maxlength: 45
@@ -276,12 +273,13 @@ const profileSchema = new Schema({
         minlength: 6
     },
     status: {
-        inscrito: { type: Boolean },
-        espera: { type: Boolean },
-        citado: { type: Boolean },
-        agendado: { type: Boolean },
-        entrevistado: { type: Boolean },
-        paso: { type: Boolean },
+        registered: { type: Boolean },
+        waitList: { type: Boolean },
+        withCitation: { type: Boolean },
+        booked: { type: Boolean },
+        interviewed: { type: Boolean },
+        pass: { type: Boolean },
+        noPass: { type: Boolean }
     },
     convocatoria: String,
     resultados: Number,

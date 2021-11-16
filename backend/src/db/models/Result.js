@@ -9,11 +9,11 @@ const ResultSchema = new Schema(
     cssScore: {type: Number, required: true},
     javascriptScore: {type: Number, required: true},
     pythonScore: {type: Number, required: true},
-    Score: {type: Number, required: true},
     soloLearnScore: {type: Number, required: true},
     personalProfileScore: {type: Number, required: true},
     motivationScore: {type: Number, required: true},
-    finalScore: {type: Number, required: true}
+    finalScore: {type: Number, required: true},
+    pass: {type: Boolean}
   }
 );
 

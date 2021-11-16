@@ -20,6 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.14"
+    "node-fetch": "2.0",
+    "nodemon": "^2.0.14",
+    "request": "^2.88.2"
   }
 }
