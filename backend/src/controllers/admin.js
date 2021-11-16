@@ -312,7 +312,8 @@ adminRouter.put('/update-test', async (req, res)=>{
     }catch{
         res.status(404).send({error:"link citation category not put"})
     }
-
+}
+)
 // Creates new citations
 adminRouter.post('/citation', async (req, res) => {
         const {
