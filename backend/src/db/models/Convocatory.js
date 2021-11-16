@@ -5,7 +5,7 @@ const ConvocatorySchema = new Schema(
   {
     name: {type: String, required: true, maxlength:45 },
     initialDate: {type:Date, required: true},
-    finallDate: {type:Date, required: true},
+    finalDate: {type:Date, required: true},
     program: {type:String, required:true, maxlength: 45},
     maxQuotas: {type:Number, required:true},
     initialBootcampDate: {type:Date, required: true},
@@ -21,6 +21,7 @@ const ConvocatorySchema = new Schema(
     maxSocioeconomicStratus:{type:Number, default:3},
     test: Object,
     usersRegisted: Array,
+    status: Boolean
   }
 );
 

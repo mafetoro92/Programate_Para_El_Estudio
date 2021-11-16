@@ -19,4 +19,4 @@ const ResultSchema = new Schema(
 
 const Result = model('Result', ResultSchema)
 
-module.exports = Result
+module.exports = Result 
