@@ -8,3 +8,9 @@ router.use('/api/candidate', candidateRouter)
 router.use('/api/admin', admin_dRouter)
 
 module.exports = router
+
+
+///administrado
+//candidato
+//mentor
+//vusualizador

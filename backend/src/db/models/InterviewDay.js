@@ -1,56 +1,62 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-
+/*
+cuentanos quien eres
+de donde eres
+que te gusta hacer
+con quien vives
+*/
 const InterviewDaySchema = new Schema(
   {
     user_id: String,
+    whoYouAreQuestion: String,
+    whereYouFromQuestion: String,
+    whatDoYouLike: String,
+    liveWithQuestion: String,
+    interviewComment: String,
+    assesmentComment: String,
+    interviewScore: Number,
+    assesmentScore: Number,
+    interviewDayScore: Number,
     interview: {
       motivation: {
         question1: {
           title: String,
-          score: Number,
-          comments: String
+          score: Number
         },
         question2: {
           title: String,
-          score: Number,
-          comments: String
+          score: Number
         }
       },
       perseverance: {
         question1: {
           title: String,
-          score: Number,
-          comments: String
+          score: Number
         },
         question2: {
           title: String,
           score: Number,
-          comments: String
         }
       },
       planning: {
         question1: {
           title: String,
           score: Number,
-          comments: String
         },
         question2: {
           title: String,
           score: Number,
-          comments: String
         }
       },
       tecnique: {
         question1: {
           title: String,
           score: Number,
-          comments: String
         },
         question2: {
           title: String,
           score: Number,
-          comments: String
         }
       }
     },
@@ -59,61 +65,30 @@ const InterviewDaySchema = new Schema(
         question1: {
           title: String,
           score: Number,
-          comments: String
-        },
-        question2: {
-          title: String,
-          score: Number,
-          comments: String
         }
       },
       comunication: {
         question1: {
           title: String,
           score: Number,
-          comments: String
-        },
-        question2: {
-          title: String,
-          score: Number,
-          comments: String
         }
       },
       lidership: {
         question1: {
           title: String,
           score: Number,
-          comments: String
-        },
-        question2: {
-          title: String,
-          score: Number,
-          comments: String
         }
       },
       achievementOrientation: {
         question1: {
           title: String,
           score: Number,
-          comments: String
-        },
-        question2: {
-          title: String,
-          score: Number,
-          comments: String
         }
       }
     },
-    interviewScore: Number,
-    assesmentScore: Number,
-    interviewDayScore: Number
   }
 );
 
 const InterviewDay = model('InterviewDay', InterviewDaySchema)
 
 module.exports = InterviewDay
-
-/**
-* Paste one or more documents here
-*/

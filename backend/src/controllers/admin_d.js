@@ -1,3 +1,6 @@
+const { convertArrayToCSV } = require('convert-array-to-csv');
+const converter = require('convert-array-to-csv');
+
 const Convocatory = require('../db/models/Convocatory');
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
@@ -12,6 +15,8 @@ const Citation = require('../db/models/Citation');
 adminRouter.get('/statistics', async (req, res) => {
         // Busca la convocatoria que se encuentra activa
         const convocatoryData = await Convocatory.find({ status: true })
+        // Busca las citaciones para obtener datos de las fechas e inscritos
+        const citationData = await Citation.find()
         // Objeto para guardar los campos
         const totalUsers = {
                 total: convocatoryData[0].usersRegisted.length,
@@ -24,7 +29,18 @@ adminRouter.get('/statistics', async (req, res) => {
                 totalmigrants: 0,
                 interviewed: 0,
                 totalPass: 0,
-                migrants: 0
+                interviewDays: {},
+                remainingToGoal: 0,
+                heardFromUs: {}
+        }
+        for (let citation of citationData) {
+                let date = citation.date.toString()
+                date = date.split(' ').slice(1, 4).join('-')
+                if (totalUsers.interviewDays[date]) {
+                        totalUsers.interviewDays[date] += citation.users.length
+                } else {
+                        totalUsers.interviewDays[date] = citation.users.length
+                }
         }
         // Ciclo para extraer la info de cada usuario registrado en la convocatoria
         for (let candidateId of convocatoryData[0].usersRegisted) {
@@ -32,11 +48,12 @@ adminRouter.get('/statistics', async (req, res) => {
                 const candidate = await Profile.find({ user_id: candidateId })
                 // Total genero: 0-Mujer, 1-Hombre, 2-Otro
                 // Busca si la propiedad existe y aumenta 1, sino lo agrega con el valor 1
+                //console.log(candidate[0].gender)
                 if (candidate[0].gender === 0) {
-                        if (totalUsers.woman) {
-                                totalUsers.woman += 1
+                        if (totalUsers.women) {
+                                totalUsers.women += 1
                         } else {
-                                totalUsers.woman = 1
+                                totalUsers.women = 1
                         }
                 }
                 if (candidate[0].gender === 1) {
@@ -103,21 +120,43 @@ adminRouter.get('/statistics', async (req, res) => {
                                 totalUsers.totalmigrants = 1
                         }
                 }
+                if (candidate[0].heardFromUs) {
+                        //console.log(candidate[0].heardFromUs)
+                        for (const [key, value] of Object.entries(candidate[0].heardFromUs)) {
+                                if (value) {
+                                        if (totalUsers.heardFromUs[key]) {
+                                                totalUsers.heardFromUs[key] += 1
+                                        } else {
+                                                totalUsers.heardFromUs[key] = 1
+                                        }
+                                }
+                        }
+                }
+        }
+        // Check how many to remains to goal
+        if (totalUsers.totalPass < convocatoryData[0].maxQuotas) {
+                const goal = convocatoryData[0].maxQuotas - totalUsers.totalPass
+                totalUsers.remainingToGoal = goal
+        } else {
+                totalUsers.remainingToGoal = 0
         }
         res.json({
                 data: totalUsers
         })
 })
+
 // CREATES NEW CONVOCATORY
 adminRouter.post('/new-conv', async (req, res, next) => {
+        // DATA REQUIRED FROM REQUEST
         const { name, initialDate, finalDate, program, maxQuotas, initialBootcampDate, finalBootcampDate } = req.body;
+        // New Convocatory document
         const newConvocatory = new Convocatory({ name, initialDate, finalDate, program, maxQuotas, initialBootcampDate, finalBootcampDate });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
 })
 
 // UPDATE CONVOCATORY
-adminRouter.put('/update-conv/:id', async (req, res, next) => {
+adminRouter.put('/update-conv/:id', async (req, res) => {
         try {
                 const candidate = await Convocatory.findById(req.params.id)
                 Object.assign(candidate, req.body)
@@ -129,9 +168,12 @@ adminRouter.put('/update-conv/:id', async (req, res, next) => {
 })
 
 // GET PROFILE OF CANDIDATES
-adminRouter.get('/candidate-profile/:id', async (req, res, next) => {
+adminRouter.get('/candidate-profile/:id', async (req, res) => {
+        // Data from de candidate document
         const candidate = await User.find({ user_id: req.params.id })
+        // Data from the profile of the candidate
         const candidateProfile = await Profile.find({ user_id: req.params.id })
+        // Strucuture for required data 
         const candidateProfileData = {
                 "firstName": candidate[0].firstName,
                 "middleName": candidate[0].middleName,
@@ -175,10 +217,8 @@ adminRouter.get('/candidate-profile/:id', async (req, res, next) => {
         })
 })
 
-// GET FULL PROFILE OF CANDIDATES
-
 // CREATE RESULTS
-adminRouter.post('/new-result', async (req, res, next) => {
+adminRouter.post('/new-result', async (req, res) => {
         try {
 
                 // Viariables destructuring from req.body
@@ -235,14 +275,13 @@ adminRouter.get('/get-result/:id', async (req, res) => {
 adminRouter.put('/update-candidate', async (req, res) => {
         try {
                 const { user_id, candidate, profile } = req.body
-                console.log(req.body)
                 if (candidate) {
-                        const candidate = await User.update({ user_id: user_id }, {
+                        const candidate = await User.updateMany({ user_id: user_id }, {
                                 $set: req.body.candidate
                         })
                 }
                 if (profile) {
-                        const candidateProfile = await Profile.update({ user_id: user_id }, {
+                        const candidateProfile = await Profile.updateMany({ user_id: user_id }, {
                                 $set: req.body.profile
                         })
                 }
@@ -260,31 +299,33 @@ adminRouter.get('/waiting-list', async (req, res, next) => {
 })
 
 // GET INTERVIEW QUESTIONS
+// Get the specific questions for a candidate
 adminRouter.get('/interview/:id', async (req, res, next) => {
-        console.log(req.params.id)
         const candidateInterview = await InterviewDay.find({ 'user_id': req.params.id })
         const { interview } = candidateInterview[0]
-        res.send({
+        res.json({
                 data: interview
         })
 })
 
 // GET ASSESMENT QUESTIONS
+// Get the specific questions for a candidate
 adminRouter.get('/assesment/:id', async (req, res, next) => {
-        console.log(req.params.id)
         const candidateAssesment = await InterviewDay.find({ 'user_id': req.params.id })
         const { assesment } = candidateAssesment[0]
-        res.send({
+        res.json({
                 data: assesment
         })
 })
 
 // UPDATE INTERVIEW / ASSESMENT SCORES
+// Depending of the data received from request updates interview or assesment scores
 adminRouter.put('/update-interview', async (req, res) => {
         try {
                 const { user_id, interview, assesment } = req.body
                 let resultInterview
                 let resultAssesment
+                // When interview data is received
                 if (interview) {
                         const interviewScore = await InterviewDay.updateMany({ 'user_id': user_id }, {
                                 $set: {
@@ -300,6 +341,7 @@ adminRouter.put('/update-interview', async (req, res) => {
                                 }
                         })
                 }
+                // When assesment data is received
                 if (assesment) {
                         const assesmentScore = await InterviewDay.updateMany({ 'user_id': user_id }, {
                                 $set: {
@@ -317,7 +359,7 @@ adminRouter.put('/update-interview', async (req, res) => {
                         })
                 }
                 const interviewDayScore = (resultInterview + resultAssesment) / 2
-                console.log(interviewDayScore)
+                //console.log(interviewDayScore)
                 const score = await InterviewDay.updateMany({ 'user_id': user_id }, {
                         $set: {
                                 interviewDayScore: interviewDayScore
@@ -327,7 +369,6 @@ adminRouter.put('/update-interview', async (req, res) => {
         } catch {
                 res.status(404).send({ error: "Candidate not found" })
         }
-
 })
 
 adminRouter.post('/create-room', async (req, res) => {
@@ -336,16 +377,18 @@ adminRouter.post('/create-room', async (req, res) => {
         const staff = await Administrator.find({ available: true })
         const interviewersList = staff.filter(person => person.rol.interviewer === true)
         const observersList = staff.filter(person => person.rol.observer === true)
-        let room = []
-        console.log(citationData[0].users)
+        let room = [{
+                candidate: user_id,//[10,11,12]
+                interviewer: user_id, //[0,1,2,3]
+                observador: user_id  // [0,1,2,3]
+        }]
         for (let candidate of citationData[0].users) {
                 const nStaff = 2
                 console.log('hola')
                 for (let i = 0; i < nStaff; i++) {
                         console.log(i)
                 }
-                room = [[candidate,], ...room]
-
+                room = [[candidate, interviewer, observador], ...room]
         }
 
         const rooms = new Rooms({
@@ -361,4 +404,37 @@ adminRouter.post('/create-room', async (req, res) => {
         })
 })
 
+adminRouter.post('/csv/', async (req, res) => {
+        // Data from de candidate document
+        const candidates = await User.find()
+        // Data from the profile of the candidate
+        const candidateProfiles = await Profile.find()
+        // Strucuture for required data
+        const csvObject = []
+        
+        for (let c of candidates) {
+                const candidateProfileData = {
+                        "firstName": candidates[0].firstName,
+                        "middleName": candidates[0].middleName,
+                        "lastName": candidates[0].lastName,
+                        "secondSurname": candidates[0].Surname,
+                        'fullName': `${candidates[0].firstName} ${candidates[0].lastName}`,
+                        'documentType': candidateProfiles[0].documentType,
+                        'documentNumber': candidateProfiles[0].documentNumber,
+                        "email": candidates[0].email,
+                        'contactNumber': candidates[0].contactNumber,
+                        'nacionality': candidateProfiles[0].nacionality,
+                        "residenceCountry": candidateProfiles[0].residenceCountry,
+                        'residencyDepartment': candidateProfiles[0].residencyDepartment,
+                        'municipalityOfResidency': candidates[0].municipalityOfResidency,
+                        'socioeconomicStratus': candidateProfiles[0].socioeconomicStratus,
+                        'actualAge': candidateProfiles[0].actualAge,
+                        'gender': candidateProfiles[0].gender,
+                        'status': 'true',
+                }
+                csvObject.push(candidateProfileData)
+        }
+        const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
+        res.json({ data: csvFromArrayOfObjects})
+})
 module.exports = adminRouter

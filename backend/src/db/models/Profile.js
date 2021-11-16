@@ -281,13 +281,17 @@ const profileSchema = new Schema({
         pass: { type: Boolean },
         noPass: { type: Boolean }
     },
+    heardFromUs: {
+        radio: Boolean,
+        instagram: Boolean,
+        facebook: Boolean,
+        web: Boolean
+    },
     convocatoria: String,
     resultados: Number,
     fechaEntrevista: Date,
     urlPrueba: String,
     promedioEntrevista: Number,
-
-
     /* fin proceso seleccion  */
 
 })

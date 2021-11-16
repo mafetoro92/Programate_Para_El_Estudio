@@ -83,5 +83,9 @@ candidateRouter.get('/candidate', async (req, res) => {
         const candidates = await User.find()
         res.send(candidates);
 })
+candidateRouter.get('/profile', async (req, res) => {
+        const candidates = await Profile.find()
+        res.send(candidates);
+})
 
 module.exports = candidateRouter
