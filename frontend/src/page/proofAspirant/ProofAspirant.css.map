@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,SAAS;EAClB,MAAM,EAAE,KAAK;EACb,gBAAgB,EAAE,OAAO;CAC1B;;AAED,AAAA,iBAAiB,CAAC;EAChB,aAAa,EAAE,IAAI;CACpB",
+    "sources": [
+        "ProofAspirant.scss"
+    ],
+    "names": [],
+    "file": "ProofAspirant.css"
+}
