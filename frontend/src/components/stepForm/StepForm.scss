@@ -16,7 +16,7 @@ $primary: #fdc300;
 }
 .MuiStepIcon-root {
   color: #ffffff !important;
-  border: 2px solid $primary;
+  border: 2px solid $primary !important;
   border-radius: 50% !important;
 }
 .MuiStepIcon-root.MuiStepIcon-completed {
@@ -28,12 +28,36 @@ $primary: #fdc300;
   position: absolute !important;
   right: 40px !important;
 }
-.makeStyles-root-1 {
+.makeStyles-root-1,
+.makeStyles-root-4,
+.makeStyles-root-7,
+.makeStyles-root-10,
+.makeStyles-root-16,
+.makeStyles-root-19,
+.makeStyles-root-22,
+.makeStyles-root-13 {
   background-color: white !important;
+  background: white !important;
   padding: 20px !important;
   box-shadow: 0px 2px 4px #0000004f !important;
 }
-.btn-primary{
+
+.jss1,
+.jss4,
+.jss7,
+.jss10,
+.jss13,
+.jss16,
+.jss19,
+.jss22, 
+.jss25{
+  background-color: white !important;
+  background: white !important;
+  width: 100%;
+  padding: 20px !important;
+  box-shadow: 0px 2px 4px #0000004f !important;
+}
+.btn-primary {
   position: absolute;
   margin-top: 10px;
   right: 45px;
@@ -42,12 +66,12 @@ $primary: #fdc300;
   border: none !important;
 }
 
-.MuiStepLabel-label.MuiStepLabel-active{
+.MuiStepLabel-label.MuiStepLabel-active {
   font-family: "Gilroy" !important;
   font-weight: 700 !important;
   font-size: 16px !important;
 }
-.MuiStepLabel-label{
+.MuiStepLabel-label {
   font-family: "Gilroy" !important;
   font-weight: 600 !important;
   font-size: 15px !important;
