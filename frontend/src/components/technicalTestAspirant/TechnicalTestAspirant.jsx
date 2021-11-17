@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TechnicalTestAspirant.scss";
 
-
 const TechnicalTestAspirant = () => {
+  const [test, setTest] = useState({
+    testurl: "",
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setTest({
+      testurl: "",
+    })
+  }
+
+  const handleChange = (e) => {
+      const {name, value} = e.target
+      setTest({
+        ...test,
+        [name]: value
+      })
+  } 
+
+  const {testurl} = test
+
+
   return (
     <>
       <div className="technical__test">
@@ -15,9 +36,14 @@ const TechnicalTestAspirant = () => {
             </p>
             <div>
               <a href="" download="Prueba tecnica">
-                <a href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing" target="_blank"><button type="button" class="btn btn-success">
-                  Link prueba tecnica
-                </button></a> 
+                <a
+                  href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing"
+                  target="_blank"
+                >
+                  <button type="button" class="btn btn-success">
+                    Link prueba tecnica
+                  </button>
+                </a>
               </a>
             </div>
           </div>
@@ -31,25 +57,30 @@ const TechnicalTestAspirant = () => {
             </p>
           </div>
           <div className="form__upload">
-            <form action="" method="POST" target="_blank">
+            <form>
               <p>Ingresa la URL:</p>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">
                   @
                 </span>
                 <input
+                  onChange = {handleChange}
+                  value = {testurl}
+                  name="testurl"
                   type="text"
                   class="form-control"
                   placeholder="https://drive.google.com/drive"
                   aria-label="Username"
-                  aria-describedby="basic-addon1" required
+                  aria-describedby="basic-addon1"
+                  required
                 />
               </div>
-              <input
+              <button
+                onClick = {onSubmit}
                 class="btn btn-success"
                 type="submit"
                 value="Enviar prueba"
-              />
+              >Enviar</button>
             </form>
           </div>
         </div>
