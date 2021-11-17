@@ -90,8 +90,6 @@ export const ITEMS = [
     ],
   },
 ];
-<<<<<<< HEAD
-=======
 
 export const ITEMS_ASPIRANTS = [
   {
@@ -123,4 +121,3 @@ export const ITEMS_ASPIRANTS = [
     id: 11,
   },
 ];
->>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
