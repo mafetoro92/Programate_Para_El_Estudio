@@ -1,6 +1,6 @@
 import React from "react";
 import "./TechnicalTestAspirant.scss";
-import Prueba from "../../assets/pdf_prueba.pdf";
+
 
 const TechnicalTestAspirant = () => {
   return (
@@ -14,8 +14,8 @@ const TechnicalTestAspirant = () => {
               subir la solucion en el tiempo estipulado.
             </p>
             <div>
-              <a href={Prueba} download="Prueba tecnica">
-                <a href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing" target="_blank"><button type="button" class="btn btn-primary">
+              <a href="" download="Prueba tecnica">
+                <a href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing" target="_blank"><button type="button" class="btn btn-success">
                   Link prueba tecnica
                 </button></a> 
               </a>
@@ -42,11 +42,11 @@ const TechnicalTestAspirant = () => {
                   class="form-control"
                   placeholder="https://drive.google.com/drive"
                   aria-label="Username"
-                  aria-describedby="basic-addon1"
+                  aria-describedby="basic-addon1" required
                 />
               </div>
               <input
-                class="btn btn-primary"
+                class="btn btn-success"
                 type="submit"
                 value="Enviar prueba"
               />

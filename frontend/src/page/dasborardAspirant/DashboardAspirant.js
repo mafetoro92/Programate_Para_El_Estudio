@@ -1,6 +1,6 @@
 import React from "react";
 import "./DashboardAspirant.scss";
-import BarChart from '../../components/BarChart'
+
 
 function DashboardAspirant() {
   return (
@@ -13,7 +13,6 @@ function DashboardAspirant() {
           <span className="text-crumbs">Dashboard</span>
         </div>
       </div>
-      <BarChart/>
     </div>
   );
 }

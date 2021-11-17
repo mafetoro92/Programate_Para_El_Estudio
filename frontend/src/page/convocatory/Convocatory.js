@@ -1,9 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import TableConvocatory from "../../components/tables/TableConvocatory";
 //import Button from '@mui/material/Button';
-=======
->>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
 import "./Convocatory.scss";
 
 

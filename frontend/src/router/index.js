@@ -17,6 +17,7 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 
 
 
+
 const App = () => {
     const initialState = {
         nameAdmin: "Diego Admin",
@@ -52,9 +53,9 @@ const App = () => {
           )}
           {!admin2 && loged2 && (
             <>
-              <Route exact path="/formulario/inscripción" component={FormInscription} />
-              <Route exact path="/agenda/entrevista" component={InterviewAspirant} />
-              <Route exact path="/prueba" component={ProofAspirant} />
+              <Route exact path="/inscripción" component={FormInscription} />
+              <Route exact path="/entrevista" component={InterviewAspirant} />
+              <Route exact path="/aspirante" component={ProofAspirant} />
               <Route exact path="/" component={DashboardAspirant} />
             </>
           )}

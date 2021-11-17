@@ -1,6 +1,7 @@
 import React from "react";
 import TechnicalTestAspirant from "../../components/technicalTestAspirant/TechnicalTestAspirant";
 
+
 import "./ProofAspirant.scss";
 
 const ProofAspirant = () => {
@@ -14,6 +15,7 @@ const ProofAspirant = () => {
           <span className="text-crumbs">Prueba</span>
         </div>
       </div>
+      
       <TechnicalTestAspirant />
     </div>
   );
