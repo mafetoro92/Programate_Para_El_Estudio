@@ -1,8 +1,8 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtraxtPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtraxtPlugin = require("mini-css-extract-plugin");
 
-const nodeEnv = process.env.NODE_ENV === 'development';
+const nodeEnv = process.env.NODE_ENV === "development";
 
 module.exports = {
   entry: './src/index.js',
@@ -49,18 +49,15 @@ module.exports = {
             options: {
               name: nodeEnv ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
             },
-          },
         ],
-      },
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: "./public/index.html",
+            filename: "./index.html",
+        }),
+        new MiniCssExtraxtPlugin({
+            filename: nodeEnv ? "assets/[name].css" : "assets/[name].css",
+        }),
     ],
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-    }),
-    new MiniCssExtraxtPlugin({
-      filename: nodeEnv ? 'assets/[name].css' : 'assets/[name].css',
-    }),
-  ],
 };

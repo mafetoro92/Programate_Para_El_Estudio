@@ -42,6 +42,15 @@ export const ITEMS = [
   {
     name: "Citación",
     icon: "fas fa-search-location",
+    {
+        name: "Dashboard",
+        icon: "fas fa-border-all",
+        items: [],
+        path: "/",
+      },
+  {
+    name: "Citación",
+    icon: "fas fa-map-marker-alt",
     id: 5,
     items: [
       {
@@ -81,3 +90,37 @@ export const ITEMS = [
     ],
   },
 ];
+<<<<<<< HEAD
+=======
+
+export const ITEMS_ASPIRANTS = [
+  {
+    name: "Dashboard de progreso",
+    icon: "fas fa-border-all",
+    items: [],
+    path: "/",
+    id: 8,
+  },
+  {
+    name: "Formulario de inscripción",
+    icon: "fas fa-bullhorn",
+    items: [],
+    path: "/inscripción",
+    id: 9,
+  },
+  {
+    name: "Agenda de Entrevista y assessment",
+    icon: "fas fa-map-marker-alt",
+    items: [],
+    path: "/entrevista",
+    id: 10,
+  },
+  {
+    name: "Prueba Técnica",
+    icon: "fas fa-laptop-code",
+    items: [],
+    path: "/aspirante",
+    id: 11,
+  },
+];
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
