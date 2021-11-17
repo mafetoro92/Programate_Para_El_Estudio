@@ -1,7 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
-import "./DoughtnutSoloLearn.scss";
-import "chart.piecelabel.js";
+import "./DonitaSoloLearn.scss";
+
 const data = {
     datasets: [
         {
@@ -22,7 +22,8 @@ const data = {
     ],
 };
 
-const DoughtnutSoloLearn = () => {
+const DonitaSoloLearn = () => {
+    console.log(data);
     return (
         <div className="section__dashboard">
             <div className="content">
@@ -37,4 +38,4 @@ const DoughtnutSoloLearn = () => {
     );
 };
 
-export default DoughtnutSoloLearn;
+export default DonitaSoloLearn;
