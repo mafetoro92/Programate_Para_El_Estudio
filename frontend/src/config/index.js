@@ -128,12 +128,7 @@ export default new RequestService();
 //     const handleSubmit = async (event) => {
 //       event.preventDefault();
 //       const res = await RequestService.put(`/user/${Admin.id}`, body);
-//       if (res.status === 201) {
-//         success('Administrador Editado');
-        
-//       } else if (res.status === 400) {
-//         rejected();
-//         // onClick();
+//
 //       };
 //     };
   
