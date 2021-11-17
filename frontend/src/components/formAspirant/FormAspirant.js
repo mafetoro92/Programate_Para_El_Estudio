@@ -1,162 +1,161 @@
-<<<<<<< HEAD
-import React from 'react'
-
-const FormAspirant = () => {
-    return (
-        <div>
-            <h1>Desde el Form</h1>
-        </div>
-    )
-}
-
-export default FormAspirant
-=======
 import React, { useState } from "react";
 import Step1 from "../stepForm/Step1";
 import "./FormAspirant.scss";
 
 const FormAspirant = () => {
-  const [data, setData] = useState({
-    firstName: "",
-    secondName: "",
-    firstSurname: "",
-    secondSurname: "",
-    document: "",
-    numberDocument: "",
-    pdf: "",
-    email: "",
-    phone: "",
-    nationality: "",
-    migrant: "",
-    liveColombia: "",
-    department: "",
-    municipality: "",
-    locality: "",
-    addres: "",
-    stratum: "",
-    birth: "",
-    age: "",
-    birthTwo: "",
-    sex: "",
-    status: "",
-    academicLevel: "",
-    title: "",
-    occupation: "",
-    unemployed: "",
-    employment: "",
-    armedConflict: "",
-    computer: "",
-    logProgramate: "",
-    accesComputer: "",
-    profileSololearn: "",
-    dreams: "",
-    motivation: "",
-  });
-
-  const {firstName, secondName, firstSurname, secondSurname, document, numberDocument, pdf, email, phone, 
-         nationality, migrant, liveColombia, department , municipality, locality, addres, stratum, birth, age, birthTwo,
-         sex, status,academicLevel,title,occupation, unemployed, employment, armedConflict, computer, logProgramate, 
-         accesComputer, profileSololearn, dreams, motivation} = data
-
-
-  const handeleChange = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
+    const [data, setData] = useState({
+        firstName: "",
+        secondName: "",
+        firstSurname: "",
+        secondSurname: "",
+        document: "",
+        numberDocument: "",
+        pdf: "",
+        email: "",
+        phone: "",
+        nationality: "",
+        migrant: "",
+        liveColombia: "",
+        department: "",
+        municipality: "",
+        locality: "",
+        addres: "",
+        stratum: "",
+        birth: "",
+        age: "",
+        birthTwo: "",
+        sex: "",
+        status: "",
+        academicLevel: "",
+        title: "",
+        occupation: "",
+        unemployed: "",
+        employment: "",
+        armedConflict: "",
+        computer: "",
+        logProgramate: "",
+        accesComputer: "",
+        profileSololearn: "",
+        dreams: "",
+        motivation: "",
     });
-  };
 
-  const sendData = (e) => {
-    e.preventDefault();
-    console.log(data)
+    const {
+        firstName,
+        secondName,
+        firstSurname,
+        secondSurname,
+        document,
+        numberDocument,
+        pdf,
+        email,
+        phone,
+        nationality,
+        migrant,
+        liveColombia,
+        department,
+        municipality,
+        locality,
+        addres,
+        stratum,
+        birth,
+        age,
+        birthTwo,
+        sex,
+        status,
+        academicLevel,
+        title,
+        occupation,
+        unemployed,
+        employment,
+        armedConflict,
+        computer,
+        logProgramate,
+        accesComputer,
+        profileSololearn,
+        dreams,
+        motivation,
+    } = data;
 
-    setData({
-      firstName: "",
-      secondName: "",
-      firstSurname: "",
-      secondSurname: "",
-      document: "",
-      numberDocument: "",
-      pdf: "",
-      email: "",
-      phone: "",
-      nationality: "",
-      migrant: "",
-      liveColombia: "",
-      department: "",
-      municipality: "",
-      locality: "",
-      addres: "",
-      stratum: "",
-      birth: "",
-      age: "",
-      birthTwo: "",
-      sex: "",
-      status: "",
-      academicLevel: "",
-      title: "",
-      occupation: "",
-      unemployed: "",
-      employment: "",
-      armedConflict: "",
-      computer: "",
-      logProgramate: "",
-      accesComputer: "",
-      profileSololearn: "",
-      dreams: "",
-      motivation: "",
-    })
+    const handeleChange = (e) => {
+        const { name, value } = e.target;
+        setData({
+            ...data,
+            [name]: value,
+        });
+    };
 
-  }
-  const  getCountrie = async () => {
-    const url = 'https://restcountries.com/v3.1/all';
-    const request = await fetch(url);
-    const countrie = await request.json();
-    const countries = countrie.map(item => item.name.common).sort()
-    setCountries(countries)
-  }
-  
-  getCountrie()
+    const sendData = (e) => {
+        e.preventDefault();
+        console.log(data);
 
+        setData({
+            firstName: "",
+            secondName: "",
+            firstSurname: "",
+            secondSurname: "",
+            document: "",
+            numberDocument: "",
+            pdf: "",
+            email: "",
+            phone: "",
+            nationality: "",
+            migrant: "",
+            liveColombia: "",
+            department: "",
+            municipality: "",
+            locality: "",
+            addres: "",
+            stratum: "",
+            birth: "",
+            age: "",
+            birthTwo: "",
+            sex: "",
+            status: "",
+            academicLevel: "",
+            title: "",
+            occupation: "",
+            unemployed: "",
+            employment: "",
+            armedConflict: "",
+            computer: "",
+            logProgramate: "",
+            accesComputer: "",
+            profileSololearn: "",
+            dreams: "",
+            motivation: "",
+        });
+    };
+    const getCountrie = async () => {
+        const url = "https://restcountries.com/v3.1/all";
+        const request = await fetch(url);
+        const countrie = await request.json();
+        const countries = countrie.map((item) => item.name.common).sort();
+        setCountries(countries);
+    };
 
+    getCountrie();
 
-  return (
+    return (
+        <div className="form mt-4">
+            <h3 className="mb-4">Formulario De Inscripción</h3>
 
-    <div className="form mt-4">
-      <h3 className="mb-4">Formulario De Inscripción</h3>
+            <form onSubmit={sendData}>
+                <Step1 data={data} handeleChange={handeleChange} />
 
-      <form onSubmit={sendData}>
-          <Step1 data={data} handeleChange={handeleChange}/>
-        
-          
-
-        
-
-        {/* {error ? (
+                {/* {error ? (
           <p className="error-mesage mt-4">Todos los campos son obligatorios</p>
         ) : null} */}
 
-
-        <button
-          className="btn btn-success prueba mt-4"
-          type="submit"
-        >
-          Enviar
-        </button>
-      </form>
-    </div>
-
-  );
+                <button className="btn btn-success prueba mt-4" type="submit">
+                    Enviar
+                </button>
+            </form>
+        </div>
+    );
 };
 
 export default FormAspirant;
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import "./FormAspirant.scss";
@@ -199,9 +198,9 @@ export default FormAspirant;
 //     motivation: "",
 //   });
 
-//   const {firstName, secondName, firstSurname, secondSurname, document, numberDocument, pdf, email, phone, 
+//   const {firstName, secondName, firstSurname, secondSurname, document, numberDocument, pdf, email, phone,
 //          nationality, migrant, liveColombia, department , municipality, locality, addres, stratum, birth, age, birthTwo,
-//          sex, status,academicLevel,title,occupation, unemployed, employment, armedConflict, computer, logProgramate, 
+//          sex, status,academicLevel,title,occupation, unemployed, employment, armedConflict, computer, logProgramate,
 //          accesComputer, profileSololearn, dreams, motivation} = data
 
 //   const [countries, setCountries] = useState([])
@@ -263,10 +262,8 @@ export default FormAspirant;
 //     const countries = countrie.map(item => item.name.common).sort()
 //     setCountries(countries)
 //   }
-  
+
 //   getCountrie()
-
-
 
 //   return (
 
@@ -411,8 +408,8 @@ export default FormAspirant;
 //               <option value="select">Selecciona un pais</option>
 //               {
 //                   countries.map(countrie => (
-//                     <option 
-//                     key={countrie} 
+//                     <option
+//                     key={countrie}
 //                     value={countrie}>
 //                     {countrie}
 //                     </option>
@@ -799,7 +796,6 @@ export default FormAspirant;
 //           <p className="error-mesage mt-4">Todos los campos son obligatorios</p>
 //         ) : null} */}
 
-
 //         <button
 //           className="btn btn-success prueba mt-4"
 //           type="submit"
@@ -813,4 +809,3 @@ export default FormAspirant;
 // };
 
 // export default FormAspirant;
->>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a

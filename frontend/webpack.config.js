@@ -5,49 +5,55 @@ const MiniCssExtraxtPlugin = require("mini-css-extract-plugin");
 const nodeEnv = process.env.NODE_ENV === "development";
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  devServer:{
-    historyApiFallback: true,
-  },  
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader',
-        },
-      },
-      {
-        test: /\.(s*)css$/,
-        exclude: /node_modules/,
-        use: [{
-          loader: MiniCssExtraxtPlugin.loader,
-        },
-        'css-loader',
-        'sass-loader',
-        ],
-      },
-      {
-        test: /\.(png|gif|jpg|svg|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: nodeEnv ? 'assets/[name].[ext]' : 'assets/[hash].[ext]',
+    entry: "./src/index.js",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+    },
+    resolve: {
+        extensions: [".js", ".jsx"],
+    },
+    devServer: {
+        historyApiFallback: true,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                },
+            },
+            {
+                test: /\.html$/,
+                use: {
+                    loader: "html-loader",
+                },
+            },
+            {
+                test: /\.(s*)css$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: MiniCssExtraxtPlugin.loader,
+                    },
+                    "css-loader",
+                    "sass-loader",
+                ],
+            },
+            {
+                test: /\.(png|gif|jpg|svg|otf)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: nodeEnv
+                                ? "assets/[name].[ext]"
+                                : "assets/[hash].[ext]",
+                        },
+                    },
+                ],
             },
         ],
     },
