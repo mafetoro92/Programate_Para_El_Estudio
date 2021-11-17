@@ -1,9 +1,16 @@
+<<<<<<< HEAD
+import React from "react";
+=======
 import React, { useState } from "react";
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
+<<<<<<< HEAD
+import Dashboard from "../page/dashboard/Dashboard";
+=======
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import Dashboard from "../page/dashboard/Dashboard";
 // import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
@@ -16,6 +23,7 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 
 
 
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
 
 const App = () => {
     const initialState = {
@@ -39,6 +47,15 @@ const App = () => {
 
   return (
     <BrowserRouter>
+<<<<<<< HEAD
+      <Header/>
+      <div className="d-flex hhh">
+        <Nav/>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/convocatoria" component={Convocatory} />
+          <Route path="/aspirantes" component={Aspirants} />
+=======
       <Header user={user} adminstate={adminstate} />
       <div className="d-flex hhh">
         <Nav user={user} adminstate={adminstate} />
@@ -58,6 +75,7 @@ const App = () => {
               <Route exact path="/aspirante" component={ProofAspirant} />
             </>
           )}
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
         </Switch>
       </div>
     </BrowserRouter>

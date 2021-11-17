@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+import React from 'react'
+
+const FormAspirant = () => {
+    return (
+        <div>
+            <h1>Desde el Form</h1>
+        </div>
+    )
+}
+
+export default FormAspirant
+=======
 import React, { useState } from "react";
 import Step1 from "../stepForm/Step1";
 import "./FormAspirant.scss";
@@ -800,3 +813,4 @@ export default FormAspirant;
 // };
 
 // export default FormAspirant;
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a

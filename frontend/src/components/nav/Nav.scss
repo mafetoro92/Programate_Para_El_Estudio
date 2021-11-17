@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+$primary: #e0b60d;
+$secondary: #000000;
+
+.nav {
+=======
 $primary: #FDC300;
 $secondary: #000000;
 
 .nav {
   position: relative;
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
   padding: 20px 0;
   background-color: $primary;
   // height: calc(100vh - 70px);
@@ -17,7 +24,10 @@ $secondary: #000000;
   &:hover &__fixed {
     width: 240px;
     overflow-y: scroll !important;
+<<<<<<< HEAD
+=======
     overflow-x: hidden !important;
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
   }
 
   &:hover &__title,
@@ -31,7 +41,10 @@ $secondary: #000000;
   &:hover &__item-icon {
     font-size: 17px;
   }
+<<<<<<< HEAD
+=======
 
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
   &__title,
   &__subitem {
     display: none !important;
@@ -64,21 +77,32 @@ $secondary: #000000;
     width: 70px;
     height: 450px;
     transition: 0.4s all;
+<<<<<<< HEAD
+=======
     // border: 2px solid red;
     background: #FDC300;
     border-radius: 5px;
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
   }
   &__fixed::-webkit-scrollbar {
     width: 7px;
   }
   &__fixed::-webkit-scrollbar-thumb {
+<<<<<<< HEAD
+    background: #9f851c;
+=======
     background: #d8a602;
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
     border-radius: 5px;
   }
   .nav__icon {
     color: $secondary;
     font-size: 14.8px;
     cursor: pointer;
+<<<<<<< HEAD
+    -webkit-transition: all 0.4s;
+=======
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
     transition: all 0.4s;
   }
   .nav__icon:hover {
@@ -93,6 +117,10 @@ $secondary: #000000;
     font-size: 14.8px;
     color: $secondary;
     font-weight: 600;
+<<<<<<< HEAD
+    -webkit-transition: all 0.4s;
+=======
+>>>>>>> fbef2457b2d6238b8d7f1d4f009af17d5b2cba9a
     transition: all 0.4s;
   }
   .nav__items--inscription {
