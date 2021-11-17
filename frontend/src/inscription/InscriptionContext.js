@@ -1,21 +1,32 @@
-import React, { createContext } from "react";
-
+import React, { createContext, useState } from "react";
+import { fetchClient } from "../helpers/fetch";
 
 export const InscriptionContext = createContext();
 
 const initialState = {
-    name: '',
-    email : '',
-}
+  send: false,
+};
 
-export const InscriptionProvider = ({children}) => {
+export const InscriptionProvider = ({ children }) => {
 
-    
-    return (
-        <InscriptionContext.Provider value={{
+  const [inscription, setInscription] = useState(initialState);
 
-        }}>
-                {children}
-        </InscriptionContext.Provider>
-    )
-}
+  const inscribir = async (firstName, email) => {
+      try {
+        const resp = await fetchClient('staff/update-interview', {firstName, email}, 'PUT');
+        console.log(resp)
+      } catch (error) {
+          console.log(error)
+      }
+  };
+
+  return (
+    <InscriptionContext.Provider
+      value={{
+        inscribir,
+      }}
+    >
+      {children}
+    </InscriptionContext.Provider>
+  );
+};

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
@@ -14,31 +15,27 @@ import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 
-
-
-
 const App = () => {
-    const initialState = {
-        nameAdmin: "Diego Admin",
-        admin: true,
-        loged: false,
-    };
+  const initialState = {
+    nameAdmin: "Diego Admin",
+    admin: true,
+    loged: false,
+  };
 
-    const initialState2 = {
-        name: "Kevin",
-        admin2: false,
-        loged2: true,
-    };
+  const initialState2 = {
+    name: "Kevin",
+    admin2: false,
+    loged2: true,
+  };
 
-    const [adminstate, setAdmin] = useState(initialState);
-    const [user, setUser] = useState(initialState2);
+  const [adminstate, setAdmin] = useState(initialState);
+  const [user, setUser] = useState(initialState2);
 
-    const { admin, loged } = adminstate;
-    const { admin2, loged2 } = user;
-
+  const { admin, loged } = adminstate;
+  const { admin2, loged2 } = user;
 
   return (
-    <BrowserRouter>
+    <>
       <Header user={user} adminstate={adminstate} />
       <div className="d-flex hhh">
         <Nav user={user} adminstate={adminstate} />
@@ -60,7 +57,7 @@ const App = () => {
           )}
         </Switch>
       </div>
-    </BrowserRouter>
+    </>
   );
 };
 export default App;

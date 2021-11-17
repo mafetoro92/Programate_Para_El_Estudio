@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 
 const Step1 = ({ data, handeleChange }) => {
   const {
@@ -14,23 +14,26 @@ const Step1 = ({ data, handeleChange }) => {
     nationality,
   } = data;
 
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState([]);
+  const [reload,setReload]=useState(false);
 
-  const  getCountrie = async () => {
-    const url = 'https://restcountries.com/v3.1/all';
+  const getCountry = async () => {
+    const url = "https://restcountries.com/v3.1/all";
     const request = await fetch(url);
     const countrie = await request.json();
-    const countries = countrie.map(item => item.name.common).sort()
-    setCountries(countries)
-  }
-  
-  getCountrie()
+    const countries = countrie.map((item) => item.name.common).sort();
+    setCountries(countries);
+  };
+
+  useEffect(() => {
+    getCountry();
+  }, []);
 
   return (
     <>
       <div className="row">
         <div className="col-12 col-md-6">
-          <label htmlFor="" className="form-label">
+          <label htmlFor="" className="form-label" >
             Primer Nombre
           </label>
           <input
@@ -141,39 +144,35 @@ const Step1 = ({ data, handeleChange }) => {
         </div>
       </div>
       <div className="row mt-4">
-          <div className="col-12 col-md-6">
-            <label htmlFor="" className="form-label">
-              Teléfono de contacto secundario
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              name="phone"
-              onChange={handeleChange}
-              value={phone}
-            />
-          </div>
-          <div htmlFor="" className="col-12 col-md-6">
-            <label className="form-label">Nacionalidad</label>
-            <select
-              name="nationality"
-              onChange={handeleChange}
-              value={nationality}
-              className="form-select"
-            >
-              <option value="select">Selecciona un pais</option>
-              {
-                  countries.map(countrie => (
-                    <option 
-                    key={countrie} 
-                    value={countrie}>
-                      {countrie}
-                    </option>
-                 ))
-              }
-            </select>
-          </div>
+        <div className="col-12 col-md-6">
+          <label htmlFor="" className="form-label">
+            Teléfono de contacto secundario
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            name="phone"
+            onChange={handeleChange}
+            value={phone}
+          />
         </div>
+        <div htmlFor="" className="col-12 col-md-6">
+          <label className="form-label">Nacionalidad</label>
+          <select
+            name="nationality"
+            onChange={handeleChange}
+            value={nationality}
+            className="form-select"
+          >
+            <option value="select">Selecciona un pais</option>
+            {countries.map((countrie) => (
+              <option key={countrie} value={countrie}>
+                {countrie}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </>
   );
 };

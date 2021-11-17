@@ -1,8 +1,18 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './router';
-import './styles/app.scss';
+import React from "react";
+import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { InscriptionProvider } from "./inscription/InscriptionContext";
+import App from "./router";
+import "./styles/app.scss";
 
-
-
-ReactDom.render(<App />, document.getElementById('app'));
+ReactDom.render(
+  <React.StrictMode>
+    <Router>
+      <InscriptionProvider>
+        <App />
+      </InscriptionProvider>
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("app")
+);
