@@ -31,3 +31,22 @@ $primary: #FDC300;
     align-self: center;
   }
 }
+
+.menu-bar{
+  position: relative;
+  left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+}
+.fa-bars{
+  font-size: 23px;
+}
+
+@media screen and (max-width: 760px) {
+    .menu-bar{
+      display: flex;
+    }
+}

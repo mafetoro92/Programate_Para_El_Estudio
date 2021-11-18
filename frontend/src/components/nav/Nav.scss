@@ -29,7 +29,10 @@ $secondary: #000000;
     display: flex !important;
   }
   &:hover &__item-icon {
-    font-size: 17px;
+    position: relative;
+    font-size: 19px;
+    text-align: start;
+    width: 40px;
   }
 
   &__title,
@@ -74,43 +77,5 @@ $secondary: #000000;
   &__fixed::-webkit-scrollbar-thumb {
     background: #d8a602;
     border-radius: 5px;
-  }
-  .nav__icon {
-    color: $secondary;
-    font-size: 14.8px;
-    cursor: pointer;
-    transition: all 0.4s;
-  }
-  .nav__icon:hover {
-    color: white;
-  }
-  .nav__icon:hover > .nav__link {
-    color: white;
-  }
-  .nav__link {
-    text-decoration: none;
-    margin: 0 0 0px 10px;
-    font-size: 14.8px;
-    color: $secondary;
-    font-weight: 600;
-    transition: all 0.4s;
-  }
-  .nav__items--inscription {
-    position: relative;
-    top: 18px;
-    padding: 0 0 0 15px;
-    margin: 0 0 0 10px;
-    display: none;
-    transition: 0.4s all;
-  }
-  .nav__list a {
-    text-decoration: none;
-    color: $secondary;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.4s;
-  }
-  a:hover {
-    color: white;
   }
 }

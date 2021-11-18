@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { InscriptionContext } from "../../inscription/InscriptionContext";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import FormAspirant from "../formAspirant/FormAspirant";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import { initialData } from "./index";
 import "./StepForm.scss";
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,43 +32,10 @@ function getSteps() {
 
 function getStepContent(step) {
 
-  const [data, setData] = useState({
-    firstName: "",
-    secondName: "",
-    firstSurname: "",
-    secondSurname: "",
-    document: "",
-    numberDocument: "",
-    pdf: "",
-    email: "",
-    phone: "",
-    nationality: "",
-    migrant: "",
-    liveColombia: "",
-    department: "",
-    municipality: "",
-    locality: "",
-    addres: "",
-    stratum: "",
-    birth: "",
-    age: "",
-    birthTwo: "",
-    sex: "",
-    status: "",
-    academicLevel: "",
-    title: "",
-    occupation: "",
-    unemployed: "",
-    employment: "",
-    armedConflict: "",
-    computer: "",
-    logProgramate: "",
-    accesComputer: "",
-    profileSololearn: "",
-    dreams: "",
-    motivation: "",
-  });
-  
+  const { inscribir } = useContext(InscriptionContext);
+
+  const [data, setData] = useState(initialData);
+ 
   const handeleChange = (e) => {
     const { name, value } = e.target;
     setData({
@@ -77,54 +44,33 @@ function getStepContent(step) {
     });
   };
   const sendData = () => {
-  
-    setData({
-      firstName: "",
-      secondName: "",
-      firstSurname: "",
-      secondSurname: "",
-      document: "",
-      numberDocument: "",
-      pdf: "",
-      email: "",
-      phone: "",
-      nationality: "",
-      migrant: "",
-      liveColombia: "",
-      department: "",
-      municipality: "",
-      locality: "",
-      addres: "",
-      stratum: "",
-      birth: "",
-      age: "",
-      birthTwo: "",
-      sex: "",
-      status: "",
-      academicLevel: "",
-      title: "",
-      occupation: "",
-      unemployed: "",
-      employment: "",
-      armedConflict: "",
-      computer: "",
-      logProgramate: "",
-      accesComputer: "",
-      profileSololearn: "",
-      dreams: "",
-      motivation: "",
-    })
-  
-    console.log('enviando data', data)
-  }
+
+    setData(initialData);
+    const { firstName, email } = data;
+    
+    inscribir(firstName, email);
+  };
+
+  const props = { data, handeleChange };
 
   switch (step) {
     case 0:
-      return <Step1 data={data} handeleChange={handeleChange}/>;
+      return <Step1 {...props} />;
     case 1:
-      return <Step2 data={data} handeleChange={handeleChange}/> ;
+      return <Step2 {...props} />;
     case 2:
-      return <><Step3 data={data} handeleChange={handeleChange}/> <button className="btn btn-primary" type="submit" onClick={() => sendData()}>Enviar</button></>;
+      return (
+        <>
+          <Step3 {...props} />{" "}
+          <button
+            className="btn btn-primary send-data"
+            type="submit"
+            onClick={() => sendData()}
+          >
+            Enviar
+          </button>
+        </>
+      );
     default:
       return "Unknown step";
   }
@@ -198,7 +144,7 @@ export default function HorizontalLinearStepper() {
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography component={'div'} className={classes.instructions}>
+            <Typography component={"div"} className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
             <Button onClick={handleReset} className={classes.button}>
@@ -207,7 +153,7 @@ export default function HorizontalLinearStepper() {
           </div>
         ) : (
           <div>
-            <Typography component={'div'} className={classes.instructions}>
+            <Typography component={"div"} className={classes.instructions}>
               {getStepContent(activeStep)}
             </Typography>
             <div>

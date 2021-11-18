@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
@@ -34,7 +35,7 @@ const App = () => {
     const { admin2, loged2 } = user;
 
     return (
-        <BrowserRouter>
+        <>
             <Header user={user} adminstate={adminstate} />
             <div className="d-flex hhh">
                 <Nav user={user} adminstate={adminstate} />
@@ -91,7 +92,7 @@ const App = () => {
                     )}
                 </Switch>
             </div>
-        </BrowserRouter>
+        </>
     );
 };
 export default App;

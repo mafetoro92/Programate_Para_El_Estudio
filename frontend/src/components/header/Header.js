@@ -20,6 +20,9 @@ const Header = ({user, adminstate}) => {
           />
           </Link>
         </div>
+        <div className='menu-bar'>
+        <i className="fas fa-bars pointer"></i>
+        </div>
         <div className="header__search">
           <Search />
         </div>
