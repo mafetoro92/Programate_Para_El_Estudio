@@ -153,10 +153,8 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-<<<<<<< HEAD
-=======
                 usersRegisted
->>>>>>> 1f2e69dbfb3f9f0f3a0b9cc6cac23de0d4ac199a
+
         } = req.body;
         // New Convocatory document
         const newConvocatory = new Convocatory({
@@ -167,10 +165,8 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-<<<<<<< HEAD
-=======
                 usersRegisted,
->>>>>>> 1f2e69dbfb3f9f0f3a0b9cc6cac23de0d4ac199a
+
         });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
@@ -189,11 +185,6 @@ adminRouter.put('/update-conv/:id', async (req, res) => {
         }
 })
 
-// GET CONVOCATORY
-adminRouter.get('/convocatory', async (req, res)=>{
-        const convocatory = await Convocatory.find()
-        res.send(convocatory)
-})
 
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get('/get-result/:id', async (req, res) => {
