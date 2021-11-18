@@ -1,19 +1,9 @@
 export const ITEMS = [
-  {
-    name: "Dashboard",
-    icon: "fas fa-border-all",
-    items: [],
-    path: "/",
-  },
-  {
-    name: "Citación",
-    icon: "fas fa-map-marker-alt",
-    id: 5,
-    items: [
-      {
-        name: "Consolidado Postulantes",
+    {
+        name: "Dashboard",
+        icon: "fas fa-border-all",
+        items: [],
         path: "/",
-<<<<<<< HEAD
     },
     {
         name: "Citación",
@@ -56,41 +46,6 @@ export const ITEMS = [
             },
         ],
     },
-=======
-      },
-      {
-        name: "Dias de Entrevista",
-        path: "/",
-      },
-    ],
-  },
-  {
-    name: "Prueba Técnica",
-    icon: "fas fa-laptop-code",
-    id: 6,
-    items: [
-      {
-        name: "Administrar Pruebas Técnicas",
-        path: "/",
-      },
-      {
-        name: "Calificar Pruebas Tecnicas",
-        path: "/",
-      },
-    ],
-  },
-  {
-    name: "Selección",
-    icon: "fas fa-vote-yea",
-    id: 7,
-    items: [
-      {
-        name: "Resultados",
-        path: "/",
-      },
-    ],
-  },
->>>>>>> 36923e8abcd495436236cfc703c14fb1e417fa96
 ];
 
 export const ITEMS_ASPIRANTS = [
@@ -124,6 +79,24 @@ export const ITEMS_ASPIRANTS = [
     },
 ];
 
+/*const pruebas1 = [
+      {
+          user_id: 1,
+          userFullName: "Pablo",
+          htmlScore: 23,
+          cssScore: 25,
+          javascriptScore: 27,
+          pythonScore: 34,
+          Score: 28,
+          soloLearnScore: 28,
+          personalProfileScore: 28,
+          motivationScore: 28,
+          finalScore: 23,
+      },
+      
+  ];
+  */
+
 export const PROFILE_SOLOLEARN = [
     {
         user_id: 1,
@@ -141,18 +114,17 @@ export const PROFILE_SOLOLEARN = [
 ];
 
 export const pruebas1 = [
-  {
-      user_id: 1,
-      userFullName: "Pablo",
-      htmlScore: 23,
-      cssScore: 25,
-      javascriptScore: 27,
-      pythonScore: 34,
-      Score: 28,
-      soloLearnScore: 28,
-      personalProfileScore: 28,
-      motivationScore: 28,
-      finalScore: 23,
-  }
+    {
+        user_id: 1,
+        userFullName: "Pablo",
+        htmlScore: 23,
+        cssScore: 25,
+        javascriptScore: 27,
+        pythonScore: 34,
+        Score: 28,
+        soloLearnScore: 28,
+        personalProfileScore: 28,
+        motivationScore: 28,
+        finalScore: 23,
+    },
 ];
-
