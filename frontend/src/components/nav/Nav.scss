@@ -1,0 +1,115 @@
+$primary: #fdc300;
+$secondary: #000000;
+
+.nav {
+    position: relative;
+    padding: 20px 0;
+    background-color: $primary;
+    // height: calc(100vh - 70px);
+    width: 74px;
+    display: block;
+    transition: 0.4s all;
+
+    &:hover {
+        width: 294px;
+    }
+
+    &:hover &__fixed {
+        width: 240px;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+    }
+
+    &:hover &__title,
+    &:hover &__item-label,
+    &:hover &__item-iconArrow {
+        display: block !important;
+    }
+    &:hover &__subitem {
+        display: flex !important;
+    }
+    &:hover &__item-icon {
+        font-size: 17px;
+    }
+    &__title,
+    &__subitem {
+        display: none !important;
+    }
+    &__item {
+        &-label {
+            color: black;
+            font-weight: bold;
+            display: none !important;
+        }
+    }
+
+    &__title {
+        font-size: 13px;
+        text-transform: uppercase;
+        padding-left: 18px;
+        font-weight: 800;
+    }
+    &__main {
+        font-size: 13px;
+        padding: 20px 0 0 20px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: $secondary;
+    }
+    &__fixed {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        width: 70px;
+        height: 450px;
+        transition: 0.4s all;
+        // border: 2px solid red;
+        background: #fdc300;
+        border-radius: 5px;
+    }
+    &__fixed::-webkit-scrollbar {
+        width: 7px;
+    }
+    &__fixed::-webkit-scrollbar-thumb {
+        background: #d8a602;
+        border-radius: 5px;
+    }
+    .nav__icon {
+        color: $secondary;
+        font-size: 14.8px;
+        cursor: pointer;
+        transition: all 0.4s;
+    }
+    .nav__icon:hover {
+        color: white;
+    }
+    .nav__icon:hover > .nav__link {
+        color: white;
+    }
+    .nav__link {
+        text-decoration: none;
+        margin: 0 0 0px 10px;
+        font-size: 14.8px;
+        color: $secondary;
+        font-weight: 600;
+        transition: all 0.4s;
+    }
+    .nav__items--inscription {
+        position: relative;
+        top: 18px;
+        padding: 0 0 0 15px;
+        margin: 0 0 0 10px;
+        display: none;
+        transition: 0.4s all;
+    }
+    .nav__list a {
+        text-decoration: none;
+        color: $secondary;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.4s;
+    }
+    a:hover {
+        color: white;
+    }
+}
