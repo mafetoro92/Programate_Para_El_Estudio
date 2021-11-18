@@ -39,7 +39,8 @@
     "react": "^16.13.1",
     "react-chartjs-2": "^3.3.0",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "sweetalert2": "^11.1.10"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
