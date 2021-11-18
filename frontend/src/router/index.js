@@ -18,13 +18,13 @@ const App = () => {
     const initialState = {
         nameAdmin: "Diego Admin",
         admin: true,
-        loged: true,
+        loged: false,
     };
 
     const initialState2 = {
         name: "Kevin",
         admin2: false,
-        loged2: false,
+        loged2: true,
     };
 
     const [adminstate, setAdmin] = useState(initialState);
