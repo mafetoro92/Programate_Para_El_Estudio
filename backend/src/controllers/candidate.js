@@ -44,7 +44,13 @@ candidateRouter.post('/profile', async (req, res, next) => {
                 motivation,
                 dreams,
                 soloLearnProfile,
-                status } = req.body;
+                status,
+                heardFromUs: {
+                        radio,
+                        instagram,
+                        facebook,
+                        web
+                }} = req.body;
         const newProfile = new Profile({
                 user_id,
                 documentType,
@@ -73,7 +79,13 @@ candidateRouter.post('/profile', async (req, res, next) => {
                 motivation,
                 dreams,
                 soloLearnProfile,
-                status
+                status,
+                heardFromUs: {
+                        radio,
+                        instagram,
+                        facebook,
+                        web
+                }
         });
         await newProfile.save();
         res.send(`${newProfile.user_id} profile saved`)

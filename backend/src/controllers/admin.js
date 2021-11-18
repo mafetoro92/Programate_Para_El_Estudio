@@ -149,33 +149,21 @@ adminRouter.post('/new-conv', async (req, res, next) => {
         const {
                 name,
                 initialDate,
-                finallDate,
+                finalDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-                parameterization: {
-                        personalProfile,
-                        sololearn,
-                        motivationLetter },
-                usersRegisted
         } = req.body;
         // New Convocatory document
-        const convocatory = new Convocatory({
-                _id,
+        const newConvocatory = new Convocatory({
                 name,
                 initialDate,
-                finallDate,
+                finalDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-                parameterization: {
-                        personalProfile,
-                        sololearn,
-                        motivationLetter
-                },
-                usersRegisted,
         });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
@@ -194,13 +182,19 @@ adminRouter.put('/update-conv/:id', async (req, res) => {
         }
 })
 
+// GET CONVOCATORY
+adminRouter.get('/convocatory', async (req, res)=>{
+        const convocatory = await Convocatory.find()
+        res.send(convocatory)
+})
+
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get('/get-result/:id', async (req, res) => {
         try {
                 const { user_id } = req.params.id;
+                console.log(user_id)
                 const candidateProfile = await Profile.find({ user_id: user_id })
                 let { soloLearnProfile } = candidateProfile[0]
-
                 // Fetching Solo learn data
                 try {
                         request(`https://api.sololearn.repl.co/profile/${soloLearnProfile}`, (err, response, body) => {
@@ -222,8 +216,8 @@ adminRouter.get('/get-result/:id', async (req, res) => {
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 adminRouter.get('/waiting-list', async (req, res, next) => {
-        const waitList = await Profile.find({ status: { 'waitList': true } })
-        res.send({ data: waitList })
+        const waitList = await Profile.find({status:{'waitList': true}})
+        res.send({data: waitList})
 })
 
 // Download CSV files
@@ -291,7 +285,7 @@ adminRouter.put('/parameterization/:_id', async (req, res) => {
 
 // Get all citations
 adminRouter.get('/citation', async (req, res) => {
-        const results = await Convocatory.find();
+        const results = await Citation.find();
         res.send(results)
 });
 
