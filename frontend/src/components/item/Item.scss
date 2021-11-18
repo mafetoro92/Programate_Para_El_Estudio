@@ -1,0 +1,32 @@
+$primary: #e0b60d;
+$secondary: #000000;
+
+.nav__item {
+  padding: 10px 0 10px 0;
+  margin: 10px 0 5px 0;
+
+  &-icon {
+    position: relative;
+    left: 5px;
+    font-size: 25px;
+    color: $secondary;
+    width: 30px;
+    transition: 0.4s all;
+  }
+  &-iconArrow {
+    padding: 0 10px 0 0;
+    display: none;
+  }
+  &:hover, &:hover &-icon, &:hover &-label {
+      color: white !important ;
+  }
+  .nav__subitem{
+    padding: 0 0 0 50px;
+  }
+  .nav__subitem-label{
+      color: black;
+      margin: 8px 0;
+      font-weight: 600;
+      font-size: 14.8px;
+  }
+}
