@@ -1,4 +1,3 @@
-const { convertArrayToCSV } = require('convert-array-to-csv');
 const Convocatory = require('../db/models/Convocatory');
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
@@ -154,6 +153,10 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
+<<<<<<< HEAD
+=======
+                usersRegisted
+>>>>>>> 1f2e69dbfb3f9f0f3a0b9cc6cac23de0d4ac199a
         } = req.body;
         // New Convocatory document
         const newConvocatory = new Convocatory({
@@ -164,6 +167,10 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
+<<<<<<< HEAD
+=======
+                usersRegisted,
+>>>>>>> 1f2e69dbfb3f9f0f3a0b9cc6cac23de0d4ac199a
         });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
@@ -173,10 +180,10 @@ adminRouter.post('/new-conv', async (req, res, next) => {
 // UPDATE CONVOCATORY
 adminRouter.put('/update-conv/:id', async (req, res) => {
         try {
-                const candidate = await Convocatory.findById(req.params.id)
-                Object.assign(candidate, req.body)
-                candidate.save()
-                res.send({ data: candidate })
+                const convocatory = await Convocatory.findById(req.params.id)
+                Object.assign(convocatory, req.body)
+                convocatory.save()
+                res.send({ data: convocatory })
         } catch {
                 res.status(404).send({ error: "Convocatory not found" })
         }
