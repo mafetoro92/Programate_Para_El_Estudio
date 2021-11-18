@@ -42,17 +42,17 @@ const App = () => {
         <Switch>
           {admin && loged && (
             <>
-              <Route exact path="/" component={Dashboard} />
               <Route path="/convocatoria" component={Convocatory} />
               <Route path="/aspirantes" component={Aspirants} />
+              <Route exact path="/" component={Dashboard} />
             </>
           )}
           {!admin2 && loged2 && (
             <>
-              <Route exact path="/" component={DashboardAspirant} />
               <Route exact path="/inscripción" component={FormInscription} />
               <Route exact path="/entrevista" component={InterviewAspirant} />
               <Route exact path="/aspirante" component={ProofAspirant} />
+              <Route exact path="/" component={DashboardAspirant} />
             </>
           )}
         </Switch>
