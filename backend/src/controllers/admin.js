@@ -1,4 +1,3 @@
-const { convertArrayToCSV } = require('convert-array-to-csv');
 const Convocatory = require('../db/models/Convocatory');
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
@@ -154,10 +153,6 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-                parameterization: {
-                        personalProfile,
-                        sololearn,
-                        motivationLetter },
                 usersRegisted
         } = req.body;
         // New Convocatory document
@@ -170,11 +165,6 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
-                parameterization: {
-                        personalProfile,
-                        sololearn,
-                        motivationLetter
-                },
                 usersRegisted,
         });
         await newConvocatory.save();
@@ -184,10 +174,10 @@ adminRouter.post('/new-conv', async (req, res, next) => {
 // UPDATE CONVOCATORY
 adminRouter.put('/update-conv/:id', async (req, res) => {
         try {
-                const candidate = await Convocatory.findById(req.params.id)
-                Object.assign(candidate, req.body)
-                candidate.save()
-                res.send({ data: candidate })
+                const convocatory = await Convocatory.findById(req.params.id)
+                Object.assign(convocatory, req.body)
+                convocatory.save()
+                res.send({ data: convocatory })
         } catch {
                 res.status(404).send({ error: "Convocatory not found" })
         }
@@ -290,7 +280,7 @@ adminRouter.put('/parameterization/:_id', async (req, res) => {
 
 // Get all citations
 adminRouter.get('/citation', async (req, res) => {
-        const results = await Convocatory.find();
+        const results = await Citation.find();
         res.send(results)
 });
 
