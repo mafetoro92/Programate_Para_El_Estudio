@@ -280,7 +280,7 @@ candidateRouter.get('/calendar', async (req, res) => {
                 )
         
                 // If event array is not empty log that we are busy.
-                return console.log(`Sorry I'm busy...`)
+                return console.log(`Sorry I'm busy..`)
                 }
         ) 
 
