@@ -6,6 +6,13 @@ export const ITEMS = [
         path: "/",
     },
     {
+        name: "Aspirantes",
+        icon: "fas fa-map-marker-alt",
+        id: 3,
+        items: [],
+        path: "/aspirantes",
+    },
+    {
         name: "Citación",
         icon: "fas fa-map-marker-alt",
         id: 5,
