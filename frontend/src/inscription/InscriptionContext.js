@@ -1,21 +1,16 @@
 import React, { createContext } from "react";
 
-
 export const InscriptionContext = createContext();
 
 const initialState = {
-    name: '',
-    email : '',
-}
+    name: "",
+    email: "",
+};
 
-export const InscriptionProvider = ({children}) => {
-
-    
+export const InscriptionProvider = ({ children }) => {
     return (
-        <InscriptionContext.Provider value={{
-
-        }}>
-                {children}
+        <InscriptionContext.Provider value={{}}>
+            {children}
         </InscriptionContext.Provider>
-    )
-}
+    );
+};

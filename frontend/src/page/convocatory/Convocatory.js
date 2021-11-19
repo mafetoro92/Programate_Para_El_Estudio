@@ -4,9 +4,9 @@ import "./Convocatory.scss";
 
 const Convocatory = () => {
     const actions = [
-        { status: false, icon: <i class="far fa-check-square"></i> },
-        { status: true, icon: <i class="far fa-trash-alt"></i> },
-        { status: true, icon: <i class="far fa-eye"></i> },
+        { status: true, icon: <i className="far fa-check-square"></i> },
+        { status: true, icon: <i className="far fa-trash-alt"></i> },
+        { status: true, icon: <i className="far fa-eye"></i> },
     ];
 
     function createData(id, nombre, cupos, FechaInicio) {

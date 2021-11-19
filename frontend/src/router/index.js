@@ -13,8 +13,17 @@ import Dashboard from "../page/dashboard/Dashboard";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import { Context } from "../context/context";
+import RequestService from "../config/index";
 
 const App = () => {
+    const getUser = async () => {
+        const data = await RequestService.get("/candidate/candidate");
+
+        console.log(data);
+    };
+    getUser();
+
     const initialState = {
         nameAdmin: "Diego Admin",
         admin: true,
