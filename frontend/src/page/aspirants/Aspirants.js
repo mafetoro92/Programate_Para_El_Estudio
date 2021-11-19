@@ -13,7 +13,7 @@ const Aspirants = () => {
                 </div>
             </div>
         </div>
-    );
+    ); 
 };
 
 export default Aspirants;

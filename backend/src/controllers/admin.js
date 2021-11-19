@@ -6,7 +6,7 @@ const adminRouter = require('express').Router();
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
-
+const {convertArrayToCSV} = require('convert-array-to-csv')
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -191,9 +191,9 @@ adminRouter.put('/update-conv/:id', async (req, res) => {
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get("/get-result/:id", async (req, res) => {
         try {
-                const { user_id } = req.params.id;
-                console.log(user_id)
-                const candidateProfile = await Profile.find({ user_id: user_id })
+                // const { user_id } = req.params.id;
+                // console.log(user_id)
+                const candidateProfile = await Profile.find({ user_id: req.params.id })
                 let { soloLearnProfile } = candidateProfile[0]
                 // Fetching Solo learn data
                 try {
@@ -222,13 +222,13 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 
 adminRouter.get('/waiting-list', async (req, res, next) => {
-        const waitList = await Profile.find({status:{'waitList': true}})
+        const waitList = await Profile.find({status:{waitList: true}})
         res.send({data: waitList})
 })
 
 
 // Download CSV files
-adminRouter.post("/csv/", async (req, res) => {
+adminRouter.get("/csv/", async (req, res) => {
         // Data from de candidate document
         const candidates = await User.find();
         // Data from the profile of the candidate
@@ -295,6 +295,10 @@ adminRouter.get('/citation', async (req, res) => {
         const results = await Citation.find();
         res.send(results)
 });
+// adminRouter.get('/c/:id', async (req, res) => {
+//         const results = await Convocatory.find({_id: req.params.id});
+//         res.send(results)
+// });
 
 
 adminRouter.put('/update-test', async (req, res)=>{

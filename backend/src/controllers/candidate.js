@@ -4,12 +4,46 @@ const Result = require('../db/models/Result');
 const multer = require('multer');
 const mimeTypes = require('mime-types')
 const request = require('request');
-const { ConnectionStates } = require('mongoose');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis')
 const { OAuth2 } = google.auth
 
 const candidateRouter = require('express').Router()
+
+const oAuth2Client = new OAuth2(
+        '169447507213-pp77cjt1i0miu0fsfea1dson2vuvnvn7.apps.googleusercontent.com',
+        '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'
+)
+
+oAuth2Client.setCredentials({
+        refresh_token: '1//04ZNl89icy8DvCgYIARAAGAQSNwF-L9IrNd0_kBCZJnJEGfmgq7YzNwTS4nHx8eIOzBAQTGXMb5ZzTWznLUOWc0pz0uWC0BgiIhU',
+})
+
+
+
+
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+                user: 'programate.co@gmail.com', // generated ethereal user
+                pass: 'plltidxfuexzvfdr', // generated ethereal password
+        },
+});
+
+// UPLOAD FILE PDF
+const storage = multer.diskStorage({
+        destination: 'uploads/',
+        filename: function (req, file, cb) {
+                cb("", Date.now() + file.originalname + "." + mimeTypes.extension(file.mimetype));
+        }
+})
+const upload = multer({
+        storage: storage
+})
+
 
 // GET CALIFACATION
 candidateRouter.get('/calification', async (req, res) => {
@@ -26,7 +60,7 @@ candidateRouter.post('/new', async (req, res, next) => {
 })
 
 // CREATE THE PROFILE OF A USER
-candidateRouter.post('/profile', async (req, res, next) => {
+candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) => {
         const { user_id,
                 documentType,
                 documentNumber,
@@ -54,6 +88,12 @@ candidateRouter.post('/profile', async (req, res, next) => {
                 motivation,
                 dreams,
                 soloLearnProfile,
+                heardFromUs: {
+                    radio,
+                    instagram,
+                    facebook,
+                    web
+                },
                 status } = req.body;
         const newProfile = new Profile({
                 user_id,
@@ -83,6 +123,12 @@ candidateRouter.post('/profile', async (req, res, next) => {
                 motivation,
                 dreams,
                 soloLearnProfile,
+                heardFromUs: {
+                    radio,
+                    instagram,
+                    facebook,
+                    web
+                },
                 status
         });
         await newProfile.save();
@@ -193,51 +239,18 @@ candidateRouter.put('/update-candidate', async (req, res) => {
 
 })
 
-const oAuth2Client = new OAuth2(
-        '169447507213-pp77cjt1i0miu0fsfea1dson2vuvnvn7.apps.googleusercontent.com',
-        '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'
-)
 
-oAuth2Client.setCredentials({
-        refresh_token: '1//04ZNl89icy8DvCgYIARAAGAQSNwF-L9IrNd0_kBCZJnJEGfmgq7YzNwTS4nHx8eIOzBAQTGXMb5ZzTWznLUOWc0pz0uWC0BgiIhU',
-})
-
-
-
-
-// create reusable transporter object using the default SMTP transport
-const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true, // true for 465, false for other ports
-        auth: {
-                user: 'programate.co@gmail.com', // generated ethereal user
-                pass: 'plltidxfuexzvfdr', // generated ethereal password
-        },
-});
-
-// UPLOAD FILE PDF
-const storage = multer.diskStorage({
-        destination: 'uploads/',
-        filename: function (req, file, cb) {
-                cb("", Date.now() + file.originalname + "." + mimeTypes.extension(file.mimetype));
-        }
-})
-
-const upload = multer({
-        storage: storage
-})
 
 // SAVE AND UPDATE SOLOLEARN DATA
-candidateRouter.get('/sololearm/:id', async (req, res) => {
+candidateRouter.get('/sololearn/:id', async (req, res) => {
         var id = req.params.id
         const perfiles = await Profile.find({ "user_id": id })
         const params = JSON.stringify(perfiles)
         const json = JSON.parse(params)
         for (x of json) {
-                var usersololearm = (x.soloLearnProfile);
+                var usersololearn = (x.soloLearnProfile);
         }
-        if (usersololearm === undefined) {
+        if (usersololearn === undefined) {
                 console.log("This user does not have a sololearn profile")
         } else {
                 const calificationUpdate = await Result.find({ "user_id": id })
@@ -246,7 +259,7 @@ candidateRouter.get('/sololearm/:id', async (req, res) => {
                 for (y of json2) {
                         var users_id = (y.user_id).toString();
                 }
-                request(`https://api.sololearn.repl.co/profile/${usersololearm}`, async (err, response, body) => {
+                request(`https://api.sololearn.repl.co/profile/${usersololearn}`, async (err, response, body) => {
                         if (!err) {
                                 const user = JSON.parse(body);
                                 var name = user.userDetails.name
