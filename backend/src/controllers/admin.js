@@ -6,6 +6,7 @@ const adminRouter = require('express').Router()
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
+const Calendar = require('../db/models/Calendar');
 
 
 // GET STATISTICS
@@ -394,5 +395,34 @@ adminRouter.get("/admin", async (req, res) => {
         const results = await Administrator.find();
         res.send(results);
 });
+
+// create event in calendar
+adminRouter.post("/calendar", async (req, res) =>{
+        const {
+                datestart,
+                dateend,
+                hourstart,
+                hourend,
+                title,
+                link,
+                description,
+                quotas,
+                accountant 
+        } = req.body;
+        const calendar = new Calendar({
+                datestart, 
+                dateend,
+                hourstart,
+                hourend, 
+                title, 
+                link, 
+                description,
+                quotas,
+                accountant 
+        });
+
+        await calendar.save();
+        res.send("Event created successfully")
+})
 
 module.exports = adminRouter;
