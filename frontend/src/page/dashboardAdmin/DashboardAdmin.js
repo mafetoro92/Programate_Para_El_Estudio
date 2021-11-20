@@ -1,7 +1,8 @@
 import React from "react";
-import "./Dashboard.scss";
+import CohorteGoal from "../../components/graphcsAdmin/cohorteGoal";
+import "./DashboardAdmin.scss";
 
-const Dashboard = () => {
+const DashboardAdmin = () => {
     return (
         <>
             <div className="section__dash">
@@ -17,9 +18,22 @@ const Dashboard = () => {
                         </span>
                     </div>
                 </div>
+                <div className="graphcsAdmin d-flex flex-wrap justify-content-around">
+                    <div className="cohorteGoal__container">
+                        <div className="cohorteGoal__container title d-flex justify-content-center aling-items-center">
+                            <h2 className="m-0">Meta de la cohorte</h2>
+                        </div>
+                        <div
+                            className="cohoteGoal__container-graph
+                        "
+                        >
+                            <CohorteGoal />
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );
 };
 
-export default Dashboard;
+export default DashboardAdmin;

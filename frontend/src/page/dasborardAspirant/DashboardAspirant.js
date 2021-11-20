@@ -8,19 +8,19 @@ import { PROFILE_SOLOLEARN } from "../../api/data";
 import "./DashboardAspirant.scss";
 
 function DashboardAspirant() {
-//   console.log('desde aca', PROFILE_SOLOLEARN);
+    //   console.log('desde aca', PROFILE_SOLOLEARN);
 
-  return (
-    <div className="section__dash">
-      <div className="section__content d-flex justify-content-between">
-        <span className="upperCase bold">Dashboard Aspirante</span>
-        <div className="box__content">
-          <span className="text-crumbs bold-500">Programate</span>
-          <i className="fas fa-chevron-right subtitle" />
-          <span className="text-crumbs">Dashboard</span>
-        </div>
-      </div>
-      <div className="title__section d-flex justify-content-center">
+    return (
+        <div className="section__dash">
+            <div className="section__content d-flex justify-content-between">
+                <span className="upperCase bold">Dashboard Aspirante</span>
+                <div className="box__content">
+                    <span className="text-crumbs bold-500">Programate</span>
+                    <i className="fas fa-chevron-right subtitle" />
+                    <span className="text-crumbs">Dashboard</span>
+                </div>
+            </div>
+            <div className="title__section d-flex justify-content-center">
                 <h2>SoloLearn</h2>
             </div>
             <div className="doughtnut d-flex flex-wrap justify-content-around">
@@ -87,8 +87,8 @@ function DashboardAspirant() {
                     </div>
                 </div>
             </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default DashboardAspirant;
