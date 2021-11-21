@@ -20,54 +20,50 @@ const Parameterization = () => {
 
                 </div>
                 <div className="containerSecondSection">
-                    <form >
-                        <fieldset disabled className="containerFormControl">
-                            <legend>Peso de las categorías</legend>
-                            <p>Estos valores  son medidos en porcentanjes</p>
-                            <div class="mb-3"className="containerForm">
-                                <div class="mb-3" >
-                                    <label for="disabledTextInput" class="form-label">Perfil personal</label>
-                                    <input type="number" class="form-control"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="disabledSelect" class="form-label">Sololearn</label>
-                                    <input type="number" class="form-control"/>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="disabledTextInput" class="form-label">Perfil personal</label>
-                                    <input type="number" class="form-control"/>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                        </fieldset>
-                    </form>
-
-                </div>
-                <div className="containerThirdSection">
-
-                    <div className="containerGlobal">
-                        <div class="mb-3">
-                            <label for="disabledSelect" class="form-label">Pais de residencia</label>
-                            <select id="disabledSelect" class="form-select">
-                                <option className="pickCountry">Colombia</option>
-                                <option>USA</option>
-                            </select>
+                    <legend>Peso de las categorías</legend>
+                    <p>Estos valores  son medidos en porcentanjes</p>
+                    <div class="mb-3"className="containerForm">
+                        <div class="mb-3" >
+                            <label for="disabledTextInput" class="form-label">Edad</label>
+                            <input type="number" class="form-control"/>
                         </div>
+
                         <div class="mb-3">
-                            <label for="disabledSelect" class="form-label">Departamento de residencia</label>
-                            <select id="disabledSelect" class="form-select">
-                                <option>Santander</option>
-                                <option>Valle</option>
-                            </select>
+                            <label for="disabledSelect" class="form-label">Sololearn</label>
+                            <input type="number" class="form-control"/>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Perfil personal</label>
+                            <input type="number" class="form-control"/>
                         </div>
                     </div>
 
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                </div>
+                <div className="containerThirdSection">
+                    <legend>Parametrización de  la evaluación del perfil</legend>
+                        <div className="containerGlobal">
+                            <div className="containerLabel" class="mb-3">
+                                <label className="containerLabel" for="disabledSelect" class="form-label">Pais de residencia</label>
+                                <select id="disabledSelect" class="form-select">
+                                    <option className="pickCountry">Colombia</option>
+                                    <option>USA</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledSelect" class="form-label">Departamento de residencia</label>
+                                <select id="disabledSelect" class="form-select">
+                                    <option>Santander</option>
+                                    <option>Valle</option>
+                                </select>
+                            </div>
+                        </div>
+
                     <div className="containerGlobal">
                         <div class="mb-3" >
-                            <label for="disabledTextInput" class="form-label">Perfil personal</label>
+                            <label for="disabledTextInput" class="form-label">Edad</label>
                             <input type="number" class="form-control"/>
                         </div>
                         <div class="mb-3">
