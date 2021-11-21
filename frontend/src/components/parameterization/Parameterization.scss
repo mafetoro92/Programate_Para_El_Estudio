@@ -1,8 +1,11 @@
 .containerP{
-    margin-top:60px;
-    width: 1500px;
-    
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin-left:auto;
+    margin-right:auto;
 }
+
 
 .containerFirstSection{
     display: flex;
@@ -57,6 +60,55 @@ button{
 }
 
 .containerLabel{
-    background-color:aqua;
-    width:100%;
+    width: 250px;
+    padding-bottom: 30px;
 }
+.containerLegend {
+    padding-bottom: 30px;
+}
+
+
+/* Media queris*/
+
+@media only screen and (max-width: 481px) {
+   
+  }
+  
+
+  @media only screen and (max-width: 769px) {
+    .containerFirstSection{
+        padding-top: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .containerSecondSection{
+        text-align: center;
+    }
+
+    .containerForm{
+       flex-direction: column;
+       align-items: center;
+    }
+
+    button{
+        position: initial;
+    }
+
+    .containerGlobal {
+        flex-direction: column;
+       align-items: center;
+    }
+
+  }
+  
+ 
+   
+  
+  @media only screen and (max-width: 1280px) {
+   
+  
+  }
+  
+  
