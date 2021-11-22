@@ -11,11 +11,11 @@ const SocialMedia = () => {
         datasets: [
             {
                 axis: "y",
-                label: ["Facebook", "Twiter", "Instagram"],
+                label: "Redes sociales",
                 data: [40, 50, 80],
                 fill: false,
-                backgroundColor: ["#FFCC02", "#FF6384", "#92C149"],
-                borderColor: ["#FFCC02", "#FF6384", "#92C149"],
+                backgroundColor: ["#92C149", "#92C149", "#92C149"],
+                borderColor: ["#92C149", "#92C149", "#92C149"],
                 borderWidth: 1,
             },
         ],

@@ -1,6 +1,9 @@
 import React from "react";
 import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
 import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
+import Funnel from "../../components/graphicsAdmin/Funnel";
+import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
+import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
 import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
@@ -39,6 +42,35 @@ const DashboardAdmin = () => {
                         </div>
                         <div className="socialMedia__container-graph">
                             <SocialMedia />
+                        </div>
+                    </div>
+
+                    <div className="funnel__container">
+                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">
+                                ¿Donde te enteraste de nosotros?
+                            </h2>
+                        </div>
+                        <div className="funnel__container-graph">
+                            <Funnel />
+                        </div>
+                    </div>
+                    <div className="funnel__container">
+                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">
+                                ¿Donde te enteraste de nosotros?
+                            </h2>
+                        </div>
+                        <div className="funnel__container-graph">
+                            <FunnelDos />
+                        </div>
+                    </div>
+                    <div className="funnel__container">
+                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">¿Datos generales migrantes?</h2>
+                        </div>
+                        <div className="funnel__container-graph">
+                            <DateMigrants />
                         </div>
                     </div>
                 </div>
