@@ -11,8 +11,7 @@ const CalendarSchema = new Schema(
     title: {type:String, required:true},
     link: {type:String, required:true},
     description: {type:String, required:true},
-    quotas: {type:Number, required: true},
-    accountant:{type:Number}
+    quotas: {type:Number, required: true}
   }
 );
 

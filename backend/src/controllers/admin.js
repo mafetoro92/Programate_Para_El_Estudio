@@ -406,8 +406,7 @@ adminRouter.post("/calendar", async (req, res) =>{
                 title,
                 link,
                 description,
-                quotas,
-                accountant 
+                quotas
         } = req.body;
         const calendar = new Calendar({
                 datestart, 
@@ -417,8 +416,7 @@ adminRouter.post("/calendar", async (req, res) =>{
                 title, 
                 link, 
                 description,
-                quotas,
-                accountant 
+                quotas
         });
 
         await calendar.save();

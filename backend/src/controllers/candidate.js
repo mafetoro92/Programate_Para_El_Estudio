@@ -361,7 +361,10 @@ candidateRouter.post('/attendevent/:id/:idevent', async (req, res) => {
 })
 
 candidateRouter.get('/calendar',async (req, res)=>{
-        
+        const events = await Calendar.find()
+
+        console.log(events)
+        res.send(events)
 })
 
 module.exports = candidateRouter
