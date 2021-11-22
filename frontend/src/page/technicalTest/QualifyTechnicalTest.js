@@ -64,22 +64,18 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            {prueba.calificacion == "" ? (
-                                                <button className="btn btn-warning d-flex align-text-center">
-                                                    calificar
-                                                </button>
-                                            ) : (
-                                                <div
-                                                    className="buttom d-flex 
-                                                align-content-center"
+                                        <select
+                                                    name="qualify"
+                                                    className="form-select"
                                                 >
-                                                    {prueba.calificacion}
-
-                                                    <button className="btn btn-success">
-                                                        <i className="fas fa-edit"></i>
-                                                    </button>
-                                                </div>
-                                            )}
+                                                    <option value="select">
+                                                        Selecione una opción
+                                                    </option>
+                                                    <option value="1">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="1">3</option>
+                                                    <option value="1">4</option>
+                                                </select>
                                         </td>
                                     </tr>
                                 ))}

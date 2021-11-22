@@ -8,7 +8,6 @@
     background: rgba(0, 0, 0, 0.8);
     z-index: 99999;
     opacity: 0;
-    max-height: 100vh;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
@@ -24,6 +23,7 @@
     height: 80%;
     max-height: 100vh;
     position: relative;
+    padding: 10px 0;
     margin: 5% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
@@ -67,6 +67,9 @@
     margin: 0;
     padding: 0;
 }
+em{
+    font-weight: bold;
+}
 p {
     margin: 0;
     padding: 0;
@@ -75,4 +78,25 @@ p {
     .modalDialog > div {
         width: 90%;
     }
+}
+.btnModal{
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+}
+
+.btn-primaryModal {
+    background-color: #010101 !important;
+}
+
+.btnModal a{
+    color: white !important;
+    text-align: center;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .btnModal {
+        font-size: 90%;
+        }
 }

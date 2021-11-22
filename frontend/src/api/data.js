@@ -7,10 +7,29 @@ export const ITEMS = [
     },
     {
         name: "Aspirantes",
-        icon: "fas fa-map-marker-alt",
+        icon: "far fa-user",
         id: 3,
         items: [],
         path: "/aspirantes",
+    },
+    {
+        name: "Inscripción",
+        icon: "far fa-id-card",
+        id: 4,
+        items: [
+            {
+                name: "Resultados",
+                path: "/resultsInscription",
+            },
+            {
+                name: "Calificación de la carta de motivación",
+                path: "/motivationLetter",
+            },
+            {
+                name: "Parametrización",
+                path: "/parameterization",
+            },
+        ],
     },
     {
         name: "Citación",
