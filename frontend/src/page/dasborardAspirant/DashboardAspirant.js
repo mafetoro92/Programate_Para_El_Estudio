@@ -42,7 +42,7 @@ function DashboardAspirant() {
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Css</h2>
-                            <i class="fab fa-css3-alt icon-soloLearn" />
+                            < i className = "fab fa-css3-alt icon-soloLearn" / >
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (
@@ -58,7 +58,7 @@ function DashboardAspirant() {
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Javascript</h2>
-                            <i class="fab fa-js icon-soloLearn" />
+                            < i className = "fab fa-js icon-soloLearn" / >
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (
@@ -74,7 +74,7 @@ function DashboardAspirant() {
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Python</h2>
-                            <i class="fab fa-python icon-soloLearn" />
+                            < i className = "fab fa-python icon-soloLearn" / >
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (

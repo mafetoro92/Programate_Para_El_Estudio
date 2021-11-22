@@ -6,7 +6,6 @@ const adminRouter = require('express').Router();
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
-const { convertArrayToCSV } = require('convert-array-to-csv')
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {

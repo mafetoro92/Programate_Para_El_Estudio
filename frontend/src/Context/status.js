@@ -52,6 +52,8 @@ const StateContext = ({ children }) => {
     }
   }
 
+  const putParameterization = () => {}
+
   return (
     <providerContext.Provider value={{
       profile: state.profile,
