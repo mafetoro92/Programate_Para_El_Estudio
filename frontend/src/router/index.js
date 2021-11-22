@@ -11,6 +11,7 @@ import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTe
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
+import Inscription from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
@@ -19,13 +20,13 @@ const App = () => {
   const initialState = {
     nameAdmin: "Diego Admin",
     admin: true,
-    loged: false,
+    loged: true,
   };
 
   const initialState2 = {
     name: "Kevin",
     admin2: false,
-    loged2: true,
+    loged2: false,
   };
 
   const [adminstate, setAdmin] = useState(initialState);
@@ -44,6 +45,11 @@ const App = () => {
             <>
               <Route path="/convocatoria" component={Convocatory} />
               <Route path="/aspirantes" component={Aspirants} />
+              <Route path="/prueba" component={AdministerTechnicalTest} />
+              <Route path="/agregar" component={AdministerTechnicalTestAdd} />
+              <Route path="/editar" component={AdministerTechnicalTestEdit} />
+              <Route path="/calificar" component={QualifyTechnicalTest} />
+              <Route path="/inscripcion" component={Inscription} />
               <Route exact path="/" component={Dashboard} />
             </>
           )}

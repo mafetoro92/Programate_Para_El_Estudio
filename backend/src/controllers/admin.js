@@ -155,20 +155,28 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
+                parameterization: {
+                        personalProfile,
+                        sololearn,
+                        motivationLetter },
                 usersRegisted
-
         } = req.body;
         // New Convocatory document
-        const newConvocatory = new Convocatory({
+        const convocatory = new Convocatory({
+                _id,
                 name,
                 initialDate,
-                finalDate,
+                finallDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
+                parameterization: {
+                        personalProfile,
+                        sololearn,
+                        motivationLetter
+                },
                 usersRegisted,
-
         });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
@@ -187,158 +195,129 @@ adminRouter.put('/update-conv/:id', async (req, res) => {
         }
 })
 
-
 // GET THE RESULTS OF CANDIDATE
-adminRouter.get("/get-result/:id", async (req, res) => {
+adminRouter.get('/get-result/:id', async (req, res) => {
         try {
-                // const { user_id } = req.params.id;
-                // console.log(user_id)
-                const candidateProfile = await Profile.find({ user_id: req.params.id })
+                const { user_id } = req.params.id;
+                const candidateProfile = await Profile.find({ user_id: user_id })
                 let { soloLearnProfile } = candidateProfile[0]
+
                 // Fetching Solo learn data
                 try {
-                        request(
-                                `https://api.sololearn.repl.co/profile/${soloLearnProfile}`,
-                                (err, response, body) => {
-                                        if (!err) {
-                                                const candidate = JSON.parse(body);
-                                                scores = candidate.coursesProgress.map((course) => [
-                                                        course.courseName,
-                                                        course.progress,
-                                                ]);
-                                                const objScores = Object.fromEntries(scores);
-                                                res.json({ data: objScores });
-                                        }
+                        request(`https://api.sololearn.repl.co/profile/${soloLearnProfile}`, (err, response, body) => {
+                                if (!err) {
+                                        const candidate = JSON.parse(body);
+                                        scores = candidate.coursesProgress.map(course => [course.courseName, course.progress])
+                                        const objScores = Object.fromEntries(scores)
+                                        res.json({ data: objScores })
                                 }
-                        );
+                        }
+                        )
                 } catch {
-                        res.json({ error: "Error fetching data" });
+                        res.json({ error: 'Error fetching data' })
                 }
         } catch {
-                res.status(404).send({ error: "Candidate not found" });
+                res.status(404).send({ error: "Candidate not found" })
         }
-});
+})
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
-
 adminRouter.get('/waiting-list', async (req, res, next) => {
-        const waitList = await Profile.find({})
+        const waitList = await Profile.find({ status: { 'waitList': true } })
         res.send({ data: waitList })
 })
 
-
 // Download CSV files
-adminRouter.get("/csv/", async (req, res) => {
+adminRouter.post('/csv/', async (req, res) => {
         // Data from de candidate document
-        const candidates = await User.find();
+        const candidates = await User.find()
         // Data from the profile of the candidate
-        const candidateProfiles = await Profile.find();
+        const candidateProfiles = await Profile.find()
         // Strucuture for required data
-        const csvObject = [];
+        const csvObject = []
 
         for (let c of candidates) {
                 const candidateProfileData = {
-                        firstName: candidates[0].firstName,
-                        middleName: candidates[0].middleName,
-                        lastName: candidates[0].lastName,
-                        secondSurname: candidates[0].Surname,
-                        fullName: `${candidates[0].firstName} ${candidates[0].lastName}`,
-                        documentType: candidateProfiles[0].documentType,
-                        documentNumber: candidateProfiles[0].documentNumber,
-                        email: candidates[0].email,
-                        contactNumber: candidates[0].contactNumber,
-                        nacionality: candidateProfiles[0].nacionality,
-                        residenceCountry: candidateProfiles[0].residenceCountry,
-                        residencyDepartment: candidateProfiles[0].residencyDepartment,
-                        municipalityOfResidency: candidates[0].municipalityOfResidency,
-                        socioeconomicStratus: candidateProfiles[0].socioeconomicStratus,
-                        actualAge: candidateProfiles[0].actualAge,
-                        gender: candidateProfiles[0].gender,
-                        status: "true",
-                };
-                csvObject.push(candidateProfileData);
+                        "firstName": candidates[0].firstName,
+                        "middleName": candidates[0].middleName,
+                        "lastName": candidates[0].lastName,
+                        "secondSurname": candidates[0].Surname,
+                        'fullName': `${candidates[0].firstName} ${candidates[0].lastName}`,
+                        'documentType': candidateProfiles[0].documentType,
+                        'documentNumber': candidateProfiles[0].documentNumber,
+                        "email": candidates[0].email,
+                        'contactNumber': candidates[0].contactNumber,
+                        'nacionality': candidateProfiles[0].nacionality,
+                        "residenceCountry": candidateProfiles[0].residenceCountry,
+                        'residencyDepartment': candidateProfiles[0].residencyDepartment,
+                        'municipalityOfResidency': candidates[0].municipalityOfResidency,
+                        'socioeconomicStratus': candidateProfiles[0].socioeconomicStratus,
+                        'actualAge': candidateProfiles[0].actualAge,
+                        'gender': candidateProfiles[0].gender,
+                        'status': 'true',
+                }
+                csvObject.push(candidateProfileData)
         }
         const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
-        res.json({ data: csvFromArrayOfObjects });
-});
+        res.json({ data: csvFromArrayOfObjects })
+})
+
 
 // Updates the parameters for actual convocatory
-adminRouter.put("/parameterization/:_id", async (req, res) => {
+adminRouter.put('/parameterization/:_id', async (req, res) => {
         try {
                 const { _id } = req.params;
                 const result = await Convocatory.updateMany(
                         { _id },
                         {
-                                $set: {
+                                $set:
+                                {
                                         parameterization: {
-                                                personalProfile:
-                                                        req.body.parameterization.personalProfile,
+                                                personalProfile: req.body.parameterization.personalProfile,
                                                 sololearn: req.body.parameterization.sololearn,
-                                                motivationLetter:
-                                                        req.body.parameterization.motivationLetter,
+                                                motivationLetter: req.body.parameterization.motivationLetter
                                         },
                                         residenceCountry: req.body.residenceCountry,
                                         residencyDepartment: req.body.residencyDepartment,
                                         maxAge: req.body.maxAge,
-                                        maxSocioeconomicStratus: req.body.maxSocioeconomicStratus,
-                                },
+                                        maxSocioeconomicStratus: req.body.maxSocioeconomicStratus
+                                }
                         }
                 );
-                res.send({ data: result });
+                res.send({ data: result })
         } catch {
-                res.status(404).send({ error: "parameterization category not put" });
+                res.status(404).send({ error: "parameterization category not put" })
         }
 });
 
 // Get all citations
 adminRouter.get('/citation', async (req, res) => {
-        const results = await Citation.find();
-        res.send(results)
-});
-adminRouter.get('/c', async (req, res) => {
-        const results = await Convocatory.find({});
+        const results = await Convocatory.find();
         res.send(results)
 });
 
-
-adminRouter.put('/update-test', async (req, res) => {
-        try {
-                const _id = req.body;
-                const result = await Convocatory.updateMany(
-                        { _id },
-                        {
-                                $set: {
-                                        test: {
-                                                nameTest: req.body.test.nameTest,
-                                                linkTest: req.body.test.linkTest
-                                        }
-                                }
-                        }
-                );
-                res.send(result)
-        } catch {
-                res.status(404).send({ error: "link citation category not put" })
-        }
-}
-)
 // Creates new citations
-adminRouter.post("/citation", async (req, res) => {
-        const { users, date, journy, quotasCompleted, maxQuotas } = req.body;
+adminRouter.post('/citation', async (req, res) => {
+        const {
+                users,
+                date,
+                journy,
+                quotasCompleted,
+                maxQuotas,
+        } = req.body
         const citation = new Citation({
                 users,
                 date,
                 journy,
                 quotasCompleted,
                 maxQuotas,
-        });
+        })
         await citation.save();
         res.send("citation saved")
-
-
 });
 
 // To upload the thecnical test for candidates
-adminRouter.put("/upload-test", async (req, res) => {
+adminRouter.put('/upload-test', async (req, res) => {
         try {
                 const _id = req.body;
                 const result = await Convocatory.updateMany(
@@ -359,54 +338,50 @@ adminRouter.put("/upload-test", async (req, res) => {
 });
 
 // Create assesments rooms for interview days
-adminRouter.post("/create-room", async (req, res) => {
-        const { citation_id } = req.body;
-        const citationData = await Citation.find({ _id: citation_id });
-        const staff = await Administrator.find({ available: true });
-        const interviewersList = staff.filter(
-                (person) => person.rol.interviewer === true
-        );
-        const observersList = staff.filter(
-                (person) => person.rol.observer === true
-        );
-        let room = [];
+adminRouter.post('/create-room', async (req, res) => {
+        const { citation_id } = req.body
+        const citationData = await Citation.find({ _id: citation_id })
+        const staff = await Administrator.find({ available: true })
+        const interviewersList = staff.filter(person => person.rol.interviewer === true)
+        const observersList = staff.filter(person => person.rol.observer === true)
+        let room = []
 
         for (let candidate of citationData[0].users) {
-                let interviewersRandom = Math.floor(
-                        Math.random() * (interviewersList.length - 0) + 0
-                );
-                let interviewersFinals =
-                        interviewersList[interviewersRandom]._id.toString();
 
-                let observersRandom = Math.floor(
-                        Math.random() * (observersList.length - 0) + 0
-                );
+                let interviewersRandom = Math.floor(Math.random() * (interviewersList.length - 0) + 0);
+                let interviewersFinals = interviewersList[interviewersRandom]._id.toString();
+
+                let observersRandom = Math.floor(Math.random() * (observersList.length - 0) + 0);
                 let observersFinals = observersList[observersRandom]._id.toString();
-                room = [[candidate, interviewersFinals, observersFinals], ...room];
-                console.log(room);
+                room = [[candidate, interviewersFinals, observersFinals], ...room]
+                console.log(room)
         }
 
         const rooms = new Rooms({
                 citationData,
                 interviewers: interviewersList,
                 observers: observersList,
-                room: room,
-        });
+                room: room
+        })
         res.json({
                 data: {
-                        rooms,
-                },
-        });
+                        rooms
+                }
+        })
 });
 
 // Create administrators and staff users
-adminRouter.post("/admin", async (req, res) => {
+adminRouter.post('/admin', async (req, res) => {
         const {
                 firstName,
                 lastName,
-                rol: { interviewer, observer, monitor },
+                rol: {
+                        interviewer,
+                        observer,
+                        monitor
+                },
                 available,
-        } = req.body;
+        } = req.body
         const admin = new Administrator({
                 firstName,
                 lastName,
@@ -418,13 +393,13 @@ adminRouter.post("/admin", async (req, res) => {
                 available,
         });
         await admin.save();
-        res.send("profile saved");
+        res.send("profile saved")
 });
 
 // Get administrators and staff profiles
-adminRouter.get("/admin", async (req, res) => {
+adminRouter.get('/admin', async (req, res) => {
         const results = await Administrator.find();
-        res.send(results);
+        res.send(results)
 });
 
-module.exports = adminRouter;
+module.exports = adminRouter
