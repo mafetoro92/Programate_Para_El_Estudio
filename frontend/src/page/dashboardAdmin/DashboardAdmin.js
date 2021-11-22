@@ -1,5 +1,8 @@
 import React from "react";
-import CohorteGoal from "../../components/graphicsAdmin/cohorteGoal";
+import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
+import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
+import { CONVOCATORY } from "../../api/data";
+
 import "./DashboardAdmin.scss";
 
 const DashboardAdmin = () => {
@@ -20,14 +23,22 @@ const DashboardAdmin = () => {
                 </div>
                 <div className="graphcsAdmin d-flex flex-wrap justify-content-around">
                     <div className="cohorteGoal__container">
-                        <div className="cohorteGoal__container title d-flex justify-content-center aling-items-center">
+                        <div className="cohorteGoal__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Meta de la cohorte</h2>
                         </div>
-                        <div
-                            className="cohoteGoal__container-graph
-                        "
-                        >
+                        <div className="cohorteGoal__container-graph">
                             <CohorteGoal />
+                        </div>
+                    </div>
+
+                    <div className="socialMedia__container">
+                        <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">
+                                ¿Donde te enteraste de nosotros?
+                            </h2>
+                        </div>
+                        <div className="socialMedia__container-graph">
+                            <SocialMedia />
                         </div>
                     </div>
                 </div>

@@ -7,10 +7,29 @@ export const ITEMS = [
     },
     {
         name: "Aspirantes",
-        icon: "fas fa-map-marker-alt",
+        icon: "far fa-user",
         id: 3,
         items: [],
         path: "/aspirantes",
+    },
+    {
+        name: "Inscripción",
+        icon: "far fa-id-card",
+        id: 4,
+        items: [
+            {
+                name: "Resultados",
+                path: "/resultsInscription",
+            },
+            {
+                name: "Calificación de la carta de motivación",
+                path: "/motivationLetter",
+            },
+            {
+                name: "Parametrización",
+                path: "/parameterization",
+            },
+        ],
     },
     {
         name: "Citación",
@@ -133,5 +152,54 @@ export const pruebas1 = [
         personalProfileScore: 28,
         motivationScore: 28,
         finalScore: 23,
+    },
+];
+
+export const CONVOCATORY = [
+    {
+        id: 1,
+        name: "convocatoria1",
+        initialDate: "",
+        finalDate: "",
+        program: "Goyn",
+        maxQuotas: 23,
+        initialBootcampDate: "",
+        finalBootcampDate: "",
+        parameterization: {
+            personalProfile: 20,
+            sololearn: 234567,
+            motivationLetter: 2345,
+        },
+        residenceCountry: "",
+        residencyDepartment: "",
+        maxAge: 18,
+        maxSocioeconomicStratus: 4,
+        test: {},
+        usersRegisted: [],
+        test: {},
+        status: true,
+    },
+    {
+        id: 2,
+        name: "convocatoria2",
+        initialDate: "",
+        finalDate: "",
+        program: "Regional",
+        maxQuotas: 50,
+        initialBootcampDate: "",
+        finalBootcampDate: "",
+        parameterization: {
+            personalProfile: 20,
+            sololearn: 234567,
+            motivationLetter: 2345,
+        },
+        residenceCountry: "",
+        residencyDepartment: "",
+        maxAge: 18,
+        maxSocioeconomicStratus: 3,
+        test: {},
+        usersRegisted: [],
+        test: {},
+        status: true,
     },
 ];

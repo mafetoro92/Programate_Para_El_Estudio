@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Inscription.scss"
-import Parameterization from "../../components/parameterization/Parameterization"
+import Parameterization from "../../components/inscription/Parameterization"
 
 
 const Inscription = () => {
@@ -8,7 +8,6 @@ const Inscription = () => {
         <div>
             <div className="section__aspirants">
                 <div className="section__content d-flex justify-content-between">
-                    <span className="upperCase bold">Parametrización</span>
                     <div className="box__content">
                         <span className='text-crumbs bold-500'>Programate</span>
                         <i class="fas fa-chevron-right subtitle" />

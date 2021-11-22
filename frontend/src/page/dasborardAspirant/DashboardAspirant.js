@@ -4,7 +4,6 @@ import DoughtnutCss from "../../components/doughnut/DoughtnutCss";
 import DoughtnutJavascript from "../../components/doughnut/DoughtnutJavascript";
 import DoughtnutPython from "../../components/doughnut/DoughtnutPython";
 import { PROFILE_SOLOLEARN } from "../../api/data";
-
 import "./DashboardAspirant.scss";
 
 function DashboardAspirant() {
