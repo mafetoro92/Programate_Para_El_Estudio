@@ -30,11 +30,14 @@ const App = () => {
         loged2: false,
     };
 
-    const [adminstate, setAdmin] = useState(initialState);
-    const [user, setUser] = useState(initialState2);
+  const initialState2 = {
+    name: "Kevin",
+    admin2: false,
+    loged2: true,
+  };
 
-    const { admin, loged } = adminstate;
-    const { admin2, loged2 } = user;
+  const [adminstate, setAdmin] = useState(initialState);
+  const [user, setUser] = useState(initialState2);
 
     return (
         <>

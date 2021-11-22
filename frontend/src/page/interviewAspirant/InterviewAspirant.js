@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import './InterviewAspirant.scss';
+import { providerContext } from '../../Context/status'
 
 const InterviewAspirant = () => {
+  const { getProfiles, profiles, getProfile, profileT, getConvocatorys, convocatorys } = useContext(providerContext)
+  useEffect(() => {
+    getProfiles();
+    getConvocatorys();
+    // getProfile("618c352d3ad3f3933bfb3b59")
+  }, [])
+  console.log(profileT)
   return (
     <div className="section__interview">
       <div className="section__content d-flex justify-content-between">
@@ -12,6 +20,28 @@ const InterviewAspirant = () => {
           <span className="text-crumbs">Entrevista</span>
         </div>
       </div>
+      {
+        // console.log(profiles.residenceCountry)
+        profileT.map(user =>
+        (
+
+          <div key={user.id}>
+
+            <h1 onClick={() => getProfile(user.user_id)}>{user.municipalityOfResidency}</h1>
+          </div>
+        )
+        )
+      }
+      <h1>jjjjjjjj</h1>
+      {
+        convocatorys.map(resp => (
+          <div key={resp._id}>
+            <p>{resp.name}</p>
+          </div>
+        ))
+      }
+
+
     </div>
   );
 };
