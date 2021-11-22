@@ -4,6 +4,7 @@ import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
 import Funnel from "../../components/graphicsAdmin/Funnel";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
+import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
 import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
@@ -37,7 +38,7 @@ const DashboardAdmin = () => {
                     <div className="socialMedia__container">
                         <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
+                                ¿Dónde te enteraste de nosotros?
                             </h2>
                         </div>
                         <div className="socialMedia__container-graph">
@@ -48,7 +49,7 @@ const DashboardAdmin = () => {
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
+                                Número de registrados a entrevista y fecha
                             </h2>
                         </div>
                         <div className="funnel__container-graph">
@@ -57,9 +58,7 @@ const DashboardAdmin = () => {
                     </div>
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
-                            </h2>
+                            <h2 className="m-0">Embudo de selección</h2>
                         </div>
                         <div className="funnel__container-graph">
                             <FunnelDos />
@@ -67,7 +66,15 @@ const DashboardAdmin = () => {
                     </div>
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">¿Datos generales migrantes?</h2>
+                            <h2 className="m-0">Porcentaje que van pasando</h2>
+                        </div>
+                        <div className="funnel__container-graph">
+                            <AmountPassing />
+                        </div>
+                    </div>
+                    <div className="funnel__container">
+                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">Datos generales migrantes</h2>
                         </div>
                         <div className="funnel__container-graph">
                             <DateMigrants />
