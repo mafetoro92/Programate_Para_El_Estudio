@@ -6,7 +6,7 @@ const adminRouter = require('express').Router();
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
-const {convertArrayToCSV} = require('convert-array-to-csv')
+const { convertArrayToCSV } = require('convert-array-to-csv')
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -222,8 +222,8 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 
 adminRouter.get('/waiting-list', async (req, res, next) => {
-        const waitList = await Profile.find({status:{waitList: true}})
-        res.send({data: waitList})
+        const waitList = await Profile.find({})
+        res.send({ data: waitList })
 })
 
 
@@ -295,28 +295,30 @@ adminRouter.get('/citation', async (req, res) => {
         const results = await Citation.find();
         res.send(results)
 });
-// adminRouter.get('/c/:id', async (req, res) => {
-//         const results = await Convocatory.find({_id: req.params.id});
-//         res.send(results)
-// });
+adminRouter.get('/c', async (req, res) => {
+        const results = await Convocatory.find({});
+        res.send(results)
+});
 
 
-adminRouter.put('/update-test', async (req, res)=>{
-    try{
-        const _id = req.body;
-        const result = await Convocatory.updateMany(
-            {_id},
-            {$set:{
-                test:{
-                    nameTest: req.body.test.nameTest,
-                    linkTest: req.body.test.linkTest
-                } 
-            }}
-        );
-        res.send(result)
-    }catch{
-        res.status(404).send({error:"link citation category not put"})
-    }
+adminRouter.put('/update-test', async (req, res) => {
+        try {
+                const _id = req.body;
+                const result = await Convocatory.updateMany(
+                        { _id },
+                        {
+                                $set: {
+                                        test: {
+                                                nameTest: req.body.test.nameTest,
+                                                linkTest: req.body.test.linkTest
+                                        }
+                                }
+                        }
+                );
+                res.send(result)
+        } catch {
+                res.status(404).send({ error: "link citation category not put" })
+        }
 }
 )
 // Creates new citations

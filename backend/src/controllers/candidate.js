@@ -89,10 +89,10 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                 dreams,
                 soloLearnProfile,
                 heardFromUs: {
-                    radio,
-                    instagram,
-                    facebook,
-                    web
+                        radio,
+                        instagram,
+                        facebook,
+                        web
                 },
                 status } = req.body;
         const newProfile = new Profile({
@@ -124,10 +124,10 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                 dreams,
                 soloLearnProfile,
                 heardFromUs: {
-                    radio,
-                    instagram,
-                    facebook,
-                    web
+                        radio,
+                        instagram,
+                        facebook,
+                        web
                 },
                 status
         });
@@ -139,6 +139,15 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
 candidateRouter.get('/candidate', async (req, res) => {
         const candidates = await User.find()
         res.send(candidates);
+})
+//Get all Profile
+candidateRouter.get('/profile', async (req, res) => {
+        const profile = await Profile.find()
+        res.send(profile);
+})
+candidateRouter.get('/profile/:id', async (req, res) => {
+        const profile = await Profile.find({ user_id: req.params.id })
+        res.send(profile);
 })
 
 // GET PROFILE OF CANDIDATES

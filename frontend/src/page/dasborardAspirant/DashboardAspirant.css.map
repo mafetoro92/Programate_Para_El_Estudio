@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,cAAc,CAAA;EACV,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,SAAS;EAClB,MAAM,EAAE,KAAK;CAChB",
-    "sources": [
-        "DashboardAspirant.scss"
-    ],
-    "names": [],
-    "file": "DashboardAspirant.css"
-}
