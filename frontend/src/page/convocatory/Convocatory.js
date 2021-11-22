@@ -6,7 +6,7 @@ const Convocatory = () => {
     const actions = [
         { status: false, icon: <i className="far fa-check-square"></i> },
         { status: false, icon: <i className="far fa-trash-alt"></i> },
-        { status: true, icon: <i className="far fa-eye"></i> },
+        { status: false, icon: <i className="far fa-eye"></i> },
     ];
 
     function createData(id, nombre, cupos, FechaInicio, perrito, gatito) {

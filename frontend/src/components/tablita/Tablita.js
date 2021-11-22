@@ -25,12 +25,13 @@ export default function BasicTable({ rows, actions = false }) {
         header.push(key);
     }
 
-    // const getUser = async () => {
-    //     const { data } = await RequestService.get("/candidate");
-    //     const { users } = data;
-    //     console.log(data);
-    // };
-    // getUser();
+    const getUser = async () => {
+        const { data } = await RequestService.get("/candidate/candidate");
+        const { users } = data;
+        console.log(data);
+    };
+    getUser();
+
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
