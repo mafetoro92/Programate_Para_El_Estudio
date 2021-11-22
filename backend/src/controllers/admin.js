@@ -1,12 +1,12 @@
 const Convocatory = require('../db/models/Convocatory');
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
-const Rooms = require('../db/models/Rooms')
-const adminRouter = require('express').Router()
+const Rooms = require('../db/models/Rooms');
+const adminRouter = require('express').Router();
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
-
+const { convertArrayToCSV } = require('convert-array-to-csv')
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -150,28 +150,30 @@ adminRouter.post('/new-conv', async (req, res, next) => {
         const {
                 name,
                 initialDate,
-                finallDate,
+                finalDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
                 usersRegisted
+
         } = req.body;
         // New Convocatory document
-        const convocatory = new Convocatory({
-                _id,
+        const newConvocatory = new Convocatory({
                 name,
                 initialDate,
-                finallDate,
+                finalDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
                 finalBootcampDate,
                 usersRegisted,
+
         });
         await newConvocatory.save();
         res.send({ data: newConvocatory });
 })
+
 
 // UPDATE CONVOCATORY
 adminRouter.put('/update-conv/:id', async (req, res) => {
@@ -185,13 +187,14 @@ adminRouter.put('/update-conv/:id', async (req, res) => {
         }
 })
 
+
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get("/get-result/:id", async (req, res) => {
         try {
-                const { user_id } = req.params.id;
-                const candidateProfile = await Profile.find({ user_id: user_id });
-                let { soloLearnProfile } = candidateProfile[0];
-
+                // const { user_id } = req.params.id;
+                // console.log(user_id)
+                const candidateProfile = await Profile.find({ user_id: req.params.id })
+                let { soloLearnProfile } = candidateProfile[0]
                 // Fetching Solo learn data
                 try {
                         request(
@@ -217,13 +220,15 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 });
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
-adminRouter.get("/waiting-list", async (req, res, next) => {
-        const waitList = await Profile.find({ status: { waitList: true } });
-        res.send({ data: waitList });
-});
+
+adminRouter.get('/waiting-list', async (req, res, next) => {
+        const waitList = await Profile.find({})
+        res.send({ data: waitList })
+})
+
 
 // Download CSV files
-adminRouter.post("/csv/", async (req, res) => {
+adminRouter.get("/csv/", async (req, res) => {
         // Data from de candidate document
         const candidates = await User.find();
         // Data from the profile of the candidate
@@ -290,7 +295,32 @@ adminRouter.get('/citation', async (req, res) => {
         const results = await Citation.find();
         res.send(results)
 });
+adminRouter.get('/c', async (req, res) => {
+        const results = await Convocatory.find({});
+        res.send(results)
+});
 
+
+adminRouter.put('/update-test', async (req, res) => {
+        try {
+                const _id = req.body;
+                const result = await Convocatory.updateMany(
+                        { _id },
+                        {
+                                $set: {
+                                        test: {
+                                                nameTest: req.body.test.nameTest,
+                                                linkTest: req.body.test.linkTest
+                                        }
+                                }
+                        }
+                );
+                res.send(result)
+        } catch {
+                res.status(404).send({ error: "link citation category not put" })
+        }
+}
+)
 // Creates new citations
 adminRouter.post("/citation", async (req, res) => {
         const { users, date, journy, quotasCompleted, maxQuotas } = req.body;
@@ -302,7 +332,9 @@ adminRouter.post("/citation", async (req, res) => {
                 maxQuotas,
         });
         await citation.save();
-        res.send("citation saved");
+        res.send("citation saved")
+
+
 });
 
 // To upload the thecnical test for candidates

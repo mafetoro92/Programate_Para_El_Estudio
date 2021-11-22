@@ -19,7 +19,6 @@ const ConvocatorySchema = new Schema(
     residencyDepartment: String,
     maxAge: Number,
     maxSocioeconomicStratus:{type:Number, default:3},
-    test: Object,
     usersRegisted: Array,
     test: Object,
     status: Boolean

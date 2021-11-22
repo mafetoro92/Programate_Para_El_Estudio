@@ -6,27 +6,29 @@ $secondary: #000000;
   margin: 10px 0 5px 0;
 
   &-icon {
-    position: relative;
-    left: 5px;
     font-size: 25px;
     color: $secondary;
-    width: 30px;
     transition: 0.4s all;
+    width: 40px;
+    text-align: center;
   }
   &-iconArrow {
     padding: 0 10px 0 0;
     display: none;
   }
-  &:hover, &:hover &-icon, &:hover &-label {
-      color: white !important ;
+  &:hover,
+  &:hover &-icon,
+  &:hover &-label {
+    color: white !important;
+    transition: 0.4s all !important;
   }
-  .nav__subitem{
+  .nav__subitem {
     padding: 0 0 0 50px;
   }
-  .nav__subitem-label{
-      color: black;
-      margin: 8px 0;
-      font-weight: 600;
-      font-size: 14.8px;
+  .nav__subitem-label {
+    color: black;
+    margin: 8px 0;
+    font-weight: 600;
+    font-size: 14.8px;
   }
 }
