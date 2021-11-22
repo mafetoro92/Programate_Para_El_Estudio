@@ -8,6 +8,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
+import RequestService from "../../config/index";
+
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -22,7 +24,14 @@ export default function BasicTable({ rows, actions = false }) {
     for (const key in rows[0]) {
         header.push(key);
     }
-    console.log(actions);
+
+    const getUser = async () => {
+        const { data } = await RequestService.get("/candidate/candidate");
+        const { users } = data;
+        console.log(data);
+    };
+    getUser();
+
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
