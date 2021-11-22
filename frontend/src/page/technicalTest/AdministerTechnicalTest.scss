@@ -30,12 +30,17 @@
 }
 
 .btn-primary {
-    color: #ffcc02 !important;
     background-color: #010101 !important;
 }
+.btn-primary .add {
+    color: #ffcc02 !important;
+}
 
-.btn-primary .edit {
-    text-align: right;
+/*.btn-success {
+    background-color: #ffcc02 !important;
+    border: #ffcc02 !important;
+}*/
+.btn-success .edit {
     text-align: right;
 }
 /*responsive*/

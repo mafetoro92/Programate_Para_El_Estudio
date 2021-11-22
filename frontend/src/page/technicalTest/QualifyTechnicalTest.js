@@ -1,5 +1,6 @@
 import React from "react";
 import "./QualifyTechnicalTest.scss";
+
 const QualifyTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -27,6 +28,7 @@ const QualifyTechnicalTest = () => {
             calificacion: 2.5,
         },
     ];
+
     return (
         <>
             <div className="section__Qualify">
@@ -63,11 +65,14 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.convocatoria}</td>
                                         <td>
                                             {prueba.calificacion == "" ? (
-                                                <button className="btn btn-primary">
-                                                    calificacion
+                                                <button className="btn btn-warning d-flex align-text-center">
+                                                    calificar
                                                 </button>
                                             ) : (
-                                                <div className="btn_edit">
+                                                <div
+                                                    className="buttom d-flex 
+                                                align-content-center"
+                                                >
                                                     {prueba.calificacion}
 
                                                     <button className="btn btn-success">
