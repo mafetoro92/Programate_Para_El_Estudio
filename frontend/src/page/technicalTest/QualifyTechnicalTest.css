@@ -1,7 +1,11 @@
 .section__Qualify {
-  width: 100%;
-  max-width: 1800px;
-  height: 800px;
-  padding: 20px;
+    width: 100%;
+    max-width: 1800px;
+    height: 800px;
+    padding: 20px;
 }
 /*# sourceMappingURL=QualifyTechnicalTest.css.map */
+
+.btn_edit {
+    justify-content: space-between;
+}

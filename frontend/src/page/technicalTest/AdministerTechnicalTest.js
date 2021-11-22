@@ -39,7 +39,7 @@ const AdministerTechnicalTest = () => {
                     </div>
                 </div>
                 <div className="form">
-                    <Link to="/administrar-prueba-tecnica/agregar">
+                    <Link to="/administertechnicaltestadd">
                         <div>
                             <button className="btn btn-primary">Agregar</button>
                         </div>
@@ -63,7 +63,7 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            <Link to="/administrar-prueba-tecnica/editar">
+                                            <Link to="/administertechnicaltestedit">
                                                 <button className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
                                                 </button>

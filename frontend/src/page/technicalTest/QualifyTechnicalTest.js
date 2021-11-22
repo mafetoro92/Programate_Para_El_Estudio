@@ -44,7 +44,7 @@ const QualifyTechnicalTest = () => {
                 </div>
                 <div className="form">
                     <div className="section__table">
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -67,7 +67,13 @@ const QualifyTechnicalTest = () => {
                                                     calificacion
                                                 </button>
                                             ) : (
-                                                prueba.calificacion
+                                                <div className="btn_edit">
+                                                    {prueba.calificacion}
+
+                                                    <button className="btn btn-success">
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                </div>
                                             )}
                                         </td>
                                     </tr>
