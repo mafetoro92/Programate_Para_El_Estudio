@@ -31,7 +31,20 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Meta de la cohorte</h2>
                         </div>
                         <div className="cohorteGoal__container-graph">
-                            <CohorteGoal />
+                            <select name="qualify" className="form-select">
+                                <option value="select">
+                                    Selecione una opción
+                                </option>
+                                {CONVOCATORY.map((item) => (
+                                    <option value={item.name}>
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {CONVOCATORY.map((item) => (
+                                <CohorteGoal item={item} />
+                            ))}
                         </div>
                     </div>
 

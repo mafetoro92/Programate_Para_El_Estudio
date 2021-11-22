@@ -9,7 +9,8 @@ Chart.register(ChartDataLabels);
 Chart.defaults.plugins.datalabels;
 defaults.plugins.legend.position = "bottom";
 
-const CohorteGoal = () => {
+const CohorteGoal = ({ item }) => {
+    const { maxQuotas, usersRegisted } = item;
     const data = {
         datasets: [
             {
@@ -37,8 +38,13 @@ const CohorteGoal = () => {
 
     return (
         <div>
-            <div className="graph mt-2">
-                <Pie data={data} options={options} width={400} height={200} />
+            <div className="graph">
+                <Pie
+                    data={data}
+                    options={options}
+                    width={400}
+                    height={"auto"}
+                />
             </div>
         </div>
     );
