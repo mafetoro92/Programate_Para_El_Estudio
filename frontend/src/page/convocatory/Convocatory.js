@@ -4,22 +4,24 @@ import "./Convocatory.scss";
 
 const Convocatory = () => {
     const actions = [
-        { status: true, icon: <i className="far fa-check-square"></i> },
-        { status: true, icon: <i className="far fa-trash-alt"></i> },
+        { status: false, icon: <i className="far fa-check-square"></i> },
+        { status: false, icon: <i className="far fa-trash-alt"></i> },
         { status: true, icon: <i className="far fa-eye"></i> },
     ];
 
-    function createData(id, nombre, cupos, FechaInicio) {
+    function createData(id, nombre, cupos, FechaInicio, perrito, gatito) {
         return {
             id,
             nombre,
             cupos,
             FechaInicio,
+            perrito,
+            gatito,
         };
     }
 
     const rows = [
-        createData(0, "Daniel Lorenzo", 31, "15/11/2021"),
+        createData(0, "Daniel Lorenzo", 31, "15/11/2021", "perro", "gatito"),
         createData(1, "David Bedoya", 23, "15/11/2021"),
         createData(2, "Mafe Toro", 28, "15/11/2021"),
         createData(3, "Diego Romero", 23, "15/11/2021"),
