@@ -15,7 +15,11 @@ const ProofAspirant = () => {
           <span className="text-crumbs">Prueba</span>
         </div>
       </div>
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
       <TechnicalTestAspirant />
     </div>
   );

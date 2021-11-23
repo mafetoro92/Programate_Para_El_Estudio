@@ -41,8 +41,12 @@
     "react-chartjs-2": "^3.3.0",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.4.2",
+<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "sweetalert2": "^11.2.0"
+=======
+    "react-router-dom": "^5.2.0"
+>>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",

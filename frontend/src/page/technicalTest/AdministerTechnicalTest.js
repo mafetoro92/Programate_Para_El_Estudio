@@ -87,6 +87,7 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
+<<<<<<< HEAD
                                             <div className="buttom d-flex justify-content-center align-items-center">
                                                 <Link to="/administertechnicaltestedit">
                                                     <button className="btn btn-success">
@@ -102,6 +103,11 @@ const AdministerTechnicalTest = () => {
                                                     className="btn btn-danger"
                                                 >
                                                     <i className="fas fa-trash"></i>
+=======
+                                            <Link to="/administertechnicaltestedit">
+                                                <button className="btn btn-success">
+                                                    <i className="fas fa-edit"></i>
+>>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
                                                 </button>
                                             </div>
                                         </td>
