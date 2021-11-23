@@ -5,8 +5,12 @@ const multer = require('multer');
 const mimeTypes = require('mime-types')
 const request = require('request');
 const nodemailer = require('nodemailer');
-const { google } = require('googleapis')
-const { OAuth2 } = google.auth
+const {
+        google
+} = require('googleapis')
+const {
+        OAuth2
+} = google.auth
 
 const candidateRouter = require('express').Router()
 
@@ -53,15 +57,32 @@ candidateRouter.get('/calification', async (req, res) => {
 
 // CREATES A NEW USER
 candidateRouter.post('/new', async (req, res, next) => {
-        const { firstName, middleName, lastName, secondSurname, email, contactNumber, rol } = req.body;
-        const newUser = new User({ firstName, middleName, lastName, secondSurname, email, contactNumber, rol });
+        const {
+                firstName,
+                middleName,
+                lastName,
+                secondSurname,
+                email,
+                contactNumber,
+                rol
+        } = req.body;
+        const newUser = new User({
+                firstName,
+                middleName,
+                lastName,
+                secondSurname,
+                email,
+                contactNumber,
+                rol
+        });
         await newUser.save();
         res.send(`${newUser.firstName} saved`);
 })
 
 // CREATE THE PROFILE OF A USER
 candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) => {
-        const { user_id,
+        const {
+                user_id,
                 documentType,
                 documentNumber,
                 documentPdf,
@@ -94,7 +115,8 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                         facebook,
                         web
                 },
-                status } = req.body;
+                status
+        } = req.body;
         const newProfile = new Profile({
                 user_id,
                 documentType,
@@ -143,19 +165,72 @@ candidateRouter.get('/candidate', async (req, res) => {
 //Get all Profile
 candidateRouter.get('/profile', async (req, res) => {
         const profile = await Profile.find()
-        res.send(profile);
+        const candidates = await User.find()
+        const profiles = []
+
+        let idx = 0
+        for (let candidate of candidates) {
+                let candidateData = await Profile.find({
+                        user_id: candidate._id.toString()
+                        })
+                        if (candidateData[0] !== undefined){
+                        candidateData = candidateData.map(candidate => candidate ? ({
+                                'age': candidate.actualAge, 
+                                'nacionality': candidate.nacionality, 
+                                'municipalityOfResidency': candidate.municipalityOfResidency, 
+                                'status': candidate.status.pass,
+                                'documentType':  candidate.documentType,
+                                'documentNumber':  candidate.documentNumber,
+                                'gender': candidate.gender,
+                                'residencyDepartment': candidate.residencyDepartment,
+                                'socioeconomicStratus': candidate.socioeconomicStratus
+                        })
+                                : null)                      
+                      
+                        const candidateObj = {
+                                'ID': idx,
+                                'TipoDocumento': candidateData[0].documentType,
+                                'NumeroDocumento': candidateData[0].documentNumber,
+                                'Nombre': `${candidate.firstName} ${candidate.lastName}`,
+                                'Email': candidate.email,
+                                'Telefono': candidate.contactNumber,
+                                'Edad': candidateData[0].age,
+                                'Nacionalidad': candidateData[0].nacionality,
+                                'Departamento': candidateData[0].residencyDepartment,
+                                'Municipio': candidateData[0].municipalityOfResidency,
+                                'Estrato': candidateData[0].socioeconomicStratus,
+                                'Genero': candidateData[0].gender,
+                                'Status': candidateData[0].status
+                        }
+                        console.log(candidateObj)
+                        profiles.push(candidateObj)
+                        idx++
+                }
+                
+        }
+
+        res.json({
+                data: profiles
+        });
 })
 candidateRouter.get('/profile/:id', async (req, res) => {
-        const profile = await Profile.find({ user_id: req.params.id })
+        const profile = await Profile.find({
+                user_id: req.params.id
+        })
+
         res.send(profile);
 })
 
 // GET PROFILE OF CANDIDATES
 candidateRouter.get('/candidate-profile/:id', async (req, res) => {
         // Data from de candidate document
-        const candidate = await User.find({ user_id: req.params.id })
+        const candidate = await User.find({
+                user_id: req.params.id
+        })
         // Data from the profile of the candidate
-        const candidateProfile = await Profile.find({ user_id: req.params.id })
+        const candidateProfile = await Profile.find({
+                user_id: req.params.id
+        })
         // Strucuture for required data 
         const candidateProfileData = {
                 "firstName": candidate[0].firstName,
@@ -205,22 +280,54 @@ candidateRouter.post('/new-result', async (req, res) => {
         try {
 
                 // Viariables destructuring from req.body
-                const { user_id, htmlScore, cssScore, javascriptScore, pythonScore, soloLearnScore, personalProfileScore, motivationScore, finalScore, pass } = req.body;
+                const {
+                        user_id,
+                        htmlScore,
+                        cssScore,
+                        javascriptScore,
+                        pythonScore,
+                        soloLearnScore,
+                        personalProfileScore,
+                        motivationScore,
+                        finalScore,
+                        pass
+                } = req.body;
                 // Viariables destructuring from user names
 
                 const candidate = await User.findById(user_id)
-                const { firstName, middleName, lastName, secondSurname } = candidate
+                const {
+                        firstName,
+                        middleName,
+                        lastName,
+                        secondSurname
+                } = candidate
                 // Creating full name
                 const fullName = `${firstName} ${middleName} ${lastName} ${secondSurname}`
 
                 // Creating new Result document
-                const newResult = new Result({ user_id, fullName, htmlScore, cssScore, javascriptScore, pythonScore, soloLearnScore, personalProfileScore, motivationScore, finalScore, pass });
+                const newResult = new Result({
+                        user_id,
+                        fullName,
+                        htmlScore,
+                        cssScore,
+                        javascriptScore,
+                        pythonScore,
+                        soloLearnScore,
+                        personalProfileScore,
+                        motivationScore,
+                        finalScore,
+                        pass
+                });
                 console.log(newResult)
                 // Saving new document to Reults 
                 await newResult.save();
-                res.send({ data: newResult });
+                res.send({
+                        data: newResult
+                });
         } catch {
-                res.status(404).send({ error: "Candidate not found" })
+                res.status(404).send({
+                        error: "Candidate not found"
+                })
         }
 })
 
@@ -230,20 +337,32 @@ candidateRouter.post('/new-result', async (req, res) => {
 // profile actualiza los datos del formulario
 candidateRouter.put('/update-candidate', async (req, res) => {
         try {
-                const { user_id, candidate, profile } = req.body
+                const {
+                        user_id,
+                        candidate,
+                        profile
+                } = req.body
                 if (candidate) {
-                        const candidate = await User.updateMany({ user_id: user_id }, {
+                        const candidate = await User.updateMany({
+                                user_id: user_id
+                        }, {
                                 $set: req.body.candidate
                         })
                 }
                 if (profile) {
-                        const candidateProfile = await Profile.updateMany({ user_id: user_id }, {
+                        const candidateProfile = await Profile.updateMany({
+                                user_id: user_id
+                        }, {
                                 $set: req.body.profile
                         })
                 }
-                res.send({ data: candidate })
+                res.send({
+                        data: candidate
+                })
         } catch {
-                res.status(404).send({ error: "Candidate not found" })
+                res.status(404).send({
+                        error: "Candidate not found"
+                })
         }
 
 })
@@ -253,7 +372,9 @@ candidateRouter.put('/update-candidate', async (req, res) => {
 // SAVE AND UPDATE SOLOLEARN DATA
 candidateRouter.get('/sololearn/:id', async (req, res) => {
         var id = req.params.id
-        const perfiles = await Profile.find({ "user_id": id })
+        const perfiles = await Profile.find({
+                "user_id": id
+        })
         const params = JSON.stringify(perfiles)
         const json = JSON.parse(params)
         for (x of json) {
@@ -262,7 +383,9 @@ candidateRouter.get('/sololearn/:id', async (req, res) => {
         if (usersololearn === undefined) {
                 console.log("This user does not have a sololearn profile")
         } else {
-                const calificationUpdate = await Result.find({ "user_id": id })
+                const calificationUpdate = await Result.find({
+                        "user_id": id
+                })
                 const params2 = JSON.stringify(calificationUpdate)
                 const json2 = JSON.parse(params2)
                 for (y of json2) {
@@ -288,13 +411,14 @@ candidateRouter.get('/sololearn/:id', async (req, res) => {
                                         }
                                 }
                                 var p = (html + css + javascript + python) / 4;
-                                const { user_id = id,
-                                        userFullName = name,
-                                        htmlScore = html,
-                                        cssScore = css,
-                                        javascriptScore = javascript,
-                                        pythonScore = python,
-                                        soloLearnScore = p.toFixed(2)
+                                const {
+                                        user_id = id,
+                                                userFullName = name,
+                                                htmlScore = html,
+                                                cssScore = css,
+                                                javascriptScore = javascript,
+                                                pythonScore = python,
+                                                soloLearnScore = p.toFixed(2)
                                 } = req.body
                                 const usersolo = new Result({
                                         user_id,
@@ -308,7 +432,9 @@ candidateRouter.get('/sololearn/:id', async (req, res) => {
                                 if (users_id === undefined) {
                                         await usersolo.save();
                                 } else {
-                                        await Result.updateOne({ "user_id": id }, {
+                                        await Result.updateOne({
+                                                "user_id": id
+                                        }, {
                                                 $set: {
                                                         htmlScore: html,
                                                         cssScore: css,
@@ -330,7 +456,10 @@ candidateRouter.get('/sololearn/:id', async (req, res) => {
 
 candidateRouter.get('/calendar', async (req, res) => {
 
-        const calendar = google.calendar({ version: 'v3', auth: oAuth2Client })
+        const calendar = google.calendar({
+                version: 'v3',
+                auth: oAuth2Client
+        })
 
         const eventStartTime = new Date()
         eventStartTime.setDate(eventStartTime.getDay() + 15)
@@ -358,13 +487,14 @@ candidateRouter.get('/calendar', async (req, res) => {
                 },
         }
 
-        calendar.freebusy.query(
-                {
+        calendar.freebusy.query({
                         resource: {
                                 timeMin: eventStartTime,
                                 timeMax: eventEndTime,
                                 timeZone: 'America/Bogota',
-                                items: [{ id: 'primary' }],
+                                items: [{
+                                        id: 'primary'
+                                }],
                         },
                 },
                 (err, res) => {
@@ -377,8 +507,10 @@ candidateRouter.get('/calendar', async (req, res) => {
                         // Check if event array is empty which means we are not busy
                         if (eventArr.length === 0)
                                 // If we are not busy create a new calendar event.
-                                return calendar.events.insert(
-                                        { calendarId: 'primary', resource: event },
+                                return calendar.events.insert({
+                                                calendarId: 'primary',
+                                                resource: event
+                                        },
                                         err => {
                                                 // Check for errors and log them if they exist.
                                                 if (err) {

@@ -6,6 +6,7 @@ const adminRouter = require('express').Router();
 const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
+const Result = require('../db/models/Result');
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -220,6 +221,14 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 
+adminRouter.get('/results', async (req, res, next) => {
+        const results = await Result.find()
+        res.send({ data: results })
+})
+
+
+// GET THE LIST OF CANDIDATES IN WAIT LIST
+
 adminRouter.get('/waiting-list', async (req, res, next) => {
         const waitList = await Profile.find({})
         res.send({ data: waitList })
@@ -294,6 +303,7 @@ adminRouter.get('/citation', async (req, res) => {
         const results = await Citation.find();
         res.send(results)
 });
+
 adminRouter.get('/c', async (req, res) => {
         const results = await Convocatory.find({});
         res.send(results)

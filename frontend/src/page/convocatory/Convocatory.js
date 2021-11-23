@@ -1,54 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import "./Convocatory.scss";
+import RequestService from '../../config/index'
 
 const Convocatory = () => {
+
+  const [convocatories, setConvocatories] = useState([])
+const getUser = async () => {
+    const { data } = await RequestService.get('/admin/c');
+    if (data) {
+      setConvocatories(data)
+    }
+  };
+    
+   useEffect(() => {
+     getUser()
+   }, [])
+
+
   const actions = [
     {
-      status: false,
+      status: true,
       icon: <i className="far fa-check-square"> </i>,
     },
     {
-      status: false,
-      icon: <i className="far fa-trash-alt"> </i>,
+      status: true,
+      icon: <i className="far fa-edit"></i>,
     },
     {
       status: false,
       icon: <i className="far fa-eye"> </i>,
     },
+    {
+      status: false,
+      icon: <i className="far fa-trash-alt"> </i>,
+    },
   ];
 
-  function createData(id, nombre, cupos, FechaInicio, perrito, gatito) {
-    return {
-      id,
-      nombre,
-      cupos,
-      FechaInicio,
-      perrito,
-      gatito,
-    };
+  const fixDate = (date) => {
+    return date.split("T")[0];
   }
 
-  const rows = [
-    createData(0, "Daniel Lorenzo", 31, "15/11/2021", "perro", "gatito"),
-    createData(1, "David Bedoya", 23, "15/11/2021"),
-    createData(2, "Mafe Toro", 28, "15/11/2021"),
-    createData(3, "Diego Romero", 23, "15/11/2021"),
-  ];
+  const rows = convocatories.map((conv, idx) => ({'ID': idx, 'Nombre': conv.name, 'Cupos': conv.maxQuotas, 'Fecha de Inicio': fixDate(conv.initialDate)}))
+
 
   return (
     <>
       <div className="section__convocatory">
         <div className="section__content d-flex justify-content-between">
-          <span className="upperCase bold"> Convocatoria </span>{" "}
+          <span className="upperCase bold"> Convocatoria </span>
           <div className="box__content">
-            <span className="text-crumbs bold-500"> Programate </span>{" "}
+            <span className="text-crumbs bold-500"> Programate </span>
             <i className="fas fa-chevron-right subtitle" />
-            <span className="text-crumbs"> Convocatoria </span>{" "}
-          </div>{" "}
-        </div>{" "}
-        <Tablita rows={rows} actions={actions} />{" "}
-      </div>{" "}
+            <span className="text-crumbs"> Convocatoria </span>
+          </div>
+        </div>
+        <Tablita key={rows.length} rows={rows} actions={actions} />
+      </div>
     </>
   );
 };

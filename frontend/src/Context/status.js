@@ -56,59 +56,6 @@ const StateContext = ({ children }) => {
 
     const putParameterization = () => {};
 
-<<<<<<< HEAD
-      const response = await axios.get(`${url}/candidate/profile`);
-      setProfileT(response.data)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  const getProfile = async (id) => {
-    try {
-      const response = await axios.get(`${url}/candidate/profile/${id}`);
-      dispatch({
-        type: GET_PROFILE,
-        payload: response.data
-      });
-
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  const getConvocatorys = async () => {
-    try {
-      const response = await axios.get(`${url}/admin/c`)
-      dispatch({
-        type: GET_CONVOCATORYS,
-        payload: response.data
-      })
-      // console.log(response)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  const putParameterization = () => {}
-
-  return (
-    <providerContext.Provider value={{
-      profile: state.profile,
-      profiles: state.profiles,
-      convocatorys: state.convocatorys,
-      parameterization: state.parameterization,
-      profileT,
-      getProfile,
-      getProfiles,
-      getConvocatorys,
-      putParameterization
-
-    }}>
-      {children}
-    </providerContext.Provider>
-  )
-}
-export default StateContext
-=======
     return (
         <providerContext.Provider
             value={{
@@ -128,4 +75,3 @@ export default StateContext
     );
 };
 export default StateContext;
->>>>>>> fc344fb11c727f0a0bdf187ffa0905abc980b2f9

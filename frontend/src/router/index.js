@@ -13,6 +13,7 @@ import Dashboard from "../page/dashboard/Dashboard";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import Results from "../page/Results/Results";
 
 const App = () => {
   const initialState = {
@@ -36,28 +37,29 @@ const App = () => {
   const loged3 = true;
   return (
     <BrowserRouter>
-      <Header user={user} adminstate={adminstate} />{" "}
+      <Header user={user} adminstate={adminstate} />
       <div className="d-flex hhh">
-        <Nav user={user} adminstate={adminstate} />{" "}
+        <Nav user={user} adminstate={adminstate} />
         <Switch>
-          {" "}
+          
           {admin3 && loged3 && (
             <>
-              <Route exact path="/" component={Dashboard} />{" "}
-              <Route path="/convocatoria" component={Convocatory} />{" "}
-              <Route path="/aspirantes" component={Aspirants} />{" "}
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/convocatoria" component={Convocatory} />
+              <Route path="/aspirantes" component={Aspirants} />
+              <Route path="/resultados" component={Results} />
             </>
-          )}{" "}
+          )}
           {!admin2 && loged2 && (
             <>
-              <Route exact path="/" component={DashboardAspirant} />{" "}
-              <Route exact path="/inscripción" component={FormInscription} />{" "}
-              <Route exact path="/entrevista" component={InterviewAspirant} />{" "}
-              <Route exact path="/aspirante" component={ProofAspirant} />{" "}
+              <Route exact path="/" component={DashboardAspirant} />
+              <Route exact path="/inscripcion" component={FormInscription} />
+              <Route exact path="/entrevista" component={InterviewAspirant} />
+              <Route exact path="/aspirante" component={ProofAspirant} />
             </>
-          )}{" "}
-        </Switch>{" "}
-      </div>{" "}
+          )}
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 };

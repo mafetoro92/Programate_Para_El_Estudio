@@ -28,7 +28,7 @@ export default function BasicTable({ rows, actions = false }) {
     const getUser = async () => {
         const { data } = await RequestService.get("/candidate/candidate");
         const { users } = data;
-        console.log(data);
+        // console.log(data);
     };
     getUser();
 
@@ -64,7 +64,6 @@ export default function BasicTable({ rows, actions = false }) {
                                                     {action.icon}
                                                 </span>
                                             ) : null
-                                        //console.log(action)
                                     )}
                             </TableCell>
                         </TableRow>
