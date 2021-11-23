@@ -7,6 +7,7 @@ const request = require('request');
 const Administrator = require('../db/models/Administrators');
 const Citation = require('../db/models/Citation');
 const Result = require('../db/models/Result');
+const ObjectId = require('mongodb').ObjectID;
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -230,8 +231,40 @@ adminRouter.get('/results', async (req, res, next) => {
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 
 adminRouter.get('/waiting-list', async (req, res, next) => {
-        const waitList = await Profile.find({})
-        res.send({ data: waitList })
+        let waitList = await Profile.find()
+        waitList = waitList.filter(candidate => candidate.status.waitList === true)
+        let waitListResults = []
+        for (let candidate of waitList) {
+                let candidateData = await Result.find({
+                        user_id: candidate.user_id
+                })
+                const candidateName = await User.find({_id: ObjectId(candidate.user_id)})
+                if (candidateData[0] !== undefined) {
+                        candidateData = candidateData.map(candidate => candidate ? ({
+                                        'sololearn': candidate.soloLearnScore,
+                                        'personal': candidate.personalProfileScore,
+                                        'motivation': candidate.motivationScore,
+                                        'final': candidate.finalScore,
+                                        'status': candidate.status
+
+                                }) :
+                                null)
+                                console.log(candidateData)
+                        const candidateObj = {
+                                'ID': candidate.user_id,
+                                'Nombre': `${candidateName[0].firstName} ${candidateName[0].lastName}`,
+                                'sololearn': candidateData[0].sololearn,
+                                'personal': candidateData[0].personal,
+                                'motivation': candidateData[0].motivation,
+                                'final': candidateData[0].final,
+                                'Status': candidateData[0].status
+                        }
+                        waitListResults.push(candidateObj)
+                }
+        }
+        res.json({
+                data: waitListResults
+        });
 })
 
 

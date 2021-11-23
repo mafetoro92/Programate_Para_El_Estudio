@@ -14,6 +14,7 @@ import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import Results from "../page/Results/Results";
+import WaitingList from "../page/waitingList/WaitingList";
 
 const App = () => {
   const initialState = {
@@ -48,9 +49,10 @@ const App = () => {
               <Route path="/convocatoria" component={Convocatory} />
               <Route path="/aspirantes" component={Aspirants} />
               <Route path="/resultados" component={Results} />
+              <Route path="/lista-espera" component={WaitingList} />
             </>
           )}
-          {!admin2 && loged2 && (
+          {!admin3 && loged3 && (
             <>
               <Route exact path="/" component={DashboardAspirant} />
               <Route exact path="/inscripcion" component={FormInscription} />
