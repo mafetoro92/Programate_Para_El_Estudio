@@ -1,12 +1,11 @@
-.section__proof {
+.proof {
   width: 100%;
-  max-width: 1800px;
   padding: 20px 25px;
-  height: 700px;
-  background-color: #f1f5f7;
 }
 
-.section__content {
-  margin-bottom: 30px;
+@media screen and (min-width: 1400px) {
+  .proof {
+    height: 100vh;
+  }
 }
 /*# sourceMappingURL=ProofAspirant.css.map */
