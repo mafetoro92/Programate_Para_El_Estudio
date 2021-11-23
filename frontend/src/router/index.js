@@ -17,49 +17,72 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import Results from "../page/Results/Results";
 
 const App = () => {
-  const initialState = {
-    nameAdmin: "Diego Admin",
-    admin: true,
-    loged: false,
-  };
+    const initialState = {
+        nameAdmin: "Diego Admin",
+        admin: false,
+        loged: false,
+    };
 
-  const initialState2 = {
-    name: "Kevin",
-    admin2: false,
-    loged2: true,
-  };
+    const initialState2 = {
+        name: "Kevin",
+        admin2: true,
+        loged2: true,
+    };
 
-  const [adminstate, setAdmin] = useState(initialState);
-  const [user, setUser] = useState(initialState2);
+    const [adminstate, setAdmin] = useState(initialState);
+    const [user, setUser] = useState(initialState2);
 
-  const { admin, loged } = adminstate;
-  const { admin2, loged2 } = user;
+    const { admin, loged } = adminstate;
+    const { admin2, loged2 } = user;
 
-  return (
-    <>
-      <Header user={user} adminstate={adminstate} />
-      <div className="d-flex hhh">
-        <Nav user={user} adminstate={adminstate} />
-        <Switch>
-          {admin && loged && (
-            <>
-              <Route path="/convocatoria" component={Convocatory} />
-              <Route path="/aspirantes" component={Aspirants} />
-              <Route exact path="/" component={Dashboard} />
-              <Route exact path="/resultados" component={Results} />
-            </>
-          )}
-          {!admin2 && loged2 && (
-            <>
-              <Route exact path="/inscripción" component={FormInscription} />
-              <Route exact path="/entrevista" component={InterviewAspirant} />
-              <Route exact path="/aspirante" component={ProofAspirant} />
-              <Route exact path="/" component={DashboardAspirant} />
-            </>
-          )}
-        </Switch>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <Header user={user} adminstate={adminstate} />
+            <div className="d-flex hhh">
+                <Nav user={user} adminstate={adminstate} />
+                <Switch>
+                    {admin && loged && (
+                        <>
+                            <Route
+                                path="/convocatoria"
+                                component={Convocatory}
+                            />
+                            <Route path="/aspirantes" component={Aspirants} />
+                            <Route exact path="/" component={Dashboard} />
+                            <Route
+                                exact
+                                path="/resultados"
+                                component={Results}
+                            />
+                        </>
+                    )}
+                    {!admin2 && loged2 && (
+                        <>
+                            <Route
+                                exact
+                                path="/"
+                                component={DashboardAspirant}
+                            />
+                            <Route
+                                exact
+                                path="/inscripcion"
+                                component={FormInscription}
+                            />
+                            <Route
+                                exact
+                                path="/entrevista"
+                                component={InterviewAspirant}
+                            />
+                            <Route
+                                exact
+                                path="/aspirante"
+                                component={ProofAspirant}
+                            />
+                        </>
+                    )}
+                </Switch>
+            </div>
+        </>
+    );
 };
 export default App;

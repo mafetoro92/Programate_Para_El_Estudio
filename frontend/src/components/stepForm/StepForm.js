@@ -35,7 +35,7 @@ function getStepContent(step) {
 
     const [data, setData] = useState(initialData);
 
-    const handeleChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setData({
             ...data,
@@ -49,7 +49,7 @@ function getStepContent(step) {
         inscribir(firstName, email);
     };
 
-    const props = { data, handeleChange };
+    const props = { data, handleChange };
 
     switch (step) {
         case 0:
