@@ -5,6 +5,7 @@ import {
     GET_PROFILE,
     GET_PROFILES,
     GET_CONVOCATORYS,
+    GET_CONVOCATORY,
     PUT_PARAMETERIZATION,
 } from "./reducer";
 
@@ -15,10 +16,10 @@ const StateContext = ({ children }) => {
         profiles: [],
         profile: null,
         convocatorys: [],
-        convocatory: null,
+        convocatory: [],
         parameterization: null,
     };
-    const [profileT, setProfileT] = useState([]);
+
     const url = "http://localhost:3001/api";
     const [state, dispatch] = useReducer(Reducer, initialState);
 
@@ -41,9 +42,21 @@ const StateContext = ({ children }) => {
             console.log(e);
         }
     };
+    const getConvocatory = async (id) => {
+        try {
+            const response = await axios.get(`${url}/admin/convocatory/${id}`);
+            dispatch({
+                type: GET_CONVOCATORY,
+                payload: response.data,
+            });
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
+    };
     const getConvocatorys = async () => {
         try {
-            const response = await axios.get(`${url}/admin/c`);
+            const response = await axios.get(`${url}/admin/convocatories`);
             dispatch({
                 type: GET_CONVOCATORYS,
                 payload: response.data,
@@ -62,11 +75,13 @@ const StateContext = ({ children }) => {
                 profile: state.profile,
                 profiles: state.profiles,
                 convocatorys: state.convocatorys,
+                convocatory: state.convocatory,
                 parameterization: state.parameterization,
-                profileT,
+                //profileT,
                 getProfile,
                 getProfiles,
                 getConvocatorys,
+                getConvocatory,
                 putParameterization,
             }}
         >

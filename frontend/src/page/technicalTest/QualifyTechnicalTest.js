@@ -1,5 +1,6 @@
 import React from "react";
 import "./QualifyTechnicalTest.scss";
+
 const QualifyTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -27,6 +28,7 @@ const QualifyTechnicalTest = () => {
             calificacion: 2.5,
         },
     ];
+
     return (
         <>
             <div className="section__Qualify">
@@ -62,19 +64,18 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            {prueba.calificacion == "" ? (
-                                                <button className="btn btn-primary">
-                                                    calificacion
-                                                </button>
-                                            ) : (
-                                                <div className="btn_edit">
-                                                    {prueba.calificacion}
-
-                                                    <button className="btn btn-success">
-                                                        <i className="fas fa-edit"></i>
-                                                    </button>
-                                                </div>
-                                            )}
+                                        <select
+                                                    name="qualify"
+                                                    className="form-select"
+                                                >
+                                                    <option value="select">
+                                                        Selecione una opción
+                                                    </option>
+                                                    <option value="1">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="1">3</option>
+                                                    <option value="1">4</option>
+                                                </select>
                                         </td>
                                     </tr>
                                 ))}

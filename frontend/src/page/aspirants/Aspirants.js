@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Aspirants.scss";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
+import ModalAspirants from "../../components/modalAspirants/ModalAspirants";
 
 const Aspirants = () => {
   const [aspirants, setAspirants] = useState([]);
@@ -59,8 +60,14 @@ const Aspirants = () => {
           <i className="fas fa-chevron-right subtitle" />
           <span className="text-crumbs"> Aspirantes </span>
         </div>
+<<<<<<< HEAD
       </div>
         <Tablita key={rows.length} rows={rows} actions={actions} />
+=======
+        <Tablita key={rows.length} rows={rows} actions={actions} />
+        <ModalAspirants/>
+      </div>
+>>>>>>> ecffc97e459a3d58a8c98149faa5cfda3e716c42
     </div>
   );
 };
