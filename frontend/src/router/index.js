@@ -1,37 +1,37 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
-import Dashboard from "../page/dashboard/Dashboard";
-// import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
-// import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
-// import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
-// import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
+import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
+import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
+import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
+import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
+import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
+import ResultsInscription from "../page/inscription/ResultsInscription";
+import MotivationLetter from "../page/inscription/MotivationLetter";
+import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
-import Results from "../page/Results/Results";
 
 const App = () => {
     const initialState = {
         nameAdmin: "Diego Admin",
-        admin: false,
-        loged: false,
+        admin: true,
+        loged: true,
     };
 
     const initialState2 = {
         name: "Kevin",
-        admin2: true,
-        loged2: true,
+        admin2: false,
+        loged2: false,
     };
 
     const [adminstate, setAdmin] = useState(initialState);
     const [user, setUser] = useState(initialState2);
-
     const { admin, loged } = adminstate;
     const { admin2, loged2 } = user;
 
@@ -43,16 +43,39 @@ const App = () => {
                 <Switch>
                     {admin && loged && (
                         <>
+                            <Route exact path="/" component={DashboardAdmin} />
                             <Route
                                 path="/convocatoria"
                                 component={Convocatory}
                             />
                             <Route path="/aspirantes" component={Aspirants} />
-                            <Route exact path="/" component={Dashboard} />
                             <Route
-                                exact
-                                path="/resultados"
-                                component={Results}
+                                path="/resultsInscription"
+                                component={ResultsInscription}
+                            />
+                            <Route
+                                path="/motivationLetter"
+                                component={MotivationLetter}
+                            />
+                            <Route
+                                path="/parameterization"
+                                component={Parameterization}
+                            />
+                            <Route
+                                path="/administertechnicaltest"
+                                component={AdministerTechnicalTest}
+                            />
+                            <Route
+                                path="/administertechnicaltestadd"
+                                component={AdministerTechnicalTestAdd}
+                            />
+                            <Route
+                                path="/administertechnicaltestedit"
+                                component={AdministerTechnicalTestEdit}
+                            />
+                            <Route
+                                path="/qualifytechnicaltest"
+                                component={QualifyTechnicalTest}
                             />
                         </>
                     )}
@@ -65,7 +88,7 @@ const App = () => {
                             />
                             <Route
                                 exact
-                                path="/inscripcion"
+                                path="/inscripción"
                                 component={FormInscription}
                             />
                             <Route
