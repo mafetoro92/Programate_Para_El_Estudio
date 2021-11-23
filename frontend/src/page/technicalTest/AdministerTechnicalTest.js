@@ -88,6 +88,9 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.convocatoria}</td>
                                         <td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
                                             <div className="buttom d-flex justify-content-center align-items-center">
                                                 <Link to="/administertechnicaltestedit">
                                                     <button className="btn btn-success">
@@ -103,11 +106,14 @@ const AdministerTechnicalTest = () => {
                                                     className="btn btn-danger"
                                                 >
                                                     <i className="fas fa-trash"></i>
+<<<<<<< HEAD
 =======
                                             <Link to="/administertechnicaltestedit">
                                                 <button className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
 >>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
                                                 </button>
                                             </div>
                                         </td>

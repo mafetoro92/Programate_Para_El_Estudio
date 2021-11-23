@@ -65,6 +65,9 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.convocatoria}</td>
                                         <td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
                                         <select
                                                     name="qualify"
                                                     className="form-select"
@@ -77,6 +80,7 @@ const QualifyTechnicalTest = () => {
                                                     <option value="1">3</option>
                                                     <option value="1">4</option>
                                                 </select>
+<<<<<<< HEAD
 =======
                                             {prueba.calificacion == "" ? (
                                                 <button className="btn btn-primary">
@@ -92,6 +96,8 @@ const QualifyTechnicalTest = () => {
                                                 </div>
                                             )}
 >>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
                                         </td>
                                     </tr>
                                 ))}

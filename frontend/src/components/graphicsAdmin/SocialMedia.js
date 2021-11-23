@@ -7,15 +7,15 @@ import "./GraphicsAdmin.scss";
 
 const SocialMedia = () => {
     const data = {
-        labels: ["Facebook", "Twiter", "Instagram"],
+        labels: ["Facebook", "Linkedin", "Instagram", "Recomendación amigo"],
         datasets: [
             {
                 axis: "y",
                 label: "Redes sociales",
-                data: [40, 50, 80],
+                data: [40, 50, 80, 78],
                 fill: false,
-                backgroundColor: ["#92C149", "#92C149", "#92C149"],
-                borderColor: ["#92C149", "#92C149", "#92C149"],
+                backgroundColor: ["#92C149", "#92C149", "#92C149", "#92C149"],
+                borderColor: ["#92C149", "#92C149", "#92C149", "#92C149"],
                 borderWidth: 1,
             },
         ],

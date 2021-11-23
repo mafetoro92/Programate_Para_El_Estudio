@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 import React, { useState, useContext } from "react";
 import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,173 +18,183 @@ import { initialData } from "./index";
 import "./StepForm.scss";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
+    root: {
+        width: "100%",
+    },
+    button: {
+        marginRight: theme.spacing(1),
+    },
+    instructions: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 function getSteps() {
-  return ["Información Personal", "Estudios", "Motivación"];
+    return ["Información Personal", "Estudios", "Motivación"];
 }
 
 function getStepContent(step) {
+    const { inscribir } = useContext(InscriptionContext);
 
-  const { inscribir } = useContext(InscriptionContext);
+    const [data, setData] = useState(initialData);
 
-  const [data, setData] = useState(initialData);
- 
-  const handeleChange = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-  };
-  const sendData = () => {
+    const handeleChange = (e) => {
+        const { name, value } = e.target;
+        setData({
+            ...data,
+            [name]: value,
+        });
+    };
+    const sendData = () => {
+        setData(initialData);
+        const { firstName, email } = data;
 
-    setData(initialData);
-    const { firstName, email } = data;
-    
-    inscribir(firstName, email);
-  };
+        inscribir(firstName, email);
+    };
 
-  const props = { data, handeleChange };
+    const props = { data, handeleChange };
 
-  switch (step) {
-    case 0:
-      return <Step1 {...props} />;
-    case 1:
-      return <Step2 {...props} />;
-    case 2:
-      return (
-        <>
-          <Step3 {...props} />{" "}
-          <button
-            className="btn btn-primary send-data"
-            type="submit"
-            onClick={() => sendData()}
-          >
-            Enviar
-          </button>
-        </>
-      );
-    default:
-      return "Unknown step";
-  }
+    switch (step) {
+        case 0:
+            return <Step1 {...props} />;
+        case 1:
+            return <Step2 {...props} />;
+        case 2:
+            return (
+                <>
+                    <Step3 {...props} />{" "}
+                    <button
+                        className="btn btn-primary send-data"
+                        type="submit"
+                        onClick={() => sendData()}
+                    >
+                        Enviar
+                    </button>
+                </>
+            );
+        default:
+            return "Unknown step";
+    }
 }
 
 export default function HorizontalLinearStepper() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-  const steps = getSteps();
+    const classes = useStyles();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const [skipped, setSkipped] = React.useState(new Set());
+    const steps = getSteps();
 
-  const isStepOptional = (step) => {
-    return step === 1;
-  };
+    const isStepOptional = (step) => {
+        return step === 1;
+    };
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
+    const isStepSkipped = (step) => {
+        return skipped.has(step);
+    };
 
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
+    const handleNext = () => {
+        let newSkipped = skipped;
+        if (isStepSkipped(activeStep)) {
+            newSkipped = new Set(newSkipped.values());
+            newSkipped.delete(activeStep);
+        }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+    };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
 
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
+    const handleSkip = () => {
+        if (!isStepOptional(activeStep)) {
+            // You probably want to guard against something like this,
+            // it should never occur unless someone's actively trying to break something.
+            throw new Error("You can't skip a step that isn't optional.");
+        }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped((prevSkipped) => {
+            const newSkipped = new Set(prevSkipped.values());
+            newSkipped.add(activeStep);
+            return newSkipped;
+        });
+    };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+    const handleReset = () => {
+        setActiveStep(0);
+    };
 
-  return (
-    <div className={classes.root}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
+    return (
+        <div className={classes.root}>
+            <Stepper activeStep={activeStep}>
+                {steps.map((label, index) => {
+                    const stepProps = {};
+                    const labelProps = {};
 
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography component={"div"} className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography component={"div"} className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
+                    if (isStepSkipped(index)) {
+                        stepProps.completed = false;
+                    }
+                    return (
+                        <Step key={label} {...stepProps}>
+                            <StepLabel {...labelProps}>{label}</StepLabel>
+                        </Step>
+                    );
+                })}
+            </Stepper>
             <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                variant="contained"
-                className={classes.button}
-              >
-                Back
-              </Button>
+                {activeStep === steps.length ? (
+                    <div>
+                        <Typography
+                            component={"div"}
+                            className={classes.instructions}
+                        >
+                            All steps completed - you&apos;re finished
+                        </Typography>
+                        <Button
+                            onClick={handleReset}
+                            className={classes.button}
+                        >
+                            Reset
+                        </Button>
+                    </div>
+                ) : (
+                    <div>
+                        <Typography
+                            component={"div"}
+                            className={classes.instructions}
+                        >
+                            {getStepContent(activeStep)}
+                        </Typography>
+                        <div>
+                            <Button
+                                disabled={activeStep === 0}
+                                onClick={handleBack}
+                                variant="contained"
+                                className={classes.button}
+                            >
+                                Back
+                            </Button>
 
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? null : "Next"}
-              </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleNext}
+                                className={classes.button}
+                            >
+                                {activeStep === steps.length - 1
+                                    ? null
+                                    : "Next"}
+                            </Button>
+                        </div>
+                    </div>
+                )}
             </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
+<<<<<<< HEAD
 =======
 // import React, { useState, useContext } from "react";
 // import { makeStyles } from "@material-ui/core/styles";
@@ -366,3 +379,5 @@ export default function HorizontalLinearStepper() {
 //   );
 // }
 >>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
+=======
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1

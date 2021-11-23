@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
 import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
 import Funnel from "../../components/graphicsAdmin/Funnel";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
+<<<<<<< HEAD
 import LocationMigrants from "../../components/graphicsAdmin/LocationMigrants";
+=======
+import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
+>>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
+import { providerContext } from "../../Context/status";
 
 const DashboardAdmin = () => {
+    const { getConvocatorys, convocatorys, getConvocatory, convocatory } =
+        useContext(providerContext);
+
+    useEffect(() => {
+        getConvocatorys();
+    }, []);
+    console.log(convocatory);
     return (
         <>
             <div className="section__dash">
@@ -31,14 +43,31 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Meta de la cohorte</h2>
                         </div>
                         <div className="cohorteGoal__container-graph">
-                            <CohorteGoal />
+                            <select name="qualify" className="form-select">
+                                <option value="select">
+                                    Selecione una opción
+                                </option>
+                                {convocatorys.map((item) => (
+                                    <option
+                                        value={item.name}
+                                        onClick={() => getConvocatory(item._id)}
+                                        key={item._id}
+                                    >
+                                        {item.name}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {convocatory.map((item) => (
+                                <CohorteGoal item={item} />
+                            ))}
                         </div>
                     </div>
 
                     <div className="socialMedia__container">
                         <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
+                                ¿Dónde te enteraste de nosotros?
                             </h2>
                         </div>
                         <div className="socialMedia__container-graph">
@@ -49,7 +78,7 @@ const DashboardAdmin = () => {
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
+                                Número de registrados a entrevista y fecha
                             </h2>
                         </div>
                         <div className="funnel__container-graph">
@@ -58,9 +87,7 @@ const DashboardAdmin = () => {
                     </div>
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">
-                                ¿Donde te enteraste de nosotros?
-                            </h2>
+                            <h2 className="m-0">Embudo de selección</h2>
                         </div>
                         <div className="funnel__container-graph">
                             <FunnelDos />
@@ -68,7 +95,15 @@ const DashboardAdmin = () => {
                     </div>
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">¿Datos generales migrantes?</h2>
+                            <h2 className="m-0">Porcentaje que van pasando</h2>
+                        </div>
+                        <div className="funnel__container-graph">
+                            <AmountPassing />
+                        </div>
+                    </div>
+                    <div className="funnel__container">
+                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">Datos generales migrantes</h2>
                         </div>
                         <div className="funnel__container-graph">
                             <DateMigrants />
