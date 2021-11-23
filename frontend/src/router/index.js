@@ -16,51 +16,69 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import Results from "../page/Results/Results";
 
 const App = () => {
-  const initialState = {
-    nameAdmin: "Diego Admin",
-    admin: true,
-    loged: false,
-  };
+    const initialState = {
+        nameAdmin: "Diego Admin",
+        admin: true,
+        loged: true,
+    };
 
-  const initialState2 = {
-    name: "Kevin",
-    admin2: false,
-    loged2: true,
-  };
+    const initialState2 = {
+        name: "Kevin",
+        admin2: false,
+        loged2: false,
+    };
 
-  const [adminstate, setAdmin] = useState(initialState);
-  const [user, setUser] = useState(initialState2);
+    const [adminstate, setAdmin] = useState(initialState);
+    const [user, setUser] = useState(initialState2);
 
-  const { admin, loged } = adminstate;
-  const { admin2, loged2 } = user;
-  const admin3 = true;
-  const loged3 = true;
-  return (
-    <BrowserRouter>
-      <Header user={user} adminstate={adminstate} />
-      <div className="d-flex hhh">
-        <Nav user={user} adminstate={adminstate} />
-        <Switch>
-          
-          {admin3 && loged3 && (
-            <>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/convocatoria" component={Convocatory} />
-              <Route path="/aspirantes" component={Aspirants} />
-              <Route path="/resultados" component={Results} />
-            </>
-          )}
-          {!admin2 && loged2 && (
-            <>
-              <Route exact path="/" component={DashboardAspirant} />
-              <Route exact path="/inscripcion" component={FormInscription} />
-              <Route exact path="/entrevista" component={InterviewAspirant} />
-              <Route exact path="/aspirante" component={ProofAspirant} />
-            </>
-          )}
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+    const { admin, loged } = adminstate;
+    const { admin2, loged2 } = user;
+    const admin3 = true;
+    const loged3 = true;
+    return (
+        <BrowserRouter>
+            <Header user={user} adminstate={adminstate} />
+            <div className="d-flex hhh">
+                <Nav user={user} adminstate={adminstate} />
+                <Switch>
+                    {admin3 && loged3 && (
+                        <>
+                            <Route exact path="/" component={Dashboard} />
+                            <Route
+                                path="/convocatoria"
+                                component={Convocatory}
+                            />
+                            <Route path="/aspirantes" component={Aspirants} />
+                            <Route path="/resultados" component={Results} />
+                        </>
+                    )}
+                    {!admin2 && loged2 && (
+                        <>
+                            <Route
+                                exact
+                                path="/"
+                                component={DashboardAspirant}
+                            />
+                            <Route
+                                exact
+                                path="/inscripcion"
+                                component={FormInscription}
+                            />
+                            <Route
+                                exact
+                                path="/entrevista"
+                                component={InterviewAspirant}
+                            />
+                            <Route
+                                exact
+                                path="/aspirante"
+                                component={ProofAspirant}
+                            />
+                        </>
+                    )}
+                </Switch>
+            </div>
+        </BrowserRouter>
+    );
 };
 export default App;
