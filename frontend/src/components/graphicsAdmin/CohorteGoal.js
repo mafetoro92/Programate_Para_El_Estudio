@@ -11,11 +11,12 @@ defaults.plugins.legend.position = "bottom";
 
 const CohorteGoal = ({ item }) => {
     const { maxQuotas, usersRegisted } = item;
+
     const data = {
         datasets: [
             {
                 label: "# of Votes",
-                data: [40, 50],
+                data: [40, `${maxQuotas}`],
                 backgroundColor: ["#FFCC02", "#D7D7D7"],
                 hoverBackgroundColor: ["#FFCC02", "#D7D7D7"],
             },

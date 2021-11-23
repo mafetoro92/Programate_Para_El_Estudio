@@ -10,9 +10,9 @@ import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTe
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-import ResultsInscription from "../page/inscription/ResultsInscription"; 
-import MotivationLetter from "../page/inscription/MotivationLetter"; 
-import Parameterization from "../page/inscription/Inscription"; 
+import ResultsInscription from "../page/inscription/ResultsInscription";
+import MotivationLetter from "../page/inscription/MotivationLetter";
+import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
@@ -30,14 +30,10 @@ const App = () => {
         loged2: false,
     };
 
-  const initialState2 = {
-    name: "Kevin",
-    admin2: false,
-    loged2: true,
-  };
-
-  const [adminstate, setAdmin] = useState(initialState);
-  const [user, setUser] = useState(initialState2);
+    const [adminstate, setAdmin] = useState(initialState);
+    const [user, setUser] = useState(initialState2);
+    const { admin, loged } = adminstate;
+    const { admin2, loged2 } = user;
 
     return (
         <>
@@ -52,17 +48,18 @@ const App = () => {
                                 path="/convocatoria"
                                 component={Convocatory}
                             />
-                            <Route path="/aspirantes"
-                                    component={Aspirants} 
+                            <Route path="/aspirantes" component={Aspirants} />
+                            <Route
+                                path="/resultsInscription"
+                                component={ResultsInscription}
                             />
-                            <Route path="/resultsInscription"
-                                    component={ResultsInscription} 
+                            <Route
+                                path="/motivationLetter"
+                                component={MotivationLetter}
                             />
-                            <Route path="/motivationLetter"
-                                    component={MotivationLetter} 
-                            />
-                            <Route path="/parameterization"
-                                    component={Parameterization} 
+                            <Route
+                                path="/parameterization"
+                                component={Parameterization}
                             />
                             <Route
                                 path="/administertechnicaltest"

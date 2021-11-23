@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
 import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
 import Funnel from "../../components/graphicsAdmin/Funnel";
@@ -8,8 +8,16 @@ import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
 import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
+import { providerContext } from "../../Context/status";
 
 const DashboardAdmin = () => {
+    const { getConvocatorys, convocatorys, getConvocatory, convocatory } =
+        useContext(providerContext);
+
+    useEffect(() => {
+        getConvocatorys();
+    }, []);
+    console.log(convocatory);
     return (
         <>
             <div className="section__dash">
@@ -35,14 +43,18 @@ const DashboardAdmin = () => {
                                 <option value="select">
                                     Selecione una opción
                                 </option>
-                                {CONVOCATORY.map((item) => (
-                                    <option value={item.name}>
+                                {convocatorys.map((item) => (
+                                    <option
+                                        value={item.name}
+                                        onClick={() => getConvocatory(item._id)}
+                                        key={item._id}
+                                    >
                                         {item.name}
                                     </option>
                                 ))}
                             </select>
 
-                            {CONVOCATORY.map((item) => (
+                            {convocatory.map((item) => (
                                 <CohorteGoal item={item} />
                             ))}
                         </div>
