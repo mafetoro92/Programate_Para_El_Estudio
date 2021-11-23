@@ -5,6 +5,7 @@ import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
+
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import Dashboard from "../page/dashboard/Dashboard";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
@@ -15,6 +16,8 @@ import Inscription from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import NewCohort from "../components/newConvocatory/NewCohort ";
+import EditCohort from "../components/newConvocatory/EditCohort";
 
 const App = () => {
   const initialState = {
@@ -44,6 +47,8 @@ const App = () => {
           {admin && loged && (
             <>
               <Route path="/convocatoria" component={Convocatory} />
+              <Route path="/nuevacohorte" component={NewCohort}/>
+              <Route path="/editarcohorte" component={EditCohort}/>
               <Route path="/aspirantes" component={Aspirants} />
               <Route path="/prueba" component={AdministerTechnicalTest}/>
               <Route path="/agregar" component={AdministerTechnicalTestAdd}/>

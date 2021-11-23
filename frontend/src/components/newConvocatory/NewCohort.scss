@@ -1,0 +1,28 @@
+// .section__convocatory {
+//     width: 100%;
+//     max-width: 1800px;
+//     height: 800px;
+//     padding: 20px;
+// }
+
+
+.containerNewTeam{
+    box-shadow: 0px 2px 4px #0000004f;
+    background-color:white;
+    border-radius: 5px;
+    padding-top: 15px;
+    padding-left: 15px;
+    margin-bottom:40px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    
+}
+
+.containerInformationOne{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    background-color:blue;
+}
