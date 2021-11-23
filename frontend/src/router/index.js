@@ -4,6 +4,7 @@ import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
+
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
@@ -16,6 +17,8 @@ import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import NewCohort from "../components/newConvocatory/NewCohort ";
+import EditCohort from "../components/newConvocatory/EditCohort";
 
 const App = () => {
     const initialState = {
@@ -43,6 +46,11 @@ const App = () => {
                 <Switch>
                     {admin && loged && (
                         <>
+                            <Route path="/nuevacohorte" component={NewCohort} />
+                            <Route
+                                path="/editarcohorte"
+                                component={EditCohort}
+                            />
                             <Route exact path="/" component={DashboardAdmin} />
                             <Route
                                 path="/convocatoria"

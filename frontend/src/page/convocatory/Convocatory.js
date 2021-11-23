@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import "./Convocatory.scss";
 import RequestService from "../../config/index";
+import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
 
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
@@ -60,6 +61,7 @@ const Convocatory = () => {
                         <span className="text-crumbs"> Convocatoria </span>
                     </div>
                 </div>
+                <NewConvocatory />
                 <Tablita key={rows.length} rows={rows} actions={actions} />
             </div>
         </>
