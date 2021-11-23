@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdministerTechnicalTest";
 
 const AdministerTechnicalTestAdd = () => {
+
+    const [test, setTest] = useState({
+        url: "",
+      });
+    
+      const onSubmit = (e) => {
+        e.preventDefault();
+        setTest({
+          url: "",
+        })
+      }
+    
+      const handleChange = (e) => {
+          const {name, value} = e.target
+          setTest({
+            ...test,
+            [name]: value
+          })
+      } 
+    
+      const {url} = test
+
     return (
         <div className="section__administer">
             <div className="section__content d-flex justify-content-between">
@@ -18,10 +40,14 @@ const AdministerTechnicalTestAdd = () => {
                 <form action="">
                     <label htmlFor="">Prueba técnica</label>
                     <input
+                    onChange = {handleChange}
+                    value = {url}
+                    name="url"
                         type="text"
                         className="form-control mb-3"
                         name="prueba_tecnica"
                         value=""
+                        required
                     ></input>
                     <label htmlFor="">Link</label>
                     <input
@@ -29,6 +55,7 @@ const AdministerTechnicalTestAdd = () => {
                         className="form-control mb-3"
                         name="link"
                         value=""
+                        required
                     ></input>
                     <select
                         class="form-select mb-3"
@@ -40,6 +67,7 @@ const AdministerTechnicalTestAdd = () => {
                         <option value="3">tres</option>
                     </select>
                     <input
+                    onClick = {onSubmit}
                         type="submit"
                         className="btn btn-primary add"
                         value="Agregar"

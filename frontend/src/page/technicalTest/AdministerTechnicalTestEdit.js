@@ -14,7 +14,28 @@ const AdministerTechnicalTestEdit = () => {
                     <span>Administrar prueba técnica</span>
                 </div>
             </div>
+
+
             <div className="form form-add m">
+                <form action="">
+                    <label htmlFor="">Puntaje</label>
+                    <input
+                        type="text"
+                        className="form-control mb-3"
+                        name="prueba_tecnica"
+                        value=""
+                    ></input>
+                    
+                    <button 
+                class="btn btn-success"
+                type="submit"
+                value="Enviar prueba"
+              >Guardar cambios</button>
+                </form>
+            </div>
+           
+
+            {/* <div className="form form-add m">
                 <form action="">
                     <label htmlFor="">Prueba técnica</label>
                     <input
@@ -45,7 +66,7 @@ const AdministerTechnicalTestEdit = () => {
                         value="Editar"
                     ></input>
                 </form>
-            </div>
+            </div> */}
         </div>
     );
 };

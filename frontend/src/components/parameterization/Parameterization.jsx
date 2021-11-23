@@ -45,7 +45,7 @@ const Parameterization = () => {
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">
+          <button className="button" type="submit" class="btn btn-primary">
             Guardar cambios
           </button>
         </div>
@@ -107,7 +107,7 @@ const Parameterization = () => {
               </select>
             </div>
             <div className="containerLabel">
-              <button type="submit" class="btn btn-primary">
+              <button className="button" type="submit" class="btn btn-primary">
                 Guardar cambios
               </button>
             </div>
