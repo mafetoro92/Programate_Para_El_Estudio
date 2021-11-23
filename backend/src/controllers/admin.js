@@ -166,7 +166,7 @@ adminRouter.post('/new-conv', async (req, res, next) => {
                 _id,
                 name,
                 initialDate,
-                finallDate,
+                finalDate,
                 program,
                 maxQuotas,
                 initialBootcampDate,
@@ -292,10 +292,21 @@ adminRouter.put('/parameterization/:_id', async (req, res) => {
 
 // Get all citations
 adminRouter.get('/citation', async (req, res) => {
+        const results = await Citation.find();
+        res.send(results)
+});
+adminRouter.get('/convocatories', async (req, res) => {
         const results = await Convocatory.find();
         res.send(results)
 });
-
+adminRouter.get('/convocatory/:id', async (req, res) => {
+        const results = await Convocatory.find({ _id: req.params.id });
+        res.send(results)
+});
+adminRouter.get('/acepp', async (req, res) => {
+        const profile = await Profile.find({ status: { pass: true } })
+        res.send(profile);
+})
 // Creates new citations
 adminRouter.post('/citation', async (req, res) => {
         const {

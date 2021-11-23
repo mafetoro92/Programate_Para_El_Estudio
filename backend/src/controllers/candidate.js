@@ -150,6 +150,7 @@ candidateRouter.get('/profile/:id', async (req, res) => {
         res.send(profile);
 })
 
+
 // GET PROFILE OF CANDIDATES
 candidateRouter.get('/candidate-profile/:id', async (req, res) => {
         // Data from de candidate document

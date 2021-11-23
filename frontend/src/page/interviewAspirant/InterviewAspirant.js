@@ -3,10 +3,9 @@ import './InterviewAspirant.scss';
 import { providerContext } from '../../Context/status'
 
 const InterviewAspirant = () => {
-  const { getProfiles, profiles, getProfile, profileT, getConvocatorys, convocatorys } = useContext(providerContext)
+  const { getProfiles, profiles, getProfile, profileT, convocatorys } = useContext(providerContext)
   useEffect(() => {
     getProfiles();
-    getConvocatorys();
     // getProfile("618c352d3ad3f3933bfb3b59")
   }, [])
   console.log(profileT)
