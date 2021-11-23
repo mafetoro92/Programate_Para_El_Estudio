@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,KAAK,EAAE,OAAO;CACjB;;AAED,AAAA,MAAM,CAAC;EACH,aAAa,EAAE,IAAI;CACtB;;AAED,AAAA,OAAO,CAAC;EACJ,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;CACd",
-    "sources": [
-        "TableConvocatory.scss"
-    ],
-    "names": [],
-    "file": "TableConvocatory.css"
-}

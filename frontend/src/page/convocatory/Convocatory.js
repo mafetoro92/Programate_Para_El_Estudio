@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import "./Convocatory.scss";
 import RequestService from '../../config/index'
+import TableConvocatory from "../../components/tables/TableConvocatory";
 
 const Convocatory = () => {
 
@@ -56,6 +57,7 @@ const getUser = async () => {
           </div>
         </div>
         <Tablita key={rows.length} rows={rows} actions={actions} />
+        <TableConvocatory/>
       </div>
     </>
   );
