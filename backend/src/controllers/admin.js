@@ -290,9 +290,18 @@ adminRouter.get("/citation", async (req, res) => {
     const results = await Citation.find();
     res.send(results);
 });
-adminRouter.get("/c", async (req, res) => {
-    const results = await Convocatory.find({});
+adminRouter.get("/convocatories", async (req, res) => {
+    const results = await Convocatory.find();
     res.send(results);
+});
+adminRouter.get("/convocatory/:id", async (req, res) => {
+    const results = await Convocatory.find({ _id: req.params.id });
+    res.send(results);
+});
+
+adminRouter.get("/acept", async (req, res) => {
+    const profile = await Profile.find({ status: { pass: true } });
+    res.send(profile);
 });
 
 adminRouter.put("/update-test", async (req, res) => {
