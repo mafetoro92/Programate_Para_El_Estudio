@@ -1,70 +1,95 @@
-import React from 'react'
-import "./NewCohort.scss"
+import React from "react";
+import "./NewCohort.scss";
 
 const NewCohort = () => {
-    return (
-        <div className="containerNewTeam">
-
-            <legend>Nueva Cohorte.</legend>
-
-            <div className="containerInformationOne">
+  return (
+    <>
+      <div className="section__aspirants">
+        <div className="section__content d-flex justify-content-between">
+          <span className="upperCase bold">Nueva Cohorte</span>
+          <div className="box__content">
+            <span className="text-crumbs bold-500">Programate</span>
+            <i class="fas fa-chevron-right subtitle" />
+            <span className="text-crumbs">Nueva Cohorte</span>
+          </div>
+        </div>
+        <div className="container__title">
+          <h2>Nueva Cohorte</h2>
+        </div>
+        <div className="box">
+        <div className="container__new__cohorte">
+          <div className="column__1">
+            <div className="content__input input_1">
+              <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
-                    Nombre Cohorte
+                  Nueva Cohorte
                 </label>
-                <input type="text" class="form-control" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre Nueva cohorte"
+                />
+              </div>
             </div>
-
-            <div className="containerInformationOne">
-                <label for="disabledSelect" class="form-label">
-                    Cupos
+            <div className="content__input input_2">
+              <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">
+                  Cupos
                 </label>
                 <input type="number" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
+          </div>
+          <div className="colunm__2">
+            <div className="content__input input_3">
+              {" "}
+              <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
-                    Fecha de inicio
+                  Fecha de inicio
                 </label>
-                <select>
-                    
-                </select>
+                <input type="date" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
+            <div className="content__input input_4">
+              {" "}
+              <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
-                    Fecha de cierre
+                  Fecha de cierre
                 </label>
-                <select>
-                    
-                </select>
+                <input type="date" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
+          </div>
+          <div className="colunm__3">
+            <div className="content__input input_5">
+              {" "}
+              <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
-                    Inicio del Bootcamp
+                  Inicio del Bootcamp
                 </label>
-                <select>
-                    
-                </select>
+                <input type="date" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
+            <div className="content__input input_6">
+              {" "}
+              <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">
-                    Cierre del Bootcamp 
+                  Cierre del Bootcamp
                 </label>
-                <select>
-                    
-                </select>
+                <input type="date" class="form-control" />
+              </div>
             </div>
-        
-
-        <button type="submit" class="btn btn-primary">
-            Guardar cambios
-        </button>
-            
+          </div>
         </div>
-            
-    )
-}
+        <div className="buttom__save">
+          <button type="button" class="btn btn-success">
+            Guardar Cambios
+          </button>
+        </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default NewCohort
+export default NewCohort;
