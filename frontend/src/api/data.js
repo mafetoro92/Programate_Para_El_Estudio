@@ -16,7 +16,7 @@ export const ITEMS = [
       },
       {
         name: "Dias de Entrevista",
-        path: "/",
+        path: "/dia-de-entrevista",
       },
     ],
   },
@@ -102,7 +102,7 @@ export const PROFILE_SOLOLEARN = [
         user_id: 1,
         userFullName: "Pablo",
         htmlScore: 50,
-        cssScore: 25,
+        cssScore: 0.25,
         javascriptScore: 27,
         pythonScore: 34,
         Score: 28,

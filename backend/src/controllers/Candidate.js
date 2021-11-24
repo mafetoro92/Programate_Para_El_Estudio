@@ -1,10 +1,21 @@
 const Profile = require('../db/models/Profile');
 const User = require('../db/models/User');
+const Result = require('../db/models/Result');
+const multer = require('multer');
+const mimeTypes = require('mime-types')
+const request = require('request');
+const { ConnectionStates } = require('mongoose');
+const nodemailer = require('nodemailer');
+const { google } = require('googleapis')
+const { OAuth2 } = google.auth
+const Calendar = require('../db/models/Calendar');
 
 const candidateRouter = require('express').Router()
 
-candidateRouter.get('/', async (req, res, next) => {
-        res.send("the router is fine")
+// GET CALIFACATION
+candidateRouter.get('/calification', async (req, res) => {
+        const calification = await Result.find()
+        res.send(calification)
 })
 
 // CREATES A NEW USER
@@ -79,12 +90,9 @@ candidateRouter.post('/profile', async (req, res, next) => {
         res.send(`${newProfile.user_id} profile saved`)
 })
 
+// GET ALL CANDIDATES
 candidateRouter.get('/candidate', async (req, res) => {
         const candidates = await User.find()
-        res.send(candidates);
-})
-candidateRouter.get('/profile', async (req, res) => {
-        const candidates = await Profile.find()
         res.send(candidates);
 })
 
@@ -184,6 +192,179 @@ candidateRouter.put('/update-candidate', async (req, res) => {
                 res.status(404).send({ error: "Candidate not found" })
         }
 
+})
+
+const oAuth2Client = new OAuth2(
+        '169447507213-pp77cjt1i0miu0fsfea1dson2vuvnvn7.apps.googleusercontent.com',
+        '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'
+)
+
+oAuth2Client.setCredentials({
+        refresh_token: '1//04ZNl89icy8DvCgYIARAAGAQSNwF-L9IrNd0_kBCZJnJEGfmgq7YzNwTS4nHx8eIOzBAQTGXMb5ZzTWznLUOWc0pz0uWC0BgiIhU',
+})
+
+
+
+
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+                user: 'programate.co@gmail.com', // generated ethereal user
+                pass: 'plltidxfuexzvfdr', // generated ethereal password
+        },
+});
+
+// UPLOAD FILE PDF
+const storage = multer.diskStorage({
+        destination: 'uploads/',
+        filename: function (req, file, cb) {
+                cb("", Date.now() + file.originalname + "." + mimeTypes.extension(file.mimetype));
+        }
+})
+
+const upload = multer({
+        storage: storage
+})
+
+// SAVE AND UPDATE SOLOLEARN DATA
+candidateRouter.get('/sololearm/:id', async (req, res) => {
+        var id = req.params.id
+        const perfiles = await Profile.find({ "user_id": id })
+        const params = JSON.stringify(perfiles)
+        const json = JSON.parse(params)
+        for (x of json) {
+                var usersololearm = (x.soloLearnProfile);
+        }
+        if (usersololearm === undefined) {
+                console.log("This user does not have a sololearn profile")
+        } else {
+                const calificationUpdate = await Result.find({ "user_id": id })
+                const params2 = JSON.stringify(calificationUpdate)
+                const json2 = JSON.parse(params2)
+                for (y of json2) {
+                        var users_id = (y.user_id).toString();
+                }
+                request(`https://api.sololearn.repl.co/profile/${usersololearm}`, async (err, response, body) => {
+                        if (!err) {
+                                const user = JSON.parse(body);
+                                var name = user.userDetails.name
+                                var html = 0;
+                                var css = 0;
+                                var javascript = 0;
+                                var python = 0;
+                                for (let i = 0; i < user.coursesProgress.length; i++) {
+                                        if (user.coursesProgress[i].courseId === 1014) {
+                                                html = user.coursesProgress[i].progress;
+                                        } else if (user.coursesProgress[i].courseId === 1024) {
+                                                javascript = user.coursesProgress[i].progress;
+                                        } else if (user.coursesProgress[i].courseId === 1023) {
+                                                css = user.coursesProgress[i].progress;
+                                        } else if (user.coursesProgress[i].courseId === 1073) {
+                                                python = user.coursesProgress[i].progress;
+                                        }
+                                }
+                                var p = (html + css + javascript + python) / 4;
+                                const { user_id = id,
+                                        userFullName = name,
+                                        htmlScore = html,
+                                        cssScore = css,
+                                        javascriptScore = javascript,
+                                        pythonScore = python,
+                                        soloLearnScore = p.toFixed(2)
+                                } = req.body
+                                const usersolo = new Result({
+                                        user_id,
+                                        userFullName,
+                                        htmlScore,
+                                        cssScore,
+                                        javascriptScore,
+                                        pythonScore,
+                                        soloLearnScore
+                                });
+                                if (users_id === undefined) {
+                                        await usersolo.save();
+                                } else {
+                                        await Result.updateOne({ "user_id": id }, {
+                                                $set: {
+                                                        htmlScore: html,
+                                                        cssScore: css,
+                                                        javascriptScore: javascript,
+                                                        pythonScore: python,
+                                                        soloLearnScore: p.toFixed(2)
+                                                }
+                                        })
+                                        console.log("Updated successfully")
+                                }
+
+                        } else {
+                                console.log("Error" + err.message);
+                        }
+                })
+        }
+        res.send("seving datas")
+})
+
+candidateRouter.post('/attendevent/:id/:idevent', async (req, res) => {
+        var id = req.params.id
+        const perfiles = await Profile.find({ "user_id": id })
+        const params = JSON.stringify(perfiles)
+        const json = JSON.parse(params)
+        for (z of json) {
+                var userid = (z.user_id).toString();
+        }
+
+        var idevent = req.params.idevent
+        const event = await Calendar.find({ "_id": idevent })
+        const params3 = JSON.stringify(event)
+        const json3 = JSON.parse(params3)
+        var id_user = []
+        for (t of json3) {
+                var id_evnet = (t._id).toString();
+                id_user = (t.users);
+                var link = (t.link).toString();
+                var quotas = (t.quotas)
+        }
+
+        const dataencontrada = id_user.includes(id)
+        const accountant = id_user.length;
+     
+        if(dataencontrada === false && accountant < quotas ){
+
+                await Calendar.updateOne({ "_id": id_evnet }, {
+                        $push:{
+                                users:{$each:[userid]}
+                        }
+                })
+
+                const us = await User.find({ "_id": id})
+                const params4 = JSON.stringify(us)
+                const json4 = JSON.parse(params4)
+                for (u of json4) {
+                        var emails = (u.email);
+                }
+                transporter.sendMail({
+                        from: '"Fred Foo 👻" <programate.co@gmail.com>', // sender address
+                        to: emails, // list of receivers
+                        subject: "Hello ✔", // Subject line
+                        html: link, // html body
+                });
+                res.send("user registered successfully and send email successfully")
+                
+        }else{
+                console.log("el usuario esta registrado o ya no hay cupo")
+                res.send("el usuario esta registrado o ya no hay cupo")
+        }
+   
+})
+
+candidateRouter.get('/calendar',async (req, res)=>{
+        const events = await Calendar.find()
+
+        console.log(events)
+        res.send(events)
 })
 
 module.exports = candidateRouter

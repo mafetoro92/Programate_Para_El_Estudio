@@ -14,8 +14,10 @@ import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnic
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import InterviewDay from "../page/citation/InterviewDay";
 
 const App = () => {
+
   const initialState = {
     nameAdmin: "Diego Admin",
     admin: true,
@@ -37,12 +39,15 @@ const App = () => {
   return (
     <>
       <Header user={user} adminstate={adminstate} />
-      <div className="d-flex hhh">
+      <div className="d-flex top">
         <Nav user={user} adminstate={adminstate} />
         <Switch>
           {admin && loged && (
             <>
               <Route path="/convocatoria" component={Convocatory} />
+              <Route path="/dia-de-entrevista">
+                <InterviewDay user={user} adminstate={adminstate}/>
+              </Route>
               <Route path="/aspirantes" component={Aspirants} />
               <Route exact path="/" component={Dashboard} />
             </>
@@ -50,7 +55,9 @@ const App = () => {
           {!admin2 && loged2 && (
             <>
               <Route exact path="/inscripción" component={FormInscription} />
-              <Route exact path="/entrevista" component={InterviewAspirant} />
+              <Route exact path="/entrevista">
+                <InterviewAspirant user={user} adminstate={adminstate}/>
+              </Route>
               <Route exact path="/aspirante" component={ProofAspirant} />
               <Route exact path="/" component={DashboardAspirant} />
             </>

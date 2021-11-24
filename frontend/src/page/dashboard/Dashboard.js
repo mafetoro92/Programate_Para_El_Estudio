@@ -1,5 +1,4 @@
 import React from "react";
-import FormAspirant from "../../components/formAspirant/FormAspirant";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
@@ -14,7 +13,7 @@ const Dashboard = () => {
             <span className='text-crumbs'>Dashboard</span>
           </div>
         </div>
-        <FormAspirant/>
+  
       </div>
     </>
   );

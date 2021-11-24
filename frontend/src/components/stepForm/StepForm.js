@@ -61,7 +61,7 @@ function getStepContent(step) {
     case 2:
       return (
         <>
-          <Step3 {...props} />{" "}
+          <Step3 {...props} />
           <button
             className="btn btn-primary send-data"
             type="submit"

@@ -11,8 +11,8 @@ function DashboardAspirant() {
 //   console.log('desde aca', PROFILE_SOLOLEARN);
 
   return (
-    <div className="section__dash">
-      <div className="section__content d-flex justify-content-between">
+    <div className="dash">
+      <div className="dash__content d-flex justify-content-between">
         <span className="upperCase bold">Dashboard Aspirante</span>
         <div className="box__content">
           <span className="text-crumbs bold-500">Programate</span>
@@ -25,7 +25,7 @@ function DashboardAspirant() {
             </div>
             <div className="doughtnut d-flex flex-wrap justify-content-around">
                 <div className="doughtnut__container">
-                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
+                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center gap-4">
                         <h2 className="m-0">Html</h2>
                         <i className="fab fa-html5 icon-soloLearn" />
                     </div>
@@ -38,11 +38,11 @@ function DashboardAspirant() {
                         ))}
                     </div>
                 </div>
-                <div className="doughtnut__container">
+                <div className="doughtnut__container spacingCss">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Css</h2>
-                            <i class="fab fa-css3-alt icon-soloLearn" />
+                            <i className="fab fa-css3-alt icon-soloLearn" />
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (
@@ -54,11 +54,11 @@ function DashboardAspirant() {
                         </div>
                     </div>
                 </div>
-                <div className="doughtnut__container mt-5">
+                <div className="doughtnut__container spacing">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Javascript</h2>
-                            <i class="fab fa-js icon-soloLearn" />
+                            <h2>Javascript</h2>
+                            <i className="fab fa-js icon-soloLearn" />
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (
@@ -70,11 +70,11 @@ function DashboardAspirant() {
                         </div>
                     </div>
                 </div>
-                <div className="doughtnut__container mt-5">
+                <div className="doughtnut__container spacing">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Python</h2>
-                            <i class="fab fa-python icon-soloLearn" />
+                            <i className="fab fa-python icon-soloLearn" />
                         </div>
                         <div className="doughtnut__container-graph">
                             {PROFILE_SOLOLEARN.map((item) => (

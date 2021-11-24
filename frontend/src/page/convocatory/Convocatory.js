@@ -7,8 +7,8 @@ import "./Convocatory.scss";
 const Convocatory = () => {
   return (
     <>
-      <div className="section__convocatory">
-        <div className="section__content mb-5 d-flex justify-content-between">
+      <div className="convocatory">
+        <div className="convocatory__content mb-5 d-flex justify-content-between">
           <span className="upperCase bold">Convocatorias</span>
           <div className="box__content">
             <span className="text-crumbs bold-500">Programate</span>

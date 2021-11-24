@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { ITEMS, ITEMS_ASPIRANTS } from "../../api/data";
-import { showLogo, hideLogo } from "../../utils/nav";
 import Item from "../item/Item";
 import "./Nav.scss";
 
 const Nav = ({ user, adminstate }) => {
   const [activeItems, setActiveItems] = useState([]);
 
-  const { nameAdmin, admin, loged } = adminstate;
-  const { name, admin2, loged2 } = user;
+  const { admin, loged } = adminstate;
+  const { admin2, loged2 } = user;
 
   const toggleItem = (id) => {
     if (activeItems.find((active) => active === id)) {
@@ -18,9 +17,9 @@ const Nav = ({ user, adminstate }) => {
       setActiveItems([...activeItems, id]);
     }
   };
-
+  
   return (
-    <div className="nav" onMouseOver={showLogo} onMouseLeave={hideLogo}>
+    <div className="nav" id="menu">
       <span className="nav__title">Menu</span>
       <div className="nav__items mt-2">
         <nav className="nav__fixed">
