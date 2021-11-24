@@ -262,6 +262,33 @@ adminRouter.post('/csv/', async (req, res) => {
     res.json({ data: csvFromArrayOfObjects })
 })
 
+// CREATES NEW CONVOCATORY
+adminRouter.post("/new-conv", async (req, res, next) => {
+    // DATA REQUIRED FROM REQUEST
+    const {
+        name,
+        initialDate,
+        finalDate,
+        program,
+        maxQuotas,
+        initialBootcampDate,
+        finalBootcampDate,
+        usersRegisted,
+    } = req.body;
+    // New Convocatory document
+    const newConvocatory = new Convocatory({
+        name,
+        initialDate,
+        finalDate,
+        program,
+        maxQuotas,
+        initialBootcampDate,
+        finalBootcampDate,
+        usersRegisted,
+    });
+    await newConvocatory.save();
+    res.send({ data: newConvocatory });
+});
 
 // Updates the parameters for actual convocatory
 adminRouter.put('/parameterization/:_id', async (req, res) => {

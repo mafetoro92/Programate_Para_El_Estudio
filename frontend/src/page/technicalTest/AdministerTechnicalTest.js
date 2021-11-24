@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AdministerTechnicalTest.scss";
+import Swal from "sweetalert2";
 const AdministerTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -23,6 +24,27 @@ const AdministerTechnicalTest = () => {
         },
     ];
 
+    const modalDelete = () => {
+        Swal.fire({
+            title: "¿Esta seguro?",
+            text: "Se eliminará de forma permanente",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#92C149",
+            cancelButtonColor: "#DF2626",
+            denyButtonColor: "grey",
+            confirmButtonText: "Eliminar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Registro eliminado!",
+                    icon: "success",
+                    confirmButtonColor: "#92C149",
+                });
+            }
+        });
+    };
+
     return (
         <>
             <div className="section__administer">
@@ -41,7 +63,9 @@ const AdministerTechnicalTest = () => {
                 <div className="form">
                     <Link to="/administertechnicaltestadd">
                         <div>
-                            <button className="btn btn-primary">Agregar</button>
+                            <button className="btn btn-primary add">
+                                Agregar
+                            </button>
                         </div>
                     </Link>
                     <div className="section__table table">
@@ -63,14 +87,23 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            <Link to="/administertechnicaltestedit">
-                                                <button className="btn btn-success">
-                                                    <i className="fas fa-edit"></i>
+                                            <div className="buttom d-flex justify-content-center align-items-center">
+                                                <Link to="/administertechnicaltestedit">
+                                                    <button className="btn btn-success">
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                </Link>
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        prueba.id &&
+                                                        modalDelete(prueba.id)
+                                                    }
+                                                    className="btn btn-danger"
+                                                >
+                                                    <i className="fas fa-trash"></i>
                                                 </button>
-                                            </Link>
-                                            <button className="btn btn-danger">
-                                                <i className="fas fa-trash"></i>
-                                            </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

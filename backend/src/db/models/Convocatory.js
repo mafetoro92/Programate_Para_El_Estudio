@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const ConvocatorySchema = new Schema(
@@ -21,10 +21,9 @@ const ConvocatorySchema = new Schema(
     maxSocioeconomicStratus: { type: Number, default: 3 },
     usersRegisted: Array,
     test: Object,
-    status: Boolean
-  }
-);
+    status: Boolean,
+  });
 
-const Convocatory = model('Convocatory', ConvocatorySchema)
+const Convocatory = model("Convocatory", ConvocatorySchema);
 
-module.exports = Convocatory
+module.exports = Convocatory;
