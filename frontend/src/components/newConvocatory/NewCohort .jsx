@@ -1,5 +1,6 @@
 import React from "react";
 import "./NewCohort.scss";
+import { Link } from "react-router-dom";
 
 const NewCohort = () => {
   return (
@@ -36,7 +37,7 @@ const NewCohort = () => {
                 <label for="disabledTextInput" class="form-label">
                   Cupos
                 </label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" min="0" step="1" max=""/>
               </div>
             </div>
           </div>
@@ -82,9 +83,10 @@ const NewCohort = () => {
           </div>
         </div>
         <div className="buttom__save">
-          <button type="button" class="btn btn-success">
+          <Link to="/convocatoria"><button type="button" class="btn btn-success">
             Guardar Cambios
-          </button>
+          </button></Link>
+          
         </div>
         </div>
       </div>

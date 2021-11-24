@@ -36,7 +36,7 @@ const EditCohort = () => {
                   <label for="disabledTextInput" class="form-label">
                     Cupos
                   </label>
-                  <input type="number" class="form-control" />
+                  <input type="number" class="form-control" min="0" step="1" max=""/>
                 </div>
               </div>
             </div>
@@ -82,9 +82,9 @@ const EditCohort = () => {
             </div>
           </div>
             <div className="buttom__save">
-              <button type="button" class="btn btn-success">
+              <Link to="/convocatoria"><button type="button" class="btn btn-success">
                 Guardar Cambios
-              </button>
+              </button></Link>
             </div>
         </div>
       </div>
