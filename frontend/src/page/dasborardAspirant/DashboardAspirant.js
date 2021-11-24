@@ -19,6 +19,11 @@ function DashboardAspirant() {
                     <span className="text-crumbs">Dashboard</span>
                 </div>
             </div>
+            <div className="status__container mt-5">
+                <p>
+                    <em>Estado del aspirante:</em> Aceptado
+                </p>
+            </div>
             <div className="title__section d-flex justify-content-center">
                 <h2>SoloLearn</h2>
             </div>
@@ -53,7 +58,7 @@ function DashboardAspirant() {
                         </div>
                     </div>
                 </div>
-                <div className="doughtnut__container mt-5">
+                <div className="doughtnut__container">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Javascript</h2>
@@ -69,7 +74,7 @@ function DashboardAspirant() {
                         </div>
                     </div>
                 </div>
-                <div className="doughtnut__container mt-5">
+                <div className="doughtnut__container">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Python</h2>

@@ -12,28 +12,40 @@ const ModalConvocatory = () => {
                     <a href="#close" title="Close" className="closeA">
                         X
                     </a>
-                    <h2>Datos del estudiante</h2>
+                    <h2>Cohorte</h2>
                     <div className="row">
                         <div className="col-12 col-md-6 d-flex align-item-left item">
                             <p>
-                                <em>Primer nombre:</em> Pedro
+                                <em>Nombre de la cohorte:</em> Cohorte1
                             </p>
                         </div>
                         <div className="col-12 col-md-6 d-flex align-item-left">
                             <p>
-                                <em>Segundo nombre:</em> Pedro
+                                <em>Cupos:</em> 150
                             </p>
                         </div>
                     </div>
                     <div className="row mt-4">
                         <div className="col-12 col-md-6 d-flex align-item-left item">
                             <p>
-                                <em>Primer apellido:</em> Ayala
+                                <em>Fecha de inicio:</em> 21/03/2021
                             </p>
                         </div>
                         <div className="col-12 col-md-6">
                             <p>
-                                <em>Segundo apellido:</em> Pedro
+                                <em>Fecha de cierre:</em> 21/12/2021
+                            </p>
+                        </div>
+                    </div>
+                    <div className="row mt-4">
+                        <div className="col-12 col-md-6 d-flex align-item-left item">
+                            <p>
+                                <em>Inicio del bootcamp:</em> 21/03/2021
+                            </p>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <p>
+                                <em>Cierre del bootcamp:</em> 21/12/2021
                             </p>
                         </div>
                     </div>

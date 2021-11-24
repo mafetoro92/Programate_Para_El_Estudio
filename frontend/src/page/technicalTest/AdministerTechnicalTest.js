@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./AdministerTechnicalTest.scss";
 import Swal from "sweetalert2";
+import modalDelete from "../../components/alert/alert";
 const AdministerTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -59,6 +60,11 @@ const AdministerTechnicalTest = () => {
                         <i class="fas fa-chevron-right subtitle" />
                         <span>Administrar prueba técnica</span>
                     </div>
+                </div>
+                <div>
+                    <bottom type="buttom" onClick={modalDelete}>
+                        alert
+                    </bottom>
                 </div>
                 <div className="form">
                     <Link to="/administertechnicaltestadd">
