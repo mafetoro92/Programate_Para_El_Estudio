@@ -4,6 +4,7 @@ import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
+
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
@@ -16,6 +17,8 @@ import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import NewCohort from "../components/newConvocatory/NewCohort ";
+import EditCohort from "../components/newConvocatory/EditCohort";
 
 const App = () => {
     const initialState = {
@@ -45,11 +48,6 @@ const App = () => {
                         <>
                             <Route exact path="/" component={DashboardAdmin} />
                             <Route
-                                path="/convocatoria"
-                                component={Convocatory}
-                            />
-                            <Route path="/aspirantes" component={Aspirants} />
-                            <Route
                                 path="/resultsInscription"
                                 component={ResultsInscription}
                             />
@@ -62,30 +60,40 @@ const App = () => {
                                 component={Parameterization}
                             />
                             <Route
-                                path="/administertechnicaltest"
+                                path="/convocatoria"
+                                component={Convocatory}
+                            />
+                            <Route path="/nuevacohorte" component={NewCohort} />
+                            <Route
+                                path="/editarcohorte"
+                                component={EditCohort}
+                            />
+                            <Route path="/aspirantes" component={Aspirants} />
+                            <Route
+                                path="/prueba"
                                 component={AdministerTechnicalTest}
                             />
                             <Route
-                                path="/administertechnicaltestadd"
+                                path="/agregar"
                                 component={AdministerTechnicalTestAdd}
                             />
                             <Route
-                                path="/administertechnicaltestedit"
+                                path="/editar"
                                 component={AdministerTechnicalTestEdit}
                             />
                             <Route
-                                path="/qualifytechnicaltest"
+                                path="/calificar"
                                 component={QualifyTechnicalTest}
                             />
+                            <Route
+                                path="/inscripcion"
+                                component={Inscription}
+                            />
+                            <Route exact path="/" component={Dashboard} />
                         </>
                     )}
                     {!admin2 && loged2 && (
                         <>
-                            <Route
-                                exact
-                                path="/"
-                                component={DashboardAspirant}
-                            />
                             <Route
                                 exact
                                 path="/inscripción"
@@ -100,6 +108,11 @@ const App = () => {
                                 exact
                                 path="/aspirante"
                                 component={ProofAspirant}
+                            />
+                            <Route
+                                exact
+                                path="/"
+                                component={DashboardAspirant}
                             />
                         </>
                     )}

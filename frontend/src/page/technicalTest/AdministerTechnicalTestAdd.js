@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdministerTechnicalTest";
+import { Link } from "react-router-dom";
 
 const AdministerTechnicalTestAdd = () => {
+
+    // const [test, setTest] = useState({
+    //     url: "",
+    //   });
+    
+    //   const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     setTest({
+    //       url: "",
+    //     })
+    //   }
+    
+    //   const handleChange = (e) => {
+    //       const {name, value} = e.target
+    //       setTest({
+    //         ...test,
+    //         [name]: value
+    //       })
+    //   } 
+    
+    //   const {url} = test
+
     return (
         <div className="section__administer">
             <div className="section__content d-flex justify-content-between">
@@ -20,30 +43,35 @@ const AdministerTechnicalTestAdd = () => {
                     <input
                         type="text"
                         className="form-control mb-3"
-                        name="prueba_tecnica"
-                        value=""
+                        name="prueba_tecnica" 
+                        // value=""                   
+                        required
                     ></input>
                     <label htmlFor="">Link</label>
                     <input
                         type="text"
                         className="form-control mb-3"
                         name="link"
-                        value=""
+                        // value=""
+                        required
                     ></input>
                     <select
                         class="form-select mb-3"
                         aria-label="Default select example"
                     >
-                        <option selected>Seleccione</option>
-                        <option value="1">uno</option>
-                        <option value="2">dos</option>
-                        <option value="3">tres</option>
+                        
+                        <option value="1">Convocatoria 1</option>
+                        <option value="2">Convocatoria 2</option>
+                        <option value="3">Convocatoria 3</option>
                     </select>
-                    <input
-                        type="submit"
-                        className="btn btn-primary add"
-                        value="Agregar"
-                    ></input>
+
+                    <div className="buttom__create">
+            <Link to="/prueba"> 
+             <button type="submit" class="btn btn-success">
+                Crear
+              </button>
+            </Link>
+            </div>  
                 </form>
             </div>
         </div>

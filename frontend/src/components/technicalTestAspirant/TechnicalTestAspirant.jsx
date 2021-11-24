@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TechnicalTestAspirant.scss";
 
 const TechnicalTestAspirant = () => {
+
   const [test, setTest] = useState({
     testurl: "",
   });
@@ -75,7 +76,8 @@ const TechnicalTestAspirant = () => {
                   required
                 />
               </div>
-              <button
+           
+              <button 
                 onClick = {onSubmit}
                 class="btn btn-success"
                 type="submit"
