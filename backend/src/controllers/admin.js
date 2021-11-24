@@ -1,179 +1,3 @@
-<<<<<<< HEAD
-const Convocatory = require('../db/models/Convocatory');
-const Profile = require('../db/models/Profile');
-const User = require('../db/models/User');
-                total: convocatoryData[0].usersRegisted.length,
-                residencyDepartment: {},
-                women: 0,
-                man: 0,
-                other: 0,
-                totalregistered: 0,
-                totalwithCitation: 0,
-                totalmigrants: 0,
-                interviewed: 0,
-                totalPass: 0,
-                interviewDays: {},
-                remainingToGoal: 0,
-                heardFromUs: {},
-        };
-        for (let citation of citationData) {
-                let date = citation.date.toString();
-                date = date.split(" ").slice(1, 4).join("-");
-                if (totalUsers.interviewDays[date]) {
-                        totalUsers.interviewDays[date] += citation.users.length;
-                } else {
-                        totalUsers.interviewDays[date] = citation.users.length;
-                }
-        }
-        // Ciclo para extraer la info de cada usuario registrado en la convocatoria
-        for (let candidateId of convocatoryData[0].usersRegisted) {
-                // Perfil del candidato
-                const candidate = await Profile.find({ user_id: candidateId });
-                // Total genero: 0-Mujer, 1-Hombre, 2-Otro
-                // Busca si la propiedad existe y aumenta 1, sino lo agrega con el valor 1
-                //console.log(candidate[0].gender)
-                if (candidate[0].gender === 0) {
-                        if (totalUsers.women) {
-                                totalUsers.women += 1;
-                        } else {
-                                totalUsers.women = 1;
-                        }
-                }
-                if (candidate[0].gender === 1) {
-                        if (totalUsers.man) {
-                                totalUsers.man += 1;
-                        } else {
-                                totalUsers.man = 1;
-                        }
-                }
-                if (candidate[0].gender === 2) {
-                        if (totalUsers.other) {
-                                totalUsers.other += 1;
-                        } else {
-                                totalUsers.other = 1;
-                        }
-                }
-                // Total registrados en la convocatoria
-                if (candidate[0].status.registered === true) {
-                        if (totalUsers.totalregistered) {
-                                totalUsers.totalregistered += 1;
-                        } else {
-                                totalUsers.totalregistered = 1;
-                        }
-                }
-                // Total citados
-                if (candidate[0].status.withCitation === true) {
-                        if (totalUsers.totalwithCitation) {
-                                totalUsers.totalwithCitation += 1;
-                        } else {
-                                totalUsers.totalwithCitation = 1;
-                        }
-                }
-                // Total entrevistados
-                if (candidate[0].status.interviewed === true) {
-                        if (totalUsers.interviewed) {
-                                totalUsers.interviewed += 1;
-                        } else {
-                                totalUsers.interviewed = 1;
-                        }
-                }
-                // Total que pasaron el proceso
-                if (candidate[0].status.pass === true) {
-                        if (totalUsers.totalPass) {
-                                totalUsers.totalPass += 1;
-                        } else {
-                                totalUsers.totalPass = 1;
-                        }
-                }
-                // Total de departamentos de residencia
-                // Si el departamento no existe lo agrega, si existe le suma 1
-                // En el objeto residencyDepartment en totalUsers
-                const deparment = candidate[0].residencyDepartment;
-                if (deparment) {
-                        if (totalUsers.residencyDepartment[deparment]) {
-                                totalUsers.residencyDepartment[deparment] += 1;
-                        } else {
-                                totalUsers.residencyDepartment[deparment] = 1;
-                        }
-                }
-                if (candidate[0].status.migrants === true) {
-                        if (totalUsers.totalmigrants) {
-                                totalUsers.totalmigrants += 1;
-                        } else {
-                                totalUsers.totalmigrants = 1;
-                        }
-                }
-                if (candidate[0].heardFromUs) {
-                        //console.log(candidate[0].heardFromUs)
-                        for (const [key, value] of Object.entries(
-                                candidate[0].heardFromUs
-                        )) {
-                                if (value) {
-                                        if (totalUsers.heardFromUs[key]) {
-                                                totalUsers.heardFromUs[key] += 1;
-                                        } else {
-                                                totalUsers.heardFromUs[key] = 1;
-                                        }
-                                }
-                        }
-                }
-        }
-        // Check how many to remains to goal
-        if (totalUsers.totalPass < convocatoryData[0].maxQuotas) {
-                const goal = convocatoryData[0].maxQuotas - totalUsers.totalPass;
-                totalUsers.remainingToGoal = goal;
-        } else {
-                totalUsers.remainingToGoal = 0;
-        }
-        res.json({
-                data: totalUsers,
-        });
-});
-
-// CREATES NEW CONVOCATORY
-adminRouter.post('/new-conv', async (req, res, next) => {
-        // DATA REQUIRED FROM REQUEST
-        const {
-                name,
-                initialDate,
-                finalDate,
-                program,
-                maxQuotas,
-                initialBootcampDate,
-                finalBootcampDate,
-                usersRegisted
-
-        } = req.body;
-        // New Convocatory document
-        const newConvocatory = new Convocatory({
-                name,
-                initialDate,
-                finalDate,
-                program,
-                maxQuotas,
-                initialBootcampDate,
-                finalBootcampDate,
-                usersRegisted,
-
-        });
-        await newConvocatory.save();
-        res.send({ data: newConvocatory });
-})
-
-
-// UPDATE CONVOCATORY
-adminRouter.put('/update-conv/:id', async (req, res) => {
-        try {
-                const convocatory = await Convocatory.findById(req.params.id)
-                Object.assign(convocatory, req.body)
-                convocatory.save()
-                res.send({ data: convocatory })
-        } catch {
-                res.status(404).send({ error: "Convocatory not found" })
-        }
-})
-
-=======
 const Convocatory = require("../db/models/Convocatory");
 const Profile = require("../db/models/Profile");
 const User = require("../db/models/User");
@@ -359,7 +183,6 @@ adminRouter.put("/update-conv/:id", async (req, res) => {
         res.status(404).send({ error: "Convocatory not found" });
     }
 });
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get("/get-result/:id", async (req, res) => {
@@ -436,38 +259,6 @@ adminRouter.get("/csv/", async (req, res) => {
 
 // Updates the parameters for actual convocatory
 adminRouter.put("/parameterization/:_id", async (req, res) => {
-<<<<<<< HEAD
-        try {
-                const { _id } = req.params;
-                const result = await Convocatory.updateMany(
-                        { _id },
-                        {
-                                $set: {
-                                        parameterization: {
-                                                personalProfile:
-                                                        req.body.parameterization.personalProfile,
-                                                sololearn: req.body.parameterization.sololearn,
-                                                motivationLetter:
-                                                        req.body.parameterization.motivationLetter,
-                                        },
-                                        residenceCountry: req.body.residenceCountry,
-                                        residencyDepartment: req.body.residencyDepartment,
-                                        maxAge: req.body.maxAge,
-                                        maxSocioeconomicStratus: req.body.maxSocioeconomicStratus,
-                                },
-                        }
-                );
-                res.send({ data: result });
-        } catch {
-                res.status(404).send({ error: "parameterization category not put" });
-        }
-});
-
-// Get all citations
-adminRouter.get('/citation', async (req, res) => {
-        const results = await Citation.find();
-        res.send(results)
-=======
     try {
         const { _id } = req.params;
         const result = await Convocatory.updateMany(
@@ -498,7 +289,6 @@ adminRouter.get('/citation', async (req, res) => {
 adminRouter.get("/citation", async (req, res) => {
     const results = await Citation.find();
     res.send(results);
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 });
 adminRouter.get("/convocatories", async (req, res) => {
     const results = await Convocatory.find();
@@ -509,9 +299,9 @@ adminRouter.get("/convocatory/:id", async (req, res) => {
     res.send(results);
 });
 
-adminRouter.get("/acept", async (req, res) => {
-    const profile = await Profile.find({ status: { pass: true } });
-    res.send(profile);
+adminRouter.get("/acept/:id", async (req, res) => {
+    const user = await User.find({ _id: req.params.id });
+    res.send(user);
 });
 
 adminRouter.put("/update-test", async (req, res) => {
@@ -535,20 +325,6 @@ adminRouter.put("/update-test", async (req, res) => {
 });
 // Creates new citations
 adminRouter.post("/citation", async (req, res) => {
-<<<<<<< HEAD
-        const { users, date, journy, quotasCompleted, maxQuotas } = req.body;
-        const citation = new Citation({
-                users,
-                date,
-                journy,
-                quotasCompleted,
-                maxQuotas,
-        });
-        await citation.save();
-        res.send("citation saved")
-
-
-=======
     const { users, date, journy, quotasCompleted, maxQuotas } = req.body;
     const citation = new Citation({
         users,
@@ -559,30 +335,10 @@ adminRouter.post("/citation", async (req, res) => {
     });
     await citation.save();
     res.send("citation saved");
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 });
 
 // To upload the thecnical test for candidates
 adminRouter.put("/upload-test", async (req, res) => {
-<<<<<<< HEAD
-        try {
-                const _id = req.body;
-                const result = await Convocatory.updateMany(
-                        { _id },
-                        {
-                                $set: {
-                                        test: {
-                                                nameTest: req.body.test.nameTest,
-                                                linkTest: req.body.test.linkTest,
-                                        },
-                                },
-                        }
-                );
-                res.send(result);
-        } catch {
-                res.status(404).send({ error: "link citation category not put" });
-        }
-=======
     try {
         const _id = req.body;
         const result = await Convocatory.updateMany(
@@ -600,7 +356,6 @@ adminRouter.put("/upload-test", async (req, res) => {
     } catch {
         res.status(404).send({ error: "link citation category not put" });
     }
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 });
 
 // Create assesments rooms for interview days
@@ -623,27 +378,6 @@ adminRouter.post("/create-room", async (req, res) => {
         let interviewersFinals =
             interviewersList[interviewersRandom]._id.toString();
 
-<<<<<<< HEAD
-                let observersRandom = Math.floor(
-                        Math.random() * (observersList.length - 0) + 0
-                );
-                let observersFinals = observersList[observersRandom]._id.toString();
-                room = [[candidate, interviewersFinals, observersFinals], ...room];
-                console.log(room);
-        }
-
-        const rooms = new Rooms({
-                citationData,
-                interviewers: interviewersList,
-                observers: observersList,
-                room: room,
-        });
-        res.json({
-                data: {
-                        rooms,
-                },
-        });
-=======
         let observersRandom = Math.floor(
             Math.random() * (observersList.length - 0) + 0
         );
@@ -663,31 +397,10 @@ adminRouter.post("/create-room", async (req, res) => {
             rooms,
         },
     });
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 });
 
 // Create administrators and staff users
 adminRouter.post("/admin", async (req, res) => {
-<<<<<<< HEAD
-        const {
-                firstName,
-                lastName,
-                rol: { interviewer, observer, monitor },
-                available,
-        } = req.body;
-        const admin = new Administrator({
-                firstName,
-                lastName,
-                rol: {
-                        interviewer,
-                        observer,
-                        monitor,
-                },
-                available,
-        });
-        await admin.save();
-        res.send("profile saved");
-=======
     const {
         firstName,
         lastName,
@@ -706,7 +419,6 @@ adminRouter.post("/admin", async (req, res) => {
     });
     await admin.save();
     res.send("profile saved");
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 });
 
 // Get administrators and staff profiles
