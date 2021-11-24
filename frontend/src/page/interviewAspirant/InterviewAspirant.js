@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import AddNewFab from "../../components/calendar/AddNewFab";
 import CalendarView from "../../components/calendar/CalendarView";
-import DeleteEventFab from "../../components/calendar/DeleteEventFab";
+
 
 import "./InterviewAspirant.scss";
 

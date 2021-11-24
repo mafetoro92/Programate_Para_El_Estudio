@@ -1,5 +1,9 @@
 import React from "react";
 import "./QualifyTechnicalTest.scss";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { CSVLink } from "react-csv";
+
+
 const QualifyTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -44,7 +48,7 @@ const QualifyTechnicalTest = () => {
                 </div>
                 <div className="form">
                     <div className="section__table">
-                        <table className="table">
+                        <table className="table" id="prueba">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -82,6 +86,23 @@ const QualifyTechnicalTest = () => {
                         </table>
                     </div>
                 </div>
+
+                 <div>
+                     <ReactHTMLTableToExcel
+                        id="botonExportarExcel"
+                        className="btn btn-success"
+                        table="prueba"
+                        filename="Tabla-prueba"
+                        sheet="Pagina 1"
+                        buttonText="Exportar a Excel"
+                     />
+                </div>
+                                                <br/>
+                <div>
+                    
+                <CSVLink data={pruebas1} filename="prueba CSV"><button className="btn btn-success">Exportar CSV</button></CSVLink>
+                </div> 
+                
             </div>
         </>
     );

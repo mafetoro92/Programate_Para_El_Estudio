@@ -1,5 +1,6 @@
 import React from "react";
 import "./AdministerTechnicalTest";
+import { Link } from "react-router-dom";
 
 const AdministerTechnicalTestEdit = () => {
     return (
@@ -14,36 +15,24 @@ const AdministerTechnicalTestEdit = () => {
                     <span>Administrar prueba técnica</span>
                 </div>
             </div>
+
+
             <div className="form form-add m">
                 <form action="">
-                    <label htmlFor="">Prueba técnica</label>
+                    <label htmlFor="">Puntaje</label>
                     <input
-                        type="text"
+                        type="number"
                         className="form-control mb-3"
                         name="prueba_tecnica"
-                        value=""
+                        // value=""
+                        min="0" step="1" max="10"
                     ></input>
-                    <label htmlFor="">Link</label>
-                    <input
-                        type="text"
-                        className="form-control mb-3"
-                        name="link"
-                        value=""
-                    ></input>
-                    <select
-                        class="form-select mb-3"
-                        aria-label="Default select example"
-                    >
-                        <option selected>Seleccione</option>
-                        <option value="1">uno</option>
-                        <option value="2">dos</option>
-                        <option value="3">tres</option>
-                    </select>
-                    <input
-                        type="submit"
-                        className="btn btn-primary edit"
-                        value="Editar"
-                    ></input>
+                  <Link to="/prueba"> <button 
+                class="btn btn-success"
+                type="submit"
+                value="Enviar prueba"
+              >Guardar cambios</button></Link>  
+               
                 </form>
             </div>
         </div>

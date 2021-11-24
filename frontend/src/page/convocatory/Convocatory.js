@@ -1,4 +1,6 @@
 import React from "react";
+import NewCohort from "../../components/newConvocatory/NewCohort ";
+import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
 import TableConvocatory from "../../components/tables/TableConvocatory";
 //import Button from '@mui/material/Button';
 import "./Convocatory.scss";
@@ -16,7 +18,8 @@ const Convocatory = () => {
             <span className="text-crumbs">Convocatoria</span>
           </div>
         </div>
-        <TableConvocatory />
+        <NewConvocatory/>
+        {/* <TableConvocatory /> */}
       </div>
     </>
   );

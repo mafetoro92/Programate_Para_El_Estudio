@@ -5,16 +5,20 @@ import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
+
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import Dashboard from "../page/dashboard/Dashboard";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
+import Inscription from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import InterviewDay from "../page/citation/InterviewDay";
+import NewCohort from "../components/newConvocatory/NewCohort ";
+import EditCohort from "../components/newConvocatory/EditCohort";
 
 const App = () => {
 
@@ -44,11 +48,18 @@ const App = () => {
         <Switch>
           {admin && loged && (
             <>
-              <Route path="/convocatoria" component={Convocatory} />
               <Route path="/dia-de-entrevista">
                 <InterviewDay user={user} adminstate={adminstate}/>
               </Route>
+              <Route path="/convocatoria" component={Convocatory} />
+              <Route path="/nuevacohorte" component={NewCohort}/>
+              <Route path="/editarcohorte" component={EditCohort}/>
               <Route path="/aspirantes" component={Aspirants} />
+              <Route path="/prueba" component={AdministerTechnicalTest}/>
+              <Route path="/agregar" component={AdministerTechnicalTestAdd}/>
+              <Route path="/editar" component={AdministerTechnicalTestEdit}/>
+              <Route path="/calificar" component={QualifyTechnicalTest}/>
+              <Route path="/inscripcion" component={Inscription}/>
               <Route exact path="/" component={Dashboard} />
             </>
           )}
