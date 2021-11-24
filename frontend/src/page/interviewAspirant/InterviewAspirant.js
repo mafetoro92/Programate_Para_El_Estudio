@@ -19,27 +19,6 @@ const InterviewAspirant = () => {
           <span className="text-crumbs">Entrevista</span>
         </div>
       </div>
-      {
-        // console.log(profiles.residenceCountry)
-        profileT.map(user =>
-        (
-
-          <div key={user.id}>
-
-            <h1 onClick={() => getProfile(user.user_id)}>{user.municipalityOfResidency}</h1>
-          </div>
-        )
-        )
-      }
-      <h1>jjjjjjjj</h1>
-      {
-        convocatorys.map(resp => (
-          <div key={resp._id}>
-            <p>{resp.name}</p>
-          </div>
-        ))
-      }
-
 
     </div>
   );

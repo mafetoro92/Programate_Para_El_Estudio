@@ -284,7 +284,10 @@ adminRouter.put('/parameterization/:_id', async (req, res) => {
                                 }
                         }
                 );
-                res.send({ data: result })
+                res.send([
+                        _id,
+                        result
+                ])
         } catch {
                 res.status(404).send({ error: "parameterization category not put" })
         }
@@ -303,11 +306,7 @@ adminRouter.get('/convocatory/:id', async (req, res) => {
         const results = await Convocatory.find({ _id: req.params.id });
         res.send(results)
 });
-adminRouter.get('/acepp', async (req, res) => {
-        const profile = await Profile.find({ status: { pass: true } })
-        res.send(profile);
-})
-// Creates new citations
+
 adminRouter.post('/citation', async (req, res) => {
         const {
                 users,

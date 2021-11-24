@@ -29,7 +29,10 @@ export default (state, action) => {
         convocatory: payload
       };
     case PUT_PARAMETERIZATION:
-      return [...state, payload]
+      return {
+        ...state,
+        convocatory: payload
+      }
     default:
       return state;
   }

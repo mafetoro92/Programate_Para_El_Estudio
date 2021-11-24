@@ -4,44 +4,79 @@ import "./Parameterization.scss";
 
 
 const Parameterization = () => {
-    const { getConvocatorys, convocatorys, putParameterization, convocatory } = useContext(providerContext);
-    const [paramNum, setParamNum] = useState({
+    const { getConvocatorys, convocatorys, convocatory, putParameterization, getConvocatory } = useContext(providerContext);
+    const [datas, setDatas] = useState({
         parameterization: {
-            personalProfile: "",
-            sololearn: "",
-            motivationLetter: "",
-        }
-    })
-
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setParamNum({
-            ...paramNum,
-            [name]: value
+            personalProfile: 25,
+            sololearn: 25,
+            motivationLetter: 50
+        },
+        residenceCountry: "Colombia",
+        residencyDepartment: "",
+        maxAge: "",
+        maxSocioeconomicStratus: 3
+    });
+    const handleChangeB = (e) => {
+        setDatas({
+            ...datas,
+            parameterization: {
+                ...datas.parameterization,
+                [e.target.name]: e.target.value
+            }
         })
-    }
-    const onSubmit1 = (e) => {
-        e.preventDefault();
-        setParamNum()
-    }
 
+    }
+    const handleChangeC = (e) => {
+        setDatas({ ...datas, [e.target.name]: e.target.value });
+    }
     useEffect(() => {
         getConvocatorys()
     }, [])
 
-    useEffect(() => {
-        const paramFound = paramNum.find(param => param.id === param.id);
-        if (paramFound) {
-            setParamNum({
-                _id: paramFound.id,
-                parameterization: {
-                    personalProfile: paramFound.personalProfile,
-                    sololearn: paramFound.sololearn,
-                    motivationLetter: paramFound.motivationLetter,
-                },
-            });
+    const handleChange = (e) => {
+        const id = e.target.value
+        getConvocatory(id);
+    }
+
+    const handleOn = (e) => {
+        e.preventDefault();
+        const data = datas
+        const id = convocatory[0]._id
+        const idS = convocatory[0]
+        console.log(id)
+        console.log(idS)
+        if (id !== undefined) {
+            putParameterization(id, data);
+        } else {
+            putParameterization(idS, data);
         }
-    }, [paramNum._id, paramNum]);
+    }
+    const handleOn2 = (e) => {
+        e.preventDefault();
+        const data = datas
+        const id = convocatory[0]._id
+        const idS = convocatory[0]
+        console.log(id)
+        console.log(idS)
+        if (id !== undefined) {
+            putParameterization(id, data);
+        }
+        if (id === undefined) {
+            putParameterization(idS, data);
+        }
+    }
+
+    const [countries, setCountries] = useState([]);
+    const getCountry = async () => {
+        const url = "https://restcountries.com/v3.1/all";
+        const request = await fetch(url);
+        const countrie = await request.json();
+        const countries = countrie.map((item) => item.name.common).sort();
+        setCountries(countries);
+    };
+    useEffect(() => {
+        getCountry();
+    }, []);
     console.log(convocatorys)
     return (
 
@@ -52,12 +87,12 @@ const Parameterization = () => {
                         <h2>Parametrización</h2>
                     </div>
                     <div className="containerSelect">
-                        <select >
+                        <select onChange={(e) => handleChange(e)}>
                             <option>Seleciona una convocatoria</option>
                             {
                                 convocatorys.map(conv => (
                                     <option key={conv._id}
-                                        onClick={() => putParameterization(conv._id)}
+                                        value={conv._id}
                                     >
                                         {conv.name}</option>
                                 ))
@@ -65,7 +100,7 @@ const Parameterization = () => {
                         </select>
                     </div>
                 </div>
-                <form className="containerSecondSection" onSubmit={onSubmit1}>
+                <form className="containerSecondSection" onSubmit={handleOn}>
                     <legend>Peso de las categorías</legend>
                     <p>Estos valores son medidos en porcentanjes</p>
                     <div className="containerForm">
@@ -73,11 +108,13 @@ const Parameterization = () => {
                             <label
                                 for="disabledTextInput"
                                 class="form-label" >
-                                Edad
+                                Carta
                             </label>
                             <input type="number"
+                                name="motivationLetter"
                                 class="form-control"
-                                onChange={handleChange}
+                                onChange={handleChangeB}
+                                value={datas.parameterization.motivationLetter}
                                 placeholder={convocatory.maxAge} />
                         </div>
 
@@ -85,22 +122,22 @@ const Parameterization = () => {
                             <label for="disabledSelect" class="form-label">
                                 Sololearn
                             </label>
-                            <input type="number" class="form-control" />
+                            <input type="number" class="form-control" onChange={handleChangeB} name="sololearn" value={datas.parameterization.sololearn} />
                         </div>
 
                         <div className="containerLabel">
                             <label for="disabledTextInput" class="form-label">
                                 Perfil personal
                             </label>
-                            <input type="number" class="form-control" />
+                            <input type="number" class="form-control" onChange={handleChangeB} name="personalProfile" value={datas.parameterization.personalProfile} />
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" >
                         Guardar cambios
                     </button>
                 </form>
-                <div className="containerThirdSection">
+                <form className="containerThirdSection" onSubmit={handleOn2}>
                     <legend className="containerLegend">
                         Parametrización de la evaluación del perfil
                     </legend>
@@ -109,16 +146,19 @@ const Parameterization = () => {
                             <label for="disabledSelect" class="form-label">
                                 Pais de residencia
                             </label>
-                            <select id="disabledSelect" class="form-select">
-                                <option className="pickCountry">Colombia</option>
-                                <option>USA</option>
+                            <select id="disabledSelect" class="form-select" onChange={handleChangeC} name="residenceCountry" value={datas.residenceCountry}>
+                                {countries.map((countrie) => (
+                                    <option key={countrie} value={countrie}>
+                                        {countrie}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className="containerLabel">
                             <label for="disabledSelect" class="form-label">
                                 Departamento de residencia
                             </label>
-                            <select id="disabledSelect" class="form-select">
+                            <select id="disabledSelect" class="form-select" onChange={handleChangeC} name="residencyDepartment" value={datas.residencyDepartment}>
                                 <option>Santander</option>
                                 <option>Valle</option>
                             </select>
@@ -127,16 +167,16 @@ const Parameterization = () => {
 
                     <div className="containerGlobal">
                         <div className="containerLabel">
-                            <label for="disabledTextInput" class="form-label">
+                            <label for="disabledTextInput" class="form-label" >
                                 Edad
                             </label>
-                            <input type="number" class="form-control" />
+                            <input type="number" class="form-control" onChange={handleChangeC} name="maxAge" value={datas.maxAge} />
                         </div>
                         <div className="containerLabel">
                             <label for="disabledSelect" class="form-label">
                                 Estrato
                             </label>
-                            <select id="disabledSelect" class="form-select">
+                            <select id="disabledSelect" class="form-select" onChange={handleChangeC} name="maxSocioeconomicStratus" value={datas.maxSocioeconomicStratus}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -146,22 +186,10 @@ const Parameterization = () => {
                             </select>
                         </div>
                     </div>
-
-                    <div className="containerGlobal">
-                        <div className="containerLabel">
-                            <label for="disabledSelect" class="form-label">
-                                Población especial
-                            </label>
-                            <select id="disabledSelect" class="form-select">
-                                <option>Mujeres</option>
-                                <option>Victima de la violencia</option>
-                            </select>
-                        </div>
-                    </div>
                     <button type="submit" class="btn btn-primary">
                         Guardar cambios
                     </button>
-                </div>
+                </form>
 
             </div>
         </>

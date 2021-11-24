@@ -64,18 +64,19 @@ const StateContext = ({ children }) => {
         type: GET_CONVOCATORY,
         payload: response.data
       })
-      console.log(response)
+      // console.log(response)
     } catch (e) {
       console.log(e)
     }
   }
   const putParameterization = async (id, data) => {
     try {
-      const response = await axios.put(`${url}/parameterization/${id}`, data)
+      const response = await axios.put(`${url}/admin/parameterization/${id}`, data)
       dispatch({
         type: PUT_PARAMETERIZATION,
         payload: response.data
       })
+      // console.log(response)
     } catch (e) {
       console.log(e)
     }
