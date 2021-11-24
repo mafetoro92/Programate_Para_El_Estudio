@@ -34,6 +34,10 @@ const Convocatory = () => {
             status: false,
             icon: <i className="far fa-trash-alt"> </i>,
         },
+        {
+            status: true,
+            icon: <i class="fas fa-power-off"></i>,
+        },
     ];
 
     const fixDate = (date) => {
