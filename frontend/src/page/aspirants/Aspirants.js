@@ -52,9 +52,14 @@ const Aspirants = () => {
         Estrato: aspirant.Estrato,
         Edad: aspirant.Edad,
         Genero: aspirant.Genero,
-        Status: aspirant.Status,
+        Estado: (
+            <select>
+                <option value="pasa">Pasa</option>
+                <option value="nopasa">No pasa</option>
+            </select>
+        ),
     }));
-
+    console.log(rows);
     return (
         <div className="section__aspirants">
             <div className="section__content d-flex justify-content-between">

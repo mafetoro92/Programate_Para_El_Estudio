@@ -5,7 +5,7 @@ import Funnel from "../../components/graphicsAdmin/Funnel";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
 import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
-import { CONVOCATORY } from "../../api/data";
+//import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
 import { providerContext } from "../../Context/status";

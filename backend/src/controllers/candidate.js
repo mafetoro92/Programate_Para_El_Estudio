@@ -168,27 +168,26 @@ candidateRouter.get('/profile', async (req, res) => {
         const candidates = await User.find()
         const profiles = []
 
-        let idx = 0
         for (let candidate of candidates) {
                 let candidateData = await Profile.find({
                         user_id: candidate._id.toString()
-                        })
-                        if (candidateData[0] !== undefined){
+                })
+                if (candidateData[0] !== undefined) {
                         candidateData = candidateData.map(candidate => candidate ? ({
-                                'age': candidate.actualAge, 
-                                'nacionality': candidate.nacionality, 
-                                'municipalityOfResidency': candidate.municipalityOfResidency, 
-                                'status': candidate.status.pass,
-                                'documentType':  candidate.documentType,
-                                'documentNumber':  candidate.documentNumber,
-                                'gender': candidate.gender,
-                                'residencyDepartment': candidate.residencyDepartment,
-                                'socioeconomicStratus': candidate.socioeconomicStratus
-                        })
-                                : null)                      
-                      
+                                        'age': candidate.actualAge,
+                                        'nacionality': candidate.nacionality,
+                                        'municipalityOfResidency': candidate.municipalityOfResidency,
+                                        'status': candidate.status.pass,
+                                        'documentType': candidate.documentType,
+                                        'documentNumber': candidate.documentNumber,
+                                        'gender': candidate.gender,
+                                        'residencyDepartment': candidate.residencyDepartment,
+                                        'socioeconomicStratus': candidate.socioeconomicStratus
+                                }) :
+                                null)
+
                         const candidateObj = {
-                                'ID': idx,
+                                'ID': candidate._id.toString(),
                                 'TipoDocumento': candidateData[0].documentType,
                                 'NumeroDocumento': candidateData[0].documentNumber,
                                 'Nombre': `${candidate.firstName} ${candidate.lastName}`,
@@ -202,13 +201,9 @@ candidateRouter.get('/profile', async (req, res) => {
                                 'Genero': candidateData[0].gender,
                                 'Status': candidateData[0].status
                         }
-                        console.log(candidateObj)
                         profiles.push(candidateObj)
-                        idx++
                 }
-                
         }
-
         res.json({
                 data: profiles
         });
