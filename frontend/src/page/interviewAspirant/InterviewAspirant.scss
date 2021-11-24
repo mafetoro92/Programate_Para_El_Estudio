@@ -1,6 +1,12 @@
-.section__interview {
-    width: 100%;
-    max-width: 1800px;
-    padding: 20px 25px;
-    height: 900px;
+.interview {
+  width: 100%;
+  padding: 20px 25px;
+  @media screen and (min-width: 1400px) {
+  height: 110vh;
   }
+}
+.calendar{
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 2px 4px #0000004f !important;
+}

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import AddNewFab from "../../components/calendar/AddNewFab";
 import CalendarView from "../../components/calendar/CalendarView";
 import DeleteEventFab from "../../components/calendar/DeleteEventFab";
 
-import "./InterviewAspirant.scss";
+const InterviewDay = ({ user, adminstate }) => {
+    
 
-const InterviewAspirant = ({ user, adminstate }) => {
-
+    const { activeEvent } = useSelector((state) => state.calendar)
   return (
     <div className="interview">
       <div className="section__content d-flex justify-content-between">
@@ -21,10 +21,14 @@ const InterviewAspirant = ({ user, adminstate }) => {
         </div>
       </div>
       <div className="calendar mt-4">
-        <CalendarView user={user} adminstate={adminstate} />
+
+            <CalendarView user={user} adminstate={adminstate} />
+            <AddNewFab/>
+            {activeEvent && <DeleteEventFab />}
+
       </div>
     </div>
   );
 };
 
-export default InterviewAspirant;
+export default InterviewDay;

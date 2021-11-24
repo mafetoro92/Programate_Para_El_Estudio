@@ -32,6 +32,8 @@ function getSteps() {
 function getStepContent(step) {
     const { inscribir } = useContext(InscriptionContext);
 
+    const { inscribir } = useContext(InscriptionContext);
+
     const [data, setData] = useState(initialData);
 
     const handeleChange = (e) => {
@@ -42,6 +44,7 @@ function getStepContent(step) {
         });
     };
     const sendData = () => {
+
         setData(initialData);
         const { firstName, email } = data;
 
@@ -58,7 +61,7 @@ function getStepContent(step) {
         case 2:
             return (
                 <>
-                    <Step3 {...props} />{" "}
+                    <Step3 {...props} />
                     <button
                         className="btn btn-primary send-data"
                         type="submit"
