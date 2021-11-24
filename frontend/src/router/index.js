@@ -19,6 +19,8 @@ import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
+import WaitingList from "../page/waitingList/WaitingList";
+import Citations from "../page/citations/Citations";
 
 const App = () => {
     const initialState = {
@@ -84,6 +86,14 @@ const App = () => {
                             <Route
                                 path="/qualifytechnicaltest"
                                 component={QualifyTechnicalTest}
+                            />
+                            <Route
+                                path="/waiting-list"
+                                component={WaitingList}
+                            />
+                            <Route
+                                path="/citations"
+                                component={Citations}
                             />
                         </>
                     )}

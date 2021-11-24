@@ -33,6 +33,10 @@ const Aspirants = () => {
       status: false,
       icon: <i className="far fa-trash-alt"> </i>,
     },
+    {
+      status: false,
+      icon: <i class="fas fa-power-off"></i>,
+  },
   ];
 
   const rows = aspirants.map((aspirant, idx) => ({
@@ -48,9 +52,12 @@ const Aspirants = () => {
     Estrato: aspirant.Estrato,
     Edad: aspirant.Edad,
     Genero: aspirant.Genero,
-    Status: aspirant.Status,
+    Estado: <select>
+    <option value="pasa">Pasa</option>
+    <option value="nopasa">No pasa</option>
+  </select>
   }));
-  
+  console.log(rows)
   return (
     <div className="section__aspirants">
       <div className="section__content d-flex justify-content-between">
@@ -60,14 +67,9 @@ const Aspirants = () => {
           <i className="fas fa-chevron-right subtitle" />
           <span className="text-crumbs"> Aspirantes </span>
         </div>
-<<<<<<< HEAD
-      </div>
-        <Tablita key={rows.length} rows={rows} actions={actions} />
-=======
         <Tablita key={rows.length} rows={rows} actions={actions} />
         <ModalAspirants/>
       </div>
->>>>>>> ecffc97e459a3d58a8c98149faa5cfda3e716c42
     </div>
   );
 };

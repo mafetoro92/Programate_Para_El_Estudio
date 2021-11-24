@@ -22,6 +22,10 @@ export const ITEMS = [
                 path: "/resultsInscription",
             },
             {
+                name: "Lista de espera",
+                path: "/waiting-list",
+            },
+            {
                 name: "Calificación de la carta de motivación",
                 path: "/motivationLetter",
             },
@@ -38,11 +42,11 @@ export const ITEMS = [
         items: [
             {
                 name: "Consolidado Postulantes",
-                path: "/",
+                path: "/citations",
             },
             {
                 name: "Dias de Entrevista",
-                path: "/",
+                path: "/entrevistas",
             },
         ],
     },

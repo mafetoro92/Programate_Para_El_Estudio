@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Tablita from "../../components/tablita/Tablita";
-import "./Convocatory.scss";
+import React, { useEffect, useState } from 'react'
 import RequestService from "../../config/index";
-import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
+import Tablita from "../../components/tablita/Tablita";
+import Citation from '../../components/citation/Citation';
 
-const Convocatory = () => {
-    const [convocatories, setConvocatories] = useState([]);
+
+const Citations = () => {
+    const [citations, setCitations] = useState([]);
     const getUser = async () => {
-        const { data } = await RequestService.get("/admin/c");
+        const { data } = await RequestService.get("/admin/citation");
         if (data) {
-            setConvocatories(data);
+            setCitations(data);
         }
     };
 
@@ -38,20 +38,19 @@ const Convocatory = () => {
             status: true,
             icon: <i class="fas fa-power-off"></i>,
         },
-
     ];
 
-    const fixDate = (date) => {
-        return date.split("T")[0];
-    };
+    // const fixDate = (date) => {
+    //     return date.split("T")[0];
+    // };
 
-    const rows = convocatories.map((conv, idx) => ({
+    const rows = citations.map((conv, idx) => ({
         ID: idx,
         Nombre: conv.name,
         Cupos: conv.maxQuotas,
-        "Fecha de Inicio": fixDate(conv.initialDate),
+        //"Fecha de Inicio": fixDate(conv.initialDate),
     }));
-
+    console.log(rows)
     return (
         <>
             <div className="section__convocatory">
@@ -65,15 +64,10 @@ const Convocatory = () => {
                         <span className="text-crumbs"> Convocatoria </span>
                     </div>
                 </div>
-                {
-                    rows.length > 0 ? <Tablita key={rows.length} rows={rows} actions={actions} />
-                    : <NewConvocatory />
-                }
-                
-                
+                    <Citation />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Convocatory;
+export default Citations

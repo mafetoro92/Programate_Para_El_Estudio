@@ -333,8 +333,9 @@ adminRouter.put("/parameterization/:_id", async (req, res) => {
 
 // Get all citations
 adminRouter.get('/citation', async (req, res) => {
-        const results = await Citation.find();
-        res.send(results)
+        const citations = await Citation.find();
+        const data = citations.map((citation, idx) => citation ? ({'id': idx, 'users': citation.users, 'date': citation.date}) : null)
+        res.send(data)
 });
 
 adminRouter.get('/c', async (req, res) => {
