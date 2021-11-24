@@ -15,10 +15,10 @@ const CohorteGoal = ({ item }) => {
     const { acept } = useContext(providerContext);
     //let acepts = acept.rol.student;
     //console.log(usersRegisted);
-    const users = [usersRegisted];
-    console.log(users);
-    let acepts = acept.id;
-    console.log(acept.id);
+    // const users = [usersRegisted];
+    // console.log(users);
+    // let acepts = acept.id; 
+    // console.log(acept.id);
 
     const data = {
         datasets: [

@@ -17,17 +17,19 @@ const DashboardAdmin = () => {
         convocatorys,
         getConvocatory,
         convocatory,
-        getAcept,
-        acept,
     } = useContext(providerContext);
 
+    const handleChange = (e) => {
+        const id = e.target.value
+        // console.log(id)
+        getConvocatory(id);
+    }
     useEffect(() => {
         getConvocatorys();
-        getAcept();
     }, []);
 
-    //console.log(convocatory);
-    console.log(acept);
+    // console.log(convocatorys);
+    // console.log(acept);
     return (
         <>
             <div className="section__dash">
@@ -49,14 +51,13 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Meta de la cohorte</h2>
                         </div>
                         <div className="cohorteGoal__container-graph">
-                            <select name="qualify" className="form-select">
+                            <select name="qualify" className="form-select" onChange={(e) => handleChange(e)}>
                                 <option value="select">
                                     Selecione una opción
                                 </option>
                                 {convocatorys.map((item) => (
                                     <option
-                                        value={item.name}
-                                        onClick={() => getConvocatory(item._id)}
+                                        value={item._id}
                                         key={item._id}
                                     >
                                         {item.name}

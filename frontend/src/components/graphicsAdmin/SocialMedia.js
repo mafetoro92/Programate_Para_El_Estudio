@@ -27,18 +27,6 @@ const SocialMedia = () => {
                 data: [40, 50, 80, 78, 40, 50, 80, 78, 40, 50, 80],
                 fill: false,
                 backgroundColor: [
-<<<<<<< HEAD
-                    /*Red*/'rgba(255, 99, 132)',
-                    /*Orange*/'rgba(255, 159, 64)',
-                    /*Green*/'rgba(75, 192, 192)',
-                    /*Blue*/'rgba(54, 162, 235)',
-                ],
-                borderColor: [
-                    /*Red*/'rgba(255, 99, 132)',
-                    /*Orange*/'rgba(255, 159, 64)',
-                    /*Green*/'rgba(75, 192, 192)',
-                    /*Blue*/'rgba(54, 162, 235)',
-=======
                     "#92C149",
                     "#92C149",
                     "#92C149",
@@ -63,7 +51,6 @@ const SocialMedia = () => {
                     "#92C149",
                     "#92C149",
                     "#92C149",
->>>>>>> 78c9bde13f0e5f5908f5000d4d9242727f792a86
                 ],
                 borderWidth: 1,
             },
