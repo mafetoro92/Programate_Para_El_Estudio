@@ -7,7 +7,7 @@ import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
     const getUser = async () => {
-        const { data } = await RequestService.get("/admin/c");
+        const { data } = await RequestService.get("/admin/convocatories");
         if (data) {
             setConvocatories(data);
         }
@@ -36,7 +36,7 @@ const Convocatory = () => {
         },
         {
             status: true,
-            icon: <i class="fas fa-power-off"></i>,
+            icon: <i className="fas fa-power-off"></i>,
         },
     ];
 

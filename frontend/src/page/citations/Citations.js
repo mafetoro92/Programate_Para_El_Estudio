@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import RequestService from "../../config/index";
-import Tablita from "../../components/tablita/Tablita";
-import Citation from '../../components/citation/Citation';
-
+import Citation from "../../components/citation/Citation";
 
 const Citations = () => {
     const [citations, setCitations] = useState([]);
-    const getUser = async () => {
+    const getCitation = async () => {
         const { data } = await RequestService.get("/admin/citation");
         if (data) {
             setCitations(data);
@@ -14,7 +12,8 @@ const Citations = () => {
     };
 
     useEffect(() => {
-        getUser();
+        getCitation();
+        getUsers();
     }, []);
 
     const actions = [
@@ -35,7 +34,7 @@ const Citations = () => {
             icon: <i className="far fa-trash-alt"> </i>,
         },
         {
-            status: true,
+            status: false,
             icon: <i class="fas fa-power-off"></i>,
         },
     ];
@@ -44,30 +43,41 @@ const Citations = () => {
     //     return date.split("T")[0];
     // };
 
+    const [users, setUsers] = useState([]);
+
+    const getUsers = async (users) => {
+        for (let user in users) {
+            const { data } = await RequestService.get(
+                ` /candidate/profile/${user}`
+            );
+            if (data) {
+                setUsers(data);
+                console.log(users);
+            }
+        }
+    };
+
     const rows = citations.map((conv, idx) => ({
-        ID: idx,
-        Nombre: conv.name,
-        Cupos: conv.maxQuotas,
-        //"Fecha de Inicio": fixDate(conv.initialDate),
+        fecha: conv.date,
+        jornada: conv.journy,
+        users: getUsers(conv.users),
     }));
-    console.log(rows)
+
     return (
         <>
             <div className="section__convocatory">
                 <div className="section__content d-flex justify-content-between">
                     <span className="upperCase bold"> Convocatoria </span>
                     <div className="box__content">
-                        <span className="text-crumbs bold-500">
-                            Programate
-                        </span>
+                        <span className="text-crumbs bold-500">Programate</span>
                         <i className="fas fa-chevron-right subtitle" />
                         <span className="text-crumbs"> Convocatoria </span>
                     </div>
                 </div>
-                    <Citation />
+                <Citation rows={rows} />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Citations
+export default Citations;
