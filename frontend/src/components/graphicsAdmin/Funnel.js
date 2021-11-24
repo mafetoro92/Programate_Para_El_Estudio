@@ -1,92 +1,40 @@
-import React, { useRef, useEffect } from "react";
-import Chart from "chart.js";
+import React from "react";
+import { Bar } from "react-chartjs-2";
 
-/*Chart.register(ChartDataLabels);
-Chart.defaults.plugins.data;
-defaults.plugins. = "bottom";
-
-const barChartData: Chart.ChartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-            label: "Male",
-            stack: "Stack 0",
-            backgroundColor: "#d41111",
-            data: [10, 20, 30, 40, 50, 60],
-        },
-        {
-            label: "Female",
-            stack: "Stack 0",
-            backgroundColor: "#3765b0",
-            data: [10, 15, 30, 60, 50].map((k) => -k),
-        },
-    ],
-};*/
 
 const Funnel = () => {
-    /*  const canvasRef = useRef(null);
-    useEffect(() => {
-        const ctx = canvasRef.current?.getContext("2d");
-        if (ctx) {
-            new Chart(ctx, {
-                type: "horizontalBar",
-                data: barChartData,
-                options: {
-                    title: {
-                        display: true,
-                        text: "Chart.js Bar Chart - Stacked",
-                    },
-                    tooltips: {
-                        intersect: false,
-                        callbacks: {
-                            label: (c) => {
-                                const value = Number(c.value);
-                                const positiveOnly = value < 0 ? -value : value;
-                                let retStr = "";
-                                if (c.datasetIndex === 0) {
-                                    retStr += `Male: ${positiveOnly.toString()}`;
-                                } else {
-                                    retStr += `Female: ${positiveOnly.toString()}`;
-                                }
-                                return retStr;
-                            },
-                        },
-                    },
-                    responsive: true,
-                    legend: {
-                        position: "bottom",
-                    },
-                    scales: {
-                        xAxes: [
-                            {
-                                stacked: false,
-                                ticks: {
-                                    beginAtZero: true,
-                                    callback: (v) => {
-                                        return v < 0 ? -v : v;
-                                    },
-                                },
-                            },
-                        ],
-                        yAxes: [
-                            {
-                                stacked: true,
-                                ticks: {
-                                    beginAtZero: true,
-                                },
-                                position: "left",
-                            },
-                        ],
-                    },
-                },
-            });
-        }
-    }, []);
-*/ return (
-        <div>
-            <p>texto</p>
+     const dataBar = {
+        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'], 
+        datasets: [
+            {
+                label: "Dias de agenda", 
+                data: [12, 19, 3, 5, 2, 9],
+                backgroundColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+                    /*Orange*/'rgba(255, 159, 64)',
+                    /*Yellow*/'rgba(255, 205, 86)',
+                    /*Green*/'rgba(75, 192, 192)',
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
+                borderColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+                    /*Orange*/'rgba(255, 159, 64)',
+                    /*Yellow*/'rgba(255, 205, 86)',
+                    /*Green*/'rgba(75, 192, 192)',
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
+                borderWidth: 1
+            },
+        ],
+    };
+
+
+    return (
+        <div className="graph mt-2">
+            <Bar data={dataBar} width={400} height={200} />
         </div>
     );
 };
+
 
 export default Funnel;

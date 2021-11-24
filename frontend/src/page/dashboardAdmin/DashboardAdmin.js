@@ -4,11 +4,8 @@ import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
 import Funnel from "../../components/graphicsAdmin/Funnel";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
-<<<<<<< HEAD
-import LocationMigrants from "../../components/graphicsAdmin/LocationMigrants";
-=======
 import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
+import LocationMigrants from "../../components/graphicsAdmin/LocationMigrants";
 import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
@@ -109,7 +106,7 @@ const DashboardAdmin = () => {
                             <DateMigrants />
                         </div>
                     </div>
-                    <div className="funnel__container">
+                    <div className="migrants__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">Departamento de residencia</h2>
                         </div>

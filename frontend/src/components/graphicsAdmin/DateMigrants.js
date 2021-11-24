@@ -18,8 +18,15 @@ const DateMigrants = () => {
             {
                 label: "# of Votes",
                 data: [20, 40],
-                backgroundColor: ["#FF6384", "#D7D7D7"],
-                hoverBackgroundColor: ["#FF6384", "#D7D7D7"],
+                backgroundColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+                    /*Green*/'rgba(75, 192, 192)',
+                ],
+                borderColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+                    /*Green*/'rgba(75, 192, 192)',
+                ],
+                hoverBackgroundColor: ["rgba(255, 99, 132)", "rgba(75, 192, 192)"],
             },
         ],
         labels: ["Migrantes", "No migrantes"],
@@ -30,7 +37,7 @@ const DateMigrants = () => {
         responsive: false,
         plugins: {
             datalabels: {
-                color: "#ffffff",
+                color: "#6c757d",
                 formatter: function (value, context) {
                     return Math.round(value) + "%";
                 },

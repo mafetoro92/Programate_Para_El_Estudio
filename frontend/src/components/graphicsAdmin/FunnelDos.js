@@ -7,20 +7,30 @@ const FunnelDos = () => {
         datasets: [
             {
                 label: "Hombres",
-                backgroundColor: "#EC932F",
-                borderColor: "rgba(255,99,132,1)",
+                backgroundColor: [
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
+                borderColor: [
+
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
                 borderWidth: 1,
-                hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                hoverBorderColor: "rgba(255,99,132,1)",
+                hoverBackgroundColor: "rgba(54, 162, 235)",
+                hoverBorderColor: "rgba(54, 162, 235)",
                 data: [65, 59, 80, 81],
             },
             {
                 label: "Mujeres",
-                backgroundColor: "rgba(255,99,132,0.2)",
-                borderColor: "rgba(255,99,132,1)",
+                backgroundColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+                ],
+                borderColor: [
+                    /*Red*/'rgba(255, 99, 132)',
+
+                ],
                 borderWidth: 1,
-                hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                hoverBorderColor: "rgba(255,99,132,1)",
+                hoverBackgroundColor: "rgba(255, 99, 132)",
+                hoverBorderColor: "rgba(255, 99, 132)",
                 data: [65, 59, 80, 81],
             },
         ],

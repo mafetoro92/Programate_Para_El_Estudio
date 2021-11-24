@@ -1,8 +1,4 @@
 export const ITEMS = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
     {
         name: "Dashboard",
         icon: "fas fa-border-all",
@@ -83,43 +79,6 @@ export const ITEMS_ASPIRANTS = [
         name: "Dashboard de progreso",
         icon: "fas fa-border-all",
         items: [],
-<<<<<<< HEAD
-=======
-  {
-    name: "Dashboard",
-    icon: "fas fa-border-all",
-    items: [],
-    path: "/",
-  },
-  {
-    name: "Citación",
-    icon: "fas fa-map-marker-alt",
-    id: 5,
-    items: [
-      {
-        name: "Consolidado Postulantes",
-        path: "/",
-      },
-      {
-        name: "Dias de Entrevista",
-        path: "/",
-      },
-    ],
-  },
-  {
-    name: "Prueba Técnica",
-    icon: "fas fa-laptop-code",
-    id: 6,
-    items: [
-      {
-        name: "Administrar Pruebas Técnicas",
-        path: "/",
-      },
-      {
-        name: "Calificar Pruebas Tecnicas",
->>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
-=======
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
         path: "/",
         id: 8,
     },
@@ -180,46 +139,7 @@ export const PROFILE_SOLOLEARN = [
     },
 ];
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 export const pruebas1 = [
-=======
-export const ITEMS_ASPIRANTS = [
-    {
-        name: "Dashboard de progreso",
-        icon: "fas fa-border-all",
-        items: [],
-        path: "/",
-        id: 8,
-    },
-    {
-        name: "Formulario de inscripción",
-        icon: "fas fa-bullhorn",
-        items: [],
-        path: "/inscripción",
-        id: 9,
-    },
-    {
-        name: "Agenda de Entrevista y assessment",
-        icon: "fas fa-map-marker-alt",
-        items: [],
-        path: "/entrevista",
-        id: 10,
-    },
-    {
-        name: "Prueba Técnica",
-        icon: "fas fa-laptop-code",
-        items: [],
-        path: "/aspirante",
-        id: 11,
-    },
-];
-
-/*const pruebas1 = [
->>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
-=======
-export const pruebas1 = [
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
     {
         user_id: 1,
         userFullName: "Pablo",
@@ -233,10 +153,6 @@ export const pruebas1 = [
         motivationScore: 28,
         finalScore: 23,
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1
 ];
 
 export const CONVOCATORY = [
@@ -292,45 +208,4 @@ export const CONVOCATORY = [
         test: {},
         status: true,
     },
-<<<<<<< HEAD
-=======
-    
 ];
-*/
-
-export const PROFILE_SOLOLEARN = [
-    {
-        user_id: 1,
-        userFullName: "Pablo",
-        htmlScore: 50,
-        cssScore: 25,
-        javascriptScore: 27,
-        pythonScore: 34,
-        Score: 28,
-        soloLearnScore: 28,
-        personalProfileScore: 28,
-        motivationScore: 28,
-        finalScore: 23,
-    },
-];
-
-export const pruebas1 = [
-  {
-      user_id: 1,
-      userFullName: "Pablo",
-      htmlScore: 23,
-      cssScore: 25,
-      javascriptScore: 27,
-      pythonScore: 34,
-      Score: 28,
-      soloLearnScore: 28,
-      personalProfileScore: 28,
-      motivationScore: 28,
-      finalScore: 23,
-  }
->>>>>>> 1d55c4409c00b2f957f5bf3bc1cee8c1c9a1d555
-];
-
-=======
-];
->>>>>>> 2d505cd1030a6310982f216a089eb2b5852b89a1

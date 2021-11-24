@@ -22,6 +22,7 @@
 
 .cohorteGoal__container-title,
 .socialMedia__container-title,
+.migrants__container,
 .funnel__container-title {
     width: 100%;
     height: 80px;
@@ -31,7 +32,18 @@
 
 .cohorteGoal__container-graph,
 .socialMedia__container-graph,
+.migrants__container,
 .funnel__container-graph {
     width: 100%;
     height: 220px;
+}
+
+.migrants__container {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px #0000004f !important;
+    align-items: center;
+    text-align: center;
 }

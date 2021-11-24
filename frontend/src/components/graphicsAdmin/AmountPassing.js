@@ -7,11 +7,26 @@ const AmountPassing = () => {
         datasets: [
             {
                 label: "proceso de selección",
-                backgroundColor: "#EC932F",
-                borderColor: "rgba(255,99,132,1)",
+                backgroundColor: [
+                    /*Orange*/'rgba(255, 159, 64)',
+                    /*Yellow*/'rgba(255, 205, 86)',
+                    /*Green*/'rgba(75, 192, 192)',
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
+                borderColor: [
+                    /*Orange*/'rgba(255, 159, 64)',
+                    /*Yellow*/'rgba(255, 205, 86)',
+                    /*Green*/'rgba(75, 192, 192)',
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
                 borderWidth: 1,
-                hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                hoverBorderColor: "rgba(255,99,132,1)",
+                hoverBackgroundColor: [
+                    /*Orange*/'rgba(255, 159, 64)',
+                    /*Yellow*/'rgba(255, 205, 86)',
+                    /*Green*/'rgba(75, 192, 192)',
+                    /*Blue*/'rgba(54, 162, 235)',
+                ],
+                hoverBorderColor: "rgba(255, 205, 86)",
                 data: [65, 59, 80, 81],
             },
         ],
@@ -22,7 +37,7 @@ const AmountPassing = () => {
         responsive: false,
         plugins: {
             datalabels: {
-                color: "#ffffff",
+                color: "#6c757d",
                 formatter: function (value, context) {
                     return Math.round(value) + "%";
                 },
