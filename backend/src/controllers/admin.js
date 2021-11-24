@@ -331,7 +331,12 @@ adminRouter.get('/convocatories', async (req, res) => {
 });
 adminRouter.get('/convocatory/:id', async (req, res) => {
     const results = await Convocatory.find({ _id: req.params.id });
-    res.send(results)
+    res.send(results);
+});
+
+adminRouter.get("/acept/:id", async (req, res) => {
+    const user = await User.find({ _id: req.params.id });
+    res.send(user);
 });
 
 adminRouter.post('/citation', async (req, res) => {

@@ -6,10 +6,12 @@ import {
   GET_PROFILES,
   GET_CONVOCATORYS,
   GET_CONVOCATORY,
-  PUT_PARAMETERIZATION
+  GET_ACEPT,
+  PUT_PARAMETERIZATION,
 } from "./reducer";
 
 export const providerContext = createContext();
+
 
 const StateContext = ({ children }) => {
   const initialState = {
@@ -17,10 +19,11 @@ const StateContext = ({ children }) => {
     profile: null,
     convocatorys: [],
     convocatory: [],
-    parameterization: []
+    acept: [],
+    parameterization: null,
   };
-  const url = 'http://localhost:3001/api'
-  const [state, dispatch] = useReducer(Reducer, initialState)
+  const url = "http://localhost:3001/api";
+  const [state, dispatch] = useReducer(Reducer, initialState);
 
   const getProfiles = async () => {
     try {
@@ -81,6 +84,17 @@ const StateContext = ({ children }) => {
       console.log(e)
     }
   }
+  const getAcept = async (id) => {
+    try {
+      const response = await axios.get(`${url}/admin/acept/${id}`);
+      dispatch({
+        type: GET_ACEPT,
+        payload: response.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <providerContext.Provider value={{
       profile: state.profile,
@@ -88,6 +102,8 @@ const StateContext = ({ children }) => {
       convocatorys: state.convocatorys,
       convocatory: state.convocatory,
       parameterization: state.parameterization,
+      acept: state.acept,
+      getAcept,
       getProfile,
       getProfiles,
       getConvocatorys,
