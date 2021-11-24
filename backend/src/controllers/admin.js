@@ -299,9 +299,9 @@ adminRouter.get("/convocatory/:id", async (req, res) => {
     res.send(results);
 });
 
-adminRouter.get("/acept", async (req, res) => {
-    const profile = await Profile.find({ status: { pass: true } });
-    res.send(profile);
+adminRouter.get("/acept/:id", async (req, res) => {
+    const user = await User.find({ _id: req.params.id });
+    res.send(user);
 });
 
 adminRouter.put("/update-test", async (req, res) => {
