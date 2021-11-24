@@ -1,16 +1,15 @@
 import React from "react";
 import "./Parameterization.scss";
 
-
 const Parameterization = () => {
   return (
     <>
       <div className="containerP">
         <div className="containerFirstSection">
-          <div className="containerTitle">
+          <div className="box__title">
             <h2>Parametrización</h2>
           </div>
-          <div className="containerSelect">
+          <div className="select">
             <select>
               <option>Regional</option>
               <option>Goyn</option>
@@ -19,43 +18,46 @@ const Parameterization = () => {
             </select>
           </div>
         </div>
-        <div className="containerSecondSection">
-          <legend>Peso de las categorías</legend>
-          <p>Estos valores son medidos en porcentanjes</p>
-          <div className="containerForm">
-            <div className="containerLabel">
-              <label for="disabledTextInput" class="form-label">
-                Edad
-              </label>
-              <input type="number" class="form-control" />
+        <div className="second__section">
+          <div className="text__content">
+            <h4 className="text__content-subtitle">Peso de las categorías</h4>
+            <p className="text__content-text">
+              Estos valores son medidos en porcentanjes
+            </p>
+          </div>
+          <div className="box__inputs" >
+            <div className="inputs">
+              <div class="mb-4">
+                <label class="form-label">Perfil personal</label>
+                <input type="number" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
-              <label for="disabledSelect" class="form-label">
-                Sololearn
-              </label>
-              <input type="number" class="form-control" />
+            <div className="inputs">
+              <div class="mb-4">
+                <label class="form-label">SoloLearn</label>
+                <input type="number" class="form-control" />
+              </div>
             </div>
-
-            <div className="containerLabel">
-              <label for="disabledTextInput" class="form-label">
-                Perfil personal
-              </label>
-              <input type="number" class="form-control" />
+            <div className="inputs">
+              <div class="mb-4">
+                <label class="form-label">Carta de motivación</label>
+                <input type="number" class="form-control" />
+              </div>
             </div>
           </div>
-
-          <button className="button" type="submit" class="btn btn-primary">
+        
+          <button className="button" type="submit" class="mb-4 btn btn-success">
             Guardar cambios
           </button>
         </div>
+
         <div className="containerThirdSection">
           <legend className="containerLegend">
-            Parametrización de la evaluación del perfil
+            <h4>Parametrización de la evaluación del perfil</h4>
           </legend>
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label">
+              <label for="disabledSelect" class="form-label fs-4">
                 Pais de residencia
               </label>
               <select id="disabledSelect" class="form-select">
@@ -64,8 +66,8 @@ const Parameterization = () => {
               </select>
             </div>
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label">
-                Departamento de residencia
+              <label for="disabledSelect" class="form-label fs-4">
+                Dto. residencia
               </label>
               <select id="disabledSelect" class="form-select">
                 <option>Santander</option>
@@ -76,13 +78,13 @@ const Parameterization = () => {
 
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledTextInput" class="form-label">
+              <label for="disabledTextInput" class="form-label fs-4">
                 Edad
               </label>
               <input type="number" class="form-control" />
             </div>
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label">
+              <label for="disabledSelect" class="form-label fs-4">
                 Estrato
               </label>
               <select id="disabledSelect" class="form-select">
@@ -98,7 +100,7 @@ const Parameterization = () => {
 
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label">
+              <label for="disabledSelect" class="form-label fs-4">
                 Población especial
               </label>
               <select id="disabledSelect" class="form-select">
@@ -107,7 +109,7 @@ const Parameterization = () => {
               </select>
             </div>
             <div className="containerLabel">
-              <button className="button" type="submit" class="btn btn-primary">
+              <button className="button" type="submit" class="btn btn-success mt-5 fs-5">
                 Guardar cambios
               </button>
             </div>
