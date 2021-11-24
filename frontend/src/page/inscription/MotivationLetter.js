@@ -1,8 +1,7 @@
-import React from 'react';
-import "./Inscription.scss"
-import ModalResults from "../../components/inscription/ModalResults"
-import MotivationLetterTable from "../../components/inscription/MotivationLetterTable"
-
+import React from "react";
+import "./Inscription.scss";
+import ModalResults from "../../components/modals/ModalResults";
+import MotivationLetterTable from "../../components/inscription/MotivationLetterTable";
 
 const ResultsInscription = () => {
     return (
@@ -14,13 +13,15 @@ const ResultsInscription = () => {
                     <i class="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs bold-500">Inscripción</span>
                     <i class="fas fa-chevron-right subtitle" />
-                    <span className="text-crumbs">Calificación carta de motivación</span>
+                    <span className="text-crumbs">
+                        Calificación carta de motivación
+                    </span>
                 </div>
             </div>
             <ModalResults />
             <MotivationLetterTable />
         </div>
-    )
-}
+    );
+};
 
-export default ResultsInscription
+export default ResultsInscription;

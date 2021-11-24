@@ -11,13 +11,22 @@ import "./DashboardAdmin.scss";
 import { providerContext } from "../../Context/status";
 
 const DashboardAdmin = () => {
-    const { getConvocatorys, convocatorys, getConvocatory, convocatory } =
-        useContext(providerContext);
+    const {
+        getConvocatorys,
+        convocatorys,
+        getConvocatory,
+        convocatory,
+        getAcept,
+        acept,
+    } = useContext(providerContext);
 
     useEffect(() => {
         getConvocatorys();
+        getAcept();
     }, []);
-    console.log(convocatory);
+
+    //console.log(convocatory);
+    console.log(acept);
     return (
         <>
             <div className="section__dash">
@@ -60,17 +69,6 @@ const DashboardAdmin = () => {
                         </div>
                     </div>
 
-                    <div className="socialMedia__container">
-                        <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">
-                                ¿Dónde te enteraste de nosotros?
-                            </h2>
-                        </div>
-                        <div className="socialMedia__container-graph">
-                            <SocialMedia />
-                        </div>
-                    </div>
-
                     <div className="funnel__container">
                         <div className="funnel__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
@@ -103,6 +101,16 @@ const DashboardAdmin = () => {
                         </div>
                         <div className="funnel__container-graph">
                             <DateMigrants />
+                        </div>
+                    </div>
+                    <div className="socialMedia__container">
+                        <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">
+                                ¿Dónde te enteraste de nosotros?
+                            </h2>
+                        </div>
+                        <div className="socialMedia__container-graph">
+                            <SocialMedia />
                         </div>
                     </div>
                 </div>

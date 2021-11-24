@@ -6,6 +6,7 @@ import {
     GET_PROFILES,
     GET_CONVOCATORYS,
     GET_CONVOCATORY,
+    GET_ACEPT,
     PUT_PARAMETERIZATION,
 } from "./reducer";
 
@@ -17,6 +18,7 @@ const StateContext = ({ children }) => {
         profile: null,
         convocatorys: [],
         convocatory: [],
+        acept: [],
         parameterization: null,
     };
 
@@ -67,6 +69,18 @@ const StateContext = ({ children }) => {
         }
     };
 
+    const getAcept = async (id) => {
+        try {
+            const response = await axios.get(`${url}/admin/acept/${id}`);
+            dispatch({
+                type: GET_ACEPT,
+                payload: response.data,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     return (
         <providerContext.Provider
             value={{
@@ -74,12 +88,14 @@ const StateContext = ({ children }) => {
                 profiles: state.profiles,
                 convocatorys: state.convocatorys,
                 convocatory: state.convocatory,
+                acept: state.acept,
                 parameterization: state.parameterization,
                 //profileT,
                 getProfile,
                 getProfiles,
                 getConvocatorys,
                 getConvocatory,
+                getAcept,
                 //putParameterization,
             }}
         >

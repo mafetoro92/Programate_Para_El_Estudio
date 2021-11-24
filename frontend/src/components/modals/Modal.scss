@@ -34,16 +34,16 @@
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 .close {
     background: #606061;
     color: #ffffff;
     line-height: 25px;
-    position: absolute;
-    right: 20px;
+    position: fixed;
+    right: 22%;
     text-align: center;
-    top: 20px;
+    top: 4%;
     width: 24px;
     text-decoration: none;
     font-weight: bold;
@@ -55,10 +55,10 @@
     box-shadow: 1px 1px 3px #000;
 }
 .close:hover {
-    background: #00d9ff;
+    background: #c1c1c1;
 }
 
-.content{
+.content {
     max-height: 100vh;
     margin: 5px 20px 13px 20px;
     padding: 5px 20px 13px 20px;
@@ -67,12 +67,56 @@
     margin: 0;
     padding: 0;
 }
+em {
+    font-weight: bold;
+}
 p {
     margin: 0;
     padding: 0;
 }
-@media screen and (max-width: 767px) {
+
+@media screen and (max-width: 950px) {
     .modalDialog > div {
-        width: 90%;
+        width: 70%;
+    }
+    .close {
+        position: fixed;
+        right: 12%;
+        text-align: center;
+        top: 3%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .modalDialog > div {
+        width: 70%;
+    }
+    .close {
+        position: fixed;
+        right: 10%;
+        text-align: center;
+        top: 0%;
+    }
+}
+
+.btnModal {
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+}
+
+.btn-primaryModal {
+    background-color: #010101 !important;
+}
+
+.btnModal a {
+    color: white !important;
+    text-align: center;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .btnModal {
+        font-size: 90%;
     }
 }
