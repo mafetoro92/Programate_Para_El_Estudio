@@ -13,7 +13,7 @@ const Parameterization = () => {
         },
         residenceCountry: "Colombia",
         residencyDepartment: "",
-        maxAge: "",
+        maxAge: 35,
         maxSocioeconomicStratus: 3
     });
     const handleChangeB = (e) => {

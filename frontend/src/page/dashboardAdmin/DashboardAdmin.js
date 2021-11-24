@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
 import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
-import Funnel from "../../components/graphicsAdmin/Funnel";
+import Schedule from "../../components/graphicsAdmin/Schedule";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
 import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
 import LocationMigrants from "../../components/graphicsAdmin/LocationMigrants";
-import { CONVOCATORY } from "../../api/data";
 
 import "./DashboardAdmin.scss";
 import { providerContext } from "../../Context/status";
@@ -16,7 +15,7 @@ const DashboardAdmin = () => {
         getConvocatorys,
         convocatorys,
         getConvocatory,
-        convocatory,
+        convocatory
     } = useContext(providerContext);
 
     const handleChange = (e) => {
@@ -28,8 +27,8 @@ const DashboardAdmin = () => {
         getConvocatorys();
     }, []);
 
+
     // console.log(convocatorys);
-    // console.log(acept);
     return (
         <>
             <div className="section__dash">
@@ -66,7 +65,7 @@ const DashboardAdmin = () => {
                             </select>
 
                             {convocatory.map((item) => (
-                                <CohorteGoal item={item} />
+                                <CohorteGoal item={item} key={item._id} />
                             ))}
                         </div>
                     </div>
@@ -78,7 +77,7 @@ const DashboardAdmin = () => {
                             </h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <Funnel />
+                            <Schedule />
                         </div>
                     </div>
                     <div className="funnel__container">

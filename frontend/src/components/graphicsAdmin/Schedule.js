@@ -3,12 +3,13 @@ import { Bar } from "react-chartjs-2";
 
 
 const Funnel = () => {
-     const dataBar = {
-        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'], 
+
+    const dataBar = {
+        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
         datasets: [
             {
-                label: "Dias de agenda", 
-                data: [12, 19, 3, 5, 2, 9],
+                label: "Dias de agenda",
+                data: [1, 1, 1, 2, 3, 4],
                 backgroundColor: [
                     /*Red*/'rgba(255, 99, 132)',
                     /*Orange*/'rgba(255, 159, 64)',

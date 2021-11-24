@@ -86,11 +86,12 @@ const StateContext = ({ children }) => {
   }
   const getAcept = async (id) => {
     try {
-      const response = await axios.get(`${url}/admin/acept/${id}`);
+      const response = await axios.get(`${url}/admin/acept`);
       dispatch({
         type: GET_ACEPT,
         payload: response.data,
       });
+      // console.log(response.data)
     } catch (e) {
       console.log(e);
     }
