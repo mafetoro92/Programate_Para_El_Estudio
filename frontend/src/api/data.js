@@ -6,6 +6,12 @@ export const ITEMS = [
         path: "/",
     },
     {
+        name: "Convocatoria",
+        icon: "fas fa-bullhorn",
+        items: [],
+        path: "/convocatoria",
+    },
+    {
         name: "Aspirantes",
         icon: "far fa-user",
         id: 3,
@@ -72,7 +78,7 @@ export const ITEMS = [
         items: [
             {
                 name: "Resultados",
-                path: "/",
+                path: "/results-inscription",
             },
         ],
     },

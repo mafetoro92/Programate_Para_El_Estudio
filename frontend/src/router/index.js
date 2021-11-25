@@ -11,7 +11,8 @@ import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTe
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-import ResultsInscription from "../page/inscription/ResultsInscription";
+//import ResultsInscription from "../page/inscription/ResultsInscription";
+import Results from "../page/Results/Results";
 import MotivationLetter from "../page/inscription/MotivationLetter";
 import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
@@ -60,8 +61,8 @@ const App = () => {
                             />
                             <Route path="/aspirantes" component={Aspirants} />
                             <Route
-                                path="/resultsInscription"
-                                component={ResultsInscription}
+                                path="/resultsinscription"
+                                component={Results}
                             />
                             <Route
                                 path="/motivationLetter"

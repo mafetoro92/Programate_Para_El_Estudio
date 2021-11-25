@@ -18,24 +18,8 @@ const Aspirants = () => {
 
     const actions = [
         {
-            status: false,
-            icon: <i className="far fa-check-square"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-edit"> </i>,
-        },
-        {
             status: true,
-            icon: <i className="far fa-eye"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-trash-alt"> </i>,
-        },
-        {
-            status: false,
-            icon: <i class="fas fa-power-off"></i>,
+            icon: <ModalAspirants />,
         },
     ];
 
@@ -59,7 +43,7 @@ const Aspirants = () => {
             </select>
         ),
     }));
-    console.log(rows);
+
     return (
         <div className="section__aspirants">
             <div className="section__content d-flex justify-content-between">
@@ -69,9 +53,9 @@ const Aspirants = () => {
                     <i className="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs"> Aspirantes </span>
                 </div>
-                <Tablita key={rows.length} rows={rows} actions={actions} />
-                <ModalAspirants />
             </div>
+
+            <Tablita key={rows.length} rows={rows} actions={actions} />
         </div>
     );
 };

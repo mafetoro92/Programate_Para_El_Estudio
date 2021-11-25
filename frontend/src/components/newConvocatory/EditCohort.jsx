@@ -5,7 +5,7 @@ const EditCohort = () => {
     return (
         <>
             <div className="containerNewTeam">
-                <legend>Editar Cohorte.</legend>
+                <legend>Editas Cohorte</legend>
                 <div className="containerForm">
                     <div className="containerLabel">
                         <label for="disabledTextInput" className="form-label">

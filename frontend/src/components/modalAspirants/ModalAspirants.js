@@ -45,7 +45,9 @@ const ModalAspirants = () => {
     return (
         <div>
             <div className="btn">
-                <a href="#aspirante">Leer mas..</a>
+                <a href="#aspirante">
+                    <i className="far fa-eye"></i>
+                </a>
             </div>
             <div id="aspirante" className="modalDialog">
                 <div className="content">

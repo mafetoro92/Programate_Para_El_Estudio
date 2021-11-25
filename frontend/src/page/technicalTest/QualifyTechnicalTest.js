@@ -1,5 +1,6 @@
 import React from "react";
 import "./QualifyTechnicalTest.scss";
+import { CSVLink } from "react-csv";
 
 const QualifyTechnicalTest = () => {
     const pruebas1 = [
@@ -64,24 +65,32 @@ const QualifyTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                        <select
-                                                    name="qualify"
-                                                    className="form-select"
-                                                >
-                                                    <option value="select">
-                                                        Selecione una opción
-                                                    </option>
-                                                    <option value="1">1</option>
-                                                    <option value="1">2</option>
-                                                    <option value="1">3</option>
-                                                    <option value="1">4</option>
-                                                </select>
+                                            <select
+                                                name="qualify"
+                                                className="form-select"
+                                            >
+                                                <option value="select">
+                                                    Selecione una opción
+                                                </option>
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                            </select>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <div>
+                    <CSVLink data={pruebas1} filename="prueba CSV">
+                        <button className="btn btn-success">
+                            Exportar CSV
+                        </button>
+                    </CSVLink>
                 </div>
             </div>
         </>

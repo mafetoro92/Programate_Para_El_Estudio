@@ -15,11 +15,9 @@ const NewConvocatory = () => {
                     </div>
                     <div className="containerButton">
                         <Link to="/nuevacohorte">
-                            {" "}
                             <button type="submit" className="btn btn-primary">
-                                {" "}
-                                Crear{" "}
-                            </button>{" "}
+                                Crear
+                            </button>
                         </Link>
                     </div>
                 </div>

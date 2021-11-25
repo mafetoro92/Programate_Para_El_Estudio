@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
-import "./Convocatory.scss";
+import "../../components/newConvocatory/EditCohort.jsx";
+import DisableBtn from "../../components/disableBtn/DisableBtn";
 import RequestService from "../../config/index";
 import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
+import { Link } from "react-router-dom";
+import ModalAspirants from "../../components/modalAspirants/ModalAspirants";
 
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
@@ -17,26 +20,24 @@ const Convocatory = () => {
         getUser();
     }, []);
 
+    // const [disable, setDisable] = useState(false);
+
     const actions = [
         {
             status: true,
-            icon: <i className="far fa-check-square"> </i>,
+            icon: (
+                <Link to="/editarcohorte">
+                    <i className="far fa-edit"></i>
+                </Link>
+            ),
         },
         {
             status: true,
-            icon: <i className="far fa-edit"></i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-eye"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-trash-alt"> </i>,
+            icon: <DisableBtn />,
         },
         {
             status: true,
-            icon: <i className="fas fa-power-off"></i>,
+            icon: <ModalAspirants />,
         },
     ];
 
@@ -62,8 +63,14 @@ const Convocatory = () => {
                         <span className="text-crumbs"> Convocatoria </span>
                     </div>
                 </div>
+
                 {rows.length > 0 ? (
-                    <Tablita key={rows.length} rows={rows} actions={actions} />
+                    <Tablita
+                        className="table"
+                        key={rows.length}
+                        rows={rows}
+                        actions={actions}
+                    />
                 ) : (
                     <NewConvocatory />
                 )}
