@@ -1,6 +1,6 @@
 import React from "react";
 import "./Aspirants.scss";
-import ModalAspirants from "../../components/modalAspirants/ModalAspirants";
+import ModalAspirants from "../../components/modals/ModalAspirants";
 
 const Aspirants = () => {
     return (

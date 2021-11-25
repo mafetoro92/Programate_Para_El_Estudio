@@ -7,12 +7,24 @@ import "./GraphicsAdmin.scss";
 
 const SocialMedia = () => {
     const data = {
-        labels: ["Facebook", "Linkedin", "Instagram", "Recomendación amigo"],
+        labels: [
+            "Página web Educamás",
+            "Recomendación de un amigo",
+            "Facebook",
+            "Instagram",
+            "Google",
+            "Compensar",
+            "Alianza educativa",
+            "Embajada de venezuela",
+            "Politécnico Internacional",
+            "PNUD",
+            "Otro",
+        ],
         datasets: [
             {
                 axis: "y",
                 label: "Redes sociales",
-                data: [40, 50, 80, 78],
+                data: [40, 50, 80, 78, 40, 50, 80, 78, 40, 50, 80],
                 fill: false,
                 backgroundColor: [
                     /*Red*/'rgba(255, 99, 132)',
@@ -36,7 +48,7 @@ const SocialMedia = () => {
     return (
         <div>
             <div className="graph mt-2">
-                <Bar data={data} options={options} width={400} height={200} />
+                <Bar data={data} options={options} width={400} height={400} />
             </div>
         </div>
     );

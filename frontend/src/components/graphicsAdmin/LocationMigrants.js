@@ -1,5 +1,6 @@
 import React from "react";
-import { Bar } from "react-chartjs-2"
+import { Bar } from "react-chartjs-2";
+import "./GraphicsAdmin.scss";
 
 
 const LocationMigrants = () => {
@@ -7,6 +8,7 @@ const LocationMigrants = () => {
         labels: ["Amazonas", "Antioquia", "Arauca", "Atlántico", "Bolívar","Boyacá","Caldas","Caquetá","Casanare","Cauca","Cesar","Chocó","Córdoba","Cundinamarca","Guainía","Guaviare","Huila","Guajira","Magdalena","Meta","Nariño","Norte de Santander","Putumayo","Quindío","Risaralda","San Andrés y Providencia","Santander","Tolima","Valle del Cauca","Vaupés","Vichada"],
         datasets: [
             {   
+                axis: "y",
                 label: "Departamentos",
                 borderWidth: 1,
                 backgroundColor: [
@@ -28,9 +30,13 @@ const LocationMigrants = () => {
         ],
     };
 
+    const options = {
+        indexAxis: "y",
+    };
+
     return (
         <div className="graph mt-2">
-            <Bar data={dataBar} width={800} height={200} />
+            <Bar data={dataBar} options={options} width={750} height={700} />
         </div>
     );
 };

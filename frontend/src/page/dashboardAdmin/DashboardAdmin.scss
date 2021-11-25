@@ -14,7 +14,7 @@
 .socialMedia__container,
 .funnel__container {
     width: 400px;
-    height: 300px;
+    height: auto;
     margin-top: 20px;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px #0000004f !important;
@@ -32,18 +32,22 @@
 
 .cohorteGoal__container-graph,
 .socialMedia__container-graph,
-.migrants__container,
 .funnel__container-graph {
     width: 100%;
-    height: 220px;
+    height: auto;
 }
 
 .migrants__container {
-    width: 100%;
-    height: 400px;
+    width: auto;
+    height: 80%;
     margin-top: 20px;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px #0000004f !important;
     align-items: center;
-    text-align: center;
+    text-align: center;    
+    padding: 10px;
+    @media screen and (max-width: 920px){
+        height: auto;
+        width: 400px;
+      }
 }

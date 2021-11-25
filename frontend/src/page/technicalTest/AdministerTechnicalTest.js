@@ -99,7 +99,7 @@ const AdministerTechnicalTest = () => {
                                                         prueba.id &&
                                                         modalDelete(prueba.id)
                                                     }
-                                                    className="btn btn-danger"
+                                                    className="btn btn-info"
                                                 >
                                                     <i className="fas fa-trash"></i>
                                                 </button>

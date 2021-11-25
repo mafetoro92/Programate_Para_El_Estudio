@@ -1,8 +1,8 @@
-import React from 'react';
-import "./Inscription.scss"
-import ModalResults from "../../components/inscription/ModalResults"
-import MotivationLetterTable from "../../components/inscription/MotivationLetterTable"
-
+import React from "react";
+import "./Inscription.scss";
+import ModalResults from "../../components/modals/ModalResults";
+import MotivationLetterTable from "../../components/inscription/MotivationLetterTable";
+import Filter from "../../components/filter/Filter";
 
 const ResultsInscription = () => {
     return (
@@ -14,13 +14,34 @@ const ResultsInscription = () => {
                     <i class="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs bold-500">Inscripción</span>
                     <i class="fas fa-chevron-right subtitle" />
-                    <span className="text-crumbs">Calificación carta de motivación</span>
+                    <span className="text-crumbs">
+                        Calificación carta de motivación
+                    </span>
                 </div>
             </div>
-            <ModalResults />
-            <MotivationLetterTable />
+            <div className="section__motivation">
+                <div className="button__motivation">
+                    <ModalResults />
+                </div>
+                <div>
+                    <Filter />
+                </div>
+                <form action="">
+                    <div className="wrap-input100__motivation validate-input mb-3 d-flex align-items-center">
+                        <i className="fas fa-search" />
+                        <input
+                            className="input100__motivation"
+                            type="text"
+                            name="search"
+                            placeholder="Buscar.."
+                        />
+                        <span className="focus-input100__motivation"></span>
+                    </div>
+                </form>
+                <MotivationLetterTable />
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default ResultsInscription
+export default ResultsInscription;

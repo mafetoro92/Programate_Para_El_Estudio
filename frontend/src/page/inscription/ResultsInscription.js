@@ -1,6 +1,6 @@
-import React from 'react';
-import "./Inscription.scss"
-import MotivationLetterModal from "../../components/inscription/MotivationLetterModal"
+import React from "react";
+import "./Inscription.scss";
+import MotivationLetterModal from "../../components/modals/MotivationLetterModal";
 
 const ResultsInscription = () => {
     return (
@@ -17,7 +17,7 @@ const ResultsInscription = () => {
             </div>
             <MotivationLetterModal />
         </div>
-    )
-}
+    );
+};
 
-export default ResultsInscription
+export default ResultsInscription;
