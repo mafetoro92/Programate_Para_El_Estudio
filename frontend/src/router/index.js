@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
@@ -17,8 +17,11 @@ import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
+import InterviewDay from "../page/citation/InterviewDay";
 import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
+import Inscription from "../page/inscription/Inscription";
+import LoginFull from "../components/auth/LoginFull";
 
 const App = () => {
   const initialState = {
@@ -38,76 +41,57 @@ const App = () => {
   const { admin, loged } = adminstate;
   const { admin2, loged2 } = user;
 
+  const { pathname } = useLocation();
+
   return (
     <>
-      <Header user={user} adminstate={adminstate} />
-      <div className="d-flex hhh">
-        <Nav user={user} adminstate={adminstate} />
+      {pathname !== "/login" && <Header user={user} adminstate={adminstate} />}
+
+      <div className="d-flex top">
+        {pathname !== "/login" && <Nav user={user} adminstate={adminstate} />}
+
+
         <Switch>
+          <Route exact path="/login" component={LoginFull} />
+          {/* <Redirect to="/login" /> */}
           {admin && loged && (
             <>
+
+
+              <Route path="/dasboard" component={DashboardAdmin} />
+              <Route path="/dia-de-entrevista">
+                <InterviewDay user={user} adminstate={adminstate} />
+              </Route>
+              <Route path="/convocatoria" component={Convocatory} />
               <Route path="/nuevacohorte" component={NewCohort} />
-              <Route
-                path="/editarcohorte"
-                component={EditCohort}
-              />
-              <Route exact path="/" component={DashboardAdmin} />
-              <Route
-                path="/convocatoria"
-                component={Convocatory}
-              />
+              <Route path="/editarcohorte" component={EditCohort} />
               <Route path="/aspirantes" component={Aspirants} />
+              <Route path="/prueba" component={AdministerTechnicalTest} />
+              <Route path="/agregar" component={AdministerTechnicalTestAdd} />
+              <Route path="/editar" component={AdministerTechnicalTestEdit} />
+              <Route path="/calificar" component={QualifyTechnicalTest} />
+              <Route path="/inscripcion" component={Inscription} />
               <Route
                 path="/resultsInscription"
                 component={ResultsInscription}
               />
-              <Route
-                path="/motivationLetter"
-                component={MotivationLetter}
-              />
-              <Route
-                path="/parameterization"
-                component={Parameterization}
-              />
-              <Route
-                path="/administertechnicaltest"
-                component={AdministerTechnicalTest}
-              />
-              <Route
-                path="/administertechnicaltestadd"
-                component={AdministerTechnicalTestAdd}
-              />
-              <Route
-                path="/administertechnicaltestedit"
-                component={AdministerTechnicalTestEdit}
-              />
-              <Route
-                path="/qualifytechnicaltest"
-                component={QualifyTechnicalTest}
-              />
+              <Route path="/motivationLetter" component={MotivationLetter} />
+              <Route path="/parameterization" component={Parameterization} />
+
+
             </>
           )}
           {!admin2 && loged2 && (
             <>
+              <Route exact path="/inscripcion" component={FormInscription} />
+              <Route exact path="/entrevista">
+                <InterviewAspirant user={user} adminstate={adminstate} />
+              </Route>
+              <Route exact path="/aspirante" component={ProofAspirant} />
               <Route
                 exact
-                path="/"
+                path="/dashboardAspirant"
                 component={DashboardAspirant}
-              />
-              <Route
-                exact
-                path="/inscripción"
-                component={FormInscription}
-              />
-              <Route
-                exact
-                path="/entrevista"
-                component={InterviewAspirant}
-              />
-              <Route
-                exact
-                path="/aspirante"
-                component={ProofAspirant}
               />
             </>
           )}

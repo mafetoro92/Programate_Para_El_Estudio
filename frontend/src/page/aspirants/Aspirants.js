@@ -4,15 +4,16 @@ import ModalAspirants from "../../components/modals/ModalAspirants";
 
 const Aspirants = () => {
   return (
-    <div className="aspirants">
-      <div className="aspirants__content d-flex justify-content-between">
+    <div className="spirants">
+      <div className="spirants__content d-flex justify-content-between">
         <span className="upperCase bold">Aspirantes</span>
         <div className="box__content">
-          <span className='text-crumbs bold-500'>Programate</span>
-          <i class="fas fa-chevron-right subtitle" />
-          <span className='text-crumbs'>Aspirantes</span>
+          <span className="text-crumbs bold-500">Programate</span>
+          <i className="fas fa-chevron-right subtitle" />
+          <span className="text-crumbs">Aspirantes</span>
         </div>
       </div>
+      <ModalAspirants />
     </div>
   );
 };

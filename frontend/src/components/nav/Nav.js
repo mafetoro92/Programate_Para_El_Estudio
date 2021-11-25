@@ -6,6 +6,7 @@ import "./Nav.scss";
 const Nav = ({ user, adminstate }) => {
   const [activeItems, setActiveItems] = useState([]);
 
+
   const { admin, loged } = adminstate;
   const { admin2, loged2 } = user;
 
@@ -17,7 +18,14 @@ const Nav = ({ user, adminstate }) => {
       setActiveItems([...activeItems, id]);
     }
   };
+
+  const isActive = ITEMS.findIndex(item => item.pathname === location.pathname)
+  const isActiveAspirant = ITEMS_ASPIRANTS.findIndex(item => item.pathname === location.pathname)
+ 
   
+
+
+
   return (
     <div className="nav" id="menu">
       <span className="nav__title">Menu</span>
@@ -31,6 +39,7 @@ const Nav = ({ user, adminstate }) => {
                 item={item}
                 toggleItem={() => toggleItem(item.id)}
                 activeItems={activeItems}
+                active={index === isActive}
               />
             ))}
 
@@ -42,6 +51,7 @@ const Nav = ({ user, adminstate }) => {
                 item={item}
                 toggleItem={() => toggleItem(item.id)}
                 activeItems={activeItems}
+                active={index === isActiveAspirant}
               />
             ))}
         </nav>

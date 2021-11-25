@@ -2,47 +2,74 @@ export const ITEMS = [
     {
         name: "Dashboard",
         icon: "fas fa-border-all",
+        id: 1,
         items: [],
-        path: "/",
+        pathname: "/dasboard",
+    },
+    {
+        name: "Aspirantes",
+        icon: "far fa-user",
+        id: 2,
+        items: [],
+        pathname: "/aspirantes",
+    },
+    {
+        name: "Inscripción",
+        icon: "far fa-id-card",
+        id: 3,
+        items: [
+            {
+                name: "Resultados",
+                pathname: "/resultsInscription",
+            },
+            {
+                name: "Calificación de la carta de motivación",
+                pathname: "/motivationLetter",
+            },
+            {
+                name: "Parametrización",
+                pathname: "/parameterization",
+            },
+        ],
     },
     {
         name: "Citación",
         icon: "fas fa-map-marker-alt",
-        id: 5,
+        id: 4,
         items: [
             {
                 name: "Consolidado Postulantes",
-                path: "/",
+                pathname: "/dasboard",
             },
             {
                 name: "Dias de Entrevista",
-                path: "/dia-de-entrevista",
+                pathname: "/dia-de-entrevista",
             },
         ],
     },
     {
         name: "Prueba Técnica",
         icon: "fas fa-laptop-code",
-        id: 6,
+        id: 5,
         items: [
             {
                 name: "Administrar Pruebas Técnicas",
-                path: "/",
+                pathname: "/prueba",
             },
             {
                 name: "Calificar Pruebas Tecnicas",
-                path: "/",
+                pathname: "/calificar",
             },
         ],
     },
     {
         name: "Selección",
         icon: "fas fa-vote-yea",
-        id: 7,
+        id: 6,
         items: [
             {
                 name: "Resultados",
-                path: "/",
+                pathname: "/dasboard",
             },
             {
                 name: "Aspirantes",
@@ -119,29 +146,29 @@ export const ITEMS_ASPIRANTS = [
         name: "Dashboard de progreso",
         icon: "fas fa-border-all",
         items: [],
-        path: "/",
-        id: 8,
+        pathname: "/dashboardAspirant",
+        id: 7,
     },
     {
         name: "Formulario de inscripción",
         icon: "fas fa-bullhorn",
         items: [],
-        path: "/inscripción",
-        id: 9,
+        pathname: "/inscripcion",
+        id: 8,
     },
     {
         name: "Agenda de Entrevista y assessment",
         icon: "fas fa-map-marker-alt",
         items: [],
-        path: "/entrevista",
-        id: 10,
+        pathname: "/entrevista",
+        id: 9,
     },
     {
         name: "Prueba Técnica",
         icon: "fas fa-laptop-code",
         items: [],
-        path: "/aspirante",
-        id: 11,
+        pathname: "/aspirante",
+        id: 10,
     },
 ];
 
@@ -183,8 +210,8 @@ export const pruebas1 = [
     {
         user_id: 1,
         userFullName: "Pablo",
-        htmlScore: 50,
-        cssScore: 0.25,
+        htmlScore: 23,
+        cssScore: 25,
         javascriptScore: 27,
         pythonScore: 34,
         Score: 28,

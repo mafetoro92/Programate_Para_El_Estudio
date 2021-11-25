@@ -13,7 +13,6 @@ ReactDom.render(
     <Router>
       <StateContext>
         <App />
-
       </StateContext>
     </Router>
   </Provider>,

@@ -11,5 +11,10 @@ export const types = {
   eventDeleted : '[event] Deleted event',
 
   setCalendarEvents : '[event] Set Calendar',
-  setError : '[event] Set Error' 
+  setError : '[event] Set Error',
+
+  login: '[login] Set Login',
+  getToken: '[login] Get Token',
+  getUser: '[login] Get User',
+  getAllUsers: '[login] Get All Users'
 };

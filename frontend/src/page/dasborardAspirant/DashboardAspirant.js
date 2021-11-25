@@ -6,8 +6,9 @@ import DoughtnutPython from "../../components/doughnut/DoughtnutPython";
 import { PROFILE_SOLOLEARN } from "../../api/data";
 import "./DashboardAspirant.scss";
 
+
+
 function DashboardAspirant() {
-    //   console.log('desde aca', PROFILE_SOLOLEARN);
 
     return (
         <div className="dash">

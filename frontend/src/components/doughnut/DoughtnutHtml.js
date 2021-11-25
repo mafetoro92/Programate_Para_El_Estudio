@@ -12,7 +12,6 @@ defaults.plugins.legend.position = "bottom";
 const DoughtnutHtml = ({ item }) => {
     const { htmlScore } = item;
     let pendiente = 100 - htmlScore;
-    console.log(pendiente);
     const data = {
         datasets: [
             {

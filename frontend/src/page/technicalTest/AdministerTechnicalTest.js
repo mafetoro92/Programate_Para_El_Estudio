@@ -54,20 +54,22 @@ const AdministerTechnicalTest = () => {
                     </span>
                     <div className="box__content">
                         <span>Programate</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Prueba técnica</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Administrar prueba técnica</span>
                     </div>
                 </div>
                 <div className="form">
                     <Link to="/agregar">
                         <div>
-                            <button className="btn btn-success">Agregar</button>
+                            <button className="btn btn-primary add">
+                                Agregar
+                            </button>
                         </div>
                     </Link>
                     <div className="section__table table">
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -78,18 +80,30 @@ const AdministerTechnicalTest = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pruebas1.map((prueba) => (
-                                    <tr>
+                                {pruebas1.map((prueba, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{prueba.id}</th>
                                         <td>{prueba.pruebaTecnica}</td>
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            <Link to="/editar">
-                                                <button className="btn btn-success">
-                                                    <i className="fas fa-edit"></i>
+                                            <div className="buttom d-flex justify-content-center align-items-center">
+                                                <Link to="/administertechnicaltestedit">
+                                                    <button className="btn btn-success">
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                </Link>
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        prueba.id &&
+                                                        modalDelete(prueba.id)
+                                                    }
+                                                    className="btn btn-danger"
+                                                >
+                                                    <i className="fas fa-trash"></i>
                                                 </button>
-                                            </Link>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}

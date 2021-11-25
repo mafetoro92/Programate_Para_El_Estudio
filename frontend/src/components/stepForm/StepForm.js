@@ -30,7 +30,11 @@ function getSteps() {
 }
 
 function getStepContent(step) {
+
     const { inscribir } = useContext(InscriptionContext);
+
+
+    //   Candidate-Profile  endPoint
 
     const [data, setData] = useState(initialData);
 
@@ -46,7 +50,8 @@ function getStepContent(step) {
         setData(initialData);
         const { firstName, email } = data;
 
-        inscribir(firstName, email);
+        // inscribir(firstName, email);
+        console.log('La data', data)
     };
 
     const props = { data, handeleChange };

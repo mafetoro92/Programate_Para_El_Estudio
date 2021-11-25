@@ -7,6 +7,9 @@ html, body{
   display: flex;
   flex-flow: column;
   height: 100vh;
+  @media screen and (max-width: 440px) {
+    height: 70vh !important;
+  }
 }
 
 .rbc-calendar {
@@ -77,15 +80,4 @@ a {
 }
 .text-crumbs{
   font-size: 14px;
-}
-.opacity-1{
-  opacity: 100 !important;
-  transition: .4s all !important;
-}
-.opacity-0{
-  opacity: 0 !important;
-}
-.btn-block.disabled{
-  cursor: not-allowed !important;
-  pointer-events: all !important;
 }

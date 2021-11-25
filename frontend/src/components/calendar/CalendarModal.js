@@ -35,7 +35,6 @@ const CalendarModal = ({ user, adminstate }) => {
   // Trae el estado de la aplicacion de ui
   const { modalOpen } = useSelector((state) => state.ui);
   const { activeEvent } = useSelector((state) => state.calendar);
-  console.log('Evento activo', activeEvent)
   const dispatch = useDispatch();
 
   const [dateStart, setDateStart] = useState(now.toDate());
@@ -113,9 +112,7 @@ const CalendarModal = ({ user, adminstate }) => {
     setAplication(true)
   }
   
-  console.log(aplication)
   DateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm:ss";
-  // DateTimePicker.Format = DateTimePickerFormat.Custom;
   return (
     <>
       <Modal
