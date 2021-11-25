@@ -35,11 +35,29 @@
     font-size: 30px;
     margin-left: 10px;
 }
-.section__dash .status__container {
+.status__container {
     width: 200px;
     height: 50px;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px #0000004f !important;
     text-align: center;
-    margin-left: 8%;
+}
+
+@media screen and(max-width: 1740px) {
+    .status__container {
+        margin: 5% 82%;
+    }
+}
+@media screen and(max-width: 1339px) {
+    .status__container {
+        margin: 5% 74%;
+    }
+}
+@media screen and(max-width: 938px) {
+    .status__container {
+        margin: 5% 50%;
+    }
+    .section__content {
+        font-size: 15px;
+    }
 }

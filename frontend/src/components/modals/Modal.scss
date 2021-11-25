@@ -36,6 +36,14 @@
     transition: opacity 400ms ease-in;
     overflow-y: scroll;
 }
+.modalDialog .modalDialog__title {
+    padding-top: 80px;
+}
+
+.modalDialog .modalDialog__content {
+    padding-top: 70px;
+    text-align: center;
+}
 .close {
     background: #606061;
     color: #ffffff;

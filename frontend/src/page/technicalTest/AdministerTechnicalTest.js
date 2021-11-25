@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./AdministerTechnicalTest.scss";
 import Swal from "sweetalert2";
 import modalDelete from "../../components/alert/alert";
+import alert from "../../components/alert/alert";
+
 const AdministerTechnicalTest = () => {
     const pruebas1 = [
         {
@@ -25,27 +27,6 @@ const AdministerTechnicalTest = () => {
         },
     ];
 
-    const modalDelete = () => {
-        Swal.fire({
-            title: "¿Esta seguro?",
-            text: "Se eliminará de forma permanente",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#92C149",
-            cancelButtonColor: "#DF2626",
-            denyButtonColor: "grey",
-            confirmButtonText: "Eliminar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Registro eliminado!",
-                    icon: "success",
-                    confirmButtonColor: "#92C149",
-                });
-            }
-        });
-    };
-
     return (
         <>
             <div className="section__administer">
@@ -60,11 +41,6 @@ const AdministerTechnicalTest = () => {
                         <i class="fas fa-chevron-right subtitle" />
                         <span>Administrar prueba técnica</span>
                     </div>
-                </div>
-                <div>
-                    <bottom type="buttom" onClick={modalDelete}>
-                        alert
-                    </bottom>
                 </div>
                 <div className="form">
                     <Link to="/agregar">
@@ -95,7 +71,13 @@ const AdministerTechnicalTest = () => {
                                                 <button className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
                                                 </button>
-                                            </div>
+                                            </Link>
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={modalDelete}
+                                            >
+                                                <i className="fas fa-trash"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

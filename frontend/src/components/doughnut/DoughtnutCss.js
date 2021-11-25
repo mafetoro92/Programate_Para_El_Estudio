@@ -26,8 +26,8 @@ const DoughtnutHtml = ({ item }) => {
     };
 
     const options = {
-        maintainAspectRatio: true,
-        responsive: false,
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             datalabels: {
                 color: "#ffffff",

@@ -19,7 +19,7 @@ function DashboardAspirant() {
                     <span className="text-crumbs">Dashboard</span>
                 </div>
             </div>
-            <div className="status__container mt-5">
+            <div className="status__container">
                 <p>
                     <em>Estado del aspirante:</em> Aceptado
                 </p>
@@ -43,51 +43,42 @@ function DashboardAspirant() {
                     </div>
                 </div>
                 <div className="doughtnut__container">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Css</h2>
-                            <i class="fab fa-css3-alt icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutCss
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
+                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
+                        <h2 className="m-0">Css</h2>
+                        <i class="fab fa-css3-alt icon-soloLearn" />
+                    </div>
+                    <div className="doughtnut__container-graph">
+                        {PROFILE_SOLOLEARN.map((item) => (
+                            <DoughtnutCss key={item.userFullName} item={item} />
+                        ))}
                     </div>
                 </div>
                 <div className="doughtnut__container">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Javascript</h2>
-                            <i class="fab fa-js icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutJavascript
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
+                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
+                        <h2 className="m-0">Javascript</h2>
+                        <i class="fab fa-js icon-soloLearn" />
+                    </div>
+                    <div className="doughtnut__container-graph">
+                        {PROFILE_SOLOLEARN.map((item) => (
+                            <DoughtnutJavascript
+                                key={item.userFullName}
+                                item={item}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className="doughtnut__container">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Python</h2>
-                            <i class="fab fa-python icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutPython
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
+                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
+                        <h2 className="m-0">Python</h2>
+                        <i class="fab fa-python icon-soloLearn" />
+                    </div>
+                    <div className="doughtnut__container-graph">
+                        {PROFILE_SOLOLEARN.map((item) => (
+                            <DoughtnutPython
+                                key={item.userFullName}
+                                item={item}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

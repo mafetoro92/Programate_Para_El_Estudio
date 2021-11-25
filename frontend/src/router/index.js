@@ -8,10 +8,10 @@ import Convocatory from "../page/convocatory/Convocatory";
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
-import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
+import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-import ResultsInscription from "../page/inscription/ResultsInscription";
+import Inscription from "../page/inscription/ResultsInscription";
 import MotivationLetter from "../page/inscription/MotivationLetter";
 import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
@@ -48,15 +48,15 @@ const App = () => {
                         <>
                             <Route exact path="/" component={DashboardAdmin} />
                             <Route
-                                path="/resultsInscription"
-                                component={ResultsInscription}
+                                path="/inscripcion"
+                                component={Inscription}
                             />
                             <Route
-                                path="/motivationLetter"
+                                path="/cartamotivacion"
                                 component={MotivationLetter}
                             />
                             <Route
-                                path="/parameterization"
+                                path="/parametrizacion"
                                 component={Parameterization}
                             />
                             <Route
@@ -85,19 +85,19 @@ const App = () => {
                                 path="/calificar"
                                 component={QualifyTechnicalTest}
                             />
-                            <Route
-                                path="/inscripcion"
-                                component={Inscription}
-                            />
-                            <Route exact path="/" component={Dashboard} />
                         </>
                     )}
                     {!admin2 && loged2 && (
                         <>
                             <Route
                                 exact
+                                path="/"
+                                component={DashboardAspirant}
+                            />
+                            <Route
+                                exact
                                 path="/inscripción"
-                                component={FormInscription}
+                                component={Inscription}
                             />
                             <Route
                                 exact
@@ -108,11 +108,6 @@ const App = () => {
                                 exact
                                 path="/aspirante"
                                 component={ProofAspirant}
-                            />
-                            <Route
-                                exact
-                                path="/"
-                                component={DashboardAspirant}
                             />
                         </>
                     )}
