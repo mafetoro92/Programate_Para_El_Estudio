@@ -4,14 +4,13 @@ import { providerContext } from "../../Context/status";
 
 const AmountPassing = ({ item }) => {
     const { usersRegisted } = item
-    let InscripTotal = usersRegisted.length
-    const { getAcept, acept } = useContext(providerContext);
-    const items = usersRegisted;
+    const { getAcept, acept, profiles } = useContext(providerContext);
+    let entrevist = 0
     useEffect(() => {
         getAcept()
     }, [])
     let acepts = []
-    for (let i of items) {
+    for (let i of usersRegisted) {
         if (acept[0] !== undefined) {
             for (let j of acept) {
                 if (j.rol.student === true) {
@@ -23,6 +22,20 @@ const AmountPassing = ({ item }) => {
             }
         }
     }
+    for (let i of usersRegisted) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.fechaEntrevista !== undefined) {
+                    entrevist += 1
+                }
+            }
+        }
+    }
+    let cien = usersRegisted.length > 0 ? cien = 100 : cien = 0;
+    let total = acepts.length * 100 / usersRegisted.length
+    let entreV = entrevist * 100 / usersRegisted.length
+
+
     const dataBar = {
         labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
         datasets: [
@@ -48,11 +61,10 @@ const AmountPassing = ({ item }) => {
                     /*Blue*/'rgba(54, 162, 235)',
                 ],
                 hoverBorderColor: "rgba(255, 205, 86)",
-                data: [`${InscripTotal}`, 59, 80, `${acepts.length}`],
+                data: [`${cien}`, 59, `${entreV}`, `${total}`],
             },
         ],
     };
-
     const options = {
         maintainAspectRatio: true,
         responsive: false,
@@ -60,7 +72,7 @@ const AmountPassing = ({ item }) => {
             datalabels: {
                 color: "#6c757d",
                 formatter: function (value, context) {
-                    return Math.round(value);
+                    return Math.round(value) + "%";
                 },
             },
         },

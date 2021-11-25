@@ -26,11 +26,13 @@ const DateMigrants = ({ item }) => {
             }
         }
     }
+    let no = Math.round(notMigrants.length * 100 / usersRegisted.length)
+    let yes = Math.round(migrants.length * 100 / usersRegisted.length)
     const data = {
         datasets: [
             {
                 label: "# of Votes",
-                data: [`${migrants.length}`, `${notMigrants.length}`],
+                data: [`${yes}`, `${no}`],
                 backgroundColor: [
                     /*Red*/'rgba(255, 99, 132)',
                     /*Green*/'rgba(75, 192, 192)',
@@ -52,7 +54,7 @@ const DateMigrants = ({ item }) => {
             datalabels: {
                 color: "#6c757d",
                 formatter: function (value, context) {
-                    return Math.round(value);
+                    return Math.round(value) + "%";
                 },
             },
         },
@@ -61,7 +63,6 @@ const DateMigrants = ({ item }) => {
     return (
         <div className="graph mt-2">
             <Doughnut data={data} options={options} width={400} height={200} />
-            <p>total: {usersRegisted.length}</p>
         </div>
     );
 };

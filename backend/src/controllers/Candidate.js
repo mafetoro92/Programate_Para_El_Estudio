@@ -87,11 +87,20 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                 programataPrevoiousTimes,
                 motivation,
                 dreams,
+                sex,
                 soloLearnProfile,
                 heardFromUs: {
-                        instagram,
+                        web,
+                        recommendation,
                         facebook,
-                        web
+                        instagram,
+                        google,
+                        compensar,
+                        allianceEducational,
+                        embassyVen,
+                        poliTec,
+                        PNUD,
+                        other
                 },
                 status } = req.body;
         const newProfile = new Profile({
@@ -118,14 +127,23 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                 formaltOccupation,
                 victimArmedConflict,
                 pcAccess,
+                sex,
                 programataPrevoiousTimes,
                 motivation,
                 dreams,
                 soloLearnProfile,
                 heardFromUs: {
-                        instagram,
+                        web,
+                        recommendation,
                         facebook,
-                        web
+                        instagram,
+                        google,
+                        compensar,
+                        allianceEducational,
+                        embassyVen,
+                        poliTec,
+                        PNUD,
+                        other
                 },
                 status
         });

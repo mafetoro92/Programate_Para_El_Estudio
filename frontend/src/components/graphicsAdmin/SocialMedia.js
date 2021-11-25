@@ -9,20 +9,44 @@ import { providerContext } from "../../Context/status";
 const SocialMedia = ({ item }) => {
     const { profiles } = useContext(providerContext);
     const { usersRegisted } = item
-    let instagram = 0
-    let facebook = 0
     let web = 0
+    let recommendation = 0
+    let facebook = 0
+    let instagram = 0
+    let google = 0
+    let compensar = 0
+    let allianceEducational = 0
+    let embassyVen = 0
+    let poliTec = 0
+    let PNUD = 0
+    let other = 0
     for (let i of usersRegisted) {
         for (let j of profiles) {
             if (j.user_id === i) {
                 if (j.heardFromUs !== undefined) {
 
-                    if (j.heardFromUs.instagram === true) {
+                    if (j.heardFromUs.web === true) {
+                        web += 1
+                    } else if (j.heardFromUs.recommendation === true) {
+                        recommendation += 1
+                    } else if (j.heardFromUs.instagram === true) {
                         instagram += 1
                     } else if (j.heardFromUs.facebook === true) {
                         facebook += 1
-                    } else if (j.heardFromUs.web === true) {
-                        web += 1
+                    } else if (j.heardFromUs.google === true) {
+                        google += 1
+                    } else if (j.heardFromUs.compensar === true) {
+                        compensar += 1
+                    } else if (j.heardFromUs.allianceEducational === true) {
+                        allianceEducational += 1
+                    } else if (j.heardFromUs.embassyVen === true) {
+                        embassyVen += 1
+                    } else if (j.heardFromUs.poliTec === true) {
+                        poliTec += 1
+                    } else if (j.heardFromUs.PNUD === true) {
+                        PNUD += 1
+                    } else if (j.heardFromUs.other === true) {
+                        other += 1
                     }
                 }
 
@@ -47,7 +71,7 @@ const SocialMedia = ({ item }) => {
             {
                 axis: "y",
                 label: "Redes sociales",
-                data: [`${web}`, 50, `${facebook}`, `${instagram}`, 40, 50, 80, 78, 40, 50, 80],
+                data: [`${web}`, `${recommendation}`, `${facebook}`, `${instagram}`, `${google}`, `${compensar}`, `${allianceEducational}`, `${embassyVen}`, `${poliTec}`, `${PNUD}`, `${other}`],
                 fill: false,
                 backgroundColor: [
                     "#92C149",

@@ -9,7 +9,16 @@ const FunnelDos = ({ item }) => {
     useEffect(() => {
         getAcept()
     }, [])
-    let acepts = []
+    let acepts = [];
+    let entrevist = []
+    let aceptMen = 0
+    let aceptMale = 0
+    let regisMen = 0
+    let regisMale = 0
+    let entreMen = 0
+    let entreMale = 0
+
+    //acept of the candidate
     for (let i of items) {
         if (acept[0] !== undefined) {
             for (let j of acept) {
@@ -22,7 +31,47 @@ const FunnelDos = ({ item }) => {
             }
         }
     }
-
+    for (let i of acepts) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.sex === "masculino") {
+                    aceptMen += 1
+                } else if (j.sex === "femenino")
+                    aceptMale += 1
+            }
+        }
+    }
+    // candidate of entrevist 
+    for (let i of usersRegisted) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.fechaEntrevista !== undefined) {
+                    entrevist = [...entrevist, j.user_id]
+                }
+            }
+        }
+    }
+    for (let i of entrevist) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.sex === "masculino") {
+                    entreMen += 1
+                } else if (j.sex === "femenino")
+                    entreMale += 1
+            }
+        }
+    }
+    //Acepts male o men
+    for (let i of usersRegisted) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.sex === "masculino") {
+                    regisMen += 1
+                } else if (j.sex === "femenino")
+                    regisMale += 1
+            }
+        }
+    }
     const dataBar = {
         labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
         datasets: [
@@ -38,7 +87,7 @@ const FunnelDos = ({ item }) => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(54, 162, 235)",
                 hoverBorderColor: "rgba(54, 162, 235)",
-                data: [`${usersRegisted.length}`, 59, 10, `${acepts.length}`],
+                data: [`${regisMen}`, 59, `${entreMen}`, `${aceptMen}`],
             },
             {
                 label: "Mujeres",
@@ -52,7 +101,7 @@ const FunnelDos = ({ item }) => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(255, 99, 132)",
                 hoverBorderColor: "rgba(255, 99, 132)",
-                data: [`${usersRegisted.length}`, 59, 100, `${acepts.length}`],
+                data: [`${regisMale}`, 59, `${entreMale}`, `${aceptMale}`],
             },
         ],
     };
