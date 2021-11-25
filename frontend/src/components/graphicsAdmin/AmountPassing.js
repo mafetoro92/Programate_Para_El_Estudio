@@ -37,7 +37,7 @@ const AmountPassing = ({ item }) => {
 
 
     const dataBar = {
-        labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
+        labels: ["Inscritos", "Entrevista", "Aceptados"],
         datasets: [
             {
                 label: "proceso de selección",
@@ -61,7 +61,7 @@ const AmountPassing = ({ item }) => {
                     /*Blue*/'rgba(54, 162, 235)',
                 ],
                 hoverBorderColor: "rgba(255, 205, 86)",
-                data: [`${cien}`, 59, `${entreV}`, `${total}`],
+                data: [`${cien}`, `${entreV}`, `${total}`],
             },
         ],
     };

@@ -73,7 +73,7 @@ const FunnelDos = ({ item }) => {
         }
     }
     const dataBar = {
-        labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
+        labels: ["Inscritos", "Entrevista", "Aceptados"],
         datasets: [
             {
                 label: "Hombres",
@@ -87,7 +87,7 @@ const FunnelDos = ({ item }) => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(54, 162, 235)",
                 hoverBorderColor: "rgba(54, 162, 235)",
-                data: [`${regisMen}`, 59, `${entreMen}`, `${aceptMen}`],
+                data: [`${regisMen}`, `${entreMen}`, `${aceptMen}`],
             },
             {
                 label: "Mujeres",
@@ -101,7 +101,7 @@ const FunnelDos = ({ item }) => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(255, 99, 132)",
                 hoverBorderColor: "rgba(255, 99, 132)",
-                data: [`${regisMale}`, 59, `${entreMale}`, `${aceptMale}`],
+                data: [`${regisMale}`, `${entreMale}`, `${aceptMale}`],
             },
         ],
     };
