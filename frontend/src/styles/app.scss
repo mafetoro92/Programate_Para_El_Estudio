@@ -7,6 +7,9 @@ html, body{
   display: flex;
   flex-flow: column;
   height: 100vh;
+  @media screen and (max-width: 440px) {
+    height: 70vh !important;
+  }
 }
 
 .rbc-calendar {
