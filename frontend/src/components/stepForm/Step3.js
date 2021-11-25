@@ -95,8 +95,8 @@ const Step3 = ({ data, handeleChange }) => {
             className="form-select"
           >
             <option value="cc">Selecciona tu Sexo</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
+            <option value="masculino">masculino</option>
+            <option value="femenino">femenino</option>
           </select>
         </div>
         <div htmlFor="" className="col-12 col-md-6">
@@ -245,19 +245,6 @@ const Step3 = ({ data, handeleChange }) => {
       </div>
 
       <div className="row mt-4">
-        <div htmlFor="" className="col-12 col-md-6">
-          <label className="form-label">¿Tienes acceso a un computador?</label>
-          <select
-            name="accesComputer"
-            onChange={handeleChange}
-            value={accesComputer}
-            className="form-select"
-          >
-            <option value="cc">Selecciona Si o No</option>
-            <option value="Si">Si</option>
-            <option value="No">No</option>
-          </select>
-        </div>
         <div htmlFor="" className="col-12 col-md-6">
           <label className="form-label">Número del perfil de Sololearn</label>
           <input

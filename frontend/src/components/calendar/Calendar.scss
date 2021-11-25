@@ -71,6 +71,8 @@
     z-index: 100;
 }
 .rbc-toolbar .rbc-toolbar-label {
+    font-size: 22px !important;
+    font-weight: 400;
     text-transform: capitalize !important;
 }
 
@@ -80,7 +82,40 @@
 .text-date{
     font-size: 20px;
 }
+.rbc-btn-group > button:last-child:not(:first-child) {
+    background-color: #fdc300 !important;
+    border: none !important;
+    color: #ffff !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: .4s all !important;
 
+}
+.rbc-btn-group > button:not(:first-child):not(:last-child) {
+    background-color: #fdc300 !important;
+    border: none !important;
+    color: #ffff !important;
+    border-radius: 0;
+    transition: .4s all !important;
+
+}
+.rbc-btn-group > button:first-child:not(:last-child) {
+    background-color: #fdc300 !important;
+    border: none !important;
+    color: #ffff !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: .4s all !important;
+
+}
+
+
+.rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+    box-shadow: inset 20px -13px 20px 20px rgba(0, 0, 0, 0.1);
+    background-color: #e6e6e6 !important;
+    border-color: #adadad !important;
+    transition: .4s all !important;
+}
 @media screen and (max-width: 638px) {
     .rbc-btn-group > button:first-child:not(:last-child) {
         font-size: 12px !important;
@@ -93,7 +128,7 @@
     }
     
     .rbc-toolbar .rbc-toolbar-label {
-        text-transform: capitalize !important;
+        font-size: 20px !important;
     }
     .rbc-btn-group > button:first-child:not(:last-child) {
         font-size: 12px !important;
@@ -101,7 +136,8 @@
     
     .rbc-toolbar {
         font-size: 12px !important;
-        flex-wrap: wrap !important;
+        flex-direction: column !important;
+        gap: 8px !important;
     }
 }
 
