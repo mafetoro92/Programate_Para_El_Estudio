@@ -32,8 +32,6 @@ function getSteps() {
 function getStepContent(step) {
     const { inscribir } = useContext(InscriptionContext);
 
-    const { inscribir } = useContext(InscriptionContext);
-
     const [data, setData] = useState(initialData);
 
     const handeleChange = (e) => {

@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Chart } from "chart.js";
 //import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
 import "./GraphicsAdmin.scss";
+import { providerContext } from "../../Context/status";
 //import "chart.piecelabel.js";
 
-const SocialMedia = () => {
+const SocialMedia = ({ item }) => {
+    const { profiles } = useContext(providerContext);
+    const { usersRegisted } = item
+    let instagram = 0
+    let facebook = 0
+    let web = 0
+    for (let i of usersRegisted) {
+        for (let j of profiles) {
+            if (j.user_id === i) {
+                if (j.heardFromUs !== undefined) {
+
+                    if (j.heardFromUs.instagram === true) {
+                        instagram += 1
+                    } else if (j.heardFromUs.facebook === true) {
+                        facebook += 1
+                    } else if (j.heardFromUs.web === true) {
+                        web += 1
+                    }
+                }
+
+            }
+        }
+    }
     const data = {
         labels: [
             "Página web Educamás",
@@ -24,7 +47,7 @@ const SocialMedia = () => {
             {
                 axis: "y",
                 label: "Redes sociales",
-                data: [40, 50, 80, 78, 40, 50, 80, 78, 40, 50, 80],
+                data: [`${web}`, 50, `${facebook}`, `${instagram}`, 40, 50, 80, 78, 40, 50, 80],
                 fill: false,
                 backgroundColor: [
                     "#92C149",

@@ -15,20 +15,19 @@ const DashboardAdmin = () => {
         getConvocatorys,
         convocatorys,
         getConvocatory,
-        convocatory
+        convocatory,
+        getProfiles
     } = useContext(providerContext);
 
     const handleChange = (e) => {
         const id = e.target.value
-        // console.log(id)
         getConvocatory(id);
     }
     useEffect(() => {
         getConvocatorys();
+        getProfiles()
     }, []);
 
-
-    // console.log(convocatorys);
     return (
         <>
             <div className="section__dash">
@@ -52,7 +51,7 @@ const DashboardAdmin = () => {
                         <div className="cohorteGoal__container-graph">
                             <select name="qualify" className="form-select" onChange={(e) => handleChange(e)}>
                                 <option value="select">
-                                    Selecione una opción
+                                    Selecione una Cohorte
                                 </option>
                                 {convocatorys.map((item) => (
                                     <option
@@ -85,7 +84,9 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Embudo de selección</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <FunnelDos />
+                            {convocatory.map((item) => (
+                                <FunnelDos item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                     <div className="funnel__container">
@@ -93,7 +94,9 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Porcentaje que van pasando</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <AmountPassing />
+                            {convocatory.map((item) => (
+                                <AmountPassing item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                     <div className="funnel__container">
@@ -101,7 +104,9 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Datos generales migrantes</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <DateMigrants />
+                            {convocatory.map((item) => (
+                                <DateMigrants item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                     <div className="socialMedia__container">
@@ -111,7 +116,9 @@ const DashboardAdmin = () => {
                             </h2>
                         </div>
                         <div className="socialMedia__container-graph">
-                            <SocialMedia />
+                            {convocatory.map((item) => (
+                                <SocialMedia item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                 </div>

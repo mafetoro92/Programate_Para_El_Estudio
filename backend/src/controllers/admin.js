@@ -223,7 +223,7 @@ adminRouter.get('/get-result/:id', async (req, res) => {
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 adminRouter.get('/waiting-list', async (req, res, next) => {
-    const waitList = await Profile.find()
+    const waitList = await Profile.find({ status: { 'waitList': true } })
     res.send({ data: waitList })
 })
 

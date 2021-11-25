@@ -30,13 +30,13 @@ const CohorteGoal = ({ item }) => {
             }
         }
     }
-    let totalAcept = acepts.length
-    let total = maxQuotas - totalAcept
+    let porcentaje = Math.round(maxQuotas * acepts.length / 100)
+    let total = 100 - porcentaje
     const data = {
         datasets: [
             {
                 label: "# of Votes",
-                data: [`${totalAcept}`, `${total}`],
+                data: [`${porcentaje}`, `${total}`],
                 backgroundColor: ["#FFCC02", "#D7D7D7"],
                 hoverBackgroundColor: ["#FFCC02", "#D7D7D7"],
             },
@@ -49,9 +49,9 @@ const CohorteGoal = ({ item }) => {
         responsive: false,
         plugins: {
             datalabels: {
-                color: "#000",
+                color: "#FFF",
                 formatter: function (value, context) {
-                    return Math.round(value);
+                    return Math.round(value) + "%";
                 },
             },
         },

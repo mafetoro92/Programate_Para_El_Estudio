@@ -1,7 +1,10 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const AmountPassing = () => {
+const AmountPassing = ({ item }) => {
+    const { usersRegisted } = item
+    let InscripTotal = usersRegisted.length
+
     const dataBar = {
         labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
         datasets: [
@@ -27,7 +30,7 @@ const AmountPassing = () => {
                     /*Blue*/'rgba(54, 162, 235)',
                 ],
                 hoverBorderColor: "rgba(255, 205, 86)",
-                data: [65, 59, 80, 81],
+                data: [`${InscripTotal}`, 59, 80, 81],
             },
         ],
     };
@@ -39,7 +42,7 @@ const AmountPassing = () => {
             datalabels: {
                 color: "#6c757d",
                 formatter: function (value, context) {
-                    return Math.round(value) + "%";
+                    return Math.round(value);
                 },
             },
         },

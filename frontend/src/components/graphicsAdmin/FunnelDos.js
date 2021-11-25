@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+import { providerContext } from "../../Context/status";
 
-const FunnelDos = () => {
+const FunnelDos = ({ item }) => {
+    const { getAcept, acept, profiles } = useContext(providerContext);
+    const { usersRegisted } = item;
+    const items = usersRegisted
+    useEffect(() => {
+        getAcept()
+    }, [])
+    let acepts = []
+    for (let i of items) {
+        if (acept[0] !== undefined) {
+            for (let j of acept) {
+                if (j.rol.student === true) {
+                    let id = j.id
+                    if (i === id) {
+                        acepts = [...acepts, j.id]
+                    }
+                }
+            }
+        }
+    }
+
     const dataBar = {
         labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
         datasets: [
@@ -17,7 +38,7 @@ const FunnelDos = () => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(54, 162, 235)",
                 hoverBorderColor: "rgba(54, 162, 235)",
-                data: [65, 59, 80, 81],
+                data: [`${usersRegisted.length}`, 59, 10, `${acepts.length}`],
             },
             {
                 label: "Mujeres",
@@ -31,7 +52,7 @@ const FunnelDos = () => {
                 borderWidth: 1,
                 hoverBackgroundColor: "rgba(255, 99, 132)",
                 hoverBorderColor: "rgba(255, 99, 132)",
-                data: [65, 59, 80, 81],
+                data: [`${usersRegisted.length}`, 59, 100, `${acepts.length}`],
             },
         ],
     };
