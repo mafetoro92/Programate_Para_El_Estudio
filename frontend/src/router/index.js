@@ -23,14 +23,14 @@ import EditCohort from "../components/newConvocatory/EditCohort";
 const App = () => {
   const initialState = {
     nameAdmin: "Diego Admin",
-    admin: false,
-    loged: false,
+    admin: true,
+    loged: true,
   };
 
   const initialState2 = {
     name: "Kevin",
-    admin2: true,
-    loged2: true,
+    admin2: false,
+    loged2: false,
   };
 
   const [adminstate, setAdmin] = useState(initialState);
@@ -46,9 +46,16 @@ const App = () => {
         <Switch>
           {admin && loged && (
             <>
-              <Route path="/convocatoria" component={Convocatory} />
               <Route path="/nuevacohorte" component={NewCohort} />
-              <Route path="/editarcohorte" component={EditCohort} />
+              <Route
+                path="/editarcohorte"
+                component={EditCohort}
+              />
+              <Route exact path="/" component={DashboardAdmin} />
+              <Route
+                path="/convocatoria"
+                component={Convocatory}
+              />
               <Route path="/aspirantes" component={Aspirants} />
               <Route
                 path="/resultsInscription"

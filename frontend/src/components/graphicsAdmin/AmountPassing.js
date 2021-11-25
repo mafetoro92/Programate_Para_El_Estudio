@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+import { providerContext } from "../../Context/status";
 
 const AmountPassing = ({ item }) => {
     const { usersRegisted } = item
     let InscripTotal = usersRegisted.length
-
+    const { getAcept, acept } = useContext(providerContext);
+    const items = usersRegisted;
+    useEffect(() => {
+        getAcept()
+    }, [])
+    let acepts = []
+    for (let i of items) {
+        if (acept[0] !== undefined) {
+            for (let j of acept) {
+                if (j.rol.student === true) {
+                    let id = j.id
+                    if (i === id) {
+                        acepts = [...acepts, j.id]
+                    }
+                }
+            }
+        }
+    }
     const dataBar = {
         labels: ["Inscritos", "Prueba", "Entrevista", "Aceptados"],
         datasets: [
@@ -30,7 +48,7 @@ const AmountPassing = ({ item }) => {
                     /*Blue*/'rgba(54, 162, 235)',
                 ],
                 hoverBorderColor: "rgba(255, 205, 86)",
-                data: [`${InscripTotal}`, 59, 80, 81],
+                data: [`${InscripTotal}`, 59, 80, `${acepts.length}`],
             },
         ],
     };
