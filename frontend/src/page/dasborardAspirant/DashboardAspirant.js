@@ -4,11 +4,9 @@ import DoughtnutCss from "../../components/doughnut/DoughtnutCss";
 import DoughtnutJavascript from "../../components/doughnut/DoughtnutJavascript";
 import DoughtnutPython from "../../components/doughnut/DoughtnutPython";
 import { PROFILE_SOLOLEARN } from "../../api/data";
-
 import "./DashboardAspirant.scss";
 
 function DashboardAspirant() {
-//   console.log('desde aca', PROFILE_SOLOLEARN);
 
   return (
     <div className="dash">
@@ -87,8 +85,8 @@ function DashboardAspirant() {
                     </div>
                 </div>
             </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default DashboardAspirant;

@@ -4,11 +4,14 @@ $secondary: #000000;
 .nav {
   position: relative;
   padding: 20px 0;
+  
   background-color: $primary;
   // height: calc(100vh - 70px);
   width: 74px;
   display: block;
   transition: 0.4s all;
+  // box-shadow: 0px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 1px 16px 3px #00000054;
   @media screen and (max-width: 991px) {
     width: 294px;
     &__title,

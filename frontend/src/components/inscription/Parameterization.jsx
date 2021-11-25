@@ -27,26 +27,26 @@ const Parameterization = () => {
           </div>
           <div className="box__inputs" >
             <div className="inputs">
-              <div class="mb-4">
-                <label class="form-label">Perfil personal</label>
-                <input type="number" class="form-control" />
+              <div className="mb-4">
+                <label className="form-label">Perfil personal</label>
+                <input type="number" className="form-control" />
               </div>
             </div>
             <div className="inputs">
-              <div class="mb-4">
-                <label class="form-label">SoloLearn</label>
-                <input type="number" class="form-control" />
+              <div className="mb-4">
+                <label className="form-label">SoloLearn</label>
+                <input type="number" className="form-control" />
               </div>
             </div>
             <div className="inputs">
-              <div class="mb-4">
-                <label class="form-label">Carta de motivación</label>
-                <input type="number" class="form-control" />
+              <div className="mb-4">
+                <label className="form-label">Carta de motivación</label>
+                <input type="number" className="form-control" />
               </div>
             </div>
           </div>
         
-          <button className="button" type="submit" class="mb-4 btn btn-success">
+          <button className="button" type="submit" className="mb-4 btn btn-success">
             Guardar cambios
           </button>
         </div>
@@ -57,19 +57,19 @@ const Parameterization = () => {
           </legend>
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label fs-4">
+              <label htmlFor="disabledSelect" className="form-label fs-4">
                 Pais de residencia
               </label>
-              <select id="disabledSelect" class="form-select">
+              <select id="disabledSelect" className="form-select">
                 <option className="pickCountry">Colombia</option>
                 <option>USA</option>
               </select>
             </div>
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label fs-4">
+              <label htmlFor="disabledSelect" className="form-label fs-4">
                 Dto. residencia
               </label>
-              <select id="disabledSelect" class="form-select">
+              <select id="disabledSelect" className="form-select">
                 <option>Santander</option>
                 <option>Valle</option>
               </select>
@@ -78,16 +78,16 @@ const Parameterization = () => {
 
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledTextInput" class="form-label fs-4">
+              <label htmlFor="disabledTextInput" className="form-label fs-4">
                 Edad
               </label>
-              <input type="number" class="form-control" />
+              <input type="number" className="form-control" />
             </div>
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label fs-4">
+              <label htmlFor="disabledSelect" className="form-label fs-4">
                 Estrato
               </label>
-              <select id="disabledSelect" class="form-select">
+              <select id="disabledSelect" className="form-select">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -100,16 +100,16 @@ const Parameterization = () => {
 
           <div className="containerGlobal">
             <div className="containerLabel">
-              <label for="disabledSelect" class="form-label fs-4">
+              <label htmlFor="disabledSelect" className="form-label fs-4">
                 Población especial
               </label>
-              <select id="disabledSelect" class="form-select">
+              <select id="disabledSelect" className="form-select">
                 <option>Mujeres</option>
                 <option>Victima de la violencia</option>
               </select>
             </div>
             <div className="containerLabel">
-              <button className="button" type="submit" class="btn btn-success mt-5 fs-5">
+              <button className="button" type="submit" className="btn btn-success mt-5 fs-5">
                 Guardar cambios
               </button>
             </div>

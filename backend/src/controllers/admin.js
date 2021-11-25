@@ -212,6 +212,7 @@ adminRouter.get("/get-result/:id", async (req, res) => {
                 } catch {
                         res.json({ error: "Error fetching data" });
                 }
+            
         } catch {
                 res.status(404).send({ error: "Candidate not found" });
         }
@@ -292,6 +293,25 @@ adminRouter.get('/citation', async (req, res) => {
         res.send(results)
 });
 
+adminRouter.put("/update-test", async (req, res) => {
+    try {
+        const _id = req.body;
+        const result = await Convocatory.updateMany(
+            { _id },
+            {
+                $set: {
+                    test: {
+                        nameTest: req.body.test.nameTest,
+                        linkTest: req.body.test.linkTest,
+                    },
+                },
+            }
+        );
+        res.send(result);
+    } catch {
+        res.status(404).send({ error: "link citation category not put" });
+    }
+});
 // Creates new citations
 adminRouter.post("/citation", async (req, res) => {
         const { users, date, journy, quotasCompleted, maxQuotas } = req.body;

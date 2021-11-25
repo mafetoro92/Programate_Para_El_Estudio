@@ -33,16 +33,16 @@ const QualifyTechnicalTest = () => {
     ];
     return (
         <>
-            <div className="section__Qualify">
+            <div className="qualify">
                 <div className="section__content d-flex justify-content-between">
                     <span className="upperCase bold">
                         Calificar prueba técnica
                     </span>
                     <div className="box__content">
                         <span>Programate</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Prueba técnica</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Calificar prueba técnica</span>
                     </div>
                 </div>
@@ -59,26 +59,25 @@ const QualifyTechnicalTest = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pruebas1.map((prueba) => (
-                                    <tr>
+                                {pruebas1.map((prueba, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{prueba.id}</th>
                                         <td>{prueba.nombre}</td>
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            {prueba.calificacion == "" ? (
-                                                <button className="btn btn-primary">
-                                                    calificacion
-                                                </button>
-                                            ) : (
-                                                <div className="btn_edit">
-                                                    {prueba.calificacion}
-
-                                                    <button className="btn btn-success">
-                                                        <i className="fas fa-edit"></i>
-                                                    </button>
-                                                </div>
-                                            )}
+                                        <select
+                                                    name="qualify"
+                                                    className="form-select"
+                                                >
+                                                    <option value="select">
+                                                        Selecione una opción
+                                                    </option>
+                                                    <option value="1">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="1">3</option>
+                                                    <option value="1">4</option>
+                                                </select>
                                         </td>
                                     </tr>
                                 ))}

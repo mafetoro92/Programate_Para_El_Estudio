@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
 
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
-import Dashboard from "../page/dashboard/Dashboard";
+import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-import Inscription from "../page/inscription/Inscription";
+import ResultsInscription from "../page/inscription/ResultsInscription";
+import MotivationLetter from "../page/inscription/MotivationLetter";
+import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import InterviewDay from "../page/citation/InterviewDay";
 import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
+import Inscription from "../page/inscription/Inscription";
+import CalendarView from "../components/calendar/CalendarView";
 
 const App = () => {
+
 
   const initialState = {
     nameAdmin: "Diego Admin",
@@ -34,12 +38,14 @@ const App = () => {
     loged2: true,
   };
 
-  const [adminstate, setAdmin] = useState(initialState);
-  const [user, setUser] = useState(initialState2);
 
-  const { admin, loged } = adminstate;
-  const { admin2, loged2 } = user;
+    const [adminstate, setAdmin] = useState(initialState);
+    const [user, setUser] = useState(initialState2);
+    const { admin, loged } = adminstate;
+    const { admin2, loged2 } = user;
 
+
+    
   return (
     <>
       <Header user={user} adminstate={adminstate} />
@@ -48,6 +54,7 @@ const App = () => {
         <Switch>
           {admin && loged && (
             <>
+            <Route exact path="/" component={DashboardAdmin} />
               <Route path="/dia-de-entrevista">
                 <InterviewDay user={user} adminstate={adminstate}/>
               </Route>
@@ -60,12 +67,14 @@ const App = () => {
               <Route path="/editar" component={AdministerTechnicalTestEdit}/>
               <Route path="/calificar" component={QualifyTechnicalTest}/>
               <Route path="/inscripcion" component={Inscription}/>
-              <Route exact path="/" component={Dashboard} />
+              <Route path="/resultsInscription" component={ResultsInscription}/>
+               <Route path="/motivationLetter" component={MotivationLetter}/>
+               <Route path="/parameterization" component={Parameterization}/>
             </>
           )}
           {!admin2 && loged2 && (
             <>
-              <Route exact path="/inscripción" component={FormInscription} />
+              <Route exact path="/inscripcion" component={FormInscription} />
               <Route exact path="/entrevista">
                 <InterviewAspirant user={user} adminstate={adminstate}/>
               </Route>
