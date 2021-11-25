@@ -23,14 +23,14 @@ import EditCohort from "../components/newConvocatory/EditCohort";
 const App = () => {
   const initialState = {
     nameAdmin: "Diego Admin",
-    admin: true,
-    loged: true,
+    admin: false,
+    loged: false,
   };
 
   const initialState2 = {
     name: "Kevin",
-    admin2: false,
-    loged2: false,
+    admin2: true,
+    loged2: true,
   };
 
   const [adminstate, setAdmin] = useState(initialState);

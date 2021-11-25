@@ -89,7 +89,7 @@ const AdministerTechnicalTest = () => {
                                                 <button className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
                                                 </button>
-                                            </div>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}
