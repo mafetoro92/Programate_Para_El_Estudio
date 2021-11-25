@@ -111,9 +111,14 @@ candidateRouter.post(
             motivation,
             dreams,
             soloLearnProfile,
-            heardFromUs: { radio, instagram, facebook, web },
-            status,
-        } = req.body;
+            heardFromUs: {
+                radio,
+                instagram,
+                facebook,
+                web
+                },
+                status } = req.body;
+
         const newProfile = new Profile({
             user_id,
             documentType,
@@ -211,12 +216,9 @@ candidateRouter.get("/profile", async (req, res) => {
     });
 });
 
-candidateRouter.get("/profile/:id", async (req, res) => {
-    const profile = await Profile.find({
-        user_id: req.params.id,
-    });
-
-    res.send(profile);
+candidateRouter.get('/profile/:id', async (req, res) => {
+const profile = await Profile.find({ user_id: req.params.id })
+res.send(profile);
 });
 
 // GET PROFILE OF CANDIDATES
@@ -231,40 +233,40 @@ candidateRouter.get("/candidate-profile/:id", async (req, res) => {
     });
     // Strucuture for required data
     const candidateProfileData = {
-        firstName: candidate[0].firstName,
-        middleName: candidate[0].middleName,
-        lastName: candidate[0].lastName,
-        secondSurname: candidate[0].Surname,
-        fullName: `${candidate[0].firstName} ${candidate[0].lastName}`,
-        documentType: candidateProfile[0].documentType,
-        documentNumber: candidateProfile[0].documentNumber,
-        email: candidate[0].email,
-        contactNumber: candidate[0].contactNumber,
-        nacionality: candidateProfile[0].nacionality,
-        residenceCountry: candidateProfile[0].residenceCountry,
-        residencyDepartment: candidateProfile[0].residencyDepartment,
-        municipalityOfResidency: candidate[0].municipalityOfResidency,
-        socioeconomicStratus: candidateProfile[0].socioeconomicStratus,
-        actualAge: candidateProfile[0].actualAge,
-        gender: candidateProfile[0].gender,
-        status: "true",
-        secondContactNumber: candidateProfile[0].secondContactNumber,
-        locationInBogota: candidateProfile[0].locationInBogota,
-        migrant: candidateProfile[0].migrant,
-        livesInColombia: candidateProfile[0].livesInColombia,
-        address: candidateProfile[0].address,
-        maritalStatus: candidateProfile[0].maritalStatus,
-        academicLevel: candidateProfile[0].academicLevel,
-        degreeTitle: candidateProfile[0].degreeTitle,
-        currentOccupation: candidateProfile[0].currentOccupation,
-        unemployedTime: candidateProfile[0].unemployedTime,
-        formaltOccupation: candidateProfile[0].formalOccupation,
-        victimArmedConflict: candidateProfile[0].victimArmedConflict,
-        pcAccess: candidateProfile[0].pcAccess,
-        programataPrevoiousTimes: candidateProfile[0].programataPrevoiousTimes,
-        motivation: candidateProfile[0].motivation,
-        dreams: candidateProfile[0].dreams,
-        soloLearnProfile: candidateProfile[0].soloLearnProfile,
+        "firstName": candidate[0].firstName,
+"middleName": candidate[0].middleName,
+"lastName": candidate[0].lastName,
+"secondSurname": candidate[0].Surname,
+'fullName': `${candidate[0].firstName} ${candidate[0].lastName}`,
+'documentType': candidateProfile[0].documentType,
+'documentNumber': candidateProfile[0].documentNumber,
+"email": candidate[0].email,
+'contactNumber': candidate[0].contactNumber,
+'nacionality': candidateProfile[0].nacionality,
+"residenceCountry": candidateProfile[0].residenceCountry,
+'residencyDepartment': candidateProfile[0].residencyDepartment,
+'municipalityOfResidency': candidate[0].municipalityOfResidency,
+'socioeconomicStratus': candidateProfile[0].socioeconomicStratus,
+'actualAge': candidateProfile[0].actualAge,
+'gender': candidateProfile[0].gender,
+'status': 'true',
+"secondContactNumber": candidateProfile[0].secondContactNumber,
+"locationInBogota": candidateProfile[0].locationInBogota,
+"migrant": candidateProfile[0].migrant,
+"livesInColombia": candidateProfile[0].livesInColombia,
+"address": candidateProfile[0].address,
+"maritalStatus": candidateProfile[0].maritalStatus,
+"academicLevel": candidateProfile[0].academicLevel,
+"degreeTitle": candidateProfile[0].degreeTitle,
+"currentOccupation": candidateProfile[0].currentOccupation,
+"unemployedTime": candidateProfile[0].unemployedTime,
+"formaltOccupation": candidateProfile[0].formalOccupation,
+"victimArmedConflict": candidateProfile[0].victimArmedConflict,
+"pcAccess": candidateProfile[0].pcAccess,
+"programataPrevoiousTimes": candidateProfile[0].programataPrevoiousTimes,
+"motivation": candidateProfile[0].motivation,
+"dreams": candidateProfile[0].dreams,
+"soloLearnProfile": candidateProfile[0].soloLearnProfile,
     };
     res.send({
         data: {
@@ -423,7 +425,7 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
                         soloLearnScore,
                     });
                     if (users_id === undefined) {
-                        await usersolo.save();
+                        await Result.updateOne({ "user_id": id },;
                     } else {
                         await Result.updateOne(
                             {

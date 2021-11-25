@@ -9,10 +9,8 @@ Chart.defaults.plugins.datalabels;
 defaults.plugins.legend.position = "bottom";
 
 const DoughtnutHtml = ({ item }) => {
-    //console.log(item);
     const { cssScore } = item;
     let pendiente = 100 - cssScore;
-    console.log(pendiente);
     const data = {
         datasets: [
             {

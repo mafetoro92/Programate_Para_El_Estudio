@@ -18,6 +18,15 @@ module.exports = {
     },
     module: {
         rules: [
+            //   {
+            //       test: /\.(sass|less|css)$/,
+            //       loaders: ['style-loader', 'css-loader', 'less-loader']
+            //     },
+            //   {
+            //     test: /\.(sass|less|css)$/,
+            //     loaders: ["style-loader", "css-loader", "less-loader"],
+            //   },
+
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
@@ -33,7 +42,6 @@ module.exports = {
             },
             {
                 test: /\.(s*)css$/,
-                exclude: /node_modules/,
                 use: [
                     {
                         loader: MiniCssExtraxtPlugin.loader,
