@@ -43,8 +43,6 @@ const Parameterization = () => {
         const data = datas
         const id = convocatory[0]._id
         const idS = convocatory[0]
-        console.log(id)
-        console.log(idS)
         if (id !== undefined) {
             putParameterization(id, data);
         } else {
@@ -56,8 +54,6 @@ const Parameterization = () => {
         const data = datas
         const id = convocatory[0]._id
         const idS = convocatory[0]
-        console.log(id)
-        console.log(idS)
         if (id !== undefined) {
             putParameterization(id, data);
         }

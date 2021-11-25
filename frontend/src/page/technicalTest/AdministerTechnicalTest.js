@@ -61,11 +61,9 @@ const AdministerTechnicalTest = () => {
                     </div>
                 </div>
                 <div className="form">
-                    <Link to="/administertechnicaltestadd">
+                    <Link to="/agregar">
                         <div>
-                            <button className="btn btn-primary add">
-                                Agregar
-                            </button>
+                            <button className="btn btn-success">Agregar</button>
                         </div>
                     </Link>
                     <div className="section__table table">
@@ -87,21 +85,9 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.link}</td>
                                         <td>{prueba.convocatoria}</td>
                                         <td>
-                                            <div className="buttom d-flex justify-content-center align-items-center">
-                                                <Link to="/administertechnicaltestedit">
-                                                    <button className="btn btn-success">
-                                                        <i className="fas fa-edit"></i>
-                                                    </button>
-                                                </Link>
-                                                <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                        prueba.id &&
-                                                        modalDelete(prueba.id)
-                                                    }
-                                                    className="btn btn-danger"
-                                                >
-                                                    <i className="fas fa-trash"></i>
+                                            <Link to="/editar">
+                                                <button className="btn btn-success">
+                                                    <i className="fas fa-edit"></i>
                                                 </button>
                                             </div>
                                         </td>
