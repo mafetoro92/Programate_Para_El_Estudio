@@ -4,6 +4,18 @@ import "./Parameterization.scss";
 const Parameterization = () => {
   return (
     <>
+
+<div className="qualify">
+      <div className="qualify__content d-flex justify-content-between">
+        <span className="upperCase bold"> Carta Motvation </span>
+        <div className="box__content">
+          <span className="text-crumbs bold-500"> Programate </span>
+          <i className="fas fa-chevron-right subtitle" />
+          <span className="text-crumbs"> Aspirantes </span>
+        </div>
+      </div>
+
+
       <div className="containerP">
         <div className="containerFirstSection">
           <div className="box__title">
@@ -25,7 +37,7 @@ const Parameterization = () => {
               Estos valores son medidos en porcentanjes
             </p>
           </div>
-          <div className="box__inputs" >
+          <div className="box__inputs">
             <div className="inputs">
               <div className="mb-4">
                 <label className="form-label">Perfil personal</label>
@@ -45,8 +57,12 @@ const Parameterization = () => {
               </div>
             </div>
           </div>
-        
-          <button className="button" type="submit" className="mb-4 btn btn-success">
+
+          <button
+            className="button"
+            type="submit"
+            className="mb-4 btn btn-success"
+          >
             Guardar cambios
           </button>
         </div>
@@ -109,12 +125,17 @@ const Parameterization = () => {
               </select>
             </div>
             <div className="containerLabel">
-              <button className="button" type="submit" className="btn btn-success mt-5 fs-5">
+              <button
+                className="button"
+                type="submit"
+                className="btn btn-success mt-5 fs-5"
+              >
                 Guardar cambios
               </button>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

@@ -29,6 +29,7 @@ function getSteps() {
 }
 
 function getStepContent(step) {
+    //const { inscribir } = useContext(InscriptionContext);
 
   
 
