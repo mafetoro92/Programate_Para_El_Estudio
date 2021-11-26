@@ -14,7 +14,6 @@ const DateMigrants = ({ item }) => {
     const { usersRegisted } = item
     let migrants = []
     let notMigrants = []
-    console.log(usersRegisted)
     for (let i of usersRegisted) {
         for (let j of profiles) {
             if (j.user_id === i) {

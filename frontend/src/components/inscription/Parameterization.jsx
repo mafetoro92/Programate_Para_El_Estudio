@@ -75,7 +75,6 @@ const Parameterization = () => {
     const url = "https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json";
     const request = await fetch(url);
     const countrie = await request.json();
-    console.log(countrie)
     const departments = countrie.map((item) => item.departamento).sort();
     setDepartment(departments);
   };

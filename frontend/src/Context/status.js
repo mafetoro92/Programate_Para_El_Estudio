@@ -55,7 +55,6 @@ const StateContext = ({ children }) => {
         type: GET_CONVOCATORYS,
         payload: response.data
       })
-      // console.log(response)
     } catch (e) {
       console.log(e)
     }
@@ -67,7 +66,6 @@ const StateContext = ({ children }) => {
         type: GET_CONVOCATORY,
         payload: response.data
       })
-      // console.log(response)
     } catch (e) {
       console.log(e)
     }
@@ -79,7 +77,6 @@ const StateContext = ({ children }) => {
         type: PUT_PARAMETERIZATION,
         payload: response.data
       })
-      // console.log(response)
     } catch (e) {
       console.log(e)
     }
@@ -91,7 +88,6 @@ const StateContext = ({ children }) => {
         type: GET_ACEPT,
         payload: response.data,
       });
-      // console.log(response.data)
     } catch (e) {
       console.log(e);
     }
