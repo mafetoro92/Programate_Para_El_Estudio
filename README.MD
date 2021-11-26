@@ -50,6 +50,7 @@ _Aquí debajo dejamos el link del proyecto desplegado_
 Este proyecto fue realizado en colaboracion de :
 * **Daniel Lorenzo Scoccia, github: https://github.com/dlscoccia**
 * **Diego Romero, github: https://github.com/DiegoRX**
+* **Eyder Suárez, github: https://github.com/suarezt3**
 * **Hiromi Acosta Quevedo, github: https://github.com/maquevedo7**
 * **John Jairo Rojas, github: https://github.com/JohnRojas0628**
 * **Mafe Toro, github: https://github.com/mafetoro92**
