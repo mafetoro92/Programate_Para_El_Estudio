@@ -7,6 +7,13 @@ export const ITEMS = [
         pathname: "/dasboard",
     },
     {
+        name: "Convocatoria",
+        icon: "far fa-user",
+        id: 2,
+        items: [],
+        path: "/convocatoria",
+    },
+    {
         name: "Aspirantes",
         icon: "far fa-user",
         id: 2,
@@ -106,41 +113,7 @@ export const ITEMS_ASPIRANTS = [
     },
 ];
 
-/*const pruebas1 = [
-      {
-          user_id: 1,
-          userFullName: "Pablo",
-          htmlScore: 23,
-          cssScore: 25,
-          javascriptScore: 27,
-          pythonScore: 34,
-          Score: 28,
-          soloLearnScore: 28,
-          personalProfileScore: 28,
-          motivationScore: 28,
-          finalScore: 23,
-      },
-      
-  ];
-  */
-
-export const PROFILE_SOLOLEARN = [
-    {
-        user_id: 1,
-        userFullName: "Pablo",
-        htmlScore: 50,
-        cssScore: 25,
-        javascriptScore: 27,
-        pythonScore: 34,
-        Score: 28,
-        soloLearnScore: 28,
-        personalProfileScore: 28,
-        motivationScore: 28,
-        finalScore: 23,
-    },
-];
-
-export const pruebas1 = [
+const pruebas1 = [
     {
         user_id: 1,
         userFullName: "Pablo",
@@ -156,57 +129,18 @@ export const pruebas1 = [
     },
 ];
 
-export const CONVOCATORY = [
+export const PROFILE_SOLOLEARN = [
     {
-        id: "618af60371d0ac754e708e31",
-        name: "Programate",
-        initialDate: "",
-        finalDate: "",
-        program: "Goyn",
-        maxQuotas: 23,
-        initialBootcampDate: "",
-        finalBootcampDate: "",
-        parameterization: {
-            personalProfile: 20,
-            sololearn: 234567,
-            motivationLetter: 2345,
-        },
-        residenceCountry: "",
-        residencyDepartment: "",
-        maxAge: 18,
-        maxSocioeconomicStratus: 4,
-        test: {},
-        usersRegisted: ["618e8a293dbcd0c5c40124dc"],
-        test: {},
-        status: true,
-    },
-    {
-        id: "618c39993a9cca7088b85e05",
-        name: "Programate 2.0",
-        initialDate: "",
-        finalDate: "",
-        program: "Regional",
-        maxQuotas: 50,
-        initialBootcampDate: "",
-        finalBootcampDate: "",
-        parameterization: {
-            personalProfile: 20,
-            sololearn: 234567,
-            motivationLetter: 2345,
-        },
-        residenceCountry: "",
-        residencyDepartment: "",
-        maxAge: 18,
-        maxSocioeconomicStratus: 3,
-        test: {},
-        usersRegisted: [
-            "618c352d3ad3f3933bfb3b59",
-            "618e8a293dbcd0c5c40124dc",
-            "6189bb71cf8fc583a3800001",
-            "618e8a413dbcd0c5c40124dd",
-            "618e8a4f3dbcd0c5c40124de",
-        ],
-        test: {},
-        status: true,
+        user_id: 1,
+        userFullName: "Pablo",
+        htmlScore: 50,
+        cssScore: 25,
+        javascriptScore: 27,
+        pythonScore: 34,
+        Score: 28,
+        soloLearnScore: 28,
+        personalProfileScore: 28,
+        motivationScore: 28,
+        finalScore: 23,
     },
 ];

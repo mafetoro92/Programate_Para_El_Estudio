@@ -8,10 +8,10 @@ import Convocatory from "../page/convocatory/Convocatory";
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
-import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
+import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-import ResultsInscription from "../page/inscription/ResultsInscription";
+import Inscription from "../page/inscription/ResultsInscription";
 import MotivationLetter from "../page/inscription/MotivationLetter";
 import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
@@ -20,7 +20,6 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import InterviewDay from "../page/citation/InterviewDay";
 import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
-import Inscription from "../page/inscription/Inscription";
 import LoginFull from "../components/auth/LoginFull";
 
 const App = () => {
@@ -71,10 +70,10 @@ const App = () => {
               <Route path="/editar" component={AdministerTechnicalTestEdit} />
               <Route path="/calificar" component={QualifyTechnicalTest} />
               <Route path="/inscripcion" component={Inscription} />
-              <Route
+              {/* <Route
                 path="/resultsInscription"
                 component={ResultsInscription}
-              />
+              /> */}
               <Route path="/motivationLetter" component={MotivationLetter} />
               <Route path="/parameterization" component={Parameterization} />
 

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { InscriptionContext } from "../../inscription/InscriptionContext";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -31,7 +30,7 @@ function getSteps() {
 
 function getStepContent(step) {
 
-  const { inscribir } = useContext(InscriptionContext);
+  
 
 
 //   Candidate-Profile  endPoint
