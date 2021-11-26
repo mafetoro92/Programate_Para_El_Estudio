@@ -54,14 +54,14 @@ const AdministerTechnicalTest = () => {
                     </span>
                     <div className="box__content">
                         <span>Programate</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Prueba técnica</span>
-                        <i class="fas fa-chevron-right subtitle" />
+                        <i className="fas fa-chevron-right subtitle" />
                         <span>Administrar prueba técnica</span>
                     </div>
                 </div>
                 <div className="form">
-                    <Link to="/administertechnicaltestadd">
+                    <Link to="/agregar">
                         <div>
                             <button className="btn btn-primary add">
                                 Agregar
@@ -69,7 +69,7 @@ const AdministerTechnicalTest = () => {
                         </div>
                     </Link>
                     <div className="section__table table">
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -80,8 +80,8 @@ const AdministerTechnicalTest = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pruebas1.map((prueba) => (
-                                    <tr>
+                                {pruebas1.map((prueba, index) => (
+                                    <tr key={index}>
                                         <th scope="row">{prueba.id}</th>
                                         <td>{prueba.pruebaTecnica}</td>
                                         <td>{prueba.link}</td>

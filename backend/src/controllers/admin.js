@@ -7,6 +7,8 @@ const request = require("request");
 const Administrator = require("../db/models/Administrators");
 const Citation = require("../db/models/Citation");
 const Result = require("../db/models/Result");
+//const ObjectId = require("mongodb").ObjectID;
+const Calendar = require("../db/models/Calendar");
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -159,6 +161,7 @@ adminRouter.post("/new-conv", async (req, res, next) => {
     } = req.body;
     // New Convocatory document
     const newConvocatory = new Convocatory({
+        _id,
         name,
         initialDate,
         finalDate,
@@ -225,44 +228,82 @@ adminRouter.get("/results", async (req, res, next) => {
 // GET THE LIST OF CANDIDATES IN WAIT LIST
 
 adminRouter.get("/waiting-list", async (req, res, next) => {
-    const waitList = await Profile.find({});
-    res.send({ data: waitList });
-});
-
-// Download CSV files
-adminRouter.get("/csv/", async (req, res) => {
-    // Data from de candidate document
-    const candidates = await User.find();
-    // Data from the profile of the candidate
-    const candidateProfiles = await Profile.find();
-    // Strucuture for required data
-    const csvObject = [];
-
-    for (let c of candidates) {
-        const candidateProfileData = {
-            firstName: candidates[0].firstName,
-            middleName: candidates[0].middleName,
-            lastName: candidates[0].lastName,
-            secondSurname: candidates[0].Surname,
-            fullName: `${candidates[0].firstName} ${candidates[0].lastName}`,
-            documentType: candidateProfiles[0].documentType,
-            documentNumber: candidateProfiles[0].documentNumber,
-            email: candidates[0].email,
-            contactNumber: candidates[0].contactNumber,
-            nacionality: candidateProfiles[0].nacionality,
-            residenceCountry: candidateProfiles[0].residenceCountry,
-            residencyDepartment: candidateProfiles[0].residencyDepartment,
-            municipalityOfResidency: candidates[0].municipalityOfResidency,
-            socioeconomicStratus: candidateProfiles[0].socioeconomicStratus,
-            actualAge: candidateProfiles[0].actualAge,
-            gender: candidateProfiles[0].gender,
-            status: "true",
-        };
-        csvObject.push(candidateProfileData);
+    let waitList = await Profile.find();
+    waitList = waitList.filter(
+        (candidate) => candidate.status.waitList === true
+    );
+    let waitListResults = [];
+    for (let candidate of waitList) {
+        let candidateData = await Result.find({
+            user_id: candidate.user_id,
+        });
+        const candidateName = await User.find({
+            _id: ObjectId(candidate.user_id),
+        });
+        if (candidateData[0] !== undefined) {
+            candidateData = candidateData.map((candidate) =>
+                candidate
+                    ? {
+                          sololearn: candidate.soloLearnScore,
+                          personal: candidate.personalProfileScore,
+                          motivation: candidate.motivationScore,
+                          final: candidate.finalScore,
+                          status: candidate.status,
+                      }
+                    : null
+            );
+            console.log(candidateData);
+            const candidateObj = {
+                ID: candidate.user_id,
+                Nombre: `${candidateName[0].firstName} ${candidateName[0].lastName}`,
+                sololearn: candidateData[0].sololearn,
+                personal: candidateData[0].personal,
+                motivation: candidateData[0].motivation,
+                final: candidateData[0].final,
+                Status: candidateData[0].status,
+            };
+            waitListResults.push(candidateObj);
+        }
     }
-    const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
-    res.json({ data: csvFromArrayOfObjects });
+    res.json({
+        data: waitListResults,
+    });
 });
+
+// // Download CSV files
+// adminRouter.get("/csv/", async (req, res) => {
+//     // Data from de candidate document
+//     const candidates = await User.find();
+//     // Data from the profile of the candidate
+//     const candidateProfiles = await Profile.find();
+//     // Strucuture for required data
+//     const csvObject = [];
+
+//     for (let c of candidates) {
+//         const candidateProfileData = {
+//             firstName: candidates[0].firstName,
+//             middleName: candidates[0].middleName,
+//             lastName: candidates[0].lastName,
+//             secondSurname: candidates[0].Surname,
+//             fullName: `${candidates[0].firstName} ${candidates[0].lastName}`,
+//             documentType: candidateProfiles[0].documentType,
+//             documentNumber: candidateProfiles[0].documentNumber,
+//             email: candidates[0].email,
+//             contactNumber: candidates[0].contactNumber,
+//             nacionality: candidateProfiles[0].nacionality,
+//             residenceCountry: candidateProfiles[0].residenceCountry,
+//             residencyDepartment: candidateProfiles[0].residencyDepartment,
+//             municipalityOfResidency: candidates[0].municipalityOfResidency,
+//             socioeconomicStratus: candidateProfiles[0].socioeconomicStratus,
+//             actualAge: candidateProfiles[0].actualAge,
+//             gender: candidateProfiles[0].gender,
+//             status: "true",
+//         };
+//         csvObject.push(candidateProfileData);
+//     }
+//     const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
+//     res.json({ data: csvFromArrayOfObjects });
+// });
 
 // Updates the parameters for actual convocatory
 adminRouter.put("/parameterization/:_id", async (req, res) => {
@@ -294,11 +335,36 @@ adminRouter.put("/parameterization/:_id", async (req, res) => {
 
 // Get all citations
 adminRouter.get("/citation", async (req, res) => {
-    const results = await Citation.find();
-    res.send(results);
+    const citations = await Citation.find();
+
+    async function getUserData(users) {
+        const usersInfo = [];
+        for (let user of users) {
+            const info = await User.find({ _id: ObjectId(user) });
+            usersInfo.push(info[0]);
+        }
+        return usersInfo;
+    }
+
+    let data = citations.map((citation, idx) =>
+        citation
+            ? {
+                  id: idx,
+                  date: citation.date,
+                  journy: citation.journy,
+                  users: citation.users,
+              }
+            : null
+    );
+
+    const infoUsers = await Promise.all(
+        data.map(async (obj) => getUserData(obj.users))
+    );
+    data.users = data.map((user, idx) => (user.users = infoUsers[idx]));
+    res.send(data);
 });
 
-adminRouter.get("/c", async (req, res) => {
+adminRouter.get("/convocatories", async (req, res) => {
     const results = await Convocatory.find({});
     res.send(results);
 });
@@ -324,11 +390,11 @@ adminRouter.put("/update-test", async (req, res) => {
 });
 // Creates new citations
 adminRouter.post("/citation", async (req, res) => {
-    const { users, date, journy, quotasCompleted, maxQuotas } = req.body;
+    const { users, date, journey, quotasCompleted, maxQuotas } = req.body;
     const citation = new Citation({
         users,
         date,
-        journy,
+        journey,
         quotasCompleted,
         maxQuotas,
     });
@@ -424,6 +490,45 @@ adminRouter.post("/admin", async (req, res) => {
 adminRouter.get("/admin", async (req, res) => {
     const results = await Administrator.find();
     res.send(results);
+});
+
+// create event in calendar
+adminRouter.post("/calendar", async (req, res) => {
+    const { start, end, title, link, notes, quotas } = req.body;
+    const calendar = new Calendar({
+        start,
+        end,
+        title,
+        link,
+        notes,
+        quotas,
+    });
+
+    await calendar.save();
+    // res.send(
+    // "Event created successfully")
+    res.json({
+        ok: true,
+    });
+});
+
+adminRouter.put("/calendar/:id", async (req, res) => {
+    const updateEvent = await Calendar.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            new: true,
+        }
+    );
+    res.status(200);
+    res.json({
+        ok: true,
+    });
+});
+
+adminRouter.delete("/calendar/:id", async (req, res) => {
+    await Calendar.findByIdAndDelete({ _id: req.params.id });
+    res.status(204).json("calednar delete sussces");
 });
 
 module.exports = adminRouter;

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iBAAiB,CAAA;EACb,UAAU,EAAE,qBAAqB;EACjC,gBAAgB,EAAC,KAAK;EACtB,aAAa,EAAE,GAAG;EAClB,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI;EAClB,aAAa,EAAC,IAAI;EAClB,UAAU,EAAE,IAAI;EAChB,OAAO,EAAC,IAAI;CAEf;;AAED,AAAA,cAAc,CAAA;EACV,gBAAgB,EAAC,GAAG;CACvB",
-    "sources": [
-        "EditCohort.scss"
-    ],
-    "names": [],
-    "file": "EditCohort.css"
-}

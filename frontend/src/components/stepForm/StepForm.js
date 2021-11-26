@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { InscriptionContext } from "../../inscription/InscriptionContext";
 import Stepper from "@material-ui/core/Stepper";
@@ -31,11 +30,13 @@ function getSteps() {
 }
 
 function getStepContent(step) {
-    const { inscribir } = useContext(InscriptionContext);
+    //const { inscribir } = useContext(InscriptionContext);
+
+    //   Candidate-Profile  endPoint
 
     const [data, setData] = useState(initialData);
 
-    const handleChange = (e) => {
+    const handeleChange = (e) => {
         const { name, value } = e.target;
         setData({
             ...data,
@@ -46,10 +47,11 @@ function getStepContent(step) {
         setData(initialData);
         const { firstName, email } = data;
 
-        inscribir(firstName, email);
+        // inscribir(firstName, email);
+        console.log("La data", data);
     };
 
-    const props = { data, handleChange };
+    const props = { data, handeleChange };
 
     switch (step) {
         case 0:
@@ -59,7 +61,7 @@ function getStepContent(step) {
         case 2:
             return (
                 <>
-                    <Step3 {...props} />{" "}
+                    <Step3 {...props} />
                     <button
                         className="btn btn-primary send-data"
                         type="submit"

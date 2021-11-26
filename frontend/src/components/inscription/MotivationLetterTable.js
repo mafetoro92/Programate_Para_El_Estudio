@@ -40,8 +40,8 @@ const MotivationLetterTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pruebas1.map((prueba) => (
-                                    <tr>
+                                {pruebas1.map((prueba, index) => (
+                                    <tr key={index} >
                                         <th>{prueba.nombre}</th>
                                         <td>{prueba.motivation}</td>
                                         <td>
