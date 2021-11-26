@@ -7,6 +7,13 @@ export const ITEMS = [
         pathname: "/dasboard",
     },
     {
+        name: "Convocatoria",
+        icon: "fas fa-border-all",
+        id: 1,
+        items: [],
+        pathname: "/convocatoria",
+    },
+    {
         name: "Aspirantes",
         icon: "far fa-user",
         id: 2,

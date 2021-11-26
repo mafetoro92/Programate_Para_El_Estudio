@@ -57,18 +57,18 @@ export default function BasicTable({ rows, actions = false }) {
                                     </TableCell>
                                 ))}
                                 <TableCell align="right">
-                                    {/* {actions &&
+                                    {actions &&
                                         actions.map((action, index) =>
                                             action.status ? (
                                                 <span key={index}>
                                                     {action.icon}
                                                 </span>
                                             ) : null
-                                        )} */}
-                                    <i className="far fa-check-square"> </i>
+                                        )}
+                                    {/* <i className="far fa-check-square"> </i>
                                     <i className="far fa-edit"> </i>
                                     <i className="far fa-eye"> </i>
-                                    <i className="far fa-trash-alt"> </i>
+                                    <i className="far fa-trash-alt"> </i> */}
                                 </TableCell>
                             </TableRow>
                         ))}
