@@ -2,7 +2,7 @@
 
 Se hace conexión con mongoDB con la librería mongoose, se instala como dependencia para así hacer consultas hacia mongoDB. Se hace un llamado a Mongoose y a las variables de entorno en donde se encuentra almacenado los links para la conexión con la base de datos de  MongoDB.
 
-##Dependencias
+## Dependencias
 - **convert-array-to-csv:** se utilizó para descargar las tablas en formato csv.
 - **cors:** se utilizó para obtener permisos para acceder a recursos
 seleccionados desde un servidor, en un origen distinto al dominio que
@@ -28,9 +28,9 @@ cuando se detectan cambios.
 - **mime-types:** se utiliza para especificar que tipo de documento es.
 - **node-fetch:** se utiliza para acceder y manipular partes del canal HTTP, tales comopeticiones y respuestas.
 
-##Pruebas en postman
-###Algunas vistas en Postman
-####Vista administrador:
+## Pruebas en postman
+### Algunas vistas en Postman
+#### Vista administrador:
 
 - Citación de candidatos(Obtener todos los candidatos):
 
@@ -50,7 +50,7 @@ cuando se detectan cambios.
 
      ![](https://i.ibb.co/XXWM6Sf/convocatorias-Admin.png)
 
-####Vista candidato:
+#### Vista candidato:
 - Calificación prueba (SoloLearn) del candidato :
 
         candidateRouter.get('/calification', async (req, res) => {
