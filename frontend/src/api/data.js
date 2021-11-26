@@ -83,10 +83,76 @@ export const ITEMS = [
                 name: "Resultados",
                 pathname: "/dasboard",
             },
-        ],
-    },
+            {
+                name: "Aspirantes",
+                icon: "far fa-user",
+                id: 3,
+                items: [],
+                path: "/aspirantes",
+            },
+            {
+                name: "Inscripción",
+                icon: "far fa-id-card",
+                id: 4,
+                items: [
+                    {
+                        name: "Resultados",
+                        path: "/resultsInscription",
+                    },
+                    {
+                        name: "Calificación de la carta de motivación",
+                        path: "/motivationLetter",
+                    },
+                    {
+                        name: "Parametrización",
+                        path: "/parameterization",
+                    },
+                ],
+            },
+            {
+                name: "Citación",
+                icon: "fas fa-map-marker-alt",
+                id: 5,
+                items: [
+                    {
+                        name: "Consolidado Postulantes",
+                        path: "/",
+                    },
+                    {
+                        name: "Dias de Entrevista",
+                        path: "/",
+                    },
+                ],
+            },
+            {
+                name: "Prueba Técnica",
+                icon: "fas fa-laptop-code",
+                id: 6,
+                items: [
+                    {
+                        name: "Administrar Pruebas Técnicas",
+                        path: "/administertechnicaltest",
+                    },
+                    {
+                        name: "Calificar Pruebas Tecnicas",
+                        path: "/qualifytechnicaltest",
+                    },
+                ],
+            },
+            {
+                name: "Selección",
+                icon: "fas fa-vote-yea",
+                id: 7,
+                items: [
+                    {
+                        name: "Resultados",
+                        path: "/",
+                    },
+                ],
+            },
+        ]
+    }
 ];
-
 export const ITEMS_ASPIRANTS = [
    
     {

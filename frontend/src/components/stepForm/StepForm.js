@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { ContentContext } from "../../Context/status";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";

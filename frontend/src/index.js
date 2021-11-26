@@ -6,6 +6,8 @@ import App from "./router";
 import { store } from "./store/store";
 import "./styles/app.scss";
 import StateContext from './Context/status'
+
+
 ReactDom.render(
   <Provider store={store}>
     <Router>
