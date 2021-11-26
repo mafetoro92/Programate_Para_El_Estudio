@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -30,47 +29,49 @@ function getSteps() {
 }
 
 function getStepContent(step) {
-    const { inscribir } = useContext(InscriptionContext);
 
-    const [data, setData] = useState(initialData);
+//   const { inscribir } = useContext(InscriptionContext);
 
-    const handeleChange = (e) => {
-        const { name, value } = e.target;
-        setData({
-            ...data,
-            [name]: value,
-        });
-    };
-    const sendData = () => {
-        setData(initialData);
-        const { firstName, email } = data;
+  const [data, setData] = useState(initialData);
+ 
+  const handeleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+  const sendData = () => {
 
-        inscribir(firstName, email);
-    };
+    setData(initialData);
+    const { firstName, email } = data;
+    
+    // inscribir(firstName, email);
+  };
 
-    const props = { data, handeleChange };
+  const props = { data, handeleChange };
 
-    switch (step) {
-        case 0:
-            return <Step1 {...props} />;
-        case 1:
-            return <Step2 {...props} />;
-        case 2:
-            return (
-                <>
-                    <Step3 {...props} />{" "}
-                    <button
-                        className="btn btn-primary send-data"
-                        type="submit"
-                        onClick={() => sendData()}
-                    >
-                        Enviar
-                    </button>
-                </>
-            );
-        default:
-            return "Unknown step";
-    }
+  switch (step) {
+    case 0:
+      return <Step1 {...props} />;
+    case 1:
+      return <Step2 {...props} />;
+    case 2:
+      return (
+        <>
+          <Step3 {...props} />
+          <button
+            className="btn btn-primary send-data"
+            type="submit"
+            onClick={() => sendData()}
+          >
+            Enviar
+          </button>
+        </>
+      );
+    default:
+      return "Unknown step";
+  }
 }
 
 export default function HorizontalLinearStepper() {

@@ -132,7 +132,7 @@ candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) =>
                 status
         });
         await newProfile.save();
-        res.send(`${newProfile.user_id} profile saved`)
+        res.send(`${newProfile.user_id} profile saveed`)
 })
 
 // GET ALL CANDIDATES

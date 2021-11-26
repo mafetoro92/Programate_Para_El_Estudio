@@ -1,19 +1,20 @@
 import React from "react";
 import ReactDom from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./router";
+import { store } from "./store/store";
 import "./styles/app.scss";
 import StateContext from './Context/status'
 
 
 ReactDom.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Router>
       <StateContext>
         <App />
-
       </StateContext>
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("app")
 );

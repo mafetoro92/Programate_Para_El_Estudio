@@ -54,7 +54,7 @@ const MotivationLetterModal = () => {
             </button>
             <div id="aspirante" className="modalDialog">
                 <div className="content">
-                    <a href="#close" title="Close" class="close">
+                    <a href="#close" title="Close" className="close">
                         X
                     </a>
                     <h2>Datos del estudiante</h2>

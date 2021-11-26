@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./TechnicalTestAspirant.scss";
 
 const TechnicalTestAspirant = () => {
@@ -10,19 +11,18 @@ const TechnicalTestAspirant = () => {
     e.preventDefault();
     setTest({
       testurl: "",
-    })
-  }
+    });
+  };
 
   const handleChange = (e) => {
-      const {name, value} = e.target
-      setTest({
-        ...test,
-        [name]: value
-      })
-  } 
+    const { name, value } = e.target;
+    setTest({
+      ...test,
+      [name]: value,
+    });
+  };
 
-  const {testurl} = test
-
+  const { testurl } = test;
 
   return (
     <>
@@ -35,15 +35,13 @@ const TechnicalTestAspirant = () => {
               subir la solucion en el tiempo estipulado.
             </p>
             <div>
-              <a href="" download="Prueba tecnica">
-                <a
-                  href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing"
-                  target="_blank"
-                >
-                  <button type="button" class="btn btn-success">
-                    Link prueba tecnica
-                  </button>
-                </a>
+              <a
+                href="https://drive.google.com/drive/folders/1nIhnp0tw-OiBJjtWTuRB3IHPJYz0hd7y?usp=sharing"
+                target="_blank"
+              >
+                <button type="button" className="btn btn-success">
+                  Link prueba tecnica
+                </button>
               </a>
             </div>
           </div>
@@ -59,28 +57,31 @@ const TechnicalTestAspirant = () => {
           <div className="form__upload">
             <form>
               <p>Ingresa la URL:</p>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="basic-addon1">
                   @
                 </span>
                 <input
-                  onChange = {handleChange}
-                  value = {testurl}
+                  onChange={handleChange}
+                  value={testurl}
                   name="testurl"
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="https://drive.google.com/drive"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                   required
                 />
               </div>
+
               <button
-                onClick = {onSubmit}
-                class="btn btn-success"
+                onClick={onSubmit}
+                className="btn btn-success"
                 type="submit"
                 value="Enviar prueba"
-              >Enviar</button>
+              >
+                Enviar
+              </button>
             </form>
           </div>
         </div>

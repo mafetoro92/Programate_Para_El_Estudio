@@ -26,8 +26,7 @@ const DashboardAdmin = () => {
         getAcept();
     }, []);
 
-    //console.log(convocatory);
-    console.log(acept);
+
     return (
         <>
             <div className="section__dash">

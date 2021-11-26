@@ -11,9 +11,9 @@ const ResultsInscription = () => {
                 <span className="upperCase bold">Resultados</span>
                 <div className="box__content">
                     <span className="text-crumbs bold-500">Programate</span>
-                    <i class="fas fa-chevron-right subtitle" />
+                    <i className="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs bold-500">Inscripción</span>
-                    <i class="fas fa-chevron-right subtitle" />
+                    <i className="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs">
                         Calificación carta de motivación
                     </span>
