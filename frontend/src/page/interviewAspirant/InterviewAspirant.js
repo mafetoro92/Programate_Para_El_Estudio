@@ -3,7 +3,7 @@ import './InterviewAspirant.scss';
 import { providerContext } from '../../Context/status'
 import CalendarView from "../../components/calendar/CalendarView";
 
-const InterviewAspirant = ({user , adminstate}) => {
+const InterviewAspirant = ({ user, adminstate }) => {
   // const { getProfiles, profiles, getProfile, profileT, getConvocatorys, convocatorys } = useContext(providerContext)
   // useEffect(() => {
   //   getProfiles();

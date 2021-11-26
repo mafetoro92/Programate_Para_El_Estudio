@@ -45,8 +45,8 @@ const Aspirants = () => {
     }));
 
     return (
-        <div className="section__aspirants">
-            <div className="section__content d-flex justify-content-between">
+        <div className="spirants">
+            <div className="spirants__content d-flex justify-content-between">
                 <span className="upperCase bold"> Aspirantes </span>
                 <div className="box__content">
                     <span className="text-crumbs bold-500"> Programate </span>
@@ -54,8 +54,9 @@ const Aspirants = () => {
                     <span className="text-crumbs"> Aspirantes </span>
                 </div>
             </div>
-
+            <div className="mt-4">
             <Tablita key={rows.length} rows={rows} actions={actions} />
+            </div>
         </div>
     );
 };

@@ -272,6 +272,7 @@ const profileSchema = new Schema({
         type: Number,
         minlength: 6
     },
+    sex: String,
     status: {
         registered: { type: Boolean },
         waitList: { type: Boolean },
@@ -282,10 +283,17 @@ const profileSchema = new Schema({
         noPass: { type: Boolean }
     },
     heardFromUs: {
-        radio: Boolean,
-        instagram: Boolean,
+        web: Boolean,
+        recommendation: Boolean,
         facebook: Boolean,
-        web: Boolean
+        instagram: Boolean,
+        google: Boolean,
+        compensar: Boolean,
+        allianceEducational: Boolean,
+        embassyVen: Boolean,
+        poliTec: Boolean,
+        PNUD: Boolean,
+        other: Boolean,
     },
     convocatoria: String,
     resultados: Number,
