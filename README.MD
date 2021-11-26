@@ -11,7 +11,12 @@ su proceso de selección.
 
 ## Technologies 🛠️
 * **React**
-* **Mongo**
+* **Mongo DB**
+* **Node**
+* **Express**
+* **Sass**
+* **Redux**
+* **Webpack**
 * **Bootstrap**
 
 ***
