@@ -63,6 +63,9 @@ const App = () => {
                                 path="/dasboard"
                                 component={DashboardAdmin}
                             />
+                            <Route path="/citation">
+                                <Citations />
+                            </Route>
                             <Route path="/dia-de-entrevista">
                                 <InterviewDay
                                     user={user}
@@ -104,7 +107,7 @@ const App = () => {
                                 component={Results}
                             />
                             <Route
-                                path="/waiting-list"
+                                path="/waitinglist"
                                 component={WaitingList}
                             />
                             <Route

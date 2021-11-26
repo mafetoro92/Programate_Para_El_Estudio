@@ -24,7 +24,7 @@ export const ITEMS = [
             },
             {
                 name: "Lista de espera",
-                path: "/waiting-list",
+                pathname: "/waitinglist",
             },
             {
                 name: "Calificación de la carta de motivación",
@@ -43,7 +43,7 @@ export const ITEMS = [
         items: [
             {
                 name: "Consolidado Postulantes",
-                pathname: "/dasboard",
+                pathname: "/citation",
             },
             {
                 name: "Dias de Entrevista",
@@ -73,7 +73,7 @@ export const ITEMS = [
         items: [
             {
                 name: "Resultados",
-                pathname: "/dasboard",
+                pathname: "/resultsInscription",
             },
         ],
     },

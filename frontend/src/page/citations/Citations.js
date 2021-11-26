@@ -4,6 +4,7 @@ import Citation from "../../components/citation/Citation";
 
 const Citations = () => {
     const [citations, setCitations] = useState([]);
+
     const getCitation = async () => {
         const { data } = await RequestService.get("/admin/citation");
         if (data) {
@@ -13,56 +14,19 @@ const Citations = () => {
 
     useEffect(() => {
         getCitation();
-        getUsers();
     }, []);
 
-    const actions = [
-        {
-            status: true,
-            icon: <i className="far fa-check-square"> </i>,
-        },
-        {
-            status: true,
-            icon: <i className="far fa-edit"></i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-eye"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-trash-alt"> </i>,
-        },
-        {
-            status: false,
-            icon: <i class="fas fa-power-off"></i>,
-        },
-    ];
-
-    // const fixDate = (date) => {
-    //     return date.split("T")[0];
-    // };
-
-    const [users, setUsers] = useState([]);
-
-    const getUsers = async (users) => {
-        for (let user in users) {
-            const { data } = await RequestService.get(
-                ` /candidate/profile/${user}`
-            );
-            if (data) {
-                setUsers(data);
-                console.log(users);
-            }
-        }
+    const fixDate = (date) => {
+        return date.split("T")[0];
     };
 
-    const rows = citations.map((conv, idx) => ({
-        fecha: conv.date,
-        jornada: conv.journy,
-        users: getUsers(conv.users),
+    const data = citations.map((citation) => ({
+        id: citation.id,
+        date: fixDate(citation.date),
+        journey: citation.journey,
+        users: citation.users,
     }));
-
+    //console.log(rows)
     return (
         <>
             <div className="section__convocatory">
@@ -74,7 +38,10 @@ const Citations = () => {
                         <span className="text-crumbs"> Convocatoria </span>
                     </div>
                 </div>
-                <Citation rows={rows} />
+                {data &&
+                    data.map((citation) => (
+                        <Citation data={citation} key={citation.id} />
+                    ))}
             </div>
         </>
     );
