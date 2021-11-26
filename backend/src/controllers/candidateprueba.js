@@ -151,7 +151,7 @@ candidateRouter.post(
             status,
         });
         await newProfile.save();
-        res.send(`${newProfile.user_id} profile saved`);
+        res.send(`${newProfile.user_id} profile saveed`);
     }
 );
 
@@ -163,71 +163,19 @@ candidateRouter.get("/candidate", async (req, res) => {
 //Get all Profile
 candidateRouter.get("/profile", async (req, res) => {
     const profile = await Profile.find();
-    const candidates = await User.find();
-    const profiles = [];
-
-    for (let candidate of candidates) {
-        let candidateData = await Profile.find({
-            user_id: candidate._id.toString(),
-        });
-        if (candidateData[0] !== undefined) {
-            candidateData = candidateData.map((candidate) =>
-                candidate
-                    ? {
-                          age: candidate.actualAge,
-                          nacionality: candidate.nacionality,
-                          municipalityOfResidency:
-                              candidate.municipalityOfResidency,
-                          status: candidate.status.pass,
-                          documentType: candidate.documentType,
-                          documentNumber: candidate.documentNumber,
-                          gender: candidate.gender,
-                          residencyDepartment: candidate.residencyDepartment,
-                          socioeconomicStratus: candidate.socioeconomicStratus,
-                      }
-                    : null
-            );
-
-            const candidateObj = {
-                ID: candidate._id.toString(),
-                TipoDocumento: candidateData[0].documentType,
-                NumeroDocumento: candidateData[0].documentNumber,
-                Nombre: `${candidate.firstName} ${candidate.lastName}`,
-                Email: candidate.email,
-                Telefono: candidate.contactNumber,
-                Edad: candidateData[0].age,
-                Nacionalidad: candidateData[0].nacionality,
-                Departamento: candidateData[0].residencyDepartment,
-                Municipio: candidateData[0].municipalityOfResidency,
-                Estrato: candidateData[0].socioeconomicStratus,
-                Genero: candidateData[0].gender,
-                Status: candidateData[0].status,
-            };
-            profiles.push(candidateObj);
-        }
-    }
-    res.json({
-        data: profiles,
-    });
+    res.send(profile);
 });
 candidateRouter.get("/profile/:id", async (req, res) => {
-    const profile = await Profile.find({
-        user_id: req.params.id,
-    });
-
+    const profile = await Profile.find({ user_id: req.params.id });
     res.send(profile);
 });
 
 // GET PROFILE OF CANDIDATES
 candidateRouter.get("/candidate-profile/:id", async (req, res) => {
     // Data from de candidate document
-    const candidate = await User.find({
-        user_id: req.params.id,
-    });
+    const candidate = await User.find({ user_id: req.params.id });
     // Data from the profile of the candidate
-    const candidateProfile = await Profile.find({
-        user_id: req.params.id,
-    });
+    const candidateProfile = await Profile.find({ user_id: req.params.id });
     // Strucuture for required data
     const candidateProfileData = {
         firstName: candidate[0].firstName,
@@ -312,13 +260,9 @@ candidateRouter.post("/new-result", async (req, res) => {
         console.log(newResult);
         // Saving new document to Reults
         await newResult.save();
-        res.send({
-            data: newResult,
-        });
+        res.send({ data: newResult });
     } catch {
-        res.status(404).send({
-            error: "Candidate not found",
-        });
+        res.status(404).send({ error: "Candidate not found" });
     }
 });
 
@@ -331,9 +275,7 @@ candidateRouter.put("/update-candidate", async (req, res) => {
         const { user_id, candidate, profile } = req.body;
         if (candidate) {
             const candidate = await User.updateMany(
-                {
-                    user_id: user_id,
-                },
+                { user_id: user_id },
                 {
                     $set: req.body.candidate,
                 }
@@ -341,30 +283,22 @@ candidateRouter.put("/update-candidate", async (req, res) => {
         }
         if (profile) {
             const candidateProfile = await Profile.updateMany(
-                {
-                    user_id: user_id,
-                },
+                { user_id: user_id },
                 {
                     $set: req.body.profile,
                 }
             );
         }
-        res.send({
-            data: candidate,
-        });
+        res.send({ data: candidate });
     } catch {
-        res.status(404).send({
-            error: "Candidate not found",
-        });
+        res.status(404).send({ error: "Candidate not found" });
     }
 });
 
 // SAVE AND UPDATE SOLOLEARN DATA
 candidateRouter.get("/sololearn/:id", async (req, res) => {
     var id = req.params.id;
-    const perfiles = await Profile.find({
-        user_id: id,
-    });
+    const perfiles = await Profile.find({ user_id: id });
     const params = JSON.stringify(perfiles);
     const json = JSON.parse(params);
     for (x of json) {
@@ -373,9 +307,7 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
     if (usersololearn === undefined) {
         console.log("This user does not have a sololearn profile");
     } else {
-        const calificationUpdate = await Result.find({
-            user_id: id,
-        });
+        const calificationUpdate = await Result.find({ user_id: id });
         const params2 = JSON.stringify(calificationUpdate);
         const json2 = JSON.parse(params2);
         for (y of json2) {
@@ -425,9 +357,7 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
                         await usersolo.save();
                     } else {
                         await Result.updateOne(
-                            {
-                                user_id: id,
-                            },
+                            { user_id: id },
                             {
                                 $set: {
                                     htmlScore: html,
@@ -450,10 +380,7 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
 });
 
 candidateRouter.get("/calendar", async (req, res) => {
-    const calendar = google.calendar({
-        version: "v3",
-        auth: oAuth2Client,
-    });
+    const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
 
     const eventStartTime = new Date();
     eventStartTime.setDate(eventStartTime.getDay() + 15);
@@ -485,11 +412,7 @@ candidateRouter.get("/calendar", async (req, res) => {
                 timeMin: eventStartTime,
                 timeMax: eventEndTime,
                 timeZone: "America/Bogota",
-                items: [
-                    {
-                        id: "primary",
-                    },
-                ],
+                items: [{ id: "primary" }],
             },
         },
         (err, res) => {
@@ -503,10 +426,7 @@ candidateRouter.get("/calendar", async (req, res) => {
             if (eventArr.length === 0)
                 // If we are not busy create a new calendar event.
                 return calendar.events.insert(
-                    {
-                        calendarId: "primary",
-                        resource: event,
-                    },
+                    { calendarId: "primary", resource: event },
                     (err) => {
                         // Check for errors and log them if they exist.
                         if (err) {

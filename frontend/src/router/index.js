@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
+import Parameterization from "../components/inscription/Parameterization";
+import MotivationLetter from "../components/inscription/MotivationLetterTable";
 import Aspirants from "../page/aspirants/Aspirants";
 import Convocatory from "../page/convocatory/Convocatory";
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
@@ -11,8 +13,6 @@ import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
 import Results from "../page/Results/Results";
-import MotivationLetter from "../page/inscription/MotivationLetter";
-import Parameterization from "../page/inscription/Inscription";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
 import ProofAspirant from "../page/proofAspirant/ProofAspirant";
@@ -21,7 +21,6 @@ import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
 import WaitingList from "../page/waitingList/WaitingList";
 import Citations from "../page/citations/Citations";
-import Inscription from "../page/inscription/Inscription";
 import LoginFull from "../components/auth/LoginFull";
 
 const App = () => {
@@ -96,10 +95,10 @@ const App = () => {
                                 path="/calificar"
                                 component={QualifyTechnicalTest}
                             />
-                            <Route
+                            {/* <Route
                                 path="/inscripcion"
                                 component={Inscription}
-                            />
+                            /> */}
                             <Route
                                 path="/resultsInscription"
                                 component={Results}

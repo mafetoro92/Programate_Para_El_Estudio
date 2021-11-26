@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Aspirants.scss";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
-import ModalAspirants from "../../components/modalAspirants/ModalAspirants";
+import ModalAspirants from "../../components/modals/ModalAspirants";
 
 const Aspirants = () => {
     const [aspirants, setAspirants] = useState([]);

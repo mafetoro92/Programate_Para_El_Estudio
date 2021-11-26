@@ -5,7 +5,6 @@ import DisableBtn from "../../components/disableBtn/DisableBtn";
 import RequestService from "../../config/index";
 import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
 import { Link } from "react-router-dom";
-import ModalAspirants from "../../components/modalAspirants/ModalAspirants";
 
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
@@ -34,10 +33,6 @@ const Convocatory = () => {
         {
             status: true,
             icon: <DisableBtn />,
-        },
-        {
-            status: true,
-            icon: <ModalAspirants />,
         },
     ];
 
