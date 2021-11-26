@@ -24,42 +24,34 @@ import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
 import LoginFull from "../components/auth/LoginFull";
 import WaitingList from "../page/waitingList/WaitingList";
+import { useSelector } from "react-redux";
+import Citations from "../page/citations/Citations";
 
 const App = () => {
-  const initialState = {
-    nameAdmin: "Diego Admin",
-    admin: true,
-    loged: false,
-  };
+  
+  const auth = useSelector((state) => state.auth);
 
-  const initialState2 = {
-    name: "Kevin",
-    admin2: false,
-    loged2: true,
-  };
-
-  const [adminstate, setAdmin] = useState(initialState);
-  const [user, setUser] = useState(initialState2);
-  const { admin, loged } = adminstate;
-  const { admin2, loged2 } = user;
+  const { isLogged, isAdmin } = auth;
 
   const { pathname } = useLocation();
 
   return (
     <>
-      {pathname !== "/login" && <Header user={user} adminstate={adminstate} />}
+      {/* {pathname !== "/login" && <Header user={user} adminstate={adminstate} />} */}
+      {pathname !== "/" && <Header />}
 
       <div className="d-flex top">
-        {pathname !== "/login" && <Nav user={user} adminstate={adminstate} />}
+        {/* {pathname !== "/login" && <Nav user={user} adminstate={adminstate} />} */}
+        {pathname !== "/" && <Nav />}
 
         <Switch>
-          <Route exact path="/login" component={LoginFull} />
+          <Route exact path="/" component={LoginFull} />
           {/* <Redirect to="/login" /> */}
-          {admin && loged && (
+          {isLogged && isAdmin && (
             <>
-              <Route path="/dasboard" component={DashboardAdmin} />
+              <Route path="/dashboard" component={DashboardAdmin} />
               <Route path="/dia-de-entrevista">
-                <InterviewDay user={user} adminstate={adminstate} />
+                <InterviewDay />
               </Route>
               <Route path="/convocatoria" component={Convocatory} />
               <Route path="/nuevacohorte" component={NewCohort} />
@@ -69,6 +61,8 @@ const App = () => {
               <Route path="/agregar" component={AdministerTechnicalTestAdd} />
               <Route path="/editar" component={AdministerTechnicalTestEdit} />
               <Route path="/calificar" component={QualifyTechnicalTest} />
+              <Route path="/citation" component={Citations}/>
+              
               {/* <Route path="/inscripcion" component={Inscription} /> */}
               {/* <Route
                   path="/resultsInscription"
@@ -80,18 +74,14 @@ const App = () => {
               <Route path="/parameterization" component={Parameterization} />
             </>
           )}
-          {!admin2 && loged2 && (
+          {!isAdmin && isLogged && (
             <>
               <Route exact path="/inscripcion" component={FormInscription} />
               <Route exact path="/entrevista">
-                <InterviewAspirant user={user} adminstate={adminstate} />
+                <InterviewAspirant />
               </Route>
               <Route exact path="/aspirante" component={ProofAspirant} />
-              <Route
-                exact
-                path="/dashboardAspirant"
-                component={DashboardAspirant}
-              />
+              <Route exact path="/dashboard" component={DashboardAspirant} />
             </>
           )}
         </Switch>

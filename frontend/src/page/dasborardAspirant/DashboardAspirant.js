@@ -54,7 +54,7 @@ function DashboardAspirant() {
                         ))}
                     </div>
                 </div>
-                <div className="doughtnut__container spacing">
+                <div className="doughtnut__container">
                     <div className="doughtnut__container">
                         <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
                             <h2>Javascript</h2>

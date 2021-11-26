@@ -4,7 +4,7 @@ export const ITEMS = [
     icon: "fas fa-th-large",
     id: 1,
     items: [],
-    pathname: "/dasboard",
+    pathname: "/dashboard",
   },
   {
     name: "Convocatoria",
@@ -50,7 +50,7 @@ export const ITEMS = [
     items: [
       {
         name: "Consolidado Postulantes",
-        pathname: "/dasboard",
+        pathname: "/citation",
       },
       {
         name: "Dias de Entrevista",
@@ -80,7 +80,7 @@ export const ITEMS = [
     items: [
       {
         name: "Resultados",
-        pathname: "/dasboard",
+        pathname: "/resultsInscription",
       },
     ],
   },
@@ -90,7 +90,7 @@ export const ITEMS_ASPIRANTS = [
     name: "Dashboard de progreso",
     icon: "fas fa-th-large",
     items: [],
-    pathname: "/dashboardAspirant",
+    pathname: "/dashboard",
     id: 7,
   },
   {

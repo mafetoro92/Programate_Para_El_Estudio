@@ -2,7 +2,6 @@ import React, { useReducer, createContext } from "react";
 import Reducer from './reducer'
 import axios from "axios";
 import {
-  GET_PROFILE,
   GET_PROFILES,
   GET_CONVOCATORYS,
   GET_CONVOCATORY,
@@ -16,13 +15,16 @@ export const providerContext = createContext();
 const StateContext = ({ children }) => {
   const initialState = {
     profiles: [],
-    profile: null,
     convocatorys: [],
     convocatory: [],
     acept: [],
     parameterization: null,
   };
-  const url = "http://localhost:3001/api";
+
+
+
+  // const url = REACT_API_URL
+  const url = 'http://localhost:3001/api';
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   const getProfiles = async () => {
@@ -32,18 +34,6 @@ const StateContext = ({ children }) => {
         type: GET_PROFILES,
         payload: response.data
       })
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  const getProfile = async (id) => {
-    try {
-      const response = await axios.get(`${url}/candidate/profile/${id}`);
-      dispatch({
-        type: GET_PROFILE,
-        payload: response.data
-      });
-
     } catch (e) {
       console.log(e)
     }
@@ -98,14 +88,12 @@ const StateContext = ({ children }) => {
   };
   return (
     <providerContext.Provider value={{
-      profile: state.profile,
       profiles: state.profiles,
       convocatorys: state.convocatorys,
       convocatory: state.convocatory,
       parameterization: state.parameterization,
       acept: state.acept,
       getAcept,
-      getProfile,
       getProfiles,
       getConvocatorys,
       getConvocatory,

@@ -1,12 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import Dark from "../darkMode/Dark";
 import Search from "../search/Search";
 import User from "../user/User";
-
 import "./Header.scss";
-const Header = ({ user, adminstate }) => {
+import { dispatchGetUser, dispatchLogin, fetchUser } from "../../actions/authAction";
+
+const Header = () => {
   // Menu hamburguesa CODE
+
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.token)
+  const auth = useSelector(state => state.auth)
+
+
+  useEffect(()=> {
+    const loggedUserJSON = window.localStorage.getItem('loggedAgoraUser')
+    const firstLogin = localStorage.getItem('firstLogin')
+    if(firstLogin && loggedUserJSON){
+      const user = JSON.parse(loggedUserJSON)
+      const refreshtoken = user.refresh_token
+      
+      const getToken = async () =>{
+
+        try {
+          const res = await axios.post('http://localhost:3001/api/user/refresh_token',{refreshtoken})
+          dispatch({type:'getToken', payload: res.data.access_token})
+          
+        } catch (error) {
+            console.log(error)
+        }
+
+      }
+      getToken()
+      
+    }
+  }, [auth.isLogged, dispatch])
+
+  useEffect(()=> {
+    if(token){
+      const getUser = () => {
+        dispatch(dispatchLogin())
+        return fetchUser(token).then(res => {
+          dispatch(dispatchGetUser(res))
+        })
+      }
+      getUser()
+    } 
+  }, [token, dispatch])
 
   const moveNav = () => {
     const bar = document.querySelector("#menu");
@@ -31,7 +74,7 @@ const Header = ({ user, adminstate }) => {
           <Search />
         </div>
         <div className="header__user">
-          <User user={user} adminstate={adminstate} />
+          <User/>
         </div>
         <div className="header__dark">
           <Dark />

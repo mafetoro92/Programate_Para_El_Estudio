@@ -14,7 +14,9 @@ export const types = {
   setError : '[event] Set Error',
 
   login: '[login] Set Login',
-  getToken: '[login] Get Token',
+  getToken: 'getToken',
   getUser: '[login] Get User',
   getAllUsers: '[login] Get All Users'
+
+
 };
