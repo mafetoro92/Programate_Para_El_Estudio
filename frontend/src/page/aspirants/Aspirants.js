@@ -55,7 +55,7 @@ const Aspirants = () => {
                 </div>
             </div>
             <div className="mt-4">
-            <Tablita key={rows.length} rows={rows} actions={actions} />
+                <Tablita key={rows.length} rows={rows} actions={actions} />
             </div>
         </div>
     );

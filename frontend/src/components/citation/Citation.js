@@ -11,8 +11,6 @@ const Citation = ({ data }) => {
         "Numero telefonico": user.contactNumber,
     }));
 
-    console.log("data", data);
-
     return (
         <div>
             <div className="citation">

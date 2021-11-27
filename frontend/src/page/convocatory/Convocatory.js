@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
-import NewCohort from "../../components/newConvocatory/NewCohort ";
 import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
-// import TableConvocatory from "../../components/tables/TableConvocatory";
 import "../../components/newConvocatory/EditCohort.jsx";
 import DisableBtn from "../../components/disableBtn/DisableBtn";
 import RequestService from "../../config/index";
@@ -10,9 +8,9 @@ import ModalConvocatory from "../../components/modals/ModalConvocatory";
 import { Link } from "react-router-dom";
 //import Button from '@mui/material/Button';
 import "./Convocatory.scss";
+import Filter from "../../components/filter/Filter";
 
 const Convocatory = () => {
-
     const [convocatories, setConvocatories] = useState([]);
     const getUser = async () => {
         const { data } = await RequestService.get("/admin/convocatories");
@@ -38,6 +36,10 @@ const Convocatory = () => {
         },
         {
             status: true,
+            icon: <ModalConvocatory />,
+        },
+        {
+            status: true,
             icon: <DisableBtn />,
         },
     ];
@@ -53,7 +55,6 @@ const Convocatory = () => {
         "Fecha de Inicio": fixDate(conv.initialDate),
     }));
 
-
     return (
         <>
             <div className="section__convocatory">
@@ -65,6 +66,8 @@ const Convocatory = () => {
                         <span className="text-crumbs">Convocatoria</span>
                     </div>
                 </div>
+                <Filter />
+                <Link to="/nuevacohorte">Nueva Convocatoria</Link>
                 {rows.length > 0 ? (
                     <Tablita
                         className="table"
@@ -75,7 +78,6 @@ const Convocatory = () => {
                 ) : (
                     <NewConvocatory />
                 )}
-                {/* <TableConvocatory /> */}
             </div>
         </>
     );

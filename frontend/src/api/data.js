@@ -54,7 +54,7 @@ export const ITEMS = [
             },
             {
                 name: "Dias de Entrevista",
-                pathname: "/dia-de-entrevista",
+                pathname: "/consolidado-postulantes",
             },
         ],
     },

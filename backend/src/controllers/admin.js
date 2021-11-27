@@ -352,6 +352,8 @@ adminRouter.get("/citation", async (req, res) => {
                   id: idx,
                   date: citation.date,
                   journey: citation.journey,
+                  maxQuotas: citation.maxQuotas,
+                  quotasCompleted: citation.quotasCompleted,
                   users: citation.users,
               }
             : null

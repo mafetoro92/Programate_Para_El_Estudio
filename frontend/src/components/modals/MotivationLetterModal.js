@@ -274,7 +274,7 @@ const MotivationLetterModal = () => {
                                 <em>
                                     ¿Cuáles son tus principales sueños en la
                                     vida y cómo la formación te aportará a
-                                    cumplirlos?:{" "}
+                                    cumplirlos?:
                                 </em>
                                 lorem lorem lorem
                             </p>
@@ -284,7 +284,7 @@ const MotivationLetterModal = () => {
                         <div className="col-12 col-md-6">
                             <p>
                                 <em>
-                                    ¿Porcentaje de cumplimiento Html Sololearn?:{" "}
+                                    ¿Porcentaje de cumplimiento Html Sololearn?:
                                 </em>
                                 65%
                             </p>
@@ -292,7 +292,7 @@ const MotivationLetterModal = () => {
                         <div className="col-12 col-md-6">
                             <p>
                                 <em>
-                                    ¿Porcentaje de cumplimiento Css Sololearn?:{" "}
+                                    ¿Porcentaje de cumplimiento Css Sololearn?:
                                 </em>
                                 79%
                             </p>
@@ -303,7 +303,7 @@ const MotivationLetterModal = () => {
                             <p>
                                 <em>
                                     ¿Porcentaje de cumplimiento Javascript
-                                    Sololearn?:{" "}
+                                    Sololearn?:
                                 </em>
                                 75%
                             </p>
@@ -312,7 +312,7 @@ const MotivationLetterModal = () => {
                             <p>
                                 <em>
                                     ¿Porcentaje de cumplimiento Python
-                                    Sololearn?:{" "}
+                                    Sololearn?:
                                 </em>
                                 80%
                             </p>

@@ -5,7 +5,9 @@ const ModalConvocatory = () => {
     return (
         <div>
             <div className="btn">
-                <a href="#convocatoria">Leer mas..</a>
+                <a href="#convocatoria">
+                    <i className="far fa-eye"> </i>
+                </a>
             </div>
             <div id="convocatoria" className="modalDialog">
                 <div className="content">
