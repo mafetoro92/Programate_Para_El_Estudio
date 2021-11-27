@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Aspirants.scss";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
 import ModalAspirants from "../../components/modals/ModalAspirants";
+import { Link } from "react-router-dom";
 
-const InterviewDay = () => {
+const InterviewDays = () => {
     const [citation, setCitation] = useState([]);
     const getDay = async () => {
         const { data } = await RequestService.get("/admin/citation");
@@ -23,12 +23,16 @@ const InterviewDay = () => {
         },
     ];
 
-    const rows = citation.map((interviewDay, idx) => ({
+    const fixDate = (date) => {
+        return date.split("T")[0];
+    };
+
+    const rows = citation.map((interviewDays, idx) => ({
         ID: idx,
-        Date: interviewDay.date,
-        Journey: interviewDay.journey,
-        MaxQuotas: interviewDay.maxQuotas,
-        QuotasCompleted: interviewDay.quotasCompleted,
+        Fecha: fixDate(interviewDays.date),
+        Jornada: interviewDays.journey,
+        Cupos: interviewDays.maxQuotas,
+        Inscritos: interviewDays.quotasCompleted,
     }));
 
     return (
@@ -49,4 +53,4 @@ const InterviewDay = () => {
     );
 };
 
-export default InterviewDay;
+export default InterviewDays;

@@ -26,6 +26,7 @@ import LoginFull from "../components/auth/LoginFull";
 import WaitingList from "../page/waitingList/WaitingList";
 import { useSelector } from "react-redux";
 import Citations from "../page/citations/Citations";
+import InterviewDays from "../page/interviewDays/InterviewDays";
 
 const App = () => {
     const auth = useSelector((state) => state.auth);
@@ -51,6 +52,10 @@ const App = () => {
                             <Route
                                 path="/dashboard"
                                 component={DashboardAdmin}
+                            />
+                            <Route
+                                path="/consolidado-postulantes"
+                                component={InterviewDays}
                             />
                             <Route path="/dia-de-entrevista">
                                 <InterviewDay />

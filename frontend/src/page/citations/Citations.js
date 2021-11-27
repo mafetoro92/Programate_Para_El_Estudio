@@ -26,7 +26,7 @@ const Citations = () => {
         journey: citation.journey,
         users: citation.users,
     }));
-    //console.log(rows)
+
     return (
         <>
             <div className="section__convocatory">
