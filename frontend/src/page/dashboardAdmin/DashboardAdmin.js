@@ -25,7 +25,6 @@ const DashboardAdmin = () => {
         getAcept();
     }, []);
 
-
     return (
         <>
             <div className="section__dash">
