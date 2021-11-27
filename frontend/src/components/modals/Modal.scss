@@ -34,7 +34,15 @@
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    overflow: scroll;
+    overflow-y: scroll;
+}
+.modalDialog .modalDialog__title {
+    padding-top: 80px;
+}
+
+.modalDialog .modalDialog__content {
+    padding-top: 70px;
+    text-align: center;
 }
 .close {
     background: #606061;
@@ -58,6 +66,9 @@
     background: #c1c1c1;
 }
 
+.modalDialog h2 {
+    text-align: center;
+}
 .content {
     max-height: 100vh;
     margin: 5px 20px 13px 20px;

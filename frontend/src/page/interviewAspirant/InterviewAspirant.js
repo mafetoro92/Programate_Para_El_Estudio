@@ -3,7 +3,7 @@ import './InterviewAspirant.scss';
 import { providerContext } from '../../Context/status'
 import CalendarView from "../../components/calendar/CalendarView";
 
-const InterviewAspirant = ({user , adminstate}) => {
+const InterviewAspirant = () => {
   // const { getProfiles, profiles, getProfile, profileT, getConvocatorys, convocatorys } = useContext(providerContext)
   // useEffect(() => {
   //   getProfiles();
@@ -24,7 +24,7 @@ const InterviewAspirant = ({user , adminstate}) => {
         </div>
       </div>
       <div className="calendar mt-4">
-        <CalendarView user={user} adminstate={adminstate} />
+        <CalendarView />
       </div>
       {/* {
         // console.log(profiles.residenceCountry)

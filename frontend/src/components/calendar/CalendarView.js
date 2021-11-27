@@ -14,7 +14,7 @@ moment.locale("es");
 const localizer = momentLocalizer(moment);
 
 
-const CalendarView = ({user,adminstate}) => {
+const CalendarView = () => {
 
   const dispatch = useDispatch();
   const {events} = useSelector(state => state.calendar)
@@ -70,7 +70,7 @@ const CalendarView = ({user,adminstate}) => {
           event: CalendarEvent,
         }}
       />
-      <CalendarModal user={user} adminstate={adminstate} />
+      <CalendarModal />
     </div>
   );
 };

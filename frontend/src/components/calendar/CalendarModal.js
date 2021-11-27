@@ -28,9 +28,10 @@ const initEvent = {
     quotas: 0,
 };
 
-const CalendarModal = ({ user, adminstate }) => {
-    const { admin, loged } = adminstate;
-    const { admin2, loged2 } = user;
+const CalendarModal = () => {
+
+    const auth = useSelector(state => state.auth)
+    const {isLogged, isAdmin} = auth
 
     // Trae el estado de la aplicacion de ui
     const { modalOpen } = useSelector((state) => state.ui);
@@ -125,7 +126,7 @@ const CalendarModal = ({ user, adminstate }) => {
                 overlayClassName="modal-fondo"
                 contentLabel="Example Modal"
             >
-                {admin && loged && (
+                {isAdmin && isLogged && (
                     <>
                         <h1 className="text-center"> Nuevo evento </h1>
                         <hr />
@@ -227,7 +228,7 @@ const CalendarModal = ({ user, adminstate }) => {
                     </>
                 )}
 
-                {!admin2 && loged2 && (
+                {!isAdmin && isLogged && (
                     <>
                         <h1 className="text-center"> Dia de entrevista </h1>
                         <hr />

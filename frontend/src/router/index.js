@@ -9,9 +9,12 @@ import Convocatory from "../page/convocatory/Convocatory";
 import DashboardAspirant from "../page/dasborardAspirant/DashboardAspirant";
 import DashboardAdmin from "../page/dashboardAdmin/DashboardAdmin";
 import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTest";
-import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
+import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
+// import Inscription from "../page/inscription/ResultsInscription";
+// import MotivationLetter from "../page/inscription/MotivationLetter";
+// import Parameterization from "../page/inscription/Inscription";
 import Results from "../page/Results/Results";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
@@ -19,58 +22,38 @@ import ProofAspirant from "../page/proofAspirant/ProofAspirant";
 import InterviewDay from "../page/citation/InterviewDay";
 import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
-import WaitingList from "../page/waitingList/WaitingList";
-import Citations from "../page/citations/Citations";
 import LoginFull from "../components/auth/LoginFull";
+import WaitingList from "../page/waitingList/WaitingList";
+import { useSelector } from "react-redux";
+import Citations from "../page/citations/Citations";
 
 const App = () => {
-    const initialState = {
-        nameAdmin: "Diego Admin",
-        admin: true,
-        loged: true,
-    };
+    const auth = useSelector((state) => state.auth);
 
-    const initialState2 = {
-        name: "Kevin",
-        admin2: false,
-        loged2: false,
-    };
-
-    const [adminstate, setAdmin] = useState(initialState);
-    const [user, setUser] = useState(initialState2);
-    const { admin, loged } = adminstate;
-    const { admin2, loged2 } = user;
+    const { isLogged, isAdmin } = auth;
 
     const { pathname } = useLocation();
 
     return (
         <>
-            {pathname !== "/login" && (
-                <Header user={user} adminstate={adminstate} />
-            )}
+            {/* {pathname !== "/login" && <Header user={user} adminstate={adminstate} />} */}
+            {pathname !== "/" && <Header />}
 
             <div className="d-flex top">
-                {pathname !== "/login" && (
-                    <Nav user={user} adminstate={adminstate} />
-                )}
+                {/* {pathname !== "/login" && <Nav user={user} adminstate={adminstate} />} */}
+                {pathname !== "/" && <Nav />}
 
                 <Switch>
-                    <Route exact path="/login" component={LoginFull} />
+                    <Route exact path="/" component={LoginFull} />
                     {/* <Redirect to="/login" /> */}
-                    {admin && loged && (
+                    {isLogged && isAdmin && (
                         <>
                             <Route
-                                path="/dasboard"
+                                path="/dashboard"
                                 component={DashboardAdmin}
                             />
-                            <Route path="/citation">
-                                <Citations />
-                            </Route>
                             <Route path="/dia-de-entrevista">
-                                <InterviewDay
-                                    user={user}
-                                    adminstate={adminstate}
-                                />
+                                <InterviewDay />
                             </Route>
                             <Route
                                 path="/convocatoria"
@@ -98,16 +81,19 @@ const App = () => {
                                 path="/calificar"
                                 component={QualifyTechnicalTest}
                             />
+                            <Route path="/citation" component={Citations} />
+
+                            {/* <Route path="/inscripcion" component={Inscription} /> */}
                             {/* <Route
-                                path="/inscripcion"
-                                component={Inscription}
-                            /> */}
+                  path="/resultsInscription"
+                  component={ResultsInscription}
+                /> */}
                             <Route
                                 path="/resultsInscription"
                                 component={Results}
                             />
                             <Route
-                                path="/waitinglist"
+                                path="/waiting-list"
                                 component={WaitingList}
                             />
                             <Route
@@ -120,7 +106,7 @@ const App = () => {
                             />
                         </>
                     )}
-                    {!admin2 && loged2 && (
+                    {!isAdmin && isLogged && (
                         <>
                             <Route
                                 exact
@@ -128,10 +114,7 @@ const App = () => {
                                 component={FormInscription}
                             />
                             <Route exact path="/entrevista">
-                                <InterviewAspirant
-                                    user={user}
-                                    adminstate={adminstate}
-                                />
+                                <InterviewAspirant />
                             </Route>
                             <Route
                                 exact
@@ -140,7 +123,7 @@ const App = () => {
                             />
                             <Route
                                 exact
-                                path="/dashboardAspirant"
+                                path="/dashboard"
                                 component={DashboardAspirant}
                             />
                         </>

@@ -3,7 +3,6 @@ import Tablita from "../tablita/Tablita";
 
 const Citation = ({ data }) => {
     const { id, date, journey, users } = data;
-    console.log(data);
     const rows = users.map((user, idx) => ({
         ID: idx,
         Nombre: user.firstName,
@@ -11,6 +10,8 @@ const Citation = ({ data }) => {
         Email: user.email,
         "Numero telefonico": user.contactNumber,
     }));
+
+    console.log("data", data);
 
     return (
         <div>

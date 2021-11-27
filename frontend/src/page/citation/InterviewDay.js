@@ -4,7 +4,7 @@ import AddNewFab from "../../components/calendar/AddNewFab";
 import CalendarView from "../../components/calendar/CalendarView";
 import DeleteEventFab from "../../components/calendar/DeleteEventFab";
 
-const InterviewDay = ({ user, adminstate }) => {
+const InterviewDay = () => {
     
 
     const { activeEvent } = useSelector((state) => state.calendar)
@@ -22,7 +22,7 @@ const InterviewDay = ({ user, adminstate }) => {
       </div>
       <div className="calendar mt-4">
 
-            <CalendarView user={user} adminstate={adminstate} />
+            <CalendarView />
             <AddNewFab/>
             {activeEvent && <DeleteEventFab />}
 
