@@ -6,7 +6,6 @@ const adminRouter = require("express").Router();
 const request = require("request");
 const Administrator = require("../db/models/Administrators");
 const Citation = require("../db/models/Citation");
-const Calendar = require("../db/models/Calendar");
 const ObjectId = require("mongodb").ObjectID;
 
 // GET STATISTICS
@@ -492,26 +491,25 @@ adminRouter.get("/admin", async (req, res) => {
 
 // create event in calendar
 adminRouter.post("/calendar", async (req, res) => {
-    const { start, end, title, link, notes, quotas } = req.body;
-    const calendar = new Calendar({
+    const { start, end, title, link, notes, quotas, testTechnical } = req.body;
+    const citation = new Citation({
         start,
         end,
         title,
         link,
         notes,
         quotas,
+        testTechnical,
     });
 
-    await calendar.save();
-    // res.send(
-    // "Event created successfully")
+    await citation.save();
     res.json({
         ok: true,
     });
 });
 
 adminRouter.put("/calendar/:id", async (req, res) => {
-    const updateEvent = await Calendar.findByIdAndUpdate(
+    const updateEvent = await Citation.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
@@ -525,7 +523,7 @@ adminRouter.put("/calendar/:id", async (req, res) => {
 });
 
 adminRouter.delete("/calendar/:id", async (req, res) => {
-    await Calendar.findByIdAndDelete({ _id: req.params.id });
+    await Citation.findByIdAndDelete({ _id: req.params.id });
     res.status(204).json("calednar delete sussces");
 });
 

@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import AddNewFab from "../../components/calendar/AddNewFab";
 import CalendarView from "../../components/calendar/CalendarView";
 import DeleteEventFab from "../../components/calendar/DeleteEventFab";
-
+import "./InterViewDay.scss";
 const InterviewDay = () => {
     const { activeEvent } = useSelector((state) => state.calendar);
     return (
-        <div className="interview">
+        <div className="interviewDay">
             <div className="section__content d-flex justify-content-between">
                 <span className="upperCase bold">
                     Agenda de Entrevista y assessment

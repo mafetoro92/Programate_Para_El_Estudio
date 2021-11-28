@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import Header from "../components/header/Header";
 import Nav from "../components/nav/Nav";
@@ -12,9 +12,6 @@ import AdministerTechnicalTest from "../page/technicalTest/AdministerTechnicalTe
 import AdministerTechnicalTestAdd from "../page/technicalTest/AdministerTechnicalTestAdd";
 import QualifyTechnicalTest from "../page/technicalTest/QualifyTechnicalTest";
 import AdministerTechnicalTestEdit from "../page/technicalTest/AdministerTechnicalTestEdit";
-// import Inscription from "../page/inscription/ResultsInscription";
-// import MotivationLetter from "../page/inscription/MotivationLetter";
-// import Parameterization from "../page/inscription/Inscription";
 import Results from "../page/Results/Results";
 import FormInscription from "../page/formAspirant/FormInscription";
 import InterviewAspirant from "../page/interviewAspirant/InterviewAspirant";
@@ -24,12 +21,20 @@ import NewCohort from "../components/newConvocatory/NewCohort ";
 import EditCohort from "../components/newConvocatory/EditCohort";
 import LoginFull from "../components/auth/LoginFull";
 import WaitingList from "../page/waitingList/WaitingList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Citations from "../page/citations/Citations";
 import InterviewDays from "../page/interviewDays/InterviewDays";
+import Footer from "../components/footer/Footer";
+import { getData } from "../actions/sololearnProfile";
 
 const App = () => {
     const auth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getData(auth.user.id));
+        console.log("UseEffet");
+    }, [dispatch, auth]);
 
     const { isLogged, isAdmin } = auth;
 
@@ -135,6 +140,7 @@ const App = () => {
                     )}
                 </Switch>
             </div>
+            {pathname !== "/" && <Footer />}
         </>
     );
 };

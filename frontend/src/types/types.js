@@ -10,8 +10,13 @@ export const types = {
   eventUpdated : '[event] Update event',
   eventDeleted : '[event] Deleted event',
 
+  getProfile : '[sololearm] Get Profile',
+  getResult : '[results] getResult',
+
   setCalendarEvents : '[event] Set Calendar',
   setError : '[event] Set Error',
+
+  setCitation : '[citation] Set Citation',
 
   login: '[login] Set Login',
   getToken: 'getToken',

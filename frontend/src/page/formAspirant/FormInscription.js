@@ -1,8 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import FormSend from "../../components/formSend/FormSend";
 import HorizontalLinearStepper from "../../components/stepForm/StepForm";
 import "./FormInscription.scss";
 
 function FormInscription() {
+
+    const {profile} = useSelector(state => state.sololearn)
+
+    console.log(profile)
     return (
         <div className="inscription">
             <div className="section__content d-flex justify-content-between mb-4">
@@ -15,7 +21,9 @@ function FormInscription() {
                     <span className="text-crumbs">inscripción</span>
                 </div>
             </div>
-            <HorizontalLinearStepper />
+                {
+                    profile.length ? <FormSend/> : <HorizontalLinearStepper />  
+                }
         </div>
     );
 }

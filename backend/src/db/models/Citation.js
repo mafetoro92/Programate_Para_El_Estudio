@@ -3,10 +3,13 @@ const { Schema, model } = mongoose;
 
 const CitationSchema = new Schema({
     users: Array,
-    date: { type: Date, required: true },
-    journey: { type: Number, required: true },
-    quotasCompleted: { type: Number, required: true },
-    maxQuotas: { type: Number, required: true },
+    start: { type: Date, required: true },
+    end: { type: Date, required: true },
+    title: { type: String, required: true },
+    link: { type: String, required: true },
+    notes: { type: String, required: true },
+    quotas: { type: Number, required: true },
+    testTechnical: { type: String, required: true },
 });
 
 const Citation = model("Citation", CitationSchema);

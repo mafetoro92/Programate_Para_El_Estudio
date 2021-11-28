@@ -191,8 +191,22 @@ const profileSchema = new Schema({
     /* fin social programate */
 
     /* Proceso de seleccion */
+
+    firstName: {
+        type: String,
+    },
+    secondName: {
+        type: String,
+    },
+    firstSurname: {
+        type: String,
+    },
+    secondSurname: {
+        type: String,
+    },
+
     documentType: {
-        type: Number,
+        type: String,
     },
     documentNumber: {
         type: Number,
@@ -215,10 +229,10 @@ const profileSchema = new Schema({
         type: Number,
     },
     migrant: {
-        type: Boolean,
+        type: String,
     },
     livesInColombia: {
-        type: Boolean,
+        type: String,
     },
     address: {
         type: String,
@@ -231,10 +245,10 @@ const profileSchema = new Schema({
     birthdayOnFormation: Date,
 
     maritalStatus: {
-        type: Number,
+        type: String,
     },
     academicLevel: {
-        type: Number,
+        type: String,
     },
     degreeTitle: {
         type: String,
@@ -250,13 +264,13 @@ const profileSchema = new Schema({
         maxlength: 45
     },
     victimArmedConflict: {
-        type: Boolean,
+        type: String,
     },
     pcAccess: {
-        type: Boolean,
+        type: String,
     },
     programataPrevoiousTimes: {
-        type: Number,
+        type: String,
     },
     motivation: {
         type: String,
@@ -282,19 +296,19 @@ const profileSchema = new Schema({
         pass: { type: Boolean },
         noPass: { type: Boolean }
     },
-    heardFromUs: {
-        web: Boolean,
-        recommendation: Boolean,
-        facebook: Boolean,
-        instagram: Boolean,
-        google: Boolean,
-        compensar: Boolean,
-        allianceEducational: Boolean,
-        embassyVen: Boolean,
-        poliTec: Boolean,
-        PNUD: Boolean,
-        other: Boolean,
-    },
+    // heardFromUs: {
+    //     web: Boolean,
+    //     recommendation: Boolean,
+    //     facebook: Boolean,
+    //     instagram: Boolean,
+    //     google: Boolean,
+    //     compensar: Boolean,
+    //     allianceEducational: Boolean,
+    //     embassyVen: Boolean,
+    //     poliTec: Boolean,
+    //     PNUD: Boolean,
+    //     other: Boolean,
+    // },
     convocatoria: String,
     resultados: Number,
     fechaEntrevista: Date,
