@@ -7,7 +7,9 @@ import ModalAspirants from "../../components/modals/ModalAspirants";
 const Aspirants = () => {
     const [aspirants, setAspirants] = useState([]);
     const getUser = async () => {
-        const { data } = await RequestService.get("/candidate/profile");
+        const { data } = await RequestService.get(
+            "/candidate/candidate-profile/:id"
+        );
         if (data) {
             setAspirants(data.data);
         }
@@ -25,17 +27,17 @@ const Aspirants = () => {
 
     const rows = aspirants.map((aspirant, idx) => ({
         ID: idx,
-        Nombre: aspirant.Nombre,
-        "Tipo de Documento": aspirant.TipoDocumento,
-        "Numero de Documento": aspirant.NumeroDocumento,
-        Correo: aspirant.Email,
-        Telefono: aspirant.Telefono,
-        Nacionalidad: aspirant.Nacionalidad,
-        Departamento: aspirant.Departamento,
-        Municipio: aspirant.Municipio,
-        Estrato: aspirant.Estrato,
-        Edad: aspirant.Edad,
-        Genero: aspirant.Genero,
+        Nombre: aspirant.fullName,
+        "Tipo de Documento": aspirant.documentType,
+        "Numero de Documento": aspirant.documentNumber,
+        Correo: aspirant.email,
+        Telefono: aspirant.secondContactNumber,
+        Nacionalidad: aspirant.nacionality,
+        Departamento: aspirant.residencyDepartment,
+        Municipio: aspirant.municipalityOfResidency,
+        Estrato: aspirant.socioeconomicStratus,
+        Edad: aspirant.actualAge,
+        Genero: aspirant.gender,
         Estado: (
             <select>
                 <option value="pasa">Pasa</option>

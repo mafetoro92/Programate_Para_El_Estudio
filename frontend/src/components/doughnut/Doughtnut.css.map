@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,MAAM,GAAG,QAAQ,CAAC;IACd,KAAK,EAAE,gBAAgB;IACvB,MAAM,EAAE,KAAK;GAChB",
     "sources": [
         "Doughtnut.scss"
     ],

@@ -30,7 +30,7 @@ const InterviewDays = () => {
 
     const rows = citation.map((interviewDays, idx) => ({
         ID: idx,
-        Fecha: fixDate(interviewDays.date),
+        Fecha: fixDate(interviewDays.start),
         Jornada: interviewDays.journey,
         Cupos: interviewDays.quotas,
         Inscritos: interviewDays.users.lenght,

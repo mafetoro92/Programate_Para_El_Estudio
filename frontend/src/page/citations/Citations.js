@@ -34,7 +34,9 @@ const Citations = () => {
                     <div className="box__content">
                         <span className="text-crumbs bold-500">Programate</span>
                         <i className="fas fa-chevron-right subtitle" />
-                        <span className="text-crumbs"> Convocatoria </span>
+                        <span className="text-crumbs">
+                            Consolidado Postulantes
+                        </span>
                     </div>
                 </div>
                 {data &&

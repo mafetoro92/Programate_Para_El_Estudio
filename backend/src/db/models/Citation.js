@@ -10,6 +10,7 @@ const CitationSchema = new Schema({
     notes: { type: String, required: true },
     quotas: { type: Number, required: true },
     testTechnical: { type: String, required: true },
+    journey: { type: Number, required: true },
 });
 
 const Citation = model("Citation", CitationSchema);
