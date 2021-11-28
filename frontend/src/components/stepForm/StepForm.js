@@ -10,7 +10,12 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import { initialData } from "./index";
+import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+
+
 import "./StepForm.scss";
+import { getData, getProfileFull } from "../../actions/sololearnProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,14 +35,10 @@ function getSteps() {
 }
 
 function getStepContent(step) {
-    //const { inscribir } = useContext(InscriptionContext);
-
-  
-
-
-//   Candidate-Profile  endPoint
 
   const [data, setData] = useState(initialData);
+  const dispatch = useDispatch()
+
  
   const handeleChange = (e) => {
     const { name, value } = e.target;
@@ -46,13 +47,23 @@ function getStepContent(step) {
       [name]: value,
     });
   };
-  const sendData = () => {
 
-    setData(initialData);
-    const { firstName, email } = data;
+  const {user} = useSelector(state => state.auth)
+
+  const sendData = async () => {
+
+    try {
+        const res = await axios.post('http://localhost:3001/api/candidate/profile', 
+        {...data, user_id : user?.id})
+        console.log('Aca lo envia', res)
+    } catch (error) {
+        console.log(error)
+    }
+
+    dispatch(getProfileFull(user.id))
+    // dispatch(getData(user.id))
     
-    // inscribir(firstName, email);
-    console.log('La data',data)
+    // setData(initialData);
   };
 
   const props = { data, handeleChange };

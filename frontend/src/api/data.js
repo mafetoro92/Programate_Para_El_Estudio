@@ -1,3 +1,4 @@
+
 export const ITEMS = [
   {
     name: "Dashboard",
@@ -116,37 +117,6 @@ export const ITEMS_ASPIRANTS = [
   },
 ];
 
-export const PROFILE_SOLOLEARN = [
-  {
-    user_id: 1,
-    userFullName: "Pablo",
-    htmlScore: 50,
-    cssScore: 25,
-    javascriptScore: 27,
-    pythonScore: 34,
-    Score: 28,
-    soloLearnScore: 28,
-    personalProfileScore: 28,
-    motivationScore: 28,
-    finalScore: 23,
-  },
-];
-
-export const pruebas1 = [
-  {
-    user_id: 1,
-    userFullName: "Pablo",
-    htmlScore: 23,
-    cssScore: 25,
-    javascriptScore: 27,
-    pythonScore: 34,
-    Score: 28,
-    soloLearnScore: 28,
-    personalProfileScore: 28,
-    motivationScore: 28,
-    finalScore: 23,
-  },
-];
 
 export const CONVOCATORY = [
   {
@@ -202,3 +172,5 @@ export const CONVOCATORY = [
     status: true,
   },
 ];
+
+

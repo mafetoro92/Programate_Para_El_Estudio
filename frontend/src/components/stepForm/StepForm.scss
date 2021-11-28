@@ -7,7 +7,7 @@ $primary: #fdc300;
   font-size: 2.5rem !important;
 }
 .MuiStepIcon-text {
-  fill: rgb(110, 110, 110) !important;
+  fill: rgb(0, 0, 0) !important;
 }
 .MuiStepLabel-root {
   display: flex;
@@ -49,8 +49,8 @@ $primary: #fdc300;
 .jss13,
 .jss16,
 .jss19,
-.jss22, 
-.jss25{
+.jss22,
+.jss25 {
   background-color: white !important;
   background: white !important;
   width: 100%;
@@ -78,4 +78,13 @@ $primary: #fdc300;
   font-family: "Gilroy" !important;
   font-weight: 600 !important;
   font-size: 15px !important;
+}
+
+.form-label {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-weight: 600 !important;
+  width: 100% !important;
 }

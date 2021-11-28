@@ -15,31 +15,40 @@
 
 .doughtnut__container {
     width: 400px;
-    height: 340px;
     background-color: #ffffff;
     box-shadow: 0px 2px 4px #0000004f !important;
+    border-radius: 10px;
+}
+.text-lenguages{
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
+// .doughtnut__container-title {
+//     width: 100%;
+//     height: 80px;
+//     background-color: #ffcc02;
+//     font-size: 14px;
+// }
 .doughtnut__container-title {
     width: 100%;
-    height: 80px;
-    background-color: #ffcc02;
     font-size: 14px;
+    padding: 10px 20px 0 20px;
 }
 
 .doughtnut__container-graph {
     width: 100%;
     height: auto;
-    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .icon-soloLearn {
-    font-size: 30px;
-    margin-left: 10px;
+    font-size: 40px;
+    color: #fdc300;
 }
 .status{
     width: 100%;
-    height: 100px;
     padding-top: 20px;
     &__container{
         background-color: #ffffff;
@@ -49,36 +58,6 @@
         box-shadow: 0px 2px 4px #0000004f !important;
     }
 }
-// =====================
-@media screen and (max-width: 800px){
-    .spacingCss{
-        margin-top: 50px;
-    }   
+.text-sololearn{
+    // font-size: 20px;
 }
-
-@media screen and (max-width: 1400px){
-    .spacing{
-        margin-top: 50px;
-    }   
-}
-
-// =====================
-
-// @media screen and(max-width: 1740px) {
-//     .status__container {
-//         margin: 5% 82%;
-//     }
-// }
-// @media screen and(max-width: 1339px) {
-//     .status__container {
-//         margin: 5% 74%;
-//     }
-// }
-// @media screen and(max-width: 938px) {
-//     .status__container {
-//         margin: 5% 50%;
-//     }
-//     .section__content {
-//         font-size: 15px;
-//     }
-// }

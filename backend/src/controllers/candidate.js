@@ -7,25 +7,22 @@ const request = require("request");
 const { ConnectionStates } = require("mongoose");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const Citation = require('../db/models/Citation');
 const { OAuth2 } = google.auth;
-const Calendar = require("../db/models/Calendar");
+
 
 const candidateRouter = require("express").Router();
 
-
-
-
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true, // true for 465, false for other ports
-        auth: {
-            user: 'programate.co@gmail.com', // generated ethereal user
-            pass: 'plltidxfuexzvfdr', // generated ethereal password
-        },
-    });
-
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: "programate.co@gmail.com", // generated ethereal user
+    pass: "plltidxfuexzvfdr", // generated ethereal password
+  },
+});
 
 // UPLOAD FILE PDF
 const storage = multer.diskStorage({
@@ -46,6 +43,15 @@ candidateRouter.get("/calification", async (req, res) => {
   const calification = await Result.find();
   res.send(calification);
 });
+
+
+candidateRouter.get("/result/:id", async (req, res) => {
+  const id = req.params.id
+  const result = await Result.find({"user_id": id})
+  res.send(result)
+})
+
+
 
 // CREATES A NEW USER
 candidateRouter.post("/new", async (req, res, next) => {
@@ -72,96 +78,110 @@ candidateRouter.post("/new", async (req, res, next) => {
 });
 
 // CREATE THE PROFILE OF A USER
-candidateRouter.post('/profile', upload.single('pdf'), async (req, res, next) => {
-        const { user_id,
-            documentType,
-            documentNumber,
-            documentPdf,
-            secondContactNumber,
-            nacionality,
-            residencyDepartment,
-            municipalityOfResidency,
-            locationInBogota,
-            socioeconomicStratus,
-            migrant,
-            livesInColombia,
-            address,
-            dateOfBirth,
-            birthdayOnFormation,
-            maritalStatus,
-            academicLevel,
-            degreeTitle,
-            currentOccupation,
-            unemployedTime,
-            formaltOccupation,
-            victimArmedConflict,
-            pcAccess,
-            programataPrevoiousTimes,
-            motivation,
-            dreams,
-            sex,
-            soloLearnProfile,
-            heardFromUs: {
-                web,
-                recommendation,
-                facebook,
-                instagram,
-                google,
-                compensar,
-                allianceEducational,
-                embassyVen,
-                poliTec,
-                PNUD,
-                other
-            },
-            status } = req.body;
-        const newProfile = new Profile({
-            user_id,
-            documentType,
-            documentNumber,
-            documentPdf,
-            secondContactNumber,
-            nacionality,
-            residencyDepartment,
-            municipalityOfResidency,
-            locationInBogota,
-            socioeconomicStratus,
-            migrant,
-            livesInColombia,
-            address,
-            dateOfBirth,
-            birthdayOnFormation,
-            maritalStatus,
-            academicLevel,
-            degreeTitle,
-            currentOccupation,
-            unemployedTime,
-            formaltOccupation,
-            victimArmedConflict,
-            pcAccess,
-            sex,
-            programataPrevoiousTimes,
-            motivation,
-            dreams,
-            soloLearnProfile,
-            heardFromUs: {
-                web,
-                recommendation,
-                facebook,
-                instagram,
-                google,
-                compensar,
-                allianceEducational,
-                embassyVen,
-                poliTec,
-                PNUD,
-                other
-            },
-            status
-        });
-        await newProfile.save();
-        res.send(`${newProfile.user_id} profile saved`)
-    })
+candidateRouter.post(
+  "/profile",
+  upload.single("pdf"),
+  async (req, res, next) => {
+    const {
+      user_id,
+      firstName,
+      secondName,
+      firstSurname,
+      secondSurname,
+      documentType,
+      documentNumber,
+      documentPdf,
+      secondContactNumber,
+      nacionality,
+      residencyDepartment,
+      municipalityOfResidency,
+      locationInBogota,
+      socioeconomicStratus,
+      migrant,
+      livesInColombia,
+      address,
+      dateOfBirth,
+      birthdayOnFormation,
+      maritalStatus,
+      academicLevel,
+      degreeTitle,
+      currentOccupation,
+      unemployedTime,
+      formaltOccupation,
+      victimArmedConflict,
+      pcAccess,
+      programataPrevoiousTimes,
+      motivation,
+      dreams,
+      sex,
+      soloLearnProfile,
+      // heardFromUs: {
+      //     web,
+      //     recommendation,
+      //     facebook,
+      //     instagram,
+      //     google,
+      //     compensar,
+      //     allianceEducational,
+      //     embassyVen,
+      //     poliTec,
+      //     PNUD,
+      //     other
+      // },
+      status,
+    } = req.body;
+    const newProfile = new Profile({
+      user_id,
+      firstName,
+      secondName,
+      firstSurname,
+      secondSurname,
+      documentType,
+      documentNumber,
+      documentPdf,
+      secondContactNumber,
+      nacionality,
+      residencyDepartment,
+      municipalityOfResidency,
+      locationInBogota,
+      socioeconomicStratus,
+      migrant,
+      livesInColombia,
+      address,
+      dateOfBirth,
+      birthdayOnFormation,
+      maritalStatus,
+      academicLevel,
+      degreeTitle,
+      currentOccupation,
+      unemployedTime,
+      formaltOccupation,
+      victimArmedConflict,
+      pcAccess,
+      sex,
+      programataPrevoiousTimes,
+      motivation,
+      dreams,
+      soloLearnProfile,
+      // heardFromUs: {
+      //     web,
+      //     recommendation,
+      //     facebook,
+      //     instagram,
+      //     google,
+      //     compensar,
+      //     allianceEducational,
+      //     embassyVen,
+      //     poliTec,
+      //     PNUD,
+      //     other
+      // },
+      status,
+    });
+    await newProfile.save();
+    res.send(`${newProfile.user_id} profile saved`);
+  }
+);
 
 // GET ALL CANDIDATES
 candidateRouter.get("/candidate", async (req, res) => {
@@ -388,61 +408,74 @@ candidateRouter.get("/sololearm/:id", async (req, res) => {
   res.send("seving datas");
 });
 
-candidateRouter.post("/attendevent/:id/:idevent", async (req, res) => {
-  var id = req.params.id;
-  const perfiles = await Profile.find({ user_id: id });
-  const params = JSON.stringify(perfiles);
-  const json = JSON.parse(params);
+candidateRouter.post('/attendevent/:id/:idevent', async (req, res) => {
+  var id = req.params.id
+  const perfiles = await Profile.find({ "user_id": id })
+  const params = JSON.stringify(perfiles)
+  const json = JSON.parse(params)
   for (z of json) {
-    var userid = z.user_id.toString();
+          var userid = (z.user_id).toString();
   }
 
-  var idevent = req.params.idevent;
-  const event = await Calendar.find({ _id: idevent });
-  const params3 = JSON.stringify(event);
-  const json3 = JSON.parse(params3);
-  var id_user = [];
+  var idevent = req.params.idevent
+  const event = await Citation.find({ "_id": idevent })
+  const params3 = JSON.stringify(event)
+  const json3 = JSON.parse(params3)
+  var id_user = []
   for (t of json3) {
-    var id_evnet = t._id.toString();
-    id_user = t.users;
-    var link = t.link.toString();
-    var quotas = t.quotas;
+          var id_evnet = (t._id).toString();
+          id_user = (t.users);
+          var link = (t.link).toString();
+          var testTechnical = (t.testTechnical).toString();
+          var title = (t.title).toString();
+          var subject = (t.notes).toString();
+          var fechasinicio = (t.start).toString();
+          var fechafinal = (t.end).toString();
+          var quotas = (t.quotas)
   }
 
-  const dataencontrada = id_user.includes(id);
+  const dataencontrada = id_user.includes(id)
   const accountant = id_user.length;
 
-  if (dataencontrada === false && accountant < quotas) {
-    await Calendar.updateOne(
-      { _id: id_evnet },
-      {
-        $push: {
-          users: { $each: [userid] },
-        },
-      }
-    );
+  if(dataencontrada === false && accountant < quotas ){
 
-    const us = await User.find({ _id: id });
-    const params4 = JSON.stringify(us);
-    const json4 = JSON.parse(params4);
-    for (u of json4) {
-      var emails = u.email;
-    }
-    transporter.sendMail({
-      from: '"Fred Foo 👻" <programate.co@gmail.com>', // sender address
-      to: emails, // list of receivers
-      subject: "Hello ✔", // Subject line
-      html: link, // html body
-    });
-    res.send("user registered successfully and send email successfully");
-  } else {
-    console.log("el usuario esta registrado o ya no hay cupo");
-    res.send("el usuario esta registrado o ya no hay cupo");
+          await Citation.updateOne({ "_id": id_evnet }, {
+                  $push:{
+                          users:{$each:[userid]}
+                  }
+          })
+
+          const us = await User.find({ "_id": id})
+          const params4 = JSON.stringify(us)
+          const json4 = JSON.parse(params4)
+          for (u of json4) {
+                  var emails = (u.email);
+          }
+          transporter.sendMail({
+                  from: title +'<programate.co@gmail.com>', // sender address
+                  to: emails, // list of receivers
+                  subject: subject, // Subject line
+                  html: 'Fecha de la entrevista:'+fechasinicio+' '+fechafinal
+                  +'<br>'+'Link de conexión: '+link
+                  +'<br>'+'El día de la entrevista:'+'<br>'+'Ten tu documento de identidad a la mano.'+'<br>'+'Llega 5 minutos antes de la sesión, al principio de la sesión vamos a explicar la dinámica de toda la entrevista.'
+                  +'<br>'+'Asegúrate de tener conexión a internet durante la entrevista, es necesario que tengas la cámara encendida durante toda la sesión'
+                  +'<br>'+'Cuando ingreses a la entrevista, pon tu nombre completo (nombre y apellido, no apodos) para que sea visible para todos en la reunión'
+                  +'<br>'+'Te recomendamos conectarte desde tu computador, ya que vas a ingresar a otras páginas durante la sesión'
+                  +'<br>'+'Nos vamos a conectar por Zoom, descarga la aplicación.'
+                  +'<br>'+'Adjunto te compartimos un ejercicio práctico que debes hacer antes del día de tu entrevista para que nos cuentes cómo te fue haciéndolo.'+'<br>'+
+                  testTechnical, // html body
+          });
+          res.send("user registered successfully and send email successfully")
+          
+  }else{
+          console.log("el usuario esta registrado o ya no hay cupo")
+          res.send("el usuario esta registrado o ya no hay cupo")
   }
-});
+
+})
 
 candidateRouter.get("/calendar", async (req, res) => {
-  const events = await Calendar.find();
+  const events = await Citation.find();
 
   console.log(events);
   res.send(events);

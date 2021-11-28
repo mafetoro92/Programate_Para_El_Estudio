@@ -97,7 +97,7 @@ const DashboardAdmin = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="socialMedia__container">
+                    {/* <div className="socialMedia__container">
                         <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
                                 ¿Dónde te enteraste de nosotros?
@@ -108,7 +108,7 @@ const DashboardAdmin = () => {
                                 <SocialMedia item={item} key={item._id} />
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                     <div className="socialMedia__container">
                         <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
