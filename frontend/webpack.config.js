@@ -14,7 +14,7 @@ module.exports = {
         extensions: [".js", ".jsx"],
     },
     devServer: {
-        historyApiFallback: true,
+        
     },
     module: {
         rules: [
@@ -37,7 +37,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: {
-                    loader: "html-loader",
+                    loader: "htm-loader",
                 },
             },
             {
@@ -46,7 +46,7 @@ module.exports = {
                     {
                         loader: MiniCssExtraxtPlugin.loader,
                     },
-                    "css-loader",
+                   ,
                     "sass-loader",
                 ],
             },
