@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
-import ModalAspirants from "../../components/modals/ModalAspirants";
 import { Link } from "react-router-dom";
 import DisableBtn from "../../components/disableBtn/DisableBtn";
 
@@ -20,10 +19,6 @@ const InterviewDays = () => {
     const actions = [
         {
             status: true,
-            icon: <ModalAspirants />,
-        },
-        {
-            status: true,
             icon: <DisableBtn />,
         },
     ];
@@ -31,13 +26,14 @@ const InterviewDays = () => {
     const fixDate = (date) => {
         return date.split("T")[0];
     };
+    console.log(date);
 
     const rows = citation.map((interviewDays, idx) => ({
         ID: idx,
         Fecha: fixDate(interviewDays.date),
         Jornada: interviewDays.journey,
-        Cupos: interviewDays.maxQuotas,
-        Inscritos: interviewDays.quotasCompleted,
+        Cupos: interviewDays.quotas,
+        Inscritos: interviewDays.users.lenght,
     }));
 
     return (

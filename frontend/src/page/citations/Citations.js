@@ -26,7 +26,6 @@ const Citations = () => {
         journey: citation.journey,
         users: citation.users,
     }));
-
     return (
         <>
             <div className="section__convocatory">

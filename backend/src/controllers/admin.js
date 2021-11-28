@@ -353,7 +353,7 @@ adminRouter.get("/citation", async (req, res) => {
                   date: citation.date,
                   journey: citation.journey,
                   maxQuotas: citation.maxQuotas,
-                  quotasCompleted: citation.quotasCompleted,
+                  quotasCompleted: citation.quotas,
                   users: citation.users,
               }
             : null
@@ -363,6 +363,7 @@ adminRouter.get("/citation", async (req, res) => {
         data.map(async (obj) => getUserData(obj.users))
     );
     data.users = data.map((user, idx) => (user.users = infoUsers[idx]));
+    console.log(data);
     res.send(data);
 });
 
