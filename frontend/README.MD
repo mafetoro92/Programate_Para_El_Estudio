@@ -5,7 +5,7 @@ Se realiza el frontend con Ract, se utilizo webpack y las siguientes librerías 
 ## Dependencias
 
 - **Babel:** _Es un compilador de JavaScript gratuito y de código abierto que se utiliza principalmente para convertir el código ECMAScript 2015+ en una versión de     JavaScript compatible con versiones anteriores que pueden ejecutar los motores JavaScript más antiguos_
-- - **Eslint:** _Es sencillamente una herramienta de linting para JavaScript y JSX cuya función es la de revisar nuestro código tratando de encontrar errores que       podrían provocar problemas de compilación o bien futuros bugs en nuestro desarrollo_
+- **Eslint:** _Es sencillamente una herramienta de linting para JavaScript y JSX cuya función es la de revisar nuestro código tratando de encontrar errores que       podrían provocar problemas de compilación o bien futuros bugs en nuestro desarrollo_
 - **Material-ui/core:** se utilizó para realizar la barra de progreso del formulario de inscripción, los botones
 - **Chart.js:**  se utilizó para descargar la librería de gráficas
 - **Chartjs-plugin-datalabels:**  se utilizó para mostrar las etiquetas en los datos de los gráficos.
