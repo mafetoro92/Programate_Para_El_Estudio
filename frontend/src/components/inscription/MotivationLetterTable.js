@@ -1,39 +1,31 @@
-import React from "react";
+import React, { Profiler, useContext, useEffect } from "react";
+import { providerContext } from "../../Context/status";
 import "./MotivationLetterTable.scss";
 
 const MotivationLetterTable = () => {
-    const pruebas1 = [
-        {
-            nombre: "Mafe Toro",
-            motivation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            dreams: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            calificacion: "4",
-        },
-        {
-            nombre: "Zayda Rivera",
-            motivation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            dreams: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            calificacion: "4",
-        },
-        {
-            nombre: "John Rojas",
-            motivation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            dreams: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum risus libero nisl quis arcu facilisis adipiscing aliquet. Nisl nunc integer tellus nibh nunc placerat. Consectetur tortor nulla justo et eget nascetur commodo. Risus, pellentesque sagittis pellentesque convallis. Ipsum senectus lectus et facilisis posuere pharetra.",
-            calificacion: "5",
-        },
-    ];
+    const { getProfiles, getAcept, profiles, } = useContext(providerContext);
+    useEffect(() => {
+        getProfiles()
+        getAcept()
+    }, [])
+    let profile = []
+    for (let i of profiles) {
+
+        profile = [...profile, i]
+
+    }
 
     return (
         <>
             <div className="qualify">
-            <div className="qualify__content d-flex justify-content-between">
-                <span className="upperCase bold"> Carta Motvation </span>
-                <div className="box__content">
-                    <span className="text-crumbs bold-500"> Programate </span>
-                    <i className="fas fa-chevron-right subtitle" />
-                    <span className="text-crumbs"> Aspirantes </span>
+                <div className="qualify__content d-flex justify-content-between">
+                    <span className="upperCase bold"> Carta Motvation </span>
+                    <div className="box__content">
+                        <span className="text-crumbs bold-500"> Programate </span>
+                        <i className="fas fa-chevron-right subtitle" />
+                        <span className="text-crumbs"> Aspirantes </span>
+                    </div>
                 </div>
-            </div>
                 <div className="form">
                     <div className="section__table">
                         <table className="table">
@@ -48,10 +40,10 @@ const MotivationLetterTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pruebas1.map((prueba, index) => (
-                                    <tr key={index} >
-                                        <th>{prueba.nombre}</th>
-                                        <td>{prueba.motivation}</td>
+                                {profile.map(profile => (
+                                    <tr key={profile.user_id} >
+                                        <th></th>
+                                        <td>{profile.motivation}</td>
                                         <td>
                                             <select
                                                 name="qualify"
@@ -67,7 +59,7 @@ const MotivationLetterTable = () => {
                                                 <option value="1">5</option>
                                             </select>
                                         </td>
-                                        <td>{prueba.dreams}</td>
+                                        <td>{profile.dreams}</td>
                                         <td>
                                             <select
                                                 name="qualify"
@@ -83,7 +75,7 @@ const MotivationLetterTable = () => {
                                                 <option value="1">5</option>
                                             </select>
                                         </td>
-                                        <td>{prueba.calificacion}</td>
+                                        <td></td>
                                     </tr>
                                 ))}
                             </tbody>
