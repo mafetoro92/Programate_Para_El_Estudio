@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "./AdministerTechnicalTest.scss";
 import Swal from "sweetalert2";
 import modalDelete from "../../components/alert/alert";
 import alert from "../../components/alert/alert";
+import Search from "../../components/search/Search";
 
 const AdministerTechnicalTest = () => {
+
+    const [prueba, setPrueba] = useState([])
+    const [value, setValue] = useState([])
+
     const pruebas1 = [
         {
             id: 1,
@@ -27,6 +32,36 @@ const AdministerTechnicalTest = () => {
         },
     ];
 
+
+    const listPruebas = async () => {
+        try {
+            const res = pruebas1;
+            //const pruebas1 = res.json()
+            setPrueba(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        listPruebas();
+    }, [])
+
+
+    const handeleChange = (e) => {
+        if (e.target.value) {
+            const filterData = pruebas1.filter(prueba => {
+                if (prueba.pruebaTecnica.toLowerCase().includes(e.target.value.toLowerCase())) {
+                    return true
+                }
+                return false
+            });
+            setPrueba(filterData)
+        }
+        setValue(e.target.value)
+    }
+
+
     return (
         <>
             <div className="section__administer">
@@ -42,6 +77,11 @@ const AdministerTechnicalTest = () => {
                         <span>Administrar prueba técnica</span>
                     </div>
                 </div>
+                
+                <div>
+                    <Search handeleChange={handeleChange} value={value} />
+                </div>
+
                 <div className="form">
                     <Link to="/agregar">
 

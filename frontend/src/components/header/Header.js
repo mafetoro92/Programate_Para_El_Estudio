@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Dark from "../darkMode/Dark";
-import Search from "../search/Search";
+//import Search from "../search/Search";
 import User from "../user/User";
 
 import "./Header.scss";
@@ -27,9 +27,9 @@ const Header = ({ user, adminstate }) => {
         <div className="menu-bar">
           <i className="fas fa-bars pointer" onClick={moveNav} />
         </div>
-        <div className="header__search">
+        {/* <div className="header__search">
           <Search />
-        </div>
+        </div> */}
         <div className="header__user">
           <User user={user} adminstate={adminstate} />
         </div>
