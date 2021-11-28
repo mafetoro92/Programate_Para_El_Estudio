@@ -3,6 +3,7 @@ import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
 import ModalAspirants from "../../components/modals/ModalAspirants";
 import { Link } from "react-router-dom";
+import DisableBtn from "../../components/disableBtn/DisableBtn";
 
 const InterviewDays = () => {
     const [citation, setCitation] = useState([]);
@@ -21,6 +22,10 @@ const InterviewDays = () => {
             status: true,
             icon: <ModalAspirants />,
         },
+        {
+            status: true,
+            icon: <DisableBtn />,
+        },
     ];
 
     const fixDate = (date) => {
@@ -38,9 +43,9 @@ const InterviewDays = () => {
     return (
         <div className="spirants">
             <div className="spirants__content d-flex justify-content-between">
-                <span className="upperCase bold"> Programate </span>
+                <span className="upperCase bold"> Citación </span>
                 <div className="box__content">
-                    <span className="text-crumbs bold-500"> Citación </span>
+                    <span className="text-crumbs bold-500"> Programate </span>
                     <i className="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs">Consolidado postulantes</span>
                 </div>

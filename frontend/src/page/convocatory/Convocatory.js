@@ -6,9 +6,7 @@ import DisableBtn from "../../components/disableBtn/DisableBtn";
 import RequestService from "../../config/index";
 import ModalConvocatory from "../../components/modals/ModalConvocatory";
 import { Link } from "react-router-dom";
-//import Button from '@mui/material/Button';
 import "./Convocatory.scss";
-import Filter from "../../components/filter/Filter";
 
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
@@ -22,8 +20,6 @@ const Convocatory = () => {
     useEffect(() => {
         getUser();
     }, []);
-
-    // const [disable, setDisable] = useState(false);
 
     const actions = [
         {
@@ -66,7 +62,6 @@ const Convocatory = () => {
                         <span className="text-crumbs">Convocatoria</span>
                     </div>
                 </div>
-                <Filter />
                 <Link to="/nuevacohorte">Nueva Convocatoria</Link>
                 {rows.length > 0 ? (
                     <Tablita

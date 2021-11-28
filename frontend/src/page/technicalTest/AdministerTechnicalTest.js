@@ -44,8 +44,7 @@ const AdministerTechnicalTest = () => {
                 </div>
                 <div className="form">
                     <Link to="/agregar">
-
-                    {/* <button className="btn btn-primary add">
+                        {/* <button className="btn btn-primary add">
                                 Agregar
                             </button> */}
 
@@ -73,7 +72,7 @@ const AdministerTechnicalTest = () => {
                                         <td>{prueba.convocatoria}</td>
                                         <td>
                                             {/* Commit before */}
-                                        {/* <div className="buttom d-flex justify-content-center align-items-center">
+                                            {/* <div className="buttom d-flex justify-content-center align-items-center">
                                                 <Link to="/administertechnicaltestedit">
                                                     <button className="btn btn-success">
                                                         <i className="fas fa-edit"></i>
@@ -88,7 +87,6 @@ const AdministerTechnicalTest = () => {
                                                     className="btn btn-danger"
                                                 >
                                                     <i className="fas fa-trash"></i> */}
-
 
                                             <Link to="/editar">
                                                 <button className="btn btn-success">
