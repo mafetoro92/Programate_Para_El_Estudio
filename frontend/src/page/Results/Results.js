@@ -17,7 +17,7 @@ const Results = () => {
 
     const actions = [
         {
-            status: true,
+            status: false,
             icon: { DisableBtn },
         },
     ];
@@ -78,7 +78,7 @@ const Results = () => {
                 </div>
             </div>
             <div className="table mt-4">
-                <Tablita key={rows.length} rows={rows} actions={actions} />
+                <Tablita key={rows.length} rows={rows} />
             </div>
         </div>
     );

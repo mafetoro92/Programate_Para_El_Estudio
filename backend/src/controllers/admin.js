@@ -1,4 +1,5 @@
 const Convocatory = require("../db/models/Convocatory");
+const Result = require("../db/models/Result");
 const Profile = require("../db/models/Profile");
 const User = require("../db/models/User");
 const Rooms = require("../db/models/Rooms");
@@ -223,6 +224,11 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 // });
 // ============================ HIRMOMI DANI =========================
 
+adminRouter.get("/results", async (req, res, next) => {
+    const results = await Result.find();
+    res.send({ data: results });
+});
+
 adminRouter.get("/waiting-list", async (req, res, next) => {
     let waitList = await Profile.find();
     waitList = waitList.filter(
@@ -242,7 +248,7 @@ adminRouter.get("/waiting-list", async (req, res, next) => {
                     ? {
                           sololearn: candidate.soloLearnScore,
                           personal: candidate.personalProfileScore,
-                          motivation: candidate.motivationScore,
+                          motivation: candidate.motivation,
                           final: candidate.finalScore,
                           status: candidate.status,
                       }
@@ -332,6 +338,13 @@ adminRouter.put("/parameterization/:_id", async (req, res) => {
 });
 // ============================ HIRMOMI DANI =========================
 
+//GET ALL CANDIDATES
+
+adminRouter.get("/candidatefull", async (req, res) => {
+    const candidates = await Profile.find({}).populate("user_id");
+    res.send(candidates);
+});
+
 // Get all citations
 adminRouter.get("/citation", async (req, res) => {
     const citations = await Citation.find();
@@ -349,7 +362,8 @@ adminRouter.get("/citation", async (req, res) => {
         citation
             ? {
                   id: idx,
-                  date: citation.start,
+                  start: citation.start,
+                  finish: citation.end,
                   journey: citation.journey,
                   quotas: citation.quotas,
                   quotasCompleted: citation.users.length,

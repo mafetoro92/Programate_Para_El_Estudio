@@ -23,17 +23,17 @@ const InterviewDays = () => {
         },
     ];
 
-    const fixDate = (date) => {
-        return date.split("T")[0];
+    const fixDate = (Fecha) => {
+        return Fecha.split("T")[0];
     };
-    console.log(date);
 
     const rows = citation.map((interviewDays, idx) => ({
         ID: idx,
         Fecha: fixDate(interviewDays.start),
+        Finaliza: fixDate(interviewDays.finish),
         Jornada: interviewDays.journey,
         Cupos: interviewDays.quotas,
-        Inscritos: interviewDays.users.lenght,
+        Inscritos: interviewDays.quotasCompleted,
     }));
 
     return (
@@ -46,9 +46,9 @@ const InterviewDays = () => {
                     <span className="text-crumbs">Consolidado postulantes</span>
                 </div>
             </div>
-            <Link to="/dia-de-entrevista">Crear nueva jornada</Link>
+            <Link to="/calendario">Crear nueva jornada</Link>
             <div className="mt-4">
-                <Tablita key={rows.length} rows={rows} actions={actions} />
+                <Tablita key={rows.length} rows={rows} />
             </div>
         </div>
     );

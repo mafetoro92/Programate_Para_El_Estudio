@@ -191,19 +191,22 @@ candidateRouter.get("/candidate", async (req, res) => {
 
 // GET PROFILE OF CANDIDATES
 candidateRouter.get("/candidate-profile/:id", async (req, res) => {
+    const id = req.params.id;
     // Data from de candidate document
-    const candidate = await User.find({ user_id: req.params.id });
+    const candidate = await User.find({ user_id: id });
     // Data from the profile of the candidate
-    const candidateProfile = await Profile.find({ user_id: req.params.id });
+    const candidateProfile = await Profile.find({ user_id: id });
     // Strucuture for required data
-    console.log(candidateProfile);
+
+    //res.send(candidate[0].name);
 
     const candidateProfileData = {
         name: candidate[0].name,
-        documentType: candidateProfile[0].documentType,
-        documentNumber: candidateProfile[0].documentNumber,
         email: candidate[0].email,
         contactNumber: candidate[0].contactNumber,
+        documentType: candidateProfile[0].documentType,
+        documentNumber: candidateProfile[0].documentNumber,
+
         nacionality: candidateProfile[0].nacionality,
         residenceCountry: candidateProfile[0].residenceCountry,
         residencyDepartment: candidateProfile[0].residencyDepartment,
@@ -230,7 +233,6 @@ candidateRouter.get("/candidate-profile/:id", async (req, res) => {
         dreams: candidateProfile[0].dreams,
         soloLearnProfile: candidateProfile[0].soloLearnProfile,
     };
-
     res.send({
         data: {
             candidateProfileData,

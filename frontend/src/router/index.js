@@ -59,10 +59,10 @@ const App = () => {
                                 component={DashboardAdmin}
                             />
                             <Route
-                                path="/consolidado-postulantes"
+                                path="/dia-de-entrevista"
                                 component={InterviewDays}
                             />
-                            <Route path="/dia-de-entrevista">
+                            <Route path="/calendario">
                                 <InterviewDay />
                             </Route>
                             <Route

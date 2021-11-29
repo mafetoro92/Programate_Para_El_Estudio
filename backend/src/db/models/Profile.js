@@ -1,96 +1,85 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require("mongoose");
 
 const profileSchema = new Schema({
-
     user_id: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: "User",
     },
+
     /* Agora */
 
     outcome: {
         outcome1: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         outcome2: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         outcome3: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         outcome4: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         outcome5: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         outcome6: {
             generalcomment: {
                 type: String,
-
             },
             techcomment: {
                 type: String,
-
             },
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
     },
 
@@ -99,33 +88,31 @@ const profileSchema = new Schema({
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         badges2: {
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         badges3: {
-
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         badges4: {
-
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
         badges5: {
             aprove: {
                 type: Boolean,
                 default: true,
-            }
+            },
         },
     },
 
@@ -154,7 +141,7 @@ const profileSchema = new Schema({
 
     interest: {
         type: Array,
-        require: true
+        require: true,
     },
 
     /* fin mentoria */
@@ -162,30 +149,29 @@ const profileSchema = new Schema({
     /* Social Programate */
 
     experience: {
-        type: 'string',
+        type: "string",
         trim: true,
-        lowercase: true
+        lowercase: true,
     },
     description: {
-        type: 'string',
+        type: "string",
         trim: true,
-        lowercase: true
+        lowercase: true,
     },
     github: {
-        type: 'string',
+        type: "string",
         trim: true,
-        lowercase: true
+        lowercase: true,
     },
     softSkills: {
-        type: 'string',
+        type: "string",
         trim: true,
-        lowercase: true
-
+        lowercase: true,
     },
     technicalSkills: {
-        type: 'string',
+        type: "string",
         trim: true,
-        lowercase: true
+        lowercase: true,
     },
 
     /* fin social programate */
@@ -211,7 +197,7 @@ const profileSchema = new Schema({
     documentNumber: {
         type: Number,
 
-        minlength: 6
+        minlength: 6,
     },
     documentPdf: {
         type: String,
@@ -237,7 +223,7 @@ const profileSchema = new Schema({
     address: {
         type: String,
 
-        maxlength: 45
+        maxlength: 45,
     },
     dateOfBirth: {
         type: Date,
@@ -252,7 +238,7 @@ const profileSchema = new Schema({
     },
     degreeTitle: {
         type: String,
-        maxlength: 45
+        maxlength: 45,
     },
     currentOccupation: {
         type: Number,
@@ -261,7 +247,7 @@ const profileSchema = new Schema({
     formalOccupation: {
         type: Boolean,
 
-        maxlength: 45
+        maxlength: 45,
     },
     victimArmedConflict: {
         type: String,
@@ -275,16 +261,16 @@ const profileSchema = new Schema({
     motivation: {
         type: String,
 
-        maxlength: 300
+        maxlength: 300,
     },
     dreams: {
         type: String,
 
-        maxlength: 300
+        maxlength: 300,
     },
     soloLearnProfile: {
         type: Number,
-        minlength: 6
+        minlength: 6,
     },
     sex: String,
     status: {
@@ -294,7 +280,7 @@ const profileSchema = new Schema({
         booked: { type: Boolean },
         interviewed: { type: Boolean },
         pass: { type: Boolean },
-        noPass: { type: Boolean }
+        noPass: { type: Boolean },
     },
     // heardFromUs: {
     //     web: Boolean,
@@ -315,20 +301,16 @@ const profileSchema = new Schema({
     urlPrueba: String,
     promedioEntrevista: Number,
     /* fin proceso seleccion  */
+});
 
-})
-
-profileSchema.set('toJSON', {
+profileSchema.set("toJSON", {
     transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id
-        delete returnedObject._id
-        delete returnedObject.__v
+        returnedObject.id = returnedObject._id;
+        delete returnedObject._id;
+        delete returnedObject.__v;
+    },
+});
 
-    }
-})
+const Profile = model("Profile", profileSchema);
 
-const Profile = model('Profile', profileSchema)
-
-module.exports = Profile
-
-
+module.exports = Profile;

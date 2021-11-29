@@ -6,15 +6,17 @@ import ModalAspirants from "../../components/modals/ModalAspirants";
 
 const Aspirants = () => {
     const [aspirants, setAspirants] = useState([]);
-    const getUser = async () => {
-        const { data } = await RequestService.get(
-            "/candidate/candidate-profile/:id"
-        );
-        if (data) {
-            setAspirants(data.data);
-        }
-    };
+
     useEffect(() => {
+        const getUser = async () => {
+            const { data } = await RequestService.get("/admin/candidatefull");
+            if (data) {
+                console.log(data);
+                const res = data.filter((e) => e.user_id.role == 0);
+                console.log(res);
+                setAspirants(res);
+            }
+        };
         getUser();
     }, []);
 
@@ -28,8 +30,8 @@ const Aspirants = () => {
     const rows = aspirants.map((aspirant, idx) => ({
         ID: idx,
         Nombre: aspirant.fullName,
-        "Tipo de Documento": aspirant.documentType,
-        "Numero de Documento": aspirant.documentNumber,
+        // "Tipo de Documento": aspirant.documentType,
+        //"Numero de Documento": aspirant.documentNumber,
         Correo: aspirant.email,
         Telefono: aspirant.secondContactNumber,
         Nacionalidad: aspirant.nacionality,
