@@ -54,7 +54,7 @@ const WaitingList = () => {
         ID: candidate.ID,
         Nombre: candidate.Nombre,
         Sololearn: candidate.sololearn,
-        "Perfil Personal": candidate.personal,
+        "Perfil Personal": candidate.personalProfileScore,
         Motivación: candidate.motivation,
         "Promedio Final": (
             <div

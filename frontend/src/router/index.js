@@ -26,6 +26,7 @@ import Citations from "../page/citations/Citations";
 import InterviewDays from "../page/interviewDays/InterviewDays";
 import Footer from "../components/footer/Footer";
 import { getData } from "../actions/sololearnProfile";
+import SelectionResults from "../page/selection/SelectionResults";
 
 const App = () => {
     const auth = useSelector((state) => state.auth);
@@ -113,6 +114,10 @@ const App = () => {
                             <Route
                                 path="/parameterization"
                                 component={Parameterization}
+                            />
+                            <Route
+                                path="/selection-results"
+                                component={SelectionResults}
                             />
                         </>
                     )}

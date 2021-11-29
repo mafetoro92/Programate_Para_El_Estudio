@@ -80,7 +80,7 @@ export const ITEMS = [
         items: [
             {
                 name: "Resultados",
-                pathname: "/resultsInscription",
+                pathname: "/selection-results",
             },
         ],
     },
