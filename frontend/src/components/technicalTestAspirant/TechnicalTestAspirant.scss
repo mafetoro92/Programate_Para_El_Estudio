@@ -1,6 +1,3 @@
-* {
-    box-sizing: border-box;
-}
 
 $colorprimary: #f1f5f7;
 $colorsecundary: #fff;
@@ -53,7 +50,17 @@ $colorsecundary: #fff;
 .text__download {
     margin-bottom: 120px;
 }
-
+.technical__test-download{
+    padding: 20px;
+}
+.sendProof{
+    background-color: #fdc300;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
 /* Media queries*/
 
 @media only screen and (min-width: 481px) {
@@ -74,13 +81,4 @@ $colorsecundary: #fff;
             width: 35%;
         }
     }
-}
-
-@media only screen and (min-width: 900px) {
-}
-
-@media only screen and (min-width: 1280px) {
-}
-
-@media only screen and (min-width: 1620px) {
 }

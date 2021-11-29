@@ -8,7 +8,6 @@ function FormInscription() {
 
     const {profile} = useSelector(state => state.sololearn)
 
-    console.log(profile)
     return (
         <div className="inscription">
             <div className="section__content d-flex justify-content-between mb-4">

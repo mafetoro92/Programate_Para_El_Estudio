@@ -33,7 +33,6 @@ const App = () => {
   
   useEffect(() => {
         dispatch(getData(auth.user.id));
-        console.log('UseEffet')
       }, [dispatch, auth]);
 
   const { isLogged, isAdmin } = auth;

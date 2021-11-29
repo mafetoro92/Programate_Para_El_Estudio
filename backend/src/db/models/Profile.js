@@ -277,6 +277,9 @@ const profileSchema = new Schema({
 
         maxlength: 300
     },
+    linktest: {
+        type: String,
+    },
     dreams: {
         type: String,
 

@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Spinner from '../auth/Spinner'
 import './NotProfile.scss'
 
 const NotProfile = () => {
 
+    const [spinner, setSpinner] = useState(false)
     const refreshPage =() => {
-        // console.log('refrescando')
-        location.reload();
-        // refreshPage
+        setSpinner(true)
+        
+        setTimeout(() => {
+            window.location.reload()
+            setSpinner(false)
+        }, 2000)
     }
     return (
         <div className='not-found d-flex justify-content-center align-items-center flex-wrap'>
@@ -19,6 +24,9 @@ const NotProfile = () => {
           />
             <p>Antes de empezar, registrate en la sección <span className='bold-500'>FORMULARIO DE INSCRIPCIÓN</span></p>
             <p>Si ya te registraste oprime el boton</p>
+            {
+                spinner && <Spinner />
+            }
             <button onClick={refreshPage} className='btn btn-success mt-2'>Continuar</button>
             </div>
         </div>

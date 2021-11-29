@@ -7,9 +7,13 @@ import ModalAspirants from "../../components/modals/ModalAspirants";
 const Aspirants = () => {
     const [aspirants, setAspirants] = useState([]);
     const getUser = async () => {
-        const { data } = await RequestService.get("/candidate/profile");
-        if (data) {
-            setAspirants(data.data);
+        try {
+            const { data } = await RequestService.get("/candidate/profile");
+            if (data) {
+                setAspirants(data.data);
+            }
+        } catch (error) {
+            console.log(error)
         }
     };
     useEffect(() => {

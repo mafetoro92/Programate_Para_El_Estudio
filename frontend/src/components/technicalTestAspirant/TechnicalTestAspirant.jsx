@@ -1,18 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from '../auth/Spinner'
+import { getFormAll } from "../../actions/userAction";
 import "./TechnicalTestAspirant.scss";
 
 const TechnicalTestAspirant = () => {
   const [test, setTest] = useState({
-    testurl: "",
+    linktest: "",
   });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setTest({
-      testurl: "",
-    });
-  };
+  const { user } = useSelector((state) => state.auth);
+
+  const { form } = useSelector((state) => state.auth);
+
+  const [spinner, setSpinner] = useState(false)
+
+  const { linktest } = form;
+
+  console.log("El form", linktest);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,13 +29,40 @@ const TechnicalTestAspirant = () => {
       [name]: value,
     });
   };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setSpinner(true)
+    console.log(test);
+    try {
+      const res = await axios.put(
+        `http://localhost:3001/api/candidate/updatetest/${user.id}`,
+        test
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+    setTest({
+      linktest: "",
+    });
+    setTimeout(() => {
+      window.location.reload()
+      setSpinner(false)
+  }, 2000)
+  };
 
-  const { testurl } = test;
+  useEffect(() => {
+    dispatch(getFormAll(user?.id));
+  }, [dispatch, user]);
+
+
+
+  // const { linktest } = test;
 
   return (
     <>
       <div className="technical__test">
-        <div className="technical__test-upload test">
+        {/* <div className="technical__test-upload test">
           <h4 className="title__test">Descargar prueba tecnica</h4>
           <div className="content__test download">
             <p className="text__download">
@@ -45,7 +80,11 @@ const TechnicalTestAspirant = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
+        {
+          spinner && <Spinner/>
+        }
+              
         <div className="technical__test-download test">
           <h4 className="title__test">Cargar tu prueba tecnica</h4>
           <div className="content__test">
@@ -63,8 +102,8 @@ const TechnicalTestAspirant = () => {
                 </span>
                 <input
                   onChange={handleChange}
-                  value={testurl}
-                  name="testurl"
+                  value={test.linktest}
+                  name="linktest"
                   type="text"
                   className="form-control"
                   placeholder="https://drive.google.com/drive"
@@ -74,14 +113,18 @@ const TechnicalTestAspirant = () => {
                 />
               </div>
 
-              <button
-                onClick={onSubmit}
-                className="btn btn-success"
-                type="submit"
-                value="Enviar prueba"
-              >
-                Enviar
-              </button>
+              {linktest?.length ? (
+                <p className='sendProof'>Ya enviaste la prueba</p>
+              ) : (
+                <button
+                  onClick={onSubmit}
+                  className="btn btn-success"
+                  type="submit"
+                  value="Enviar prueba"
+                >
+                  Enviar
+                </button>
+              )}
             </form>
           </div>
         </div>

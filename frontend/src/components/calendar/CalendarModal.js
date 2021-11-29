@@ -40,8 +40,7 @@ const CalendarModal = () => {
     // Trae el estado de la aplicacion de ui
     const { modalOpen } = useSelector((state) => state.ui);
     const { activeEvent } = useSelector((state) => state.calendar);
-    const {citation} = useSelector(state => state.citation)
-    console.log('citation',citation)
+    const citation = useSelector(state => state.citation)
     const dispatch = useDispatch();
 
     const [dateStart, setDateStart] = useState(now.toDate());
@@ -115,11 +114,8 @@ const CalendarModal = () => {
 
 
     const sendDataUser = () => {
-
             dispatch(setCitationData(user.id, activeEvent._id))
-
-        console.log('enviando data')
-        
+            console.log(citation)
     }
 
 
@@ -261,10 +257,10 @@ const CalendarModal = () => {
                             <h2>{title}</h2>
                             <h3 className="ligth">{notes}</h3>
                             <span className="text-date">
-                                {moment(start).format("y-MM-DD h:mm a")}
+                               Hora Inicio : {moment(start).format("y-MM-DD h:mm a")}
                             </span>
                             <span className="text-date">
-                                {moment(end).format("y-MM-DD h:mm a")}
+                                Hora Fin : {moment(end).format("y-MM-DD h:mm a")}
                             </span>                  
                             <button
                                 type="button"
