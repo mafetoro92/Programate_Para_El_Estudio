@@ -30,12 +30,14 @@ import SelectionResults from "../page/selection/SelectionResults";
 
 const App = () => {
     const auth = useSelector((state) => state.auth);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getData(auth.user.id));
     }, [dispatch, auth]);
 
+    const { isLogged, isAdmin } = auth;
     const { pathname } = useLocation();
 
     return (
