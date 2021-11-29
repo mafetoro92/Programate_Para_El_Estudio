@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
-import Dark from "../darkMode/Dark";
 import Search from "../search/Search";
 import User from "../user/User";
 import "./Header.scss";
@@ -75,9 +74,6 @@ const Header = () => {
         </div>
         <div className="header__user">
           <User/>
-        </div>
-        <div className="header__dark">
-          <Dark />
         </div>
       </header>
     </>

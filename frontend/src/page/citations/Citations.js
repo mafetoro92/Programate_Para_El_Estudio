@@ -22,7 +22,7 @@ const Citations = () => {
 
     const data = citations.map((citation) => ({
         id: citation.id,
-        date: fixDate(citation.date),
+        date: fixDate(citation.start),
         journey: citation.journey,
         users: citation.users,
     }));

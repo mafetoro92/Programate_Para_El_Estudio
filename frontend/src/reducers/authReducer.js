@@ -3,7 +3,8 @@ import { types } from "../types/types";
 const initialState = {
     user: [],
     isLogged: false,
-    isAdmin: false
+    isAdmin: false,
+    form: []
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload.user,
                 isAdmin: action.payload.isAdmin
+            }
+        case types.getForm:
+            return {
+                ...state,
+                form: action.payload
             }
         default:
             return state

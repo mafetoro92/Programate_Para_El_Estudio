@@ -50,7 +50,9 @@ const MotivationLetterModal = () => {
     return (
         <div>
             <button>
-                <a href="#aspirante">Leer mas..</a>
+                <a href="#aspirante">
+                    <i className="far fa-eye"> </i>
+                </a>
             </button>
             <div id="aspirante" className="modalDialog">
                 <div className="content">

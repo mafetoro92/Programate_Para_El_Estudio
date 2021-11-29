@@ -18,6 +18,7 @@ export const types = {
 
   setCitation : '[citation] Set Citation',
 
+  getForm : '[login] Get Form',
   login: '[login] Set Login',
   getToken: 'getToken',
   getUser: '[login] Get User',
