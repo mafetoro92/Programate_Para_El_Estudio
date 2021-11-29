@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { ITEMS, ITEMS_ASPIRANTS } from "../../api/data";
 import Item from "../item/Item";
 import "./Nav.scss";
 
-const Nav = ({ user, adminstate }) => {
+const Nav = () => {
   const [activeItems, setActiveItems] = useState([]);
 
 
-  const { admin, loged } = adminstate;
-  const { admin2, loged2 } = user;
+  const auth = useSelector(state => state.auth)
+  const {isLogged, isAdmin} = auth
 
   const toggleItem = (id) => {
     if (activeItems.find((active) => active === id)) {
@@ -31,8 +32,8 @@ const Nav = ({ user, adminstate }) => {
       <span className="nav__title">Menu</span>
       <div className="nav__items mt-2">
         <nav className="nav__fixed">
-          {admin &&
-            loged &&
+          {isAdmin &&
+            isLogged &&
             ITEMS.map((item, index) => (
               <Item
                 key={index}
@@ -43,8 +44,8 @@ const Nav = ({ user, adminstate }) => {
               />
             ))}
 
-          {!admin2 &&
-            loged2 &&
+          {!isAdmin &&
+            isLogged &&
             ITEMS_ASPIRANTS.map((item, index) => (
               <Item
                 key={index}

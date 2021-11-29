@@ -6,7 +6,7 @@ const CalendarEvent = ({event}) => {
     return (
         <div>
             <strong>{title}</strong>
-            <span>- Diego</span>
+            {/* <span>- Diego</span> */}
         </div>
     )
 }

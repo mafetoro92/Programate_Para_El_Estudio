@@ -1,4 +1,5 @@
 const Convocatory = require("../db/models/Convocatory");
+const Result = require("../db/models/Result");
 const Profile = require("../db/models/Profile");
 const User = require("../db/models/User");
 const Rooms = require("../db/models/Rooms");
@@ -6,9 +7,7 @@ const adminRouter = require("express").Router();
 const request = require("request");
 const Administrator = require("../db/models/Administrators");
 const Citation = require("../db/models/Citation");
-const Result = require("../db/models/Result");
-//const ObjectId = require("mongodb").ObjectID;
-const Calendar = require("../db/models/Calendar");
+const ObjectId = require("mongodb").ObjectID;
 
 // GET STATISTICS
 adminRouter.get("/statistics", async (req, res) => {
@@ -152,7 +151,7 @@ adminRouter.post("/new-conv", async (req, res, next) => {
     const {
         name,
         initialDate,
-        finalDate,
+        finallDate,
         program,
         maxQuotas,
         initialBootcampDate,
@@ -160,11 +159,11 @@ adminRouter.post("/new-conv", async (req, res, next) => {
         usersRegisted,
     } = req.body;
     // New Convocatory document
-    const newConvocatory = new Convocatory({
+    const convocatory = new Convocatory({
         _id,
         name,
         initialDate,
-        finalDate,
+        finallDate,
         program,
         maxQuotas,
         initialBootcampDate,
@@ -190,10 +189,10 @@ adminRouter.put("/update-conv/:id", async (req, res) => {
 // GET THE RESULTS OF CANDIDATE
 adminRouter.get("/get-result/:id", async (req, res) => {
     try {
-        // const { user_id } = req.params.id;
-        // console.log(user_id)
-        const candidateProfile = await Profile.find({ user_id: req.params.id });
+        const { user_id } = req.params.id;
+        const candidateProfile = await Profile.find({ user_id: user_id });
         let { soloLearnProfile } = candidateProfile[0];
+
         // Fetching Solo learn data
         try {
             request(
@@ -219,13 +218,16 @@ adminRouter.get("/get-result/:id", async (req, res) => {
 });
 
 // GET THE LIST OF CANDIDATES IN WAIT LIST
+// adminRouter.get("/waiting-list", async (req, res, next) => {
+//         const waitList = await Profile.find({ status: { waitList: true } });
+//         res.send({ data: waitList });
+// });
+// ============================ HIRMOMI DANI =========================
 
 adminRouter.get("/results", async (req, res, next) => {
     const results = await Result.find();
     res.send({ data: results });
 });
-
-// GET THE LIST OF CANDIDATES IN WAIT LIST
 
 adminRouter.get("/waiting-list", async (req, res, next) => {
     let waitList = await Profile.find();
@@ -246,7 +248,7 @@ adminRouter.get("/waiting-list", async (req, res, next) => {
                     ? {
                           sololearn: candidate.soloLearnScore,
                           personal: candidate.personalProfileScore,
-                          motivation: candidate.motivationScore,
+                          motivation: candidate.motivation,
                           final: candidate.finalScore,
                           status: candidate.status,
                       }
@@ -270,40 +272,42 @@ adminRouter.get("/waiting-list", async (req, res, next) => {
     });
 });
 
-// // Download CSV files
-// adminRouter.get("/csv/", async (req, res) => {
-//     // Data from de candidate document
-//     const candidates = await User.find();
-//     // Data from the profile of the candidate
-//     const candidateProfiles = await Profile.find();
-//     // Strucuture for required data
-//     const csvObject = [];
+// ============================ HIRMOMI DANI =========================
 
-//     for (let c of candidates) {
-//         const candidateProfileData = {
-//             firstName: candidates[0].firstName,
-//             middleName: candidates[0].middleName,
-//             lastName: candidates[0].lastName,
-//             secondSurname: candidates[0].Surname,
-//             fullName: `${candidates[0].firstName} ${candidates[0].lastName}`,
-//             documentType: candidateProfiles[0].documentType,
-//             documentNumber: candidateProfiles[0].documentNumber,
-//             email: candidates[0].email,
-//             contactNumber: candidates[0].contactNumber,
-//             nacionality: candidateProfiles[0].nacionality,
-//             residenceCountry: candidateProfiles[0].residenceCountry,
-//             residencyDepartment: candidateProfiles[0].residencyDepartment,
-//             municipalityOfResidency: candidates[0].municipalityOfResidency,
-//             socioeconomicStratus: candidateProfiles[0].socioeconomicStratus,
-//             actualAge: candidateProfiles[0].actualAge,
-//             gender: candidateProfiles[0].gender,
-//             status: "true",
-//         };
-//         csvObject.push(candidateProfileData);
-//     }
-//     const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
-//     res.json({ data: csvFromArrayOfObjects });
-// });
+// Download CSV files
+adminRouter.post("/csv/", async (req, res) => {
+    // Data from de candidate document
+    const candidates = await User.find();
+    // Data from the profile of the candidate
+    const candidateProfiles = await Profile.find();
+    // Strucuture for required data
+    const csvObject = [];
+
+    for (let c of candidates) {
+        const candidateProfileData = {
+            firstName: candidates[0].firstName,
+            middleName: candidates[0].middleName,
+            lastName: candidates[0].lastName,
+            secondSurname: candidates[0].Surname,
+            fullName: `${candidates[0].firstName} ${candidates[0].lastName}`,
+            documentType: candidateProfiles[0].documentType,
+            documentNumber: candidateProfiles[0].documentNumber,
+            email: candidates[0].email,
+            contactNumber: candidates[0].contactNumber,
+            nacionality: candidateProfiles[0].nacionality,
+            residenceCountry: candidateProfiles[0].residenceCountry,
+            residencyDepartment: candidateProfiles[0].residencyDepartment,
+            municipalityOfResidency: candidates[0].municipalityOfResidency,
+            socioeconomicStratus: candidateProfiles[0].socioeconomicStratus,
+            actualAge: candidateProfiles[0].actualAge,
+            gender: candidateProfiles[0].gender,
+            status: "true",
+        };
+        csvObject.push(candidateProfileData);
+    }
+    const csvFromArrayOfObjects = convertArrayToCSV(csvObject);
+    res.json({ data: csvFromArrayOfObjects });
+});
 
 // Updates the parameters for actual convocatory
 adminRouter.put("/parameterization/:_id", async (req, res) => {
@@ -327,10 +331,18 @@ adminRouter.put("/parameterization/:_id", async (req, res) => {
                 },
             }
         );
-        res.send({ data: result });
+        res.send([_id, result]);
     } catch {
         res.status(404).send({ error: "parameterization category not put" });
     }
+});
+// ============================ HIRMOMI DANI =========================
+
+//GET ALL CANDIDATES
+
+adminRouter.get("/candidatefull", async (req, res) => {
+    const candidates = await Profile.find({}).populate("user_id");
+    res.send(candidates);
 });
 
 // Get all citations
@@ -350,8 +362,11 @@ adminRouter.get("/citation", async (req, res) => {
         citation
             ? {
                   id: idx,
-                  date: citation.date,
-                  journy: citation.journy,
+                  start: citation.start,
+                  finish: citation.end,
+                  journey: citation.journey,
+                  quotas: citation.quotas,
+                  quotasCompleted: citation.users.length,
                   users: citation.users,
               }
             : null
@@ -361,33 +376,29 @@ adminRouter.get("/citation", async (req, res) => {
         data.map(async (obj) => getUserData(obj.users))
     );
     data.users = data.map((user, idx) => (user.users = infoUsers[idx]));
+    console.log(data);
     res.send(data);
 });
 
+// ============================ HIRMOMI DANI =========================
+
+// ============================ Yeferson =========================
 adminRouter.get("/convocatories", async (req, res) => {
-    const results = await Convocatory.find({});
+    const results = await Convocatory.find();
+    res.send(results);
+});
+adminRouter.get("/convocatory/:id", async (req, res) => {
+    const results = await Convocatory.find({ _id: req.params.id });
     res.send(results);
 });
 
-adminRouter.put("/update-test", async (req, res) => {
-    try {
-        const _id = req.body;
-        const result = await Convocatory.updateMany(
-            { _id },
-            {
-                $set: {
-                    test: {
-                        nameTest: req.body.test.nameTest,
-                        linkTest: req.body.test.linkTest,
-                    },
-                },
-            }
-        );
-        res.send(result);
-    } catch {
-        res.status(404).send({ error: "link citation category not put" });
-    }
+adminRouter.get("/acept", async (req, res) => {
+    const user = await User.find();
+    res.send(user);
 });
+
+// ============================ Yeferson =========================
+
 // Creates new citations
 adminRouter.post("/citation", async (req, res) => {
     const { users, date, journey, quotasCompleted, maxQuotas } = req.body;
@@ -494,26 +505,25 @@ adminRouter.get("/admin", async (req, res) => {
 
 // create event in calendar
 adminRouter.post("/calendar", async (req, res) => {
-    const { start, end, title, link, notes, quotas } = req.body;
-    const calendar = new Calendar({
+    const { start, end, title, link, notes, quotas, testTechnical } = req.body;
+    const citation = new Citation({
         start,
         end,
         title,
         link,
         notes,
         quotas,
+        testTechnical,
     });
 
-    await calendar.save();
-    // res.send(
-    // "Event created successfully")
+    await citation.save();
     res.json({
         ok: true,
     });
 });
 
 adminRouter.put("/calendar/:id", async (req, res) => {
-    const updateEvent = await Calendar.findByIdAndUpdate(
+    const updateEvent = await Citation.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
@@ -527,7 +537,7 @@ adminRouter.put("/calendar/:id", async (req, res) => {
 });
 
 adminRouter.delete("/calendar/:id", async (req, res) => {
-    await Calendar.findByIdAndDelete({ _id: req.params.id });
+    await Citation.findByIdAndDelete({ _id: req.params.id });
     res.status(204).json("calednar delete sussces");
 });
 

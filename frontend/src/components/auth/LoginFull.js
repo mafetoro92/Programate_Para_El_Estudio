@@ -5,20 +5,26 @@ import axios from 'axios'
 //   showErrMsg,
 //   showSuccessMsg
 // } from '../../notification/Notification'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './auth.css';
 import { dispatchLogin } from '../../actions/authAction';
+import Spinner from './Spinner';
 
 const Login = () => {
 
   //Inicializo hooks
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'verasergio700@gmail.com',
+    password: '5485356C',
     err: '',
     success: ''
   }) 
-  const dispatch = useDispatch() 
+
+  const [spinner, guardarSpinner] = useState(false)
+  const dispatch = useDispatch()
+
+  const auth = useSelector(state => state.auth)
+
  
 const  history = useHistory ();
   const { email, password, err, success } = user
@@ -30,29 +36,45 @@ const  history = useHistory ();
 
   const handleSubmit = async e => {
     e.preventDefault()
-    try {
-      const res = await axios.post('http://localhost:3005/api/login', {
-        email,
-        password
-      })
-      
-      setUser({ ...user, err: '', success: res.data.msg })
-      window.localStorage.setItem('firstLogin', true)
-      window.localStorage.setItem(
-        'loggedAgoraUser', JSON.stringify(res.data)
-      )
-      dispatch(dispatchLogin())
- 
-      navigate('/landing')
-    } catch (err) {
-      err.response.data.error &&
-        setUser({ ...user, err: err.response.data.error, success: '' })
-        console.log(err)
-    }
-    history.push('/dashboardAspirant')
+    guardarSpinner(true)
+  
+      try {
+        const res = await axios.post('http://localhost:3001/api/user/login',{
+          email,
+          password
+        })
+        
+        setUser({ ...user, err: '', success: res.data.msg })
+        window.localStorage.setItem('firstLogin', true)
+        window.localStorage.setItem(
+          'loggedAgoraUser', JSON.stringify(res.data)
+        )
+        dispatch(dispatchLogin())
+        guardarSpinner(false)
+      history.push('/dashboard')
+
+      } catch (err) {
+        err.response.data.error &&
+          setUser({ ...user, err: err.response.data.error, success: '' })
+          console.log('El error', err)
+          guardarSpinner(false)
+      }
+   
+  }
+
+
+  console.log(spinner)
+
+  let componentes;
+  if (spinner) {
+      componentes = <Spinner />
   }
 
   return (
+    <>
+              <div className="mensajes">
+                {componentes}
+            </div>
     <div className='login_page'>
       <h2>Login</h2>
       {/* {err && showErrMsg(err)}
@@ -62,6 +84,7 @@ const  history = useHistory ();
         <div>
           <label htmlFor='email'>Email Address</label>
           <input
+          className='email'
             type='text'
             placeholder='Enter email address'
             id='email'
@@ -70,10 +93,10 @@ const  history = useHistory ();
             onChange={handleChangeInput}
           />
         </div>
-
         <div>
           <label htmlFor='password'>Password</label>
           <input
+          className='password'
             type='password'
             placeholder='Enter password'
             id='password'
@@ -87,11 +110,11 @@ const  history = useHistory ();
           <button type='submit'>Login</button>
         </div>
       </form>
-
       <p>
-        New Customer? <Link to='/register'>Register</Link>
+        New Customer? <Link to='/'>Register</Link>
       </p>
     </div>
+    </>
   )
 }
 

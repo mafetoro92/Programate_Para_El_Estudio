@@ -6,13 +6,17 @@ import ModalAspirants from "../../components/modals/ModalAspirants";
 
 const Aspirants = () => {
     const [aspirants, setAspirants] = useState([]);
-    const getUser = async () => {
-        const { data } = await RequestService.get("/candidate/profile");
-        if (data) {
-            setAspirants(data.data);
-        }
-    };
+
     useEffect(() => {
+        const getUser = async () => {
+            const { data } = await RequestService.get("/admin/candidatefull");
+            if (data) {
+                console.log(data);
+                const res = data.filter((e) => e.user_id.role == 0);
+                console.log(res);
+                setAspirants(res);
+            }
+        };
         getUser();
     }, []);
 
@@ -25,17 +29,17 @@ const Aspirants = () => {
 
     const rows = aspirants.map((aspirant, idx) => ({
         ID: idx,
-        Nombre: aspirant.Nombre,
-        "Tipo de Documento": aspirant.TipoDocumento,
-        "Numero de Documento": aspirant.NumeroDocumento,
-        Correo: aspirant.Email,
-        Telefono: aspirant.Telefono,
-        Nacionalidad: aspirant.Nacionalidad,
-        Departamento: aspirant.Departamento,
-        Municipio: aspirant.Municipio,
-        Estrato: aspirant.Estrato,
-        Edad: aspirant.Edad,
-        Genero: aspirant.Genero,
+        Nombre: aspirant.fullName,
+        // "Tipo de Documento": aspirant.documentType,
+        //"Numero de Documento": aspirant.documentNumber,
+        Correo: aspirant.email,
+        Telefono: aspirant.secondContactNumber,
+        Nacionalidad: aspirant.nacionality,
+        Departamento: aspirant.residencyDepartment,
+        Municipio: aspirant.municipalityOfResidency,
+        Estrato: aspirant.socioeconomicStratus,
+        Edad: aspirant.actualAge,
+        Genero: aspirant.gender,
         Estado: (
             <select>
                 <option value="pasa">Pasa</option>
@@ -45,8 +49,8 @@ const Aspirants = () => {
     }));
 
     return (
-        <div className="section__aspirants">
-            <div className="section__content d-flex justify-content-between">
+        <div className="spirants">
+            <div className="spirants__content d-flex justify-content-between">
                 <span className="upperCase bold"> Aspirantes </span>
                 <div className="box__content">
                     <span className="text-crumbs bold-500"> Programate </span>
@@ -54,8 +58,9 @@ const Aspirants = () => {
                     <span className="text-crumbs"> Aspirantes </span>
                 </div>
             </div>
-
-            <Tablita key={rows.length} rows={rows} actions={actions} />
+            <div className="mt-4">
+                <Tablita key={rows.length} rows={rows} actions={actions} />
+            </div>
         </div>
     );
 };

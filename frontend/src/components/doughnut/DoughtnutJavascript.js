@@ -11,13 +11,15 @@ defaults.plugins.legend.position = "bottom";
 const DoughtnutJavascript = ({ item }) => {
     //console.log(item);
     const { javascriptScore } = item;
-    let pendiente = 100 - javascriptScore;
+    const js = javascriptScore.toString().slice(2)
+    let pendiente = 100 - js;
+    
     //console.log(pendiente);
     const data = {
         datasets: [
             {
                 label: "# of Votes",
-                data: [`${javascriptScore}`, `${pendiente}`],
+                data: [`${js}`, `${pendiente}`],
                 backgroundColor: ["#FFCC02", "#D7D7D7"],
                 hoverBackgroundColor: ["#FFCC02", "#D7D7D7"],
             },
@@ -40,7 +42,7 @@ const DoughtnutJavascript = ({ item }) => {
 
     return (
         <div className="graph mt-2">
-            <Doughnut data={data} options={options} width={400} height={200} />
+            <Doughnut data={data} options={options} width={400} height={250} />
         </div>
     );
 };

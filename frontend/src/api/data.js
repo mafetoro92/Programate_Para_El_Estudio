@@ -1,10 +1,17 @@
 export const ITEMS = [
     {
         name: "Dashboard",
-        icon: "fas fa-border-all",
+        icon: "fas fa-th-large",
         id: 1,
         items: [],
-        pathname: "/dasboard",
+        pathname: "/dashboard",
+    },
+    {
+        name: "Convocatoria",
+        icon: "fab fa-connectdevelop",
+        id: 28,
+        items: [],
+        pathname: "/convocatoria",
     },
     {
         name: "Aspirantes",
@@ -14,7 +21,7 @@ export const ITEMS = [
         pathname: "/aspirantes",
     },
     {
-        name: "Inscripción",
+        name: "Inscripcion",
         icon: "far fa-id-card",
         id: 3,
         items: [
@@ -24,7 +31,7 @@ export const ITEMS = [
             },
             {
                 name: "Lista de espera",
-                path: "/waiting-list",
+                pathname: "/waiting-list",
             },
             {
                 name: "Calificación de la carta de motivación",
@@ -43,7 +50,7 @@ export const ITEMS = [
         items: [
             {
                 name: "Consolidado Postulantes",
-                pathname: "/dasboard",
+                pathname: "/citation",
             },
             {
                 name: "Dias de Entrevista",
@@ -73,18 +80,17 @@ export const ITEMS = [
         items: [
             {
                 name: "Resultados",
-                pathname: "/dasboard",
+                pathname: "/selection-results",
             },
         ],
     },
 ];
-
 export const ITEMS_ASPIRANTS = [
     {
         name: "Dashboard de progreso",
-        icon: "fas fa-border-all",
+        icon: "fas fa-th-large",
         items: [],
-        pathname: "/dashboardAspirant",
+        pathname: "/dashboard",
         id: 7,
     },
     {
@@ -107,56 +113,6 @@ export const ITEMS_ASPIRANTS = [
         items: [],
         pathname: "/aspirante",
         id: 10,
-    },
-];
-
-/*const pruebas1 = [
-      {
-          user_id: 1,
-          userFullName: "Pablo",
-          htmlScore: 23,
-          cssScore: 25,
-          javascriptScore: 27,
-          pythonScore: 34,
-          Score: 28,
-          soloLearnScore: 28,
-          personalProfileScore: 28,
-          motivationScore: 28,
-          finalScore: 23,
-      },
-      
-  ];
-  */
-
-export const PROFILE_SOLOLEARN = [
-    {
-        user_id: 1,
-        userFullName: "Pablo",
-        htmlScore: 50,
-        cssScore: 25,
-        javascriptScore: 27,
-        pythonScore: 34,
-        Score: 28,
-        soloLearnScore: 28,
-        personalProfileScore: 28,
-        motivationScore: 28,
-        finalScore: 23,
-    },
-];
-
-export const pruebas1 = [
-    {
-        user_id: 1,
-        userFullName: "Pablo",
-        htmlScore: 23,
-        cssScore: 25,
-        javascriptScore: 27,
-        pythonScore: 34,
-        Score: 28,
-        soloLearnScore: 28,
-        personalProfileScore: 28,
-        motivationScore: 28,
-        finalScore: 23,
     },
 ];
 

@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import Search from "../../components/search/Search";
 import RequestService from "../../config/index";
 import { CSVLink } from "react-csv";
 
@@ -34,6 +34,7 @@ export default function BasicTable({ rows, actions = false }) {
 
     return (
         <>
+            <Search />
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -57,18 +58,18 @@ export default function BasicTable({ rows, actions = false }) {
                                     </TableCell>
                                 ))}
                                 <TableCell align="right">
-                                    {/* {actions &&
+                                    {actions &&
                                         actions.map((action, index) =>
                                             action.status ? (
                                                 <span key={index}>
                                                     {action.icon}
                                                 </span>
                                             ) : null
-                                        )} */}
-                                    <i className="far fa-check-square"> </i>
+                                        )}
+                                    {/* <i className="far fa-check-square"> </i>
                                     <i className="far fa-edit"> </i>
                                     <i className="far fa-eye"> </i>
-                                    <i className="far fa-trash-alt"> </i>
+                                    <i className="far fa-trash-alt"> </i> */}
                                 </TableCell>
                             </TableRow>
                         ))}

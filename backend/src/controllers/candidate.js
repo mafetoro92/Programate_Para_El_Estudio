@@ -4,21 +4,13 @@ const Result = require("../db/models/Result");
 const multer = require("multer");
 const mimeTypes = require("mime-types");
 const request = require("request");
+const { ConnectionStates } = require("mongoose");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const Citation = require("../db/models/Citation");
 const { OAuth2 } = google.auth;
 
 const candidateRouter = require("express").Router();
-
-const oAuth2Client = new OAuth2(
-    "169447507213-pp77cjt1i0miu0fsfea1dson2vuvnvn7.apps.googleusercontent.com",
-    "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"
-);
-
-oAuth2Client.setCredentials({
-    refresh_token:
-        "1//04ZNl89icy8DvCgYIARAAGAQSNwF-L9IrNd0_kBCZJnJEGfmgq7YzNwTS4nHx8eIOzBAQTGXMb5ZzTWznLUOWc0pz0uWC0BgiIhU",
-});
 
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
@@ -54,6 +46,12 @@ candidateRouter.get("/calification", async (req, res) => {
     res.send(calification);
 });
 
+candidateRouter.get("/result/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await Result.find({ user_id: id });
+    res.send(result);
+});
+
 // CREATES A NEW USER
 candidateRouter.post("/new", async (req, res, next) => {
     const {
@@ -85,6 +83,10 @@ candidateRouter.post(
     async (req, res, next) => {
         const {
             user_id,
+            firstName,
+            secondName,
+            firstSurname,
+            secondSurname,
             documentType,
             documentNumber,
             documentPdf,
@@ -110,12 +112,30 @@ candidateRouter.post(
             programataPrevoiousTimes,
             motivation,
             dreams,
+            sex,
             soloLearnProfile,
-            heardFromUs: { radio, instagram, facebook, web },
+            // heardFromUs: {
+            //     web,
+            //     recommendation,
+            //     facebook,
+            //     instagram,
+            //     google,
+            //     compensar,
+            //     allianceEducational,
+            //     embassyVen,
+            //     poliTec,
+            //     PNUD,
+            //     other
+            // },
             status,
         } = req.body;
+        console.log(req.body);
         const newProfile = new Profile({
             user_id,
+            firstName,
+            secondName,
+            firstSurname,
+            secondSurname,
             documentType,
             documentNumber,
             documentPdf,
@@ -138,16 +158,24 @@ candidateRouter.post(
             formaltOccupation,
             victimArmedConflict,
             pcAccess,
+            sex,
             programataPrevoiousTimes,
             motivation,
             dreams,
             soloLearnProfile,
-            heardFromUs: {
-                radio,
-                instagram,
-                facebook,
-                web,
-            },
+            // heardFromUs: {
+            //     web,
+            //     recommendation,
+            //     facebook,
+            //     instagram,
+            //     google,
+            //     compensar,
+            //     allianceEducational,
+            //     embassyVen,
+            //     poliTec,
+            //     PNUD,
+            //     other
+            // },
             status,
         });
         await newProfile.save();
@@ -160,85 +188,25 @@ candidateRouter.get("/candidate", async (req, res) => {
     const candidates = await User.find();
     res.send(candidates);
 });
-//Get all Profile
-candidateRouter.get("/profile", async (req, res) => {
-    const profile = await Profile.find();
-    const candidates = await User.find();
-    const profiles = [];
-
-    for (let candidate of candidates) {
-        let candidateData = await Profile.find({
-            user_id: candidate._id.toString(),
-        });
-        if (candidateData[0] !== undefined) {
-            candidateData = candidateData.map((candidate) =>
-                candidate
-                    ? {
-                          age: candidate.actualAge,
-                          nacionality: candidate.nacionality,
-                          municipalityOfResidency:
-                              candidate.municipalityOfResidency,
-                          status: candidate.status.pass,
-                          documentType: candidate.documentType,
-                          documentNumber: candidate.documentNumber,
-                          gender: candidate.gender,
-                          residencyDepartment: candidate.residencyDepartment,
-                          socioeconomicStratus: candidate.socioeconomicStratus,
-                      }
-                    : null
-            );
-
-            const candidateObj = {
-                ID: candidate._id.toString(),
-                TipoDocumento: candidateData[0].documentType,
-                NumeroDocumento: candidateData[0].documentNumber,
-                Nombre: `${candidate.firstName} ${candidate.lastName}`,
-                Email: candidate.email,
-                Telefono: candidate.contactNumber,
-                Edad: candidateData[0].age,
-                Nacionalidad: candidateData[0].nacionality,
-                Departamento: candidateData[0].residencyDepartment,
-                Municipio: candidateData[0].municipalityOfResidency,
-                Estrato: candidateData[0].socioeconomicStratus,
-                Genero: candidateData[0].gender,
-                Status: candidateData[0].status,
-            };
-            profiles.push(candidateObj);
-        }
-    }
-    res.json({
-        data: profiles,
-    });
-});
-candidateRouter.get("/profile/:id", async (req, res) => {
-    const profile = await Profile.find({
-        user_id: req.params.id,
-    });
-
-    res.send(profile);
-});
 
 // GET PROFILE OF CANDIDATES
 candidateRouter.get("/candidate-profile/:id", async (req, res) => {
+    const id = req.params.id;
     // Data from de candidate document
-    const candidate = await User.find({
-        user_id: req.params.id,
-    });
+    const candidate = await User.find({ user_id: id });
     // Data from the profile of the candidate
-    const candidateProfile = await Profile.find({
-        user_id: req.params.id,
-    });
+    const candidateProfile = await Profile.find({ user_id: id });
     // Strucuture for required data
+
+    //res.send(candidate[0].name);
+
     const candidateProfileData = {
-        firstName: candidate[0].firstName,
-        middleName: candidate[0].middleName,
-        lastName: candidate[0].lastName,
-        secondSurname: candidate[0].Surname,
-        fullName: `${candidate[0].firstName} ${candidate[0].lastName}`,
-        documentType: candidateProfile[0].documentType,
-        documentNumber: candidateProfile[0].documentNumber,
+        name: candidate[0].name,
         email: candidate[0].email,
         contactNumber: candidate[0].contactNumber,
+        documentType: candidateProfile[0].documentType,
+        documentNumber: candidateProfile[0].documentNumber,
+
         nacionality: candidateProfile[0].nacionality,
         residenceCountry: candidateProfile[0].residenceCountry,
         residencyDepartment: candidateProfile[0].residencyDepartment,
@@ -312,13 +280,9 @@ candidateRouter.post("/new-result", async (req, res) => {
         console.log(newResult);
         // Saving new document to Reults
         await newResult.save();
-        res.send({
-            data: newResult,
-        });
+        res.send({ data: newResult });
     } catch {
-        res.status(404).send({
-            error: "Candidate not found",
-        });
+        res.status(404).send({ error: "Candidate not found" });
     }
 });
 
@@ -331,9 +295,7 @@ candidateRouter.put("/update-candidate", async (req, res) => {
         const { user_id, candidate, profile } = req.body;
         if (candidate) {
             const candidate = await User.updateMany(
-                {
-                    user_id: user_id,
-                },
+                { user_id: user_id },
                 {
                     $set: req.body.candidate,
                 }
@@ -341,48 +303,48 @@ candidateRouter.put("/update-candidate", async (req, res) => {
         }
         if (profile) {
             const candidateProfile = await Profile.updateMany(
-                {
-                    user_id: user_id,
-                },
+                { user_id: user_id },
                 {
                     $set: req.body.profile,
                 }
             );
         }
-        res.send({
-            data: candidate,
-        });
+        res.send({ data: candidate });
     } catch {
-        res.status(404).send({
-            error: "Candidate not found",
-        });
+        res.status(404).send({ error: "Candidate not found" });
     }
 });
 
+const oAuth2Client = new OAuth2(
+    "169447507213-pp77cjt1i0miu0fsfea1dson2vuvnvn7.apps.googleusercontent.com",
+    "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"
+);
+
+oAuth2Client.setCredentials({
+    refresh_token:
+        "1//04ZNl89icy8DvCgYIARAAGAQSNwF-L9IrNd0_kBCZJnJEGfmgq7YzNwTS4nHx8eIOzBAQTGXMb5ZzTWznLUOWc0pz0uWC0BgiIhU",
+});
+
 // SAVE AND UPDATE SOLOLEARN DATA
-candidateRouter.get("/sololearn/:id", async (req, res) => {
+candidateRouter.get("/sololearm/:id", async (req, res) => {
     var id = req.params.id;
-    const perfiles = await Profile.find({
-        user_id: id,
-    });
+    const perfiles = await Profile.find({ user_id: id });
     const params = JSON.stringify(perfiles);
     const json = JSON.parse(params);
     for (x of json) {
-        var usersololearn = x.soloLearnProfile;
+        var usersololearm = x.soloLearnProfile;
     }
-    if (usersololearn === undefined) {
+    if (usersololearm === undefined) {
         console.log("This user does not have a sololearn profile");
     } else {
-        const calificationUpdate = await Result.find({
-            user_id: id,
-        });
+        const calificationUpdate = await Result.find({ user_id: id });
         const params2 = JSON.stringify(calificationUpdate);
         const json2 = JSON.parse(params2);
         for (y of json2) {
             var users_id = y.user_id.toString();
         }
         request(
-            `https://api.sololearn.repl.co/profile/${usersololearn}`,
+            `https://api.sololearn.repl.co/profile/${usersololearm}`,
             async (err, response, body) => {
                 if (!err) {
                     const user = JSON.parse(body);
@@ -425,9 +387,7 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
                         await usersolo.save();
                     } else {
                         await Result.updateOne(
-                            {
-                                user_id: id,
-                            },
+                            { user_id: id },
                             {
                                 $set: {
                                     htmlScore: html,
@@ -449,92 +409,94 @@ candidateRouter.get("/sololearn/:id", async (req, res) => {
     res.send("seving datas");
 });
 
-candidateRouter.get("/calendar", async (req, res) => {
-    const calendar = google.calendar({
-        version: "v3",
-        auth: oAuth2Client,
-    });
+candidateRouter.post("/attendevent/:id/:idevent", async (req, res) => {
+    var id = req.params.id;
+    const perfiles = await Profile.find({ user_id: id });
+    const params = JSON.stringify(perfiles);
+    const json = JSON.parse(params);
+    for (z of json) {
+        var userid = z.user_id.toString();
+    }
 
-    const eventStartTime = new Date();
-    eventStartTime.setDate(eventStartTime.getDay() + 15);
+    var idevent = req.params.idevent;
+    const event = await Citation.find({ _id: idevent });
+    const params3 = JSON.stringify(event);
+    const json3 = JSON.parse(params3);
+    var id_user = [];
+    for (t of json3) {
+        var id_evnet = t._id.toString();
+        id_user = t.users;
+        var link = t.link.toString();
+        var testTechnical = t.testTechnical.toString();
+        var title = t.title.toString();
+        var subject = t.notes.toString();
+        var fechasinicio = t.start.toString();
+        var fechafinal = t.end.toString();
+        var quotas = t.quotas;
+    }
 
-    console.log(eventStartTime);
+    const dataencontrada = id_user.includes(id);
+    const accountant = id_user.length;
 
-    const eventEndTime = new Date();
-    eventEndTime.setDate(eventEndTime.getDay() + 15);
-    eventEndTime.setMinutes(eventEndTime.getMinutes() + 45);
+    if (dataencontrada === false && accountant < quotas) {
+        await Citation.updateOne(
+            { _id: id_evnet },
+            {
+                $push: {
+                    users: { $each: [userid] },
+                },
+            }
+        );
 
-    const event = {
-        summary: `Prueba sergio`,
-        location: `Prueba`,
-        description: `Prueba`,
-        colorId: 1,
-        start: {
-            dateTime: eventStartTime,
-            timeZone: "America/Bogota",
-        },
-        end: {
-            dateTime: eventEndTime,
-            timeZone: "America/Bogota",
-        },
-    };
-
-    calendar.freebusy.query(
-        {
-            resource: {
-                timeMin: eventStartTime,
-                timeMax: eventEndTime,
-                timeZone: "America/Bogota",
-                items: [
-                    {
-                        id: "primary",
-                    },
-                ],
-            },
-        },
-        (err, res) => {
-            // Check for errors in our query and log them if they exist.
-            if (err) return console.error("Free Busy Query Error: ", err);
-
-            // Create an array of all events on our calendar during that time.
-            const eventArr = res.data.calendars.primary.busy;
-
-            // Check if event array is empty which means we are not busy
-            if (eventArr.length === 0)
-                // If we are not busy create a new calendar event.
-                return calendar.events.insert(
-                    {
-                        calendarId: "primary",
-                        resource: event,
-                    },
-                    (err) => {
-                        // Check for errors and log them if they exist.
-                        if (err) {
-                            return console.error(
-                                "Error Creating Calender Event:",
-                                err
-                            );
-                        } else {
-                            transporter.sendMail({
-                                from: '"Fred Foo 👻" <programate.co@gmail.com>', // sender address
-                                to: "verasergio700@gmail.com", // list of receivers
-                                subject: "Hello ✔", // Subject line
-                                text: "Hello world?", // plain text body
-                                html: "<b>Hello world?</b>", // html body
-                            });
-                            return console.log(
-                                "Calendar event successfully created."
-                            );
-                        }
-                    }
-                );
-
-            // If event array is not empty log that we are busy.
-            return console.log(`Sorry I'm busy...`);
+        const us = await User.find({ _id: id });
+        const params4 = JSON.stringify(us);
+        const json4 = JSON.parse(params4);
+        for (u of json4) {
+            var emails = u.email;
         }
-    );
+        transporter.sendMail({
+            from: title + "<programate.co@gmail.com>", // sender address
+            to: emails, // list of receivers
+            subject: subject, // Subject line
+            html:
+                "Fecha de la entrevista:" +
+                fechasinicio +
+                " " +
+                fechafinal +
+                "<br>" +
+                "Link de conexión: " +
+                link +
+                "<br>" +
+                "El día de la entrevista:" +
+                "<br>" +
+                "Ten tu documento de identidad a la mano." +
+                "<br>" +
+                "Llega 5 minutos antes de la sesión, al principio de la sesión vamos a explicar la dinámica de toda la entrevista." +
+                "<br>" +
+                "Asegúrate de tener conexión a internet durante la entrevista, es necesario que tengas la cámara encendida durante toda la sesión" +
+                "<br>" +
+                "Cuando ingreses a la entrevista, pon tu nombre completo (nombre y apellido, no apodos) para que sea visible para todos en la reunión" +
+                "<br>" +
+                "Te recomendamos conectarte desde tu computador, ya que vas a ingresar a otras páginas durante la sesión" +
+                "<br>" +
+                "Nos vamos a conectar por Zoom, descarga la aplicación." +
+                "<br>" +
+                "Adjunto te compartimos un ejercicio práctico que debes hacer antes del día de tu entrevista para que nos cuentes cómo te fue haciéndolo." +
+                "<br>" +
+                testTechnical, // html body
+        });
+        res.send("user registered successfully and send email successfully");
+    } else {
+        console.log("el usuario esta registrado o ya no hay cupo");
+        res.send("el usuario esta registrado o ya no hay cupo");
+    }
+});
 
-    res.send("Calendar event successfully created");
+candidateRouter.get("/calendar", async (req, res) => {
+    const events = await Citation.find();
+
+    console.log(events);
+    res.send(events);
 });
 
 module.exports = candidateRouter;

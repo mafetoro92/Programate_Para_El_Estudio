@@ -3,12 +3,15 @@ import DoughtnutHtml from "../../components/doughnut/DoughtnutHtml";
 import DoughtnutCss from "../../components/doughnut/DoughtnutCss";
 import DoughtnutJavascript from "../../components/doughnut/DoughtnutJavascript";
 import DoughtnutPython from "../../components/doughnut/DoughtnutPython";
-import { PROFILE_SOLOLEARN } from "../../api/data";
 import "./DashboardAspirant.scss";
-
-
+import { useSelector } from "react-redux";
+import NotProfile from "../../components/notProfile/NotProfile";
 
 function DashboardAspirant() {
+
+
+  const { profile } = useSelector((state) => state.sololearn);
+
 
   return (
     <div className="dash">
@@ -20,75 +23,77 @@ function DashboardAspirant() {
           <span className="text-crumbs">Dashboard</span>
         </div>
       </div>
-      <div className="title__section d-flex justify-content-center">
-                <h2>SoloLearn</h2>
-            </div>
-            <div className="doughtnut d-flex flex-wrap justify-content-around">
-                <div className="doughtnut__container">
-                    <div className="doughtnut__container-title d-flex justify-content-center align-items-center gap-4">
-                        <h2 className="m-0">Html</h2>
-                        <i className="fab fa-html5 icon-soloLearn" />
-                    </div>
-                    <div className="doughtnut__container-graph">
-                        {PROFILE_SOLOLEARN.map((item) => (
-                            <DoughtnutHtml
-                                key={item.userFullName}
-                                item={item}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="doughtnut__container spacingCss">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Css</h2>
-                            <i className="fab fa-css3-alt icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutCss
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="doughtnut__container spacing">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2>Javascript</h2>
-                            <i className="fab fa-js icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutJavascript
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="doughtnut__container spacing">
-                    <div className="doughtnut__container">
-                        <div className="doughtnut__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">Python</h2>
-                            <i className="fab fa-python icon-soloLearn" />
-                        </div>
-                        <div className="doughtnut__container-graph">
-                            {PROFILE_SOLOLEARN.map((item) => (
-                                <DoughtnutPython
-                                    key={item.userFullName}
-                                    item={item}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+      {profile.length ? <><div className="status d-flex justify-content-between align-items-center mb-3 flex-wrap">
+        <div className="logo-sololearn">
+          <img
+            src="https://i.ibb.co/MMvzd4z/sololearn-logo.png"
+            alt="sololearn-logo"
+            border="0"
+            width="400px"
+          />
         </div>
-    );
+
+        <div className="status__container d-flex flex-column">
+          <em>Estado del aspirante:</em>
+          <p className="text-sololearn">
+            <span className="bold-500">
+              Perfil: {profile.map((item) => item.userFullName)}
+            </span>
+          </p>
+          <span>Aceptado</span>
+        </div>
+      </div>
+      <div className="doughtnut d-flex flex-wrap justify-content-around gap-4">
+        <div className="doughtnut__container">
+          <div className="doughtnut__container-title d-flex justify-content-between align-items-center gap-4">
+            <span className="text-lenguages">Html</span>
+            <i className="fab fa-html5 icon-soloLearn" />
+          </div>
+          <div className="doughtnut__container-graph">
+            {profile.map((item) => (
+              <DoughtnutHtml key={item.userFullName} item={item} />
+            ))}
+          </div>
+        </div>
+        <div className="doughtnut__container">
+          <div className="doughtnut__container-title d-flex justify-content-between align-items-center">
+            <span className="text-lenguages">css</span>
+            <i className="fab fa-css3-alt icon-soloLearn" />
+          </div>
+          <div className="doughtnut__container-graph">
+            {profile.map((item) => (
+              <DoughtnutCss key={item.userFullName} item={item} />
+            ))}
+          </div>
+        </div>
+        <div className="doughtnut__container">
+          <div className="doughtnut__container">
+            <div className="doughtnut__container-title d-flex justify-content-between align-items-center">
+              <span className="text-lenguages">Javascript</span>
+              <i className="fab fa-js icon-soloLearn" />
+            </div>
+            <div className="doughtnut__container-graph">
+              {profile.map((item) => (
+                <DoughtnutJavascript key={item.userFullName} item={item} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="doughtnut__container">
+          <div className="doughtnut__container-title d-flex justify-content-between align-items-center">
+            <span className="text-lenguages">Python</span>
+            <i className="fab fa-python icon-soloLearn" />
+          </div>
+          <div className="doughtnut__container-graph">
+            {profile.map((item) => (
+              <DoughtnutPython key={item.userFullName} item={item} />
+            ))}
+          </div>
+        </div>
+      </div> </> : <NotProfile/>}
+    </div>
+  );
 }
 
 export default DashboardAspirant;

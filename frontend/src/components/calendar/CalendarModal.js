@@ -8,11 +8,13 @@ import { useSelector } from "react-redux";
 import "./Calendar.scss";
 import { useDispatch } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
+import axios from "axios";
 import {
     eventClearActiveEvent,
     eventStartAddNew,
     updateEvents,
 } from "../../actions/events";
+import { setCitationData } from "../../actions/citation";
 
 Modal.setAppElement("#app");
 
@@ -25,26 +27,30 @@ const initEvent = {
     start: now.toDate(),
     end: endPlus.toDate(),
     link: "",
+    testTechnical: "",
     quotas: 0,
 };
 
-const CalendarModal = ({ user, adminstate }) => {
-    const { admin, loged } = adminstate;
-    const { admin2, loged2 } = user;
+const CalendarModal = () => {
+
+    const auth = useSelector(state => state.auth)
+    const {user} = auth
+    const {isLogged, isAdmin} = auth
 
     // Trae el estado de la aplicacion de ui
     const { modalOpen } = useSelector((state) => state.ui);
     const { activeEvent } = useSelector((state) => state.calendar);
+    const {citation} = useSelector(state => state.citation)
+    console.log('citation',citation)
     const dispatch = useDispatch();
 
     const [dateStart, setDateStart] = useState(now.toDate());
     const [dateEnd, setDateEnd] = useState(endPlus.toDate());
     const [ErrorTitle, setErrorTitle] = useState(true);
-    const [aplication, setAplication] = useState(false);
 
     const [fomrValues, setFomrValues] = useState(initEvent);
 
-    const { title, notes, start, end, link, quotas } = fomrValues;
+    const { title, notes, start, end, link, testTechnical, quotas } = fomrValues;
 
     useEffect(() => {
         if (activeEvent) {
@@ -107,10 +113,15 @@ const CalendarModal = ({ user, adminstate }) => {
         closeModal();
     };
 
-    const handleClick = () => {
-        console.log("Aplicaste");
-        setAplication(true);
-    };
+
+    const sendDataUser = () => {
+
+            dispatch(setCitationData(user.id, activeEvent._id))
+
+        console.log('enviando data')
+        
+    }
+
 
     DateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm:ss";
     return (
@@ -125,7 +136,7 @@ const CalendarModal = ({ user, adminstate }) => {
                 overlayClassName="modal-fondo"
                 contentLabel="Example Modal"
             >
-                {admin && loged && (
+                {isAdmin && isLogged && (
                     <>
                         <h1 className="text-center"> Nuevo evento </h1>
                         <hr />
@@ -168,7 +179,7 @@ const CalendarModal = ({ user, adminstate }) => {
                             </div>
 
                             <div className="form-group mt-2">
-                                <label>Link</label>
+                                <label>Link Zoom</label>
                                 <input
                                     type="url"
                                     className={`form-control ${
@@ -179,6 +190,21 @@ const CalendarModal = ({ user, adminstate }) => {
                                     autoComplete="off"
                                     onChange={handelInputChange}
                                     value={link}
+                                />
+                            </div>
+
+                            <div className="form-group mt-2">
+                                <label>Link Prueba Tecnica</label>
+                                <input
+                                    type="url"
+                                    className={`form-control ${
+                                        !ErrorTitle && "is-invalid"
+                                    }`}
+                                    placeholder="Link del evento"
+                                    name="testTechnical"
+                                    autoComplete="off"
+                                    onChange={handelInputChange}
+                                    value={testTechnical}
                                 />
                             </div>
 
@@ -227,7 +253,7 @@ const CalendarModal = ({ user, adminstate }) => {
                     </>
                 )}
 
-                {!admin2 && loged2 && (
+                {!isAdmin && isLogged && (
                     <>
                         <h1 className="text-center"> Dia de entrevista </h1>
                         <hr />
@@ -239,15 +265,11 @@ const CalendarModal = ({ user, adminstate }) => {
                             </span>
                             <span className="text-date">
                                 {moment(end).format("y-MM-DD h:mm a")}
-                            </span>
-
-                            {aplication && <span>Link Zoom : {link}</span>}
+                            </span>                  
                             <button
                                 type="button"
-                                className={`btn btn-outline-success ${
-                                    aplication && "disabled"
-                                } mt-3 btn-block`}
-                                onClick={handleClick}
+                                className='btn btn-outline-success mt-3 btn-block'
+                                onClick={sendDataUser}
                             >
                                 Aplicar
                             </button>

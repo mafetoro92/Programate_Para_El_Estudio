@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import CohorteGoal from "../../components/graphicsAdmin/CohorteGoal";
 import SocialMedia from "../../components/graphicsAdmin/SocialMedia";
-import Funnel from "../../components/graphicsAdmin/Funnel";
 import FunnelDos from "../../components/graphicsAdmin/FunnelDos";
 import DateMigrants from "../../components/graphicsAdmin/DateMigrants";
 import AmountPassing from "../../components/graphicsAdmin/AmountPassing";
-import { CONVOCATORY } from "../../api/data";
+import LocationMigrants from "../../components/graphicsAdmin/LocationMigrants";
 
 import "./DashboardAdmin.scss";
 import { providerContext } from "../../Context/status";
@@ -16,15 +15,17 @@ const DashboardAdmin = () => {
         convocatorys,
         getConvocatory,
         convocatory,
-        getAcept,
-        acept,
+        getProfiles
     } = useContext(providerContext);
 
+    const handleChange = (e) => {
+        const id = e.target.value
+        getConvocatory(id);
+    }
     useEffect(() => {
         getConvocatorys();
-        getAcept();
+        getProfiles()
     }, []);
-
 
     return (
         <>
@@ -47,14 +48,13 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Meta de la cohorte</h2>
                         </div>
                         <div className="cohorteGoal__container-graph">
-                            <select name="qualify" className="form-select">
+                            <select name="qualify" className="form-select" onChange={(e) => handleChange(e)}>
                                 <option value="select">
-                                    Selecione una opción
+                                    Selecione una Cohorte
                                 </option>
                                 {convocatorys.map((item) => (
                                     <option
-                                        value={item.name}
-                                        onClick={() => getConvocatory(item._id)}
+                                        value={item._id}
                                         key={item._id}
                                     >
                                         {item.name}
@@ -63,19 +63,8 @@ const DashboardAdmin = () => {
                             </select>
 
                             {convocatory.map((item) => (
-                                <CohorteGoal item={item} />
+                                <CohorteGoal item={item} key={item._id} />
                             ))}
-                        </div>
-                    </div>
-
-                    <div className="funnel__container">
-                        <div className="funnel__container-title d-flex justify-content-center align-items-center">
-                            <h2 className="m-0">
-                                Número de registrados a entrevista y fecha
-                            </h2>
-                        </div>
-                        <div className="funnel__container-graph">
-                            <Funnel />
                         </div>
                     </div>
                     <div className="funnel__container">
@@ -83,7 +72,9 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Embudo de selección</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <FunnelDos />
+                            {convocatory.map((item) => (
+                                <FunnelDos item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                     <div className="funnel__container">
@@ -91,7 +82,9 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Porcentaje que van pasando</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <AmountPassing />
+                            {convocatory.map((item) => (
+                                <AmountPassing item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                     <div className="funnel__container">
@@ -99,17 +92,33 @@ const DashboardAdmin = () => {
                             <h2 className="m-0">Datos generales migrantes</h2>
                         </div>
                         <div className="funnel__container-graph">
-                            <DateMigrants />
+                            {convocatory.map((item) => (
+                                <DateMigrants item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
-                    <div className="socialMedia__container">
+                    {/* <div className="socialMedia__container">
                         <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
                             <h2 className="m-0">
                                 ¿Dónde te enteraste de nosotros?
                             </h2>
                         </div>
                         <div className="socialMedia__container-graph">
-                            <SocialMedia />
+                            {convocatory.map((item) => (
+                                <SocialMedia item={item} key={item._id} />
+                            ))}
+                        </div>
+                    </div> */}
+                    <div className="socialMedia__container">
+                        <div className="socialMedia__container-title d-flex justify-content-center align-items-center">
+                            <h2 className="m-0">
+                                Departamento de residencia
+                            </h2>
+                        </div>
+                        <div className="socialMedia__container-graph">
+                            {convocatory.map((item) => (
+                                <LocationMigrants item={item} key={item._id} />
+                            ))}
                         </div>
                     </div>
                 </div>

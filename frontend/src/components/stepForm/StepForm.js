@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { InscriptionContext } from "../../inscription/InscriptionContext";
+import { ContentContext } from "../../Context/status";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -10,7 +10,12 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import { initialData } from "./index";
+import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+
+
 import "./StepForm.scss";
+import { getData, getProfileFull } from "../../actions/sololearnProfile";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,50 +35,60 @@ function getSteps() {
 }
 
 function getStepContent(step) {
-    //const { inscribir } = useContext(InscriptionContext);
 
-    //   Candidate-Profile  endPoint
+  const [data, setData] = useState(initialData);
+  const dispatch = useDispatch()
 
-    const [data, setData] = useState(initialData);
+ 
+  const handeleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
 
-    const handeleChange = (e) => {
-        const { name, value } = e.target;
-        setData({
-            ...data,
-            [name]: value,
-        });
-    };
-    const sendData = () => {
-        setData(initialData);
-        const { firstName, email } = data;
+  const {user} = useSelector(state => state.auth)
 
-        // inscribir(firstName, email);
-        console.log("La data", data);
-    };
+  const sendData = async () => {
 
-    const props = { data, handeleChange };
-
-    switch (step) {
-        case 0:
-            return <Step1 {...props} />;
-        case 1:
-            return <Step2 {...props} />;
-        case 2:
-            return (
-                <>
-                    <Step3 {...props} />
-                    <button
-                        className="btn btn-primary send-data"
-                        type="submit"
-                        onClick={() => sendData()}
-                    >
-                        Enviar
-                    </button>
-                </>
-            );
-        default:
-            return "Unknown step";
+    try {
+        const res = await axios.post('http://localhost:3001/api/candidate/profile', 
+        {...data, user_id : user?.id})
+        console.log('Aca lo envia', res)
+    } catch (error) {
+        console.log(error)
     }
+
+    dispatch(getProfileFull(user.id))
+    // dispatch(getData(user.id))
+    
+    // setData(initialData);
+  };
+
+  const props = { data, handeleChange };
+
+  switch (step) {
+    case 0:
+      return <Step1 {...props} />;
+    case 1:
+      return <Step2 {...props} />;
+    case 2:
+      return (
+        <>
+          <Step3 {...props} />
+          <button
+            className="btn btn-primary send-data"
+            type="submit"
+            onClick={() => sendData()}
+          >
+            Enviar
+          </button>
+        </>
+      );
+    default:
+      return "Unknown step";
+  }
 }
 
 export default function HorizontalLinearStepper() {

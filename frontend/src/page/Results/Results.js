@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
+import DisableBtn from "../../components/disableBtn/DisableBtn";
 
 const Results = () => {
     const [results, setResults] = useState([]);
@@ -16,20 +17,8 @@ const Results = () => {
 
     const actions = [
         {
-            status: true,
-            icon: <i className="far fa-check-square"> </i>,
-        },
-        {
             status: false,
-            icon: <i className="far fa-edit"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-eye"> </i>,
-        },
-        {
-            status: false,
-            icon: <i className="far fa-trash-alt"> </i>,
+            icon: { DisableBtn },
         },
     ];
 
@@ -52,10 +41,10 @@ const Results = () => {
     const rows = results.map((result) => ({
         ID: result.user_id,
         Nombre: result.userFullName,
-        HTML: result.htmlScore,
-        CSS: result.cssScore,
-        Javascript: result.javascriptScore,
-        Python: result.pythonScore,
+        // HTML: result.htmlScore,
+        // CSS: result.cssScore,
+        // Javascript: result.javascriptScore,
+        // Python: result.pythonScore,
         Sololearn: result.soloLearnScore,
         "Perfil Personal": result.personalProfileScore,
         Motivación: result.motivationScore,
@@ -79,17 +68,17 @@ const Results = () => {
     }));
 
     return (
-        <div className="section__aspirants">
+        <div className="Aspirants">
             <div className="section__content d-flex justify-content-between">
-                <span className="upperCase bold">Aspirantes</span>
+                <span className="upperCase bold">Resultados</span>
                 <div className="box__content">
                     <span className="text-crumbs bold-500"> Programate </span>
                     <i className="fas fa-chevron-right subtitle" />
                     <span className="text-crumbs">Aspirantes</span>
                 </div>
             </div>
-            <div className="table">
-                <Tablita key={rows.length} rows={rows} actions={actions} />
+            <div className="table mt-4">
+                <Tablita key={rows.length} rows={rows} />
             </div>
         </div>
     );

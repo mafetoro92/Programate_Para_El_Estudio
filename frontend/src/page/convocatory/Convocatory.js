@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
+import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
 import "../../components/newConvocatory/EditCohort.jsx";
 import DisableBtn from "../../components/disableBtn/DisableBtn";
 import RequestService from "../../config/index";
-import NewConvocatory from "../../components/newConvocatory/NewConvocatory";
+import ModalConvocatory from "../../components/modals/ModalConvocatory";
 import { Link } from "react-router-dom";
+import "./Convocatory.scss";
 
 const Convocatory = () => {
     const [convocatories, setConvocatories] = useState([]);
@@ -19,8 +21,6 @@ const Convocatory = () => {
         getUser();
     }, []);
 
-    // const [disable, setDisable] = useState(false);
-
     const actions = [
         {
             status: true,
@@ -29,6 +29,10 @@ const Convocatory = () => {
                     <i className="far fa-edit"></i>
                 </Link>
             ),
+        },
+        {
+            status: true,
+            icon: <ModalConvocatory />,
         },
         {
             status: true,
@@ -50,15 +54,15 @@ const Convocatory = () => {
     return (
         <>
             <div className="section__convocatory">
-                <div className="section__content d-flex justify-content-between">
-                    <span className="upperCase bold"> Convocatoria </span>
+                <div className="section__content mb-5 d-flex justify-content-between">
+                    <span className="upperCase bold">Convocatorias</span>
                     <div className="box__content">
                         <span className="text-crumbs bold-500">Programate</span>
-                        <i className="fas fa-chevron-right subtitle" />
-                        <span className="text-crumbs"> Convocatoria </span>
+                        <i class="fas fa-chevron-right subtitle" />
+                        <span className="text-crumbs">Convocatoria</span>
                     </div>
                 </div>
-
+                <Link to="/nuevacohorte">Nueva Convocatoria</Link>
                 {rows.length > 0 ? (
                     <Tablita
                         className="table"
