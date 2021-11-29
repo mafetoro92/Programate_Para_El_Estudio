@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tablita from "../../components/tablita/Tablita";
 import RequestService from "../../config/index";
-import DisableBtn from "../../components/disableBtn/DisableBtn";
+import MotivationLetterModal from "../../components/modals/MotivationLetterModal";
 
 const Results = () => {
     const [results, setResults] = useState([]);
@@ -17,8 +17,8 @@ const Results = () => {
 
     const actions = [
         {
-            status: false,
-            icon: { DisableBtn },
+            status: true,
+            icon: { MotivationLetterModal },
         },
     ];
 
