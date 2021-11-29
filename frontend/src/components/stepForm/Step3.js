@@ -53,7 +53,7 @@ const Step3 = ({ data, handeleChange }) => {
             Edad actual
           </label>
           <input
-            type="date"
+            type="number"
             className="form-control"
             name="age"
             onChange={handeleChange}

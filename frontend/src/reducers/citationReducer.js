@@ -2,7 +2,7 @@
 import { types } from "../types/types";
 
 const initialState = {
-    cita : []
+    cita : ''
 }
 
 
@@ -11,7 +11,7 @@ export const citationReducer = (state = initialState, action ) => {
         case types.setCitation:
             return{
                 ...state,
-                cita: [...action.payload]
+                cita: action.payload
             }
         default:
             return state;

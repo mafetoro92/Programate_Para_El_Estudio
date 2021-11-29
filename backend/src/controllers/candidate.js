@@ -492,11 +492,39 @@ candidateRouter.post("/attendevent/:id/:idevent", async (req, res) => {
     }
 });
 
+candidateRouter.put('/updatetest/:id', async (req, res)=>{
+  const id = req.params.id
+  const findperfil = await Profile.find({ "user_id": id })
+  const params = JSON.stringify(findperfil)
+  const json = JSON.parse(params)
+  for (h of json) {
+          var userid = (h.id).toString();
+  }
+  const updateEvent = await Profile.findByIdAndUpdate(userid , req.body,{
+          new: true
+  })
+  res.status(200).json(updateEvent) 
+
+})
+
 candidateRouter.get("/calendar", async (req, res) => {
     const events = await Citation.find();
 
     console.log(events);
     res.send(events);
 });
+
+candidateRouter.get('/infoperfil/:id', async (req, res)=>{
+  const id = req.params.id
+  const findperfil = await Profile.find({ "user_id": id })
+  const params = JSON.stringify(findperfil)
+  const json = JSON.parse(params)
+  for (h of json) {
+          var ids = (h.id).toString();
+  }
+  const perfil = await Profile.findById(ids)
+  res.send(perfil) 
+
+})
 
 module.exports = candidateRouter;

@@ -81,3 +81,13 @@ a {
 .text-crumbs{
   font-size: 14px;
 }
+
+.swal2-styled.swal2-confirm{
+  background-color: #fdc300 !important;
+}
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: 0 0 0 3px #ffc500 !important;
+}
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+  box-shadow: 0 0 0 0.25rem #ebb30b !important;
+}

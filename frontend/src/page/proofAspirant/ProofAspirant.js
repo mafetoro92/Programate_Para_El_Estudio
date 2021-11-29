@@ -14,7 +14,6 @@ const ProofAspirant = () => {
                     <span className="text-crumbs">Prueba</span>
                 </div>
             </div>
-
             <TechnicalTestAspirant />
         </div>
     );
